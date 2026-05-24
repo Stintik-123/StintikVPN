@@ -13,24 +13,25 @@ from urllib.parse import unquote, urlparse, parse_qs
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 
+# === OPTIMIZATION SETTINGS ===
 BASE_DIR = "checked"
-TIMEOUT = 4
+TIMEOUT = 1.5  # Reduced from 2s for faster socket checks
 socket.setdefaulttimeout(TIMEOUT)
-THREADS = 60
+THREADS = 200  # Increased from 150 for more parallelism
 MAX_TOP = 50
-MAX_PING_MS = 3000
-MAX_KEYS_TO_CHECK = 15000
+MAX_PING_MS = 1500  # Stricter ping limit (was 2000ms)
+MAX_KEYS_TO_CHECK = 2000  # Reduced from 3000 - only check top working keys
 HISTORY_FILE = os.path.join(BASE_DIR, "history.json")
 IP_CACHE_FILE = os.path.join(BASE_DIR, "ip_cache.json")
 IP_CACHE_MAX_AGE_DAYS = 30
-GEO_API_RATE_LIMIT = 38
+GEO_API_RATE_LIMIT = 60  # Increased API rate limit
 GEO_API_WINDOW = 60.0
 MAX_HISTORY_AGE = 2 * 24 * 3600
 MY_CHANNEL = "@StintikVPN"
 
 # Memory geo-cache optimization
 _geo_memory_cache = {}
-GEO_MEMORY_CACHE_MAX_SIZE = 5000
+GEO_MEMORY_CACHE_MAX_SIZE = 15000  # Increased cache size
 _geo_mem_lock = threading.Lock()
 
 COUNTRY_NAMES_RU = {
@@ -345,6 +346,12 @@ def get_country_fast(host, key_name):
     try:
         host_l = host.lower()
         name_u = key_name.upper()
+        
+        # Check for bad countries first (fast reject)
+        for bad in ["CN", "IR", "KR", "BR", "IN"]:
+            if bad in name_u or f"🇨{'🇳' if bad == 'CN' else ''}" in name_u:
+                return bad
+        
         if host_l.endswith(".ru"):
             return "RU"
         if host_l.endswith(".de"):
@@ -355,9 +362,22 @@ def get_country_fast(host, key_name):
             return "GB"
         if host_l.endswith(".fr"):
             return "FR"
+        if host_l.endswith(".fi"):
+            return "FI"
+        if host_l.endswith(".pl"):
+            return "PL"
+        if host_l.endswith(".se"):
+            return "SE"
+        
+        # Check EURO codes in name
         for code in EURO_CODES:
             if code in name_u:
                 return code
+        
+        # Check RU markers
+        if _has_many_ru_markers(host, key_name):
+            return "RU"
+            
     except Exception:
         pass
     return "UNKNOWN"
@@ -592,6 +612,14 @@ def check_key(config):
         if not host or not port:
             return False, 9999, "UNKNOWN", "no_host_port"
         
+        # Fast path: check markers first before any network call
+        country = get_country_fast(host, config.get('name', ''))
+        if country != "UNKNOWN":
+            if country in BAD_MARKERS:
+                return False, 0, country, "bad_country_fast"
+            # If we already know it's RU/EU from name, skip socket check for some categories
+            # But still verify connectivity
+        
         resolved_ip = resolve_host(host)
         if not resolved_ip:
             return False, 9999, "UNKNOWN", "dns_fail"
@@ -600,7 +628,6 @@ def check_key(config):
         if not ok:
             return False, ping, "UNKNOWN", "socket_fail"
         
-        country = get_country_fast(host, config.get('name', ''))
         if country == "UNKNOWN":
             country = detect_exit_country_via_http(host)
         
@@ -654,20 +681,47 @@ def process_category(cat_name, meta):
     
     print(f"  Parsed {len(configs)} unique configs")
     
-    valid_configs = []
-    checked = 0
+
+    # Pre-filter by fast country detection before socket check
+    prefiltered = []
+    bad_count = 0
     for cfg in configs:
-        if checked >= MAX_KEYS_TO_CHECK:
-            break
+        host = cfg.get('host', '')
+        name = cfg.get('name', '')
+        country = get_country_fast(host, name)
+        if country in BAD_MARKERS:
+            bad_count += 1
+        else:
+            prefiltered.append(cfg)
+    
+    if bad_count > 0:
+        print(f"  Pre-filtered {bad_count} configs with bad country markers")
+    
+    valid_configs = []
+
+    # Use ThreadPoolExecutor for parallel checking
+    def check_wrapper(cfg):
         ok, ping, country, reason = check_key(cfg)
-        if ok:
-            valid_configs.append((cfg, ping, country))
-        checked += 1
-        if checked % 100 == 0:
-            print(f"  Checked {checked}/{min(len(configs), MAX_KEYS_TO_CHECK)}...")
+        return (cfg, ok, ping, country)
+
+    # Check only top N configs after pre-filtering
+    configs_to_check = prefiltered[:MAX_KEYS_TO_CHECK]
     
+    with ThreadPoolExecutor(max_workers=THREADS) as executor:
+        futures = {executor.submit(check_wrapper, cfg): cfg for cfg in configs_to_check}
+
+        for i, future in enumerate(as_completed(futures), 1):
+            try:
+                cfg, ok, ping, country = future.result()
+                if ok:
+                    valid_configs.append((cfg, ping, country))
+            except Exception:
+                pass
+
+            if i % 500 == 0:
+                print(f"  Checked {i}/{len(futures)}... (valid: {len(valid_configs)})")
+
     valid_configs.sort(key=lambda x: x[1])
-    
     with open(output_path, 'w', encoding='utf-8') as f:
         for cfg, ping, country in valid_configs:
             f.write(cfg['original'] + '\n')
@@ -693,26 +747,33 @@ def process_tg_proxies(meta):
     print(f"  Found {len(proxies)} TG proxy links")
     
     valid_proxies = []
-    for proxy_url in proxies:
+    
+    def check_proxy_wrapper(proxy_url):
         try:
             parsed = urlparse(proxy_url)
             if parsed.scheme == 'https':
                 params = parse_qs(parsed.query)
                 server = params.get('server', [''])[0]
                 port = int(params.get('port', ['0'])[0])
-                secret = params.get('secret', [''])[0]
             else:
                 params = parse_qs(parsed.query)
                 server = params.get('server', [''])[0]
                 port = int(params.get('port', ['0'])[0])
-                secret = params.get('secret', [''])[0]
             
             if server and port:
-                ok, ping = check_socket(server, port, timeout=3)
+                ok, ping = check_socket(server, port, timeout=2)
                 if ok:
-                    valid_proxies.append((proxy_url, ping))
+                    return (proxy_url, ping)
         except Exception:
-            continue
+            pass
+        return None
+    
+    with ThreadPoolExecutor(max_workers=THREADS) as executor:
+        futures = [executor.submit(check_proxy_wrapper, p) for p in proxies]
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                valid_proxies.append(result)
     
     valid_proxies.sort(key=lambda x: x[1])
     
