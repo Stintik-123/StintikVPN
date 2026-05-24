@@ -1,4 +1,4 @@
-# 🚀 StintikVPN — Интернет свобода ближе, чем кажется
+# 🚀 StintikVPN — Твой проводник в свободный интернет 
 
 [![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/network/members)
@@ -29,10 +29,9 @@
 <summary><b>📱 Для Android: ByeByeDPI</b></summary>
 <br>
 
-1. Скачайте APK с [официального GitHub](https://github.com/ValdikSS/ByeDPIAndroid).
+1. Скачайте APK с [официального GitHub](https://github.com/romanvht/ByeByeDPI).
 2. Запустите приложение → нажмите **«Подбор»** → **«Запустить проверку»**.
-3. Выберите стратегию с зелеными галочками и нажмите **«Подключить»**.
-> Работает локально, батарею почти не ест.
+3. Выберите стратегию с наибольшим количеством потверждений и нажмите **«Подключить»**.
 </details>
 
 <details>
@@ -52,9 +51,9 @@
 
 | Платформа | Приложение | Почему лучший | Ссылка |
 |:---|:---|:---|:---|
-| **Android** | **Hiddify** | Поддерживает всё (Reality, SNI), есть режим "Только Россия", очень быстрый. | [GitHub / Google Play](https://github.com/hiddify/hiddify-next) |
-| **iOS** | **V2Box** | Простой, бесплатный, отлично тянет VLESS и Trojan. | [App Store](https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690) |
-| **Windows** | **NekoRay** | Мощный, встроенный режим обхода блокировок (Tun mode), поддержка всех протоколов. | [GitHub](https://github.com/MatsuriDayo/nekoray) |
+| **Android** | **INCY** | Лучший VPN клиент на Android | [GitHub / Google Play](https://github.com/INCY-DEV/incy-platforms) |
+| **iOS** | **Streisand** | Простой, бесплатный, отлично тянет VLESS и Trojan. | [App Store](https://apps.apple.com/us/app/streisand/id6450534064) |
+| **Windows** | **Hiddify** | Поддерживает всё (Reality, SNI), есть автовыбор лучшего сервера, очень быстрый. | [GitHub](https://github.com/hiddify/hiddify-next) |
 | **macOS** | **FoXray** | Красивый, удобный, полная поддержка современных протоколов. | [App Store](https://apps.apple.com/us/app/foxray/id6448156080) |
 | **Все ОС** | **Hiddify** | Единый интерфейс для ПК и телефонов, синхронизация настроек. | [Официальный сайт](https://hiddify.com/) |
 
@@ -100,23 +99,23 @@
 
 ---
 
-## 🔗 Ссылки на проверенные подписки
+## 🔗 VPN подписки
 
-Здесь лежат файлы, которые автоматически обновляются раз в 2 дня. Скрипт проверяет тысячи серверов, оставляет только рабочие и сортирует их по скорости.
+Здесь лежат ссылки на VPN подписки, которые автоматически обновляются раз в 2 дня. Скрипт проверяет тысячи серверов, оставляет только рабочие и сортирует их по скорости.
 
-> 💡 **Как использовать:** Скопируйте ссылку на файл (кнопка `Raw` на GitHub) и вставьте в свой клиент (Hiddify, NekoBox, v2rayNG) как "Subscription".
+> 💡 **Как использовать:** Скопируйте ссылку и вставьте в свой клиент (Hiddify, NekoBox, v2rayNG) как "Subscription".
 
 ### 🏴 Чёрные списки (Black)
 *   **[black.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black/black.txt)** — Топ-250 самых быстрых серверов (VLESS, Trojan, VMess).
-*   **[black_mobile.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black_mobile/black_mobile.txt)** — Оптимизированная версия для мобильных сетей.
+*   **[black_mobile.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black_mobile/black_mobile.txt)** — Оптимизированная версия для телефонов (50 лучших серверов)
 
 ### 🏳️ Белые списки (White)
-*   **[white.all.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt)** — Универсальный микс всех рабочих методов. Начните с него.
+*   **[white.all.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt)** — Универсальный микс где собрано всё, и методы с SNI и методы с CIDR. Рекомендуется.
 *   **[white.sni.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.sni.txt)** — Только методы с подменой SNI (Reality).
-*   **[white.cidr.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt)** — Только методы через доверенные IP-диапазоны.
+*   **[white.cidr.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt)** — Только методы через доверенные IP-диапазоны (CIDR).
 
 ### 📂 По протоколам
-Если ваш клиент любит конкретный тип:
+Если ваш VPN клиент поддерживает только определенные типы протоколов:
 *   [vless.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vless.txt) | [vmess.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vmess.txt) | [trojan.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/trojan.txt) | [ss.txt](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/ss.txt)
 
 ---
@@ -140,43 +139,37 @@
 
 ## 🧠 Обход блокировок через DNS
 
-Иногда проблема не в VPN, а в DNS. Попробуйте изменить настройки DNS на телефоне или роутере.
+Также существует способ обхода блокировок с помощью DNS, он поможет разблокировать вам ChatGPT, Grok, Spotify, Игры Supercell и др без использования VPN
 
 | Провайдер | Адрес (Hostname) | IP (для ручного ввода) | Комментарий |
 |:---|:---|:---|:---|
-| **XBox DNS** | `xbox-dns.ru` | `111.88.96.50` | Открывает магазины игр и некоторые сервисы. |
-| **Malw Link** | `dns.malw.link` | `84.21.189.133` | Быстрый DNS с защитой от рекламы. |
-| **Cloudflare** | `1.1.1.1` | `1.1.1.1` | Самый быстрый в мире, но может не обходить блокировки РФ. |
-
+| **XBox DNS** | `xbox-dns.ru` | `111.88.96.50` | Лучший и самый стабильный DNS |
+| **Malw Link** | `dns.malw.link` | `84.21.189.133` | Самый быстрый DNS с дополнительной функцией защиты от рекламы. |
 ---
 
 ## 💰 Поддержать проект
 
-Этот репозиторий ведет и развивает **Stintik (GitHub: @Stintik-123)**.  
-Серверы, скрипты проверки и поддержка требуют времени и ресурсов.
+Поддержка и развитие StintikVPN занимает много времени и сил поэтому если вы хотите чтобы репозиторий развивался всегда можете меня поддержать
 
 💳 **Реквизиты автора:**
 *   **Озон Банк:** `79960694715`
 
-🤝 **Поддержка авторов исходников:**
-Мы агрегируем конфиги из открытых источников. Если вам понравился конкретный сервер, найдите его владельца и поддержите его тоже. Возможно, вы пользуетесь именно его оборудованием:
-*   *Igareck, Kort0881, Mihuil121, Akres, MifaWorld* и другие энтузиасты.
-
-> ⭐ **Лучшая бесплатная поддержка** — поставить звезду этому репозиторию! Это помогает проекту быть выше в поиске.
+> ⭐ **Альтернативная бесплатная поддержка** — поставьте звезду этому репозиторию! Это поможет проекту быть выше в поиске.
 
 ---
 
 ## ⚠️ Важное предупреждение
 
-Все конфигурации взяты из публичных источников. Автор не гарантирует 100% uptime, так как бесплатные серверы могут перегружаться.
+Все конфигурации взяты из публичных источников и работоспособность не гарантирована 
+
 **Запрещено** использовать данные материалы для нарушения законодательства РФ. Вы используете их на свой страх и риск.
 
 ---
 
 ## 💬 Контакты
 
-*   **Telegram канал:** [@StintikVPN](https://t.me/StintikVPN)
-*   **Личный контакт:** [@Keb04w](https://t.me/Keb04w)
-*   **Discord:** `stintik_official`
+*   **Telegram канал проекта:** [@StintikVPN](https://t.me/StintikVPN)
+*   **Телеграм для связи** [@Keb04w](https://t.me/Keb04w)
+*   **Discord:** [@stintik_official]
 
-*Сделано людьми для людей. Свободный интернет — это право.*
+**StintikVPN - Сделано людьми для людей**
