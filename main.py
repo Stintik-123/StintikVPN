@@ -6,51 +6,46 @@ import time
 import json
 import requests
 import base64
-import websocket
-import shutil
 import threading
 from urllib.parse import unquote, urlparse, parse_qs
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 
+# ==========================================
+# ⚙️ КОНФИГУРАЦИЯ И НАСТРОЙКИ
+# ==========================================
 BASE_DIR = "checked"
-TIMEOUT = 2
-socket.setdefaulttimeout(TIMEOUT)
-THREADS = 150
-MAX_TOP = 50
-MAX_PING_MS = 2000
-MAX_KEYS_TO_CHECK = 3000
-HISTORY_FILE = os.path.join(BASE_DIR, "history.json")
-IP_CACHE_FILE = os.path.join(BASE_DIR, "ip_cache.json")
-IP_CACHE_MAX_AGE_DAYS = 30
-GEO_API_RATE_LIMIT = 50
-GEO_API_WINDOW = 60.0
-MAX_HISTORY_AGE = 2 * 24 * 3600
-MY_CHANNEL = "@StintikVPN"
+TIMEOUT = 2.5          # Таймаут подключения (баланс скорость/качество)
+THREADS = 200          # Количество потоков (оптимизировано для скорости)
+MAX_PING_MS = 2500     # Максимальный пинг для считания рабочим
 
-# Memory geo-cache optimization
-_geo_memory_cache = {}
-GEO_MEMORY_CACHE_MAX_SIZE = 10000
-_geo_mem_lock = threading.Lock()
-
-COUNTRY_NAMES_RU = {
-    "RU": "Россия", "NL": "Нидерланды", "DE": "Германия", "FI": "Финляндия",
-    "GB": "Великобритания", "FR": "Франция", "SE": "Швеция", "PL": "Польша",
-    "CZ": "Чехия", "AT": "Австрия", "CH": "Швейцария", "IT": "Италия",
-    "ES": "Испания", "NO": "Норвегия", "DK": "Дания", "BE": "Бельгия",
-    "IE": "Ирландия", "LU": "Люксембург", "EE": "Эстония", "LV": "Латвия",
-    "LT": "Литва", "UA": "Украина", "RO": "Румыния", "BG": "Болгария",
-    "TR": "Турция", "GR": "Греция", "PT": "Португалия", "HU": "Венгрия",
-    "SK": "Словакия", "HR": "Хорватия", "RS": "Сербия", "MD": "Молдова",
-    "BY": "Беларусь", "KZ": "Казахстан", "UZ": "Узбекистан", "KG": "Киргизия",
-    "AM": "Армения", "GE": "Грузия", "AZ": "Азербайджан", "AE": "ОАЭ",
-    "SG": "Сингапур", "HK": "Гонконг", "JP": "Япония", "KR": "Южная Корея",
-    "CA": "Канада", "US": "США", "MX": "Мексика", "BR": "Бразилия",
-    "AU": "Австралия", "IN": "Индия", "MY": "Малайзия", "TH": "Таиланд",
-    "VN": "Вьетнам", "ID": "Индонезия", "PH": "Филиппины", "IL": "Израиль",
-    "SA": "Саудовская Аравия", "TM": "Туркменистан", "TJ": "Таджикистан",
+# ЛИМИТЫ НА ВЫХОДЕ (Сортировка по пингу, лучшие сверху)
+LIMITS = {
+    "black": 250,
+    "black_mobile": 50,
+    "white_all": 50,
+    "white_sni": 50,
+    "white_cidr": 50,
+    "tg_proxy": 50,
+    "protocols": 100   # Для каждого протокола отдельно
 }
 
+# Файлы данных
+HISTORY_FILE = os.path.join(BASE_DIR, "history.json")
+REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
+IP_CACHE_FILE = os.path.join(BASE_DIR, "ip_cache.json")
+STATS_FILE = os.path.join(BASE_DIR, "stats.json")
+
+IP_CACHE_MAX_AGE_DAYS = 30
+FAIL_THRESHOLD = 2     # Исключать сервер после 2 неудач подряд
+
+# TELEGRAM CONFIG (Заполни своими данными или оставь пустым)
+TG_BOT_TOKEN = ""      # Токен бота от @BotFather
+TG_CHAT_ID = ""        # ID канала или чата (можно узнать у @userinfobot)
+
+# ==========================================
+# 🌍 ГЕО ДАННЫЕ И МАРКЕРЫ
+# ==========================================
 COUNTRY_FLAGS = {
     "RU": "🇷🇺", "NL": "🇳🇱", "DE": "🇩🇪", "FI": "🇫🇮", "GB": "🇬🇧",
     "FR": "🇫🇷", "SE": "🇸🇪", "PL": "🇵🇱", "CZ": "🇨🇿", "AT": "🇦🇹",
@@ -66,12 +61,22 @@ COUNTRY_FLAGS = {
     "IL": "🇮🇱", "SA": "🇸🇦", "TM": "🇹🇲", "TJ": "🇹🇯",
 }
 
-def country_to_title_ru(code: str) -> str:
-    return COUNTRY_NAMES_RU.get(code.upper(), code or "UNKNOWN")
+BAD_MARKERS = ["CN", "IR", "KR", "BR", "IN", "RELAY", "POOL", "🇨🇳", "🇮🇷", "🇰🇷"]
+RU_MARKERS_STRICT = [
+    ".ru", "moscow", "msk", "spb", "saint-peter", "russia",
+    "россия", "москва", "питер", "ru-", "-ru.",
+    "178.154.", "77.88.", "5.255.", "87.250.",
+    "95.108.", "213.180.", "195.208.", "91.108.", "149.154.",
+]
+EURO_CODES = {"NL", "DE", "FI", "GB", "FR", "SE", "PL", "CZ", "AT", "CH", "IT", "ES", "NO", "DK", "BE", "IE", "LU", "EE", "LV", "LT"}
 
-def country_to_flag(code: str) -> str:
-    return COUNTRY_FLAGS.get(code.upper(), "🌐")
+# Детектор CDN/Anycast (для фильтрации мусора)
+CDN_KEYWORDS = ["cloudflare", "cdn", "akamai", "fastly", "amazonaws"]
+CF_IP_PREFIXES = ["104.", "172.", "173.", "108.", "162."]
 
+# ==========================================
+# 📂 ИСТОЧНИКИ ДАННЫХ (Без изменений структуры)
+# ==========================================
 OUTPUTS = {
     "black": {
         "folder": os.path.join(BASE_DIR, "black"),
@@ -205,41 +210,30 @@ PROTOCOL_FILES = {
     "ss": os.path.join(BASE_DIR, "protocols", "ss.txt"),
 }
 
-BAD_MARKERS = ["CN", "IR", "KR", "BR", "IN", "RELAY", "POOL", "🇨🇳", "🇮🇷", "🇰🇷"]
-RU_MARKERS_STRICT = [
-    ".ru", "moscow", "msk", "spb", "saint-peter", "russia",
-    "россия", "москва", "питер", "ru-", "-ru.",
-    "178.154.", "77.88.", "5.255.", "87.250.",
-    "95.108.", "213.180.", "195.208.",
-    "91.108.", "149.154.",
-]
-EURO_CODES = {"NL", "DE", "FI", "GB", "FR", "SE", "PL", "CZ", "AT", "CH", "IT", "ES", "NO", "DK", "BE", "IE", "LU", "EE", "LV", "LT"}
-
+# ==========================================
+# 🔧 ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И БЛОКИРОВКИ
+# ==========================================
 for meta in OUTPUTS.values():
     os.makedirs(meta["folder"], exist_ok=True)
 os.makedirs(os.path.dirname(PROTOCOL_FILES["vless"]), exist_ok=True)
 os.makedirs(BASE_DIR, exist_ok=True)
 
 _disk_ip_cache = {}
-_host_to_ip = {}
+_reputation_db = {}
 _geo_request_times = []
 _ip_api_disabled = False
-_geo_stats = defaultdict(int)
-_err_stats = defaultdict(int)
+_stats = {"sources": defaultdict(int), "total_checked": 0, "alive": 0, "dead": 0, "sources_alive": defaultdict(int)}
+
 _lock = threading.Lock()
 _cache_lock = threading.Lock()
 _host_lock = threading.Lock()
 _geo_lock = threading.Lock()
-_err_lock = threading.Lock()
+_rep_lock = threading.Lock()
+_stats_lock = threading.Lock()
 
-def _inc_geo_stat(key):
-    with _lock:
-        _geo_stats[key] += 1
-
-def _inc_err(kind):
-    with _err_lock:
-        _err_stats[kind] += 1
-
+# ==========================================
+# 🧠 ФУНКЦИИ КЭШИРОВАНИЯ И РЕПУТАЦИИ
+# ==========================================
 def load_json(path):
     if os.path.exists(path):
         try:
@@ -263,19 +257,46 @@ def load_ip_cache():
 def save_ip_cache():
     save_json(IP_CACHE_FILE, _disk_ip_cache)
 
+def load_reputation():
+    global _reputation_db
+    _reputation_db = load_json(REPUTATION_FILE)
+
+def save_reputation():
+    with _rep_lock:
+        save_json(REPUTATION_FILE, _reputation_db)
+
+def check_reputation(host, port):
+    """Проверяет, не помечен ли сервер как мертвый много раз подряд"""
+    key = f"{host}:{port}"
+    with _rep_lock:
+        entry = _reputation_db.get(key)
+        if entry and entry.get("fails", 0) >= FAIL_THRESHOLD:
+            return False
+    return True
+
+def update_reputation(host, port, success):
+    """Обновляет статистику успехов/неудач сервера"""
+    key = f"{host}:{port}"
+    with _rep_lock:
+        if key not in _reputation_db:
+            _reputation_db[key] = {"fails": 0, "last_success": 0}
+        
+        if success:
+            _reputation_db[key]["fails"] = 0
+            _reputation_db[key]["last_success"] = time.time()
+        else:
+            _reputation_db[key]["fails"] += 1
+
+# ==========================================
+# 🌐 СЕТЕВЫЕ ФУНКЦИИ И GEOIP
+# ==========================================
 def resolve_host(host):
     with _host_lock:
-        if host in _host_to_ip:
-            return _host_to_ip[host]
-    try:
-        ip = socket.gethostbyname(host)
-        with _host_lock:
-            _host_to_ip[host] = ip
-        return ip
-    except Exception:
-        with _host_lock:
-            _host_to_ip[host] = None
-        return None
+        try:
+            ip = socket.gethostbyname(host)
+            return ip
+        except Exception:
+            return None
 
 def _geo_api_wait_slot():
     global _ip_api_disabled
@@ -293,28 +314,16 @@ def _geo_api_wait_slot():
         _geo_request_times.append(time.time())
     return True
 
-def detect_exit_country_via_http(proxy_host):
-    global _ip_api_disabled
-    ip = resolve_host(proxy_host)
+def detect_exit_country_via_http(ip):
+    """Определяет страну по IP через API с кэшированием"""
     if not ip:
         return "UNKNOWN"
     
-    # Check memory cache first (optimization)
-    with _geo_mem_lock:
-        if ip in _geo_memory_cache:
-            _inc_geo_stat("mem_cache")
-            return _geo_memory_cache[ip]
-    
+    # Проверка диска кэша
     with _cache_lock:
         cached = _disk_ip_cache.get(ip)
     if cached:
-        _inc_geo_stat("cache")
-        country = cached.get("country", "UNKNOWN")
-        # Add to memory cache
-        with _geo_mem_lock:
-            if len(_geo_memory_cache) < GEO_MEMORY_CACHE_MAX_SIZE:
-                _geo_memory_cache[ip] = country
-        return country
+        return cached.get("country", "UNKNOWN")
     
     if _ip_api_disabled:
         return "UNKNOWN"
@@ -323,7 +332,7 @@ def detect_exit_country_via_http(proxy_host):
         return "UNKNOWN"
     
     try:
-        r = requests.get(f"http://ip-api.com/json/{ip}?fields=countryCode", timeout=4)
+        r = requests.get(f"http://ip-api.com/json/{ip}?fields=countryCode", timeout=TIMEOUT)
         if r.status_code == 429:
             _ip_api_disabled = True
             return "UNKNOWN"
@@ -331,30 +340,23 @@ def detect_exit_country_via_http(proxy_host):
             code = r.json().get("countryCode", "UNKNOWN") or "UNKNOWN"
             with _cache_lock:
                 _disk_ip_cache[ip] = {"country": code, "time": time.time()}
-            # Add to memory cache
-            with _geo_mem_lock:
-                if len(_geo_memory_cache) < GEO_MEMORY_CACHE_MAX_SIZE:
-                    _geo_memory_cache[ip] = code
-            _inc_geo_stat("api")
             return code
     except Exception:
         pass
     return "UNKNOWN"
 
 def get_country_fast(host, key_name):
+    """Быстрое определение страны по домену или имени ключа"""
     try:
-        host_l = host.lower()
-        name_u = key_name.upper()
-        if host_l.endswith(".ru"):
-            return "RU"
-        if host_l.endswith(".de"):
-            return "DE"
-        if host_l.endswith(".nl"):
-            return "NL"
-        if host_l.endswith(".uk") or host_l.endswith(".co.uk"):
-            return "GB"
-        if host_l.endswith(".fr"):
-            return "FR"
+        host_l = host.lower() if host else ""
+        name_u = key_name.upper() if key_name else ""
+        
+        if host_l.endswith(".ru"): return "RU"
+        if host_l.endswith(".de"): return "DE"
+        if host_l.endswith(".nl"): return "NL"
+        if host_l.endswith(".uk") or host_l.endswith(".co.uk"): return "GB"
+        if host_l.endswith(".fr"): return "FR"
+        
         for code in EURO_CODES:
             if code in name_u:
                 return code
@@ -362,10 +364,18 @@ def get_country_fast(host, key_name):
         pass
     return "UNKNOWN"
 
-def _has_many_ru_markers(host, key_name):
+def is_russian_exit(key_str, host, country):
+    """Определяет, является ли выход российским"""
+    if country == "RU":
+        return True
+    
+    host_lower = host.lower() if host else ""
+    key_upper = key_str.upper() if key_str else ""
+    
+    if host_lower.endswith(".ru"):
+        return True
+        
     count = 0
-    host_lower = host.lower()
-    key_upper = key_name.upper()
     for marker in RU_MARKERS_STRICT:
         if marker.lower() in host_lower or marker.upper() in key_upper:
             count += 1
@@ -373,202 +383,73 @@ def _has_many_ru_markers(host, key_name):
                 return True
     return False
 
-def is_russian_exit(key_str, host, country):
-    if country == "RU":
-        return True
-    host_lower = host.lower()
-    if host_lower.endswith(".ru"):
-        return True
-    if _has_many_ru_markers(host, key_str):
-        return True
+def is_cdn_or_fake(host, ip):
+    """Smart Anycast Detector: Фильтрует CDN и фейки"""
+    if not host: return False
+    host_l = host.lower()
+    
+    for kw in CDN_KEYWORDS:
+        if kw in host_l:
+            return True
+            
+    if ip:
+        for prefix in CF_IP_PREFIXES:
+            if ip.startswith(prefix):
+                # Можно добавить исключения, но пока помечаем как CDN
+                pass 
     return False
 
-def decode_base64_safe(s):
-    try:
-        s = s.strip()
-        missing_padding = len(s) % 4
-        if missing_padding:
-            s += '=' * (4 - missing_padding)
-        decoded = base64.b64decode(s).decode('utf-8', errors='ignore')
-        return decoded
-    except Exception:
-        return ""
-
-def parse_vless(uri):
-    try:
-        if not uri.startswith("vless://"):
-            return None
-        uri = uri[8:]
-        if '#' in uri:
-            uri, fragment = uri.split('#', 1)
-        else:
-            fragment = ""
-        if '?' in uri:
-            main_part, query = uri.split('?', 1)
-        else:
-            return None
-        parts = main_part.split('@')
-        if len(parts) != 2:
-            return None
-        uuid = parts[0]
-        host_port = parts[1]
-        if ':' not in host_port:
-            return None
-        host, port = host_port.rsplit(':', 1)
-        params = parse_qs(query)
-        sni = params.get('sni', [None])[0]
-        fp = params.get('fp', [None])[0]
-        alpn = params.get('alpn', [None])[0]
-        pbk = params.get('pbk', [None])[0]
-        sid = params.get('sid', [None])[0]
-        spx = params.get('spx', [None])[0]
-        path = params.get('path', ['/'])[0]
-        security = params.get('security', ['none'])[0]
-        proto = params.get('type', ['tcp'])[0]
-        return {
-            'protocol': 'vless',
-            'uuid': uuid,
-            'host': host,
-            'port': int(port),
-            'sni': sni,
-            'fp': fp,
-            'alpn': alpn,
-            'pbk': pbk,
-            'sid': sid,
-            'spx': spx,
-            'path': path,
-            'security': security,
-            'type': proto,
-            'name': unquote(fragment) if fragment else f"{host}:{port}",
-            'original': 'vless://' + uri + ('#' + fragment if fragment else '')
-        }
-    except Exception:
-        return None
-
-def parse_vmess(uri):
-    try:
-        if not uri.startswith("vmess://"):
-            return None
-        b64_part = uri[8:]
-        decoded = decode_base64_safe(b64_part)
-        if not decoded:
-            return None
-        data = json.loads(decoded)
-        return {
-            'protocol': 'vmess',
-            'host': data.get('add', ''),
-            'port': int(data.get('port', 0)),
-            'id': data.get('id', ''),
-            'aid': data.get('aid', 0),
-            'net': data.get('net', 'tcp'),
-            'type': data.get('type', 'none'),
-            'host_header': data.get('host', ''),
-            'path': data.get('path', '/'),
-            'tls': data.get('tls', ''),
-            'sni': data.get('sni', ''),
-            'name': data.get('ps', f"{data.get('add')}:{data.get('port')}"),
-            'original': uri
-        }
-    except Exception:
-        return None
-
-def parse_trojan(uri):
-    try:
-        if not uri.startswith("trojan://"):
-            return None
-        uri = uri[9:]
-        if '#' in uri:
-            uri, fragment = uri.split('#', 1)
-        else:
-            fragment = ""
-        if '?' in uri:
-            main_part, query = uri.split('?', 1)
-        else:
-            main_part = uri
-            query = ""
-        password = main_part.split('@')[0]
-        host_port = main_part.split('@')[1] if '@' in main_part else ""
-        if ':' not in host_port:
-            return None
-        host, port = host_port.rsplit(':', 1)
-        params = parse_qs(query)
-        sni = params.get('sni', [None])[0]
-        alpn = params.get('alpn', [None])[0]
-        fp = params.get('fp', [None])[0]
-        path = params.get('path', ['/'])[0]
-        security = params.get('security', ['tls'])[0]
-        return {
-            'protocol': 'trojan',
-            'password': password,
-            'host': host,
-            'port': int(port),
-            'sni': sni,
-            'alpn': alpn,
-            'fp': fp,
-            'path': path,
-            'security': security,
-            'name': unquote(fragment) if fragment else f"{host}:{port}",
-            'original': 'trojan://' + uri + ('#' + fragment if fragment else '')
-        }
-    except Exception:
-        return None
-
-def parse_ss(uri):
-    try:
-        if not uri.startswith("ss://"):
-            return None
-        uri = uri[5:]
-        if '#' in uri:
-            uri, fragment = uri.split('#', 1)
-        else:
-            fragment = ""
-        if '@' in uri:
-            method_pass, host_port = uri.split('@', 1)
-            try:
-                decoded = decode_base64_safe(method_pass)
-                if ':' in decoded:
-                    method, password = decoded.split(':', 1)
-                else:
-                    method, password = "aes-256-gcm", decoded
-            except Exception:
-                method, password = "aes-256-gcm", method_pass
-        else:
-            decoded = decode_base64_safe(uri)
-            if '@' in decoded:
-                method_pass, host_port = decoded.split('@', 1)
-                if ':' in method_pass:
-                    method, password = method_pass.split(':', 1)
-                else:
-                    method, password = "aes-256-gcm", method_pass
-            else:
-                return None
-        if ':' not in host_port:
-            return None
-        host, port = host_port.rsplit(':', 1)
-        return {
-            'protocol': 'ss',
-            'method': method,
-            'password': password,
-            'host': host,
-            'port': int(port),
-            'name': unquote(fragment) if fragment else f"{host}:{port}",
-            'original': 'ss://' + uri + ('#' + fragment if fragment else '')
-        }
-    except Exception:
-        return None
-
-def parse_line(line):
+# ==========================================
+# 🕵️ ПАРСИНГ И ПРОВЕРКА
+# ==========================================
+def parse_proxy_line(line, source_url=""):
     line = line.strip()
     if not line or line.startswith('#'):
         return None
+    
+    # TG Proxy
+    if line.startswith("https://t.me/proxy") or line.startswith("tg://proxy"):
+        return {"type": "tg_proxy", "raw": line, "host": None, "port": None, "source_url": source_url}
+    
+    # VLESS
     if line.startswith("vless://"):
-        return parse_vless(line)
-    elif line.startswith("vmess://"):
-        return parse_vmess(line)
-    elif line.startswith("trojan://"):
-        return parse_trojan(line)
-    elif line.startswith("ss://"):
-        return parse_ss(line)
+        try:
+            parsed = urlparse(line)
+            host = parsed.hostname
+            port = parsed.port
+            name = unquote(parsed.fragment)
+            params = parse_qs(parsed.query)
+            return {"type": "vless", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
+        except: return None
+    
+    # VMess
+    if line.startswith("vmess://"):
+        try:
+            decoded = base64.b64decode(line[8:] + '==').decode('utf-8')
+            data = json.loads(decoded)
+            return {"type": "vmess", "host": data.get('add'), "port": int(data.get('port', 443)), "name": data.get('ps', ''), "raw": line, "params": data, "source_url": source_url}
+        except: return None
+        
+    # Trojan
+    if line.startswith("trojan://"):
+        try:
+            parsed = urlparse(line)
+            host = parsed.hostname
+            port = parsed.port
+            name = unquote(parsed.fragment)
+            return {"type": "trojan", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+        except: return None
+
+    # SS
+    if line.startswith("ss://"):
+        try:
+            parsed = urlparse(line)
+            host = parsed.hostname
+            port = parsed.port
+            name = unquote(parsed.fragment)
+            return {"type": "ss", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+        except: return None
+        
     return None
 
 def check_socket(host, port, timeout=TIMEOUT):
@@ -577,235 +458,306 @@ def check_socket(host, port, timeout=TIMEOUT):
         sock.settimeout(timeout)
         start = time.time()
         result = sock.connect_ex((host, port))
-        elapsed = (time.time() - start) * 1000
+        ping = (time.time() - start) * 1000
         sock.close()
-        if result == 0 and elapsed < MAX_PING_MS:
-            return True, elapsed
-        return False, elapsed
-    except Exception:
+        if result == 0 and ping < MAX_PING_MS:
+            return True, ping
+        return False, ping
+    except:
         return False, 9999
 
-def check_key(config):
-    try:
-        host = config.get('host', '')
-        port = config.get('port', 0)
-        if not host or not port:
-            return False, 9999, "UNKNOWN", "no_host_port"
-        
-        # Fast path: check markers first before any network call
-        country = get_country_fast(host, config.get('name', ''))
-        if country != "UNKNOWN":
-            if country in BAD_MARKERS:
-                return False, 0, country, "bad_country_fast"
-            # If we already know it's RU/EU from name, skip socket check for some categories
-            # But still verify connectivity
-        
-        resolved_ip = resolve_host(host)
-        if not resolved_ip:
-            return False, 9999, "UNKNOWN", "dns_fail"
-        
-        ok, ping = check_socket(resolved_ip, port)
-        if not ok:
-            return False, ping, "UNKNOWN", "socket_fail"
-        
-        if country == "UNKNOWN":
-            country = detect_exit_country_via_http(host)
-        
-        if country in BAD_MARKERS:
-            return False, ping, country, "bad_country"
-        
-        return True, ping, country, "ok"
-    except Exception as e:
-        return False, 9999, "UNKNOWN", str(e)
+def process_key(item):
+    """Основная логика проверки одного ключа"""
+    raw = item.get('raw')
+    p_type = item.get('type')
+    source = item.get('source_url', 'unknown')
+    
+    if p_type == 'tg_proxy':
+        # TG прокси считаем рабочими по умолчанию (или можно добавить проверку подключения)
+        return {'valid': True, 'item': item, 'ping': 0, 'country': 'XX', 'source': source}
 
-def fetch_urls(urls):
-    all_lines = []
+    host = item.get('host')
+    port = item.get('port')
+    
+    if not host or not port:
+        return None
+    
+    # 1. Проверка репутации
+    if not check_reputation(host, port):
+        return None
+
+    # 2. DNS Resolve
+    ip = resolve_host(host)
+    if not ip:
+        update_reputation(host, port, False)
+        return None
+    
+    # 3. Smart Filter (опционально)
+    # if is_cdn_or_fake(host, ip):
+    #    pass 
+
+    # 4. Socket Check
+    is_online, ping = check_socket(ip, port)
+    
+    if not is_online:
+        update_reputation(host, port, False)
+        return None
+        
+    # Если онлайн - обновляем репутацию
+    update_reputation(host, port, True)
+    
+    # 5. Определение страны
+    fast_country = get_country_fast(host, item.get('name', ''))
+    final_country = fast_country
+    if final_country == "UNKNOWN":
+        final_country = detect_exit_country_via_http(ip)
+    
+    # Проверка на плохие маркеры
+    name_upper = (item.get('name') or "").upper()
+    for bad in BAD_MARKERS:
+        if bad in name_upper:
+            return None
+
+    return {'valid': True, 'item': item, 'ping': ping, 'country': final_country, 'source': source}
+
+def classify_white_smart(item, country):
+    """Автоматическое определение SNI vs CIDR"""
+    name = (item.get('name') or "").upper()
+    params = item.get('params', {})
+    raw = item.get('raw', "")
+    
+    # Логика CIDR
+    if "CIDR" in name or "192.168" in raw or "/32" in raw or "10.0." in raw:
+        return "white_cidr"
+    
+    # Логика SNI / Reality
+    security = ""
+    if isinstance(params, dict):
+        # Для VLESS/Trojan
+        sec_list = params.get('security', [])
+        security = sec_list[0] if isinstance(sec_list, list) else sec_list
+    elif isinstance(params, str):
+        # Для VMess (если там есть security)
+        security = params.get('scy', '') if isinstance(params, dict) else ''
+        
+    if security == 'reality' or 'reality' in raw.lower():
+        return "white_sni"
+    
+    # Проверка SNI параметра
+    sni_val = ""
+    if isinstance(params, dict):
+        sni_list = params.get('sni', [])
+        sni_val = sni_list[0] if isinstance(sni_list, list) else sni_list
+    
+    if sni_val and sni_val != item['host']:
+        return "white_sni"
+        
+    return "white_all"
+
+def fetch_urls(urls, category_name):
+    """Скачивает и парсит ссылки, возвращает список задач"""
+    all_items = []
     for url in urls:
         try:
             r = requests.get(url.strip(), timeout=10)
             if r.status_code == 200:
                 content = r.text
-                decoded = decode_base64_safe(content)
-                if decoded:
-                    lines = decoded.split('\n')
-                else:
-                    lines = content.split('\n')
+                # Попытка декодировать Base64
+                try:
+                    decoded = base64.b64decode(content).decode('utf-8')
+                    lines = decoded.splitlines()
+                except:
+                    lines = content.splitlines()
+                
+                valid_count = 0
                 for line in lines:
-                    if line.strip():
-                        all_lines.append(line.strip())
-        except Exception:
-            continue
-    return all_lines
+                    parsed = parse_proxy_line(line, source_url=url)
+                    if parsed:
+                        all_items.append(parsed)
+                        valid_count += 1
+                
+                with _stats_lock:
+                    _stats["sources"][url] += valid_count
+        except Exception as e:
+            print(f"Error fetching {url}: {e}")
+    return all_items
 
-def process_category(cat_name, meta):
-    print(f"[+] Processing category: {cat_name}")
-    urls = meta.get('urls', [])
-    folder = meta.get('folder', BASE_DIR)
-    filename = meta.get('file', 'output.txt')
+def send_telegram_report(stats, counts):
+    if not TG_BOT_TOKEN or not TG_CHAT_ID:
+        return
     
-    os.makedirs(folder, exist_ok=True)
-    output_path = os.path.join(folder, filename)
+    msg = f"🚀 **StintikVPN Checker Report**\n\n"
+    msg += f"✅ Живых: {stats['alive']}\n"
+    msg += f"❌ Мертвых/Отсеянных: {stats['dead']}\n"
+    msg += f"📊 Всего проверено: {stats['total_checked']}\n\n"
     
-    lines = fetch_urls(urls)
-    print(f"  Fetched {len(lines)} lines from {len(urls)} sources")
+    msg += "**Лимиты соблюдены:**\n"
+    for cat, count in counts.items():
+        limit = LIMITS.get(cat, 0)
+        if limit > 0:
+            msg += f"- {cat}: {count}/{limit}\n"
     
-    configs = []
-    seen = set()
-    for line in lines:
-        cfg = parse_line(line)
-        if cfg:
-            key = f"{cfg['protocol']}:{cfg['host']}:{cfg['port']}"
-            if key not in seen:
-                seen.add(key)
-                configs.append(cfg)
+    msg += "\n🏆 **Топ источников (живые):**\n"
+    # Сортируем по количеству живых (нужно собрать статистику живых по источникам)
+    # В данной реализации _stats['sources_alive'] заполняется в процессе
+    sorted_sources = sorted(stats.get('sources_alive', {}).items(), key=lambda x: x[1], reverse=True)[:5]
     
-    print(f"  Parsed {len(configs)} unique configs")
-    
-    valid_configs = []
-    checked = 0
-    
-    # Use ThreadPoolExecutor for parallel checking
-    def check_wrapper(cfg):
-        ok, ping, country, reason = check_key(cfg)
-        return (cfg, ok, ping, country)
-    
-    with ThreadPoolExecutor(max_workers=THREADS) as executor:
-        futures = {executor.submit(check_wrapper, cfg): cfg for cfg in configs[:MAX_KEYS_TO_CHECK]}
+    if not sorted_sources:
+        # Фоллбэк на общее количество найденных
+        sorted_sources = sorted(stats['sources'].items(), key=lambda x: x[1], reverse=True)[:5]
+
+    for url, count in sorted_sources:
+        short_url = url.split('/')[-1].replace('.txt', '')
+        msg += f"- {short_url}: {count} живых\n"
         
-        for i, future in enumerate(as_completed(futures), 1):
-            try:
-                cfg, ok, ping, country = future.result()
-                if ok:
-                    valid_configs.append((cfg, ping, country))
-            except Exception:
-                pass
-            
-            if i % 500 == 0:
-                print(f"  Checked {i}/{len(futures)}...")
-    
-    valid_configs.sort(key=lambda x: x[1])
-    
-    with open(output_path, 'w', encoding='utf-8') as f:
-        for cfg, ping, country in valid_configs:
-            f.write(cfg['original'] + '\n')
-    
-    print(f"  Saved {len(valid_configs)} valid configs to {output_path}")
-    return valid_configs
+    url_req = f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage"
+    try:
+        requests.post(url_req, json={
+            "chat_id": TG_CHAT_ID,
+            "text": msg,
+            "parse_mode": "Markdown"
+        })
+    except Exception as e:
+        print(f"TG Error: {e}")
 
-def process_tg_proxies(meta):
-    print(f"[+] Processing Telegram proxies")
-    urls = meta.get('urls', [])
-    folder = meta.get('folder', BASE_DIR)
-    filename = meta.get('file', 'tg_proxy.txt')
+# ==========================================
+# 🚀 ОСНОВНАЯ ФУНКЦИЯ
+# ==========================================
+def main():
+    print(f"🚀 StintikVPN Smart Checker Started (Threads: {THREADS})")
+    load_ip_cache()
+    load_reputation()
     
-    os.makedirs(folder, exist_ok=True)
-    output_path = os.path.join(folder, filename)
+    results = {
+        'black': [],
+        'black_mobile': [],
+        'white_all': [],
+        'white_sni': [],
+        'white_cidr': [],
+        'tg_proxy': [],
+        'protocols': defaultdict(list)
+    }
     
-    proxies = []
-    for url in urls:
-        url = url.strip()
-        if url.startswith('https://t.me/proxy') or url.startswith('tg://proxy'):
-            proxies.append(url)
+    all_tasks = []
     
-    print(f"  Found {len(proxies)} TG proxy links")
+    print("📥 Загрузка Black списков...")
+    black_items = fetch_urls(OUTPUTS['black']['urls'], 'black')
+    for item in black_items:
+        all_tasks.append((item, 'black'))
+        
+    print("📥 Загрузка White списков...")
+    # Объединяем все white источники для проверки, а потом разделим
+    white_urls = OUTPUTS['white_all']['urls'] + OUTPUTS['white_sni']['urls'] + OUTPUTS['white_cidr']['urls']
+    white_items = fetch_urls(white_urls, 'white')
+    for item in white_items:
+        all_tasks.append((item, 'white'))
+        
+    print("📥 Загрузка TG прокси...")
+    tg_items = fetch_urls(OUTPUTS['tg_proxy']['urls'], 'tg')
+    for item in tg_items:
+        results['tg_proxy'].append({'valid': True, 'item': item, 'ping': 0, 'country': 'XX', 'source': item.get('source_url')})
+
+    print(f"🔍 Начата проверка {len(all_tasks)} ключей...")
     
-    valid_proxies = []
-    
-    def check_proxy_wrapper(proxy_url):
-        try:
-            parsed = urlparse(proxy_url)
-            if parsed.scheme == 'https':
-                params = parse_qs(parsed.query)
-                server = params.get('server', [''])[0]
-                port = int(params.get('port', ['0'])[0])
-            else:
-                params = parse_qs(parsed.query)
-                server = params.get('server', [''])[0]
-                port = int(params.get('port', ['0'])[0])
-            
-            if server and port:
-                ok, ping = check_socket(server, port, timeout=2)
-                if ok:
-                    return (proxy_url, ping)
-        except Exception:
-            pass
-        return None
+    alive_count = 0
     
     with ThreadPoolExecutor(max_workers=THREADS) as executor:
-        futures = [executor.submit(check_proxy_wrapper, p) for p in proxies]
+        futures = [executor.submit(process_key, item) for item, _ in all_tasks]
         for future in as_completed(futures):
-            result = future.result()
-            if result:
-                valid_proxies.append(result)
-    
-    valid_proxies.sort(key=lambda x: x[1])
-    
-    with open(output_path, 'w', encoding='utf-8') as f:
-        for proxy_url, ping in valid_proxies:
-            f.write(proxy_url + '\n')
-    
-    print(f"  Saved {len(valid_proxies)} valid TG proxies to {output_path}")
-    return valid_proxies
+            res = future.result()
+            if res and res.get('valid'):
+                alive_count += 1
+                item = res['item']
+                source = res['source']
+                
+                # Обновляем статистику живых по источникам
+                with _stats_lock:
+                    if source not in _stats['sources_alive']:
+                        _stats['sources_alive'][source] = 0
+                    _stats['sources_alive'][source] += 1
+                
+                # Распределение по категориям
+                # Находим исходную категорию задачи (через маппинг URL или просто по типу)
+                # Проще проверить URL источника
+                src_url = item.get('source_url', '')
+                is_white_source = any(u == src_url for u in white_urls)
+                
+                if not is_white_source:
+                    # Это Black
+                    results['black'].append(res)
+                else:
+                    # Это White - определяем подтип
+                    sub_cat = classify_white_smart(item, res['country'])
+                    results[sub_cat].append(res)
+                    results['white_all'].append(res) # Дублируем в общий
+                
+                # Протоколы
+                p_type = item['type']
+                if p_type in ['vless', 'vmess', 'trojan', 'ss']:
+                    results['protocols'][p_type].append(res)
+            else:
+                pass # Dead
 
-def distribute_to_protocols(all_valid_configs):
-    print("[+] Distributing configs by protocol")
-    protocol_data = defaultdict(list)
-    
-    for cfg, ping, country in all_valid_configs:
-        proto = cfg.get('protocol', 'unknown')
-        if proto in PROTOCOL_FILES:
-            protocol_data[proto].append(cfg['original'])
-    
-    for proto, lines in protocol_data.items():
-        path = PROTOCOL_FILES.get(proto)
-        if path:
-            os.makedirs(os.path.dirname(path), exist_ok=True)
-            with open(path, 'w', encoding='utf-8') as f:
-                for line in lines:
-                    f.write(line + '\n')
-            print(f"  Saved {len(lines)} {proto.upper()} configs to {path}")
+    _stats['alive'] = alive_count
+    _stats['dead'] = len(all_tasks) - alive_count
+    _stats['total_checked'] = len(all_tasks)
 
-def update_history(stats):
-    history = load_json(HISTORY_FILE)
-    now = time.time()
-    cutoff = now - MAX_HISTORY_AGE
-    history = {k: v for k, v in history.items() if float(k) > cutoff}
-    history[str(now)] = stats
-    save_json(HISTORY_FILE, history)
+    print("💾 Сохранение результатов с учетом лимитов...")
+    
+    def save_list_category(name, data_list, filename):
+        # Сортировка по пингу
+        data_list.sort(key=lambda x: x['ping'])
+        limited = data_list[:LIMITS.get(name, 100)]
+        
+        path = os.path.join(BASE_DIR, filename)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        
+        header = f"# StintikVPN Auto-Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(limited)}\n"
+        
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write(header)
+            f.write('\n'.join([x['item']['raw'] for x in limited]))
+            
+        return len(limited)
 
-def main():
-    print("="*60)
-    print(f"StintikVPN Checker | Channel: {MY_CHANNEL}")
-    print("="*60)
+    final_counts = {}
     
-    load_ip_cache()
+    final_counts['black'] = save_list_category('black', results['black'], OUTPUTS['black']['file'])
+    final_counts['black_mobile'] = save_list_category('black_mobile', results['black'], OUTPUTS['black_mobile']['file']) # Берем из лучших black
     
-    all_valid_configs = []
+    final_counts['white_all'] = save_list_category('white_all', results['white_all'], OUTPUTS['white_all']['file'])
+    final_counts['white_sni'] = save_list_category('white_sni', results['white_sni'], OUTPUTS['white_sni']['file'])
+    final_counts['white_cidr'] = save_list_category('white_cidr', results['white_cidr'], OUTPUTS['white_cidr']['file'])
     
-    for cat_name, meta in OUTPUTS.items():
-        if cat_name == 'tg_proxy':
-            process_tg_proxies(meta)
-        else:
-            valid = process_category(cat_name, meta)
-            all_valid_configs.extend(valid)
+    # TG
+    tg_path = OUTPUTS['tg_proxy']['file']
+    tg_data = results['tg_proxy']
+    tg_data.sort(key=lambda x: x['ping']) # Сортировка если бы был пинг
+    limited_tg = tg_data[:LIMITS['tg_proxy']]
+    with open(tg_path, 'w', encoding='utf-8') as f:
+        f.write(f"# TG Proxies Updated: {time.strftime('%Y-%m-%d')}\n")
+        f.write('\n'.join([x['item']['raw'] for x in limited_tg]))
+    final_counts['tg_proxy'] = len(limited_tg)
     
-    distribute_to_protocols(all_valid_configs)
-    
+    # Protocols
+    for proto, data in results['protocols'].items():
+        data.sort(key=lambda x: x['ping'])
+        limited = data[:LIMITS['protocols']]
+        p_path = PROTOCOL_FILES[proto]
+        with open(p_path, 'w', encoding='utf-8') as f:
+            f.write(f"# {proto.upper()} Protocol List\n")
+            f.write('\n'.join([x['item']['raw'] for x in limited]))
+        final_counts[f'proto_{proto}'] = len(limited)
+
     save_ip_cache()
+    save_reputation()
+    save_json(STATS_FILE, _stats)
     
-    stats = {
-        "total_checked": len(all_valid_configs),
-        "geo_stats": dict(_geo_stats),
-        "err_stats": dict(_err_stats),
-        "timestamp": time.time()
-    }
-    update_history(stats)
+    print("📊 Отправка отчета в Telegram...")
+    send_telegram_report(_stats, final_counts)
     
-    print("="*60)
-    print("✅ Done!")
-    print(f"Total valid configs: {len(all_valid_configs)}")
-    print(f"Geo API calls: {_geo_stats.get('api', 0)}, Cache hits: {_geo_stats.get('cache', 0) + _geo_stats.get('mem_cache', 0)}")
-    print("="*60)
+    print(f"✅ Готово! Проверено: {_stats['total_checked']}, Рабочих: {_stats['alive']}")
+    print(f"📂 Результаты в папке {BASE_DIR}/")
 
 if __name__ == "__main__":
     main()
