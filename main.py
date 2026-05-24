@@ -315,7 +315,6 @@ def classify_white_smart(item, country):
     # Логика SNI / Reality
     security = ""
     if isinstance(params, dict):
-        # Для VLESS/Trojan параметры приходят как списки значений ['value']
         sec_list = params.get('security', [])
         if isinstance(sec_list, list) and len(sec_list) > 0:
             security = sec_list[0]
@@ -325,15 +324,14 @@ def classify_white_smart(item, country):
     if security == 'reality' or 'reality' in raw.lower():
         return "white_sni"
     
-    # Проверка SNI параметра (ИСПРАВЛЕНИЕ ОШИБКИ ЗДЕСЬ)
+    # Проверка SNI параметра (ИСПРАВЛЕНИЕ: защита от пустого списка)
     sni_val = ""
     if isinstance(params, dict):
         sni_list = params.get('sni', [])
         if isinstance(sni_list, list):
             if len(sni_list) > 0:
                 sni_val = sni_list[0]
-            else:
-                sni_val = "" # Пустой список
+            # else: sni_val остается пустым
         elif isinstance(sni_list, str):
             sni_val = sni_list
     
