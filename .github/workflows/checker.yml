@@ -2,8 +2,12 @@ name: VPN Configs Checker
 
 on:
   schedule:
-    - cron: '0 */48 * * *'  # Запуск раз в 2 дня (каждые 48 часов)
-  workflow_dispatch:        # Возможность ручного запуска
+    - cron: '0 */48 * * *'  # Запуск раз в 2 дня
+  workflow_dispatch:        # Ручной запуск
+
+# 👇 ВАЖНО: Явно даем права на запись
+permissions:
+  contents: write
 
 jobs:
   check-vpn:
@@ -28,17 +32,20 @@ jobs:
     - name: Run VPN Checker
       run: python main.py
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}  # Если используете бота
+        TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
 
     - name: Commit and push results
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add checked/
+        # Проверяем, есть ли изменения
         if ! git diff --staged --quiet; then
-          git commit -m "Update checked configs: $(date '+%Y-%m-%d %H:%M:%S')"
+          git commit -m "🔄 Auto-update configs: $(date '+%Y-%m-%d %H:%M')"
           git push
         else
-          echo "No changes to commit"
+          echo "✅ No changes detected, skipping commit."
         fi
-      continue-on-error: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
