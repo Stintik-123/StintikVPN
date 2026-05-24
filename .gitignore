@@ -1,18 +1,21 @@
-# Папка с результатами проверок
-checked/
-
-# Кэш и история репутации
-ip_cache.json
-history.json
-reputation.json
-
-# Логи
-*.log
-
-# Системные
-.DS_Store
-Thumbs.db
+# Игнорируем системные файлы Python
 __pycache__/
 *.py[cod]
-.env
+*$py.class
+*.so
+.Python
+env/
 venv/
+*.egg-info/
+dist/
+build/
+
+# Игнорируем файлы кэша и статистики (они генерируются, но не нужны в git)
+ip_cache.json
+reputation.json
+stats.json
+history.json
+
+# ВАЖНО: Мы НЕ игнорируем папку checked/, чтобы результаты попадали в репозиторий!
+# Но можно игнорировать временные файлы внутри неё, если они создаются (опционально)
+# checked/*.log 
