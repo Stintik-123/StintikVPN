@@ -303,27 +303,41 @@ def process_key(item):
     return {'valid': True, 'item': item, 'ping': ping, 'country': country, 'source': source}
 
 def classify_white_smart(item, country):
+    """Автоматическое определение SNI vs CIDR (Безопасная версия)"""
     name = (item.get('name') or "").upper()
     params = item.get('params', {})
     raw = item.get('raw', "")
     
-    if "CIDR" in name or "192.168" in raw or "/32" in raw:
+    # Логика CIDR
+    if "CIDR" in name or "192.168" in raw or "/32" in raw or "10.0." in raw:
         return "white_cidr"
     
+    # Логика SNI / Reality
     security = ""
     if isinstance(params, dict):
+        # Для VLESS/Trojan параметры приходят как списки значений ['value']
         sec_list = params.get('security', [])
-        security = sec_list[0] if isinstance(sec_list, list) else sec_list
-    
+        if isinstance(sec_list, list) and len(sec_list) > 0:
+            security = sec_list[0]
+        elif isinstance(sec_list, str):
+            security = sec_list
+            
     if security == 'reality' or 'reality' in raw.lower():
         return "white_sni"
-        
+    
+    # Проверка SNI параметра (ИСПРАВЛЕНИЕ ОШИБКИ ЗДЕСЬ)
     sni_val = ""
     if isinstance(params, dict):
         sni_list = params.get('sni', [])
-        sni_val = sni_list[0] if isinstance(sni_list, list) else sni_list
+        if isinstance(sni_list, list):
+            if len(sni_list) > 0:
+                sni_val = sni_list[0]
+            else:
+                sni_val = "" # Пустой список
+        elif isinstance(sni_list, str):
+            sni_val = sni_list
     
-    if sni_val and sni_val != item['host']:
+    if sni_val and sni_val != item.get('host'):
         return "white_sni"
         
     return "white_all"
