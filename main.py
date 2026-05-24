@@ -12,13 +12,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 
 # ==========================================
-# ⚙️ КОНФИГУРАЦИЯ И НАСТРОЙКИ
+# ⚙️ КОНФИГУРАЦИЯ
 # ==========================================
 BASE_DIR = "checked"
 TIMEOUT = 2.5
 THREADS = 200
 MAX_PING_MS = 2500
 
+# ЛИМИТЫ НА ВЫХОДЕ
 LIMITS = {
     "black": 250,
     "black_mobile": 50,
@@ -41,6 +42,7 @@ FAIL_THRESHOLD = 2
 TG_BOT_TOKEN = ""
 TG_CHAT_ID = ""
 
+# ГЕО ДАННЫЕ
 COUNTRY_FLAGS = {
     "RU": "🇷🇺", "NL": "🇳🇱", "DE": "🇩🇪", "FI": "🇫🇮", "GB": "🇬🇧",
     "FR": "🇫🇷", "SE": "🇸🇪", "PL": "🇵🇱", "CZ": "🇨🇿", "AT": "🇦🇹",
@@ -64,10 +66,12 @@ RU_MARKERS_STRICT = [
     "95.108.", "213.180.", "195.208.", "91.108.", "149.154.",
 ]
 EURO_CODES = {"NL", "DE", "FI", "GB", "FR", "SE", "PL", "CZ", "AT", "CH", "IT", "ES", "NO", "DK", "BE", "IE", "LU", "EE", "LV", "LT"}
-
 CDN_KEYWORDS = ["cloudflare", "cdn", "akamai", "fastly", "amazonaws"]
 CF_IP_PREFIXES = ["104.", "172.", "173.", "108.", "162."]
 
+# ==========================================
+# 📂 ИСТОЧНИКИ (Без изменений)
+# ==========================================
 OUTPUTS = {
     "black": {
         "folder": os.path.join(BASE_DIR, "black"),
@@ -201,6 +205,9 @@ PROTOCOL_FILES = {
     "ss": os.path.join(BASE_DIR, "protocols", "ss.txt"),
 }
 
+# ==========================================
+# 🔧 ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+# ==========================================
 for meta in OUTPUTS.values():
     os.makedirs(meta["folder"], exist_ok=True)
 os.makedirs(os.path.dirname(PROTOCOL_FILES["vless"]), exist_ok=True)
@@ -222,6 +229,9 @@ _geo_lock = threading.Lock()
 _rep_lock = threading.Lock()
 _stats_lock = threading.Lock()
 
+# ==========================================
+# 🧠 ФУНКЦИИ
+# ==========================================
 def load_json(path):
     if os.path.exists(path):
         try:
@@ -275,8 +285,7 @@ def update_reputation(host, port, success):
 def resolve_host(host):
     with _host_lock:
         try:
-            ip = socket.gethostbyname(host)
-            return ip
+            return socket.gethostbyname(host)
         except Exception:
             return None
 
@@ -364,6 +373,13 @@ def is_cdn_or_fake(host, ip):
                 pass 
     return False
 
+def normalize_tg_link(raw_line):
+    """Преобразует tg:// ссылки в https://t.me/proxy для кликабельности"""
+    if raw_line.startswith("tg://proxy?"):
+        # Простая замена схемы, параметры остаются теми же
+        return raw_line.replace("tg://proxy?", "https://t.me/proxy?")
+    return raw_line
+
 def parse_proxy_line(line, source_url=""):
     line = line.strip()
     if not line or line.startswith('#'):
@@ -371,7 +387,8 @@ def parse_proxy_line(line, source_url=""):
     
     # TG Proxy
     if line.startswith("https://t.me/proxy") or line.startswith("tg://proxy"):
-        return {"type": "tg_proxy", "raw": line, "host": None, "port": None, "source_url": source_url}
+        normalized = normalize_tg_link(line)
+        return {"type": "tg_proxy", "raw": normalized, "host": None, "port": None, "source_url": source_url}
     
     # VLESS
     if line.startswith("vless://"):
@@ -559,12 +576,6 @@ def send_telegram_report(stats, counts):
     except Exception as e:
         print(f"TG Error: {e}")
 
-def normalize_tg_link(raw_line):
-    """Преобразует tg:// в https://t.me/proxy для кликабельности"""
-    if raw_line.startswith("tg://proxy?"):
-        return raw_line.replace("tg://proxy?", "https://t.me/proxy?")
-    return raw_line
-
 def main():
     print(f"🚀 StintikVPN Smart Checker Started (Threads: {THREADS})")
     load_ip_cache()
@@ -596,9 +607,6 @@ def main():
     print("📥 Загрузка TG прокси...")
     tg_items = fetch_urls(OUTPUTS['tg_proxy']['urls'], 'tg')
     for item in tg_items:
-        # Нормализуем ссылку перед сохранением
-        normalized_raw = normalize_tg_link(item['raw'])
-        item['raw'] = normalized_raw
         results['tg_proxy'].append({'valid': True, 'item': item, 'ping': 0, 'country': 'XX', 'source': item.get('source_url')})
 
     print(f"🔍 Начата проверка {len(all_tasks)} ключей...")
