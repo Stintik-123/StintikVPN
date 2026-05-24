@@ -1,7 +1,7 @@
 # 🚀 StintikVPN — Интернет свобода ближе, чем кажется
 
-[![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/network/members)
 [![Update Status](https://img.shields.io/badge/updates-auto_every_48h-success)](https://github.com/Stintik-123/StintikVPN-)
 
 > **Лучшие бесплатные конфигурации для обхода блокировок в РФ (2026).**  
