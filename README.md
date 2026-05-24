@@ -1,9 +1,9 @@
 🚀 StintikVPN - Интернет свобода ближе чем кажется
 
-[![GitHub stars](https://img.shields.io/github/stars/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/watchers)
-[![Auto Update](https://img.shields.io/badge/auto-update-every%2048h-brightgreen)](https://github.com/Stintik-Official/StintikVPN-/actions)
+[![GitHub stars](https://img.shields.io/github/stars/Stintik123/StintikVPN-?style=flat-square)](https://github.com/Stintik123/StintikVPN-/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Stintik123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/Stintik123/StintikVPN-?style=flat-square)](https://github.com/Stintik123/StintikVPN-/watchers)
+[![Auto Update](https://img.shields.io/badge/auto-update-every%2048h-brightgreen)](https://github.com/Stintik123/StintikVPN-/actions)
 
 **Лучшие бесплатные обновляющиеся VPN конфигурации для обхода блокировок в России в 2026 году**
 
