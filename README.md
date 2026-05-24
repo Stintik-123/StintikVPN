@@ -1,123 +1,90 @@
-# 🚀 StintikVPN
+# 🚀 StintikVPN Configs
 
-> **Автоматически обновляемые бесплатные VPN конфигурации (VLESS, VMess, Trojan, SS) для обхода блокировок.**
-> Проверка работоспособности каждые 48 часов. Отбор лучших по пингу.
+[![Update](https://img.shields.io/badge/updates-every_48h-success?style=flat-square)](https://github.com/Stintik-123/StintikVPN-)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/blob/main/LICENSE)
+[![Channel](https://img.shields.io/badge/channel-@StintikVPN-229ED9?style=flat-square&logo=telegram)](https://t.me/StintikVPN)
 
----
-
-## 🛠 Альтернативы VPN (Без установки)
-Если нужны только YouTube/Discord и не хочется ставить VPN:
-*   **Android:** [ByeByeDPI](https://github.com/ValdikSS/ByeDPIAndroid) (локальный обход DPI).
-*   **Windows:** [Zapret-discord-youtube](https://github.com/Flowseal/zapret-discord-youtube).
-
-## 📱 Лучшие клиенты
-Для работы подписок понадобятся приложения:
-*   **Android:** [Hiddify](https://github.com/hiddify/hiddify-next), [v2rayNG](https://github.com/2dust/v2rayNG)
-*   **iOS:** [V2Box](https://apps.apple.com/app/v2box/id6447798605), [FoXray](https://apps.apple.com/app/foxray/id6448156060)
-*   **PC:** [Hiddify](https://github.com/hiddify/hiddify-next), [NekoRay](https://github.com/MatsuriDayo/nekoray)
+> Автоматически проверяемые конфигурации VLESS, VMess, Trojan, SS и MTProto.  
+> Обновление: **раз в 48 часов**. Отбор лучших по пингу.
 
 ---
 
-## 📡 Протоколы и Типы подписок
+## 📂 Подписки (Subscriptions)
 
-| Значок | Тип | Описание | Когда использовать |
-|:---:|:---|:---|:---|
-| 🏴 | **Black** | Обычные быстрые сервера. | Домашний Wi-Fi, кабель, обычный мобильный интернет. |
-| 🏳️ | **White** | Сервера с обходом блокировок (Reality/SNI). | Мобильные операторы (МТС, Билайн и др.) с жесткими блокировками. |
-| ⚡ | **SNI** | Подмена имени домена (Domain Fronting). | Если провайдер режет сами VPN-протоколы. |
-| 🌐 | **CIDR** | Использование доверенных IP-диапазонов. | Если SNI не работает, самый стабильный метод для мобильных. |
+Скопируйте ссылку **Raw** и импортируйте в свой клиент (Hiddify, NekoBox, v2rayNG).
+
+| Категория | Файл | Статус | Ссылка (Raw) |
+| :--- | :--- | :---: | :--- |
+| **🏴 Black (Main)** | `black.txt` | ✅ | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black/black.txt) |
+| **📱 Black Mobile** | `black_mobile.txt` | ✅ | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black_mobile/black_mobile.txt) |
+| **🏳️ White (All)** | `white.all.txt` | ✅ | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt) |
+| **⚪ White SNI** | `white.sni.txt` | ✅ | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.sni.txt) |
+| **⚪ White CIDR** | `white.cidr.txt` | ✅ | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt) |
+
+### 📡 По протоколам
+| Протокол | Файл | Ссылка (Raw) |
+| :--- | :--- | :--- |
+| **VLESS** | `vless.txt` | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vless.txt) |
+| **VMess** | `vmess.txt` | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vmess.txt) |
+| **Trojan** | `trojan.txt` | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/trojan.txt) |
+| **Shadowsocks** | `ss.txt` | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/ss.txt) |
+
+### 🤖 Telegram Proxy
+| Тип | Файл | Ссылка (Raw) |
+| :--- | :--- | :--- |
+| **MTProto** | `tg_proxy.txt` | [📋 Copy Link](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/tg_proxy/tg_proxy.txt) |
+
+---
 
 <details>
-<summary>ℹ️ <b>Подробнее про протоколы</b></summary>
+<summary><b>ℹ️ Информация о типах подписок (Нажми, чтобы раскрыть)</b></summary>
 
-*   **VLESS Reality:** Самый современный. Маскируется под зарубежный сайт (например, Microsoft). Лучший выбор сейчас.
-*   **VMess:** Классический протокол. Хорош, но может детектиться.
-*   **Trojan:** Маскируется под HTTPS трафик. Быстрый и надежный.
-*   **Shadowsocks (SS):** Легкий прокси. Подходит для игр и быстрого серфинга.
+- **Black**: Обычные сервера. Максимальная скорость. Для домашнего интернета и Wi-Fi.
+- **White**: Сервера с обходом блокировок (Reality, SNI). Для мобильных операторов и строгих провайдеров.
+  - **SNI**: Подмена имени домена. Работает, если провайдер режет протоколы, но пускает зарубежные сайты.
+  - **CIDR**: Маршрутизация по IP-диапазонам доверенных сервисов. Стабильнее на некоторых сетях.
+</details>
+
+<details>
+<summary><b>🛠 Лучшие клиенты (Нажми, чтобы раскрыть)</b></summary>
+
+Рекомендуемые приложения для подключения:
+- **Android**: [Hiddify](https://github.com/hiddify/hiddify-next/releases), [v2rayNG](https://github.com/2dust/v2rayNG/releases)
+- **iOS**: [V2Box](https://apps.apple.com/app/v2box-v2ray-client/id6446814690), [FoXray](https://apps.apple.com/app/foxray/id6448195322)
+- **Windows**: [Hiddify](https://github.com/hiddify/hiddify-next/releases), [NekoRay](https://github.com/MatsuriDayo/nekoray/releases)
+- **macOS**: [V2RayU](https://github.com/yanue/V2rayU/releases), [Hiddify](https://github.com/hiddify/hiddify-next/releases)
+</details>
+
+<details>
+<summary><b>⚡ Альтернативы VPN (Без установки) (Нажми, чтобы раскрыть)</b></summary>
+
+Если нужен только YouTube/Discord без смены IP:
+- **Android**: [ByeByeDPI](https://github.com/ValdikSS/ByeDPIAndroid)
+- **Windows**: [Zapret-discord-youtube](https://github.com/Flowseal/zapret-discord-youtube)
+</details>
+
+<details>
+<summary><b>🧠 DNS для обхода (Нажми, чтобы раскрыть)</b></summary>
+
+Частные DNS (в настройках телефона):
+- `xbox-dns.ru`
+- `dns.malw.link`
 </details>
 
 ---
 
-## 🔗 Актуальные подписки
+## 💰 Поддержка
 
-Скопируйте ссылку и добавьте в клиент как **"Subscription"** (Подписка).
+Развитие проекта зависит от вас.
+- **Владелец репозитория**: `79960694715` (Озон Банк)
+- **Авторы исходников**: Igareck, Kort0881, Akres и др. (рекомендуется поддерживать их напрямую).
 
-### 🏴 Чёрные списки (Black)
-*Быстрые сервера для обычного использования.*
-
-| Название | Файл | Ссылка (Raw) |
-|:---|:---|:---|
-| **Black Main** | [black.txt](checked/black/black.txt) | `[Copy Raw Link]` |
-| **Black Mobile** | [black_mobile.txt](checked/black_mobile/black_mobile.txt) | `[Copy Raw Link]` |
-
-### 🏳️ Белые списки (White)
-*Для сложных случаев блокировок.*
-
-| Название | Файл | Ссылка (Raw) |
-|:---|:---|:---|
-| **White All** | [white.all.txt](checked/white/white.all.txt) | `[Copy Raw Link]` |
-| **White SNI** | [white.sni.txt](checked/white/white.sni.txt) | `[Copy Raw Link]` |
-| **White CIDR** | [white.cidr.txt](checked/white/white.cidr.txt) | `[Copy Raw Link]` |
-
-### 📂 По протоколам
-*Если ваш клиент требует конкретный тип.*
-
-| Протокол | Файл | Ссылка (Raw) |
-|:---|:---|:---|
-| **VLESS** | [vless.txt](checked/protocols/vless.txt) | `[Copy Raw Link]` |
-| **VMess** | [vmess.txt](checked/protocols/vmess.txt) | `[Copy Raw Link]` |
-| **Trojan** | [trojan.txt](checked/protocols/trojan.txt) | `[Copy Raw Link]` |
-| **SS** | [ss.txt](checked/protocols/ss.txt) | `[Copy Raw Link]` |
+⭐ **Поставь звезду** этому репозиторию — это лучшая поддержка!
 
 ---
 
-## 🤖 Telegram Прокси (MTProto)
-*Нажмите, чтобы подключить автоматически, или скопируйте ссылку.*
+## ⚠️ Disclaimer
 
-<!-- PROXY_TABLE_START -->
-| # | Сервер | Порт | Статус | Подключить |
-|:---:|:---|:---:|:---:|:---:|
-| 1 | *Auto Update* | *Auto* | ✅ | **[🔗 Подключить все прокси](checked/tg_proxy/tg_proxy.txt)** |
-<!-- PROXY_TABLE_END -->
+Конфигурации взяты из открытых источников. Автор не несет ответственности за их работу и ваши действия. Используйте на свой страх и риск.
 
-> 💡 Если ссылка выше не срабатывает автоматически, откройте файл [tg_proxy.txt](checked/tg_proxy/tg_proxy.txt) и скопируйте любую строку вручную.
-
----
-
-## 🧠 DNS для обхода блокировок
-Иногда достаточно просто сменить DNS.
-
-| Провайдер | Hostname | IP Адрес |
-|:---|:---|:---|
-| **XBox DNS** | `xbox-dns.ru` | `111.88.96.50` |
-| **Malw Link** | `dns.malw.link` | `84.21.189.133` |
-
----
-
-## 💰 Поддержать проект
-
-Развитием репозитория занимается **Stintik (GitHub: @Stintik-123)**.
-Серверы для проверки и поддержка требуют ресурсов.
-
-💳 **Реквизиты автора:**
-*   **Озон Банк:** `79960694715`
-
-🤝 **Авторы исходников:**
-Мы агрегируем конфиги из открытых источников. Если вам понравился конкретный сервер, найдите его владельца и поддержите его тоже (Igareck, Kort0881, Akres и др.).
-
-> ⭐ **Лучшая поддержка** — поставить звезду этому репозиторию!
-
----
-
-## ⚠️ Дисклеймер
-Все конфигурации взяты из публичных источников. Автор не несет ответственности за их работу и возможные последствия использования. Используйте на свой страх и риск. Соблюдайте законодательство вашей страны.
-
----
-
-<div align="center">
-
-**Контакты:** [Telegram Channel](https://t.me/StintikVPN) | [Discord](https://discord.gg/SHsWfuht)
-
-*StintikVPN — сделано людьми для людей*
-
-</div>
+**Контакты**: [Telegram](https://t.me/StintikVPN) | [GitHub](https://github.com/Stintik-123)
