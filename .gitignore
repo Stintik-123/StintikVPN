@@ -1,4 +1,18 @@
-```
+# Папка с результатами проверок
+checked/
+
+# Кэш и история репутации
+ip_cache.json
+history.json
+reputation.json
+
+# Логи
+*.log
+
+# Системные
+.DS_Store
+Thumbs.db
 __pycache__/
-*.pyc
-```
+*.py[cod]
+.env
+venv/
