@@ -45,6 +45,26 @@ MIN_SPEED_KBPS = 100
 TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"
 TG_CHAT_ID = "-1003884045475"
 
+COUNTRY_NAMES = {
+    "AF": "🇦🇫 Afghanistan", "AL": "🇦🇱 Albania", "DZ": "🇩🇿 Algeria", "AR": "🇦🇷 Argentina", "AM": "🇦🇲 Armenia",
+    "AU": "🇦🇺 Australia", "AT": "🇦🇹 Austria", "AZ": "🇦🇿 Azerbaijan", "BH": "🇧🇭 Bahrain", "BD": "🇧🇩 Bangladesh",
+    "BY": "🇧🇾 Belarus", "BE": "🇧🇪 Belgium", "BR": "🇧🇷 Brazil", "BG": "🇧🇬 Bulgaria", "CA": "🇨🇦 Canada",
+    "CL": "🇨🇱 Chile", "CN": "🇨🇳 China", "CO": "🇨🇴 Colombia", "HR": "🇭🇷 Croatia", "CY": "🇨🇾 Cyprus",
+    "CZ": "🇨🇿 Czechia", "DK": "🇩🇰 Denmark", "EG": "🇪🇬 Egypt", "EE": "🇪🇪 Estonia", "FI": "🇫🇮 Finland",
+    "FR": "🇫🇷 France", "GE": "🇬🇪 Georgia", "DE": "🇩🇪 Germany", "GR": "🇬🇷 Greece", "HK": "🇭🇰 Hong Kong",
+    "HU": "🇭🇺 Hungary", "IS": "🇮🇸 Iceland", "IN": "🇮🇳 India", "ID": "🇮🇩 Indonesia", "IR": "🇮🇷 Iran",
+    "IQ": "🇮🇶 Iraq", "IE": "🇮🇪 Ireland", "IL": "🇮🇱 Israel", "IT": "🇮🇹 Italy", "JP": "🇯🇵 Japan",
+    "JO": "🇯🇴 Jordan", "KZ": "🇰🇿 Kazakhstan", "KE": "🇰🇪 Kenya", "KR": "🇰🇷 South Korea", "KW": "🇰🇼 Kuwait",
+    "LV": "🇱🇻 Latvia", "LT": "🇱🇹 Lithuania", "MY": "🇲🇾 Malaysia", "MX": "🇲🇽 Mexico", "MD": "🇲🇩 Moldova",
+    "NL": "🇳🇱 Netherlands", "NZ": "🇳🇿 New Zealand", "NG": "🇳🇬 Nigeria", "NO": "🇳🇴 Norway", "PK": "🇵🇰 Pakistan",
+    "PA": "🇵🇦 Panama", "PE": "🇵🇪 Peru", "PH": "🇵🇭 Philippines", "PL": "🇵🇱 Poland", "PT": "🇵🇹 Portugal",
+    "QA": "🇶🇦 Qatar", "RO": "🇷🇴 Romania", "RU": "🇷🇺 Russia", "SA": "🇸🇦 Saudi Arabia", "RS": "🇷🇸 Serbia",
+    "SG": "🇸🇬 Singapore", "SK": "🇸🇰 Slovakia", "ZA": "🇿🇦 South Africa", "ES": "🇪🇸 Spain", "SE": "🇸🇪 Sweden",
+    "CH": "🇨🇭 Switzerland", "TW": "🇹🇼 Taiwan", "TH": "🇹🇭 Thailand", "TR": "🇹🇷 Turkey", "UA": "🇺🇦 Ukraine",
+    "AE": "🇦🇪 UAE", "GB": "🇬🇧 United Kingdom", "US": "🇺🇸 United States", "UZ": "🇺🇿 Uzbekistan",
+    "VN": "🇻🇳 Vietnam", "VE": "🇻🇪 Venezuela"
+}
+
 RU_MARKERS_STRICT = [
     ".ru", "moscow", "msk", "spb", "saint-peter", "russia",
     "россия", "москва", "питер", "ru-", "-ru.",
