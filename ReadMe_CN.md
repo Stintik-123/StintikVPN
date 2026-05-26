@@ -9,9 +9,9 @@
 **StintikVPN** 自动收集、验证和更新用于绕过俄罗斯审查的配置。  
 您无需配置任何内容——只需获取现成的链接并将其插入您的 VPN 客户端即可。
 
-[![GitHub stars](https://img.shields.io/github/stars/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/watchers)
+[![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/watchers)
 
 ---
 
@@ -50,21 +50,21 @@
 ## 📦 现成订阅
 
 ### ⚫ 黑名单（主要）
-[`checked/black/black.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/black/black.txt) – 约 300 台服务器，速度和稳定性的最佳平衡。
+[`checked/black/black.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black/black.txt) – 约 300 台服务器，速度和稳定性的最佳平衡。
 
 ### ⚪ 白名单
-- [`checked/white/white.all.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.all.txt) – 所有有效配置（约 150 台服务器）
-- [`checked/white/white.sni.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.sni.txt) – 具有有效 SNI 的配置（更好的伪装）
-- [`checked/white/white.cidr.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.cidr.txt) – 具有 CIDR 掩码的配置（用于绕过子网封锁）
+- [`checked/white/white.all.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt) – 所有有效配置（约 150 台服务器）
+- [`checked/white/white.sni.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.sni.txt) – 具有有效 SNI 的配置（更好的伪装）
+- [`checked/white/white.cidr.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt) – 具有 CIDR 掩码的配置（用于绕过子网封锁）
 
 ### 🛠️ 按协议分类
-- **VLESS (Reality)**: [`checked/protocols/vless.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vless.txt)
-- **VMess**: [`checked/protocols/vmess.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vmess.txt)
-- **Trojan**: [`checked/protocols/trojan.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/trojan.txt)
-- **Shadowsocks**: [`checked/protocols/ss.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/ss.txt)
+- **VLESS (Reality)**: [`checked/protocols/vless.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vless.txt)
+- **VMess**: [`checked/protocols/vmess.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vmess.txt)
+- **Trojan**: [`checked/protocols/trojan.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/trojan.txt)
+- **Shadowsocks**: [`checked/protocols/ss.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/ss.txt)
 
 ### 🌍 按国家/地区分类
-查看 [`checked/countries/`](https://github.com/Stintik-Official/StintikVPN-/tree/main/checked/countries) 文件夹 – 包含俄罗斯 (RU)、美国 (US)、德国 (DE)、荷兰 (NL) 和其他国家的文件。
+查看 [`checked/countries/`](https://github.com/Stintik-123/StintikVPN-/tree/main/checked/countries) 文件夹 – 包含俄罗斯 (RU)、美国 (US)、德国 (DE)、荷兰 (NL) 和其他国家的文件。
 
 ---
 

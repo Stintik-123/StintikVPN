@@ -9,9 +9,9 @@
 **StintikVPN** به‌طور خودکار پیکربندی‌ها را برای دور زدن سانسور در روسیه جمع‌آوری، تأیید و به‌روزرسانی می‌کند.  
 نیازی به تنظیم هیچ چیز ندارید — فقط لینک‌های آماده را بگیرید و در کلاینت VPN خود وارد کنید.
 
-[![GitHub stars](https://img.shields.io/github/stars/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/watchers)
+[![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-123/StintikVPN-?style=flat-square)](https://github.com/Stintik-123/StintikVPN-/watchers)
 
 ---
 
@@ -50,21 +50,21 @@
 ## 📦 اشتراک‌های آماده
 
 ### ⚫ لیست سیاه (اصلی)
-[`checked/black/black.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/black/black.txt) – حدود 300 سرور، بهترین تعادل سرعت و پایداری.
+[`checked/black/black.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black/black.txt) – حدود 300 سرور، بهترین تعادل سرعت و پایداری.
 
 ### ⚪ لیست‌های سفید
-- [`checked/white/white.all.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.all.txt) – همه پیکربندی‌های فعال (~150 سرور)
-- [`checked/white/white.sni.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.sni.txt) – پیکربندی‌های با SNI معتبر (پوشش بهتر)
-- [`checked/white/white.cidr.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.cidr.txt) – پیکربندی‌های با ماسک CIDR (برای دور زدن مسدودیت زیرشبکه‌ها)
+- [`checked/white/white.all.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt) – همه پیکربندی‌های فعال (~150 سرور)
+- [`checked/white/white.sni.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.sni.txt) – پیکربندی‌های با SNI معتبر (پوشش بهتر)
+- [`checked/white/white.cidr.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt) – پیکربندی‌های با ماسک CIDR (برای دور زدن مسدودیت زیرشبکه‌ها)
 
 ### 🛠️ بر اساس پروتکل‌ها
-- **VLESS (Reality)**: [`checked/protocols/vless.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vless.txt)
-- **VMess**: [`checked/protocols/vmess.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vmess.txt)
-- **Trojan**: [`checked/protocols/trojan.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/trojan.txt)
-- **Shadowsocks**: [`checked/protocols/ss.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/ss.txt)
+- **VLESS (Reality)**: [`checked/protocols/vless.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vless.txt)
+- **VMess**: [`checked/protocols/vmess.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vmess.txt)
+- **Trojan**: [`checked/protocols/trojan.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/trojan.txt)
+- **Shadowsocks**: [`checked/protocols/ss.txt`](https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/ss.txt)
 
 ### 🌍 بر اساس کشورها
-پوشه [`checked/countries/`](https://github.com/Stintik-Official/StintikVPN-/tree/main/checked/countries) را ببینید – فایل‌هایی برای روسیه (RU)، آمریکا (US)، آلمان (DE)، هلند (NL) و سایر کشورها.
+پوشه [`checked/countries/`](https://github.com/Stintik-123/StintikVPN-/tree/main/checked/countries) را ببینید – فایل‌هایی برای روسیه (RU)، آمریکا (US)، آلمان (DE)، هلند (NL) و سایر کشورها.
 
 ---
 
