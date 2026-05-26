@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Deps
         run: |
-          pip install requests
+          pip install -r requirements.txt
 
       - name: Run VPN Checker
         run: python main.py
