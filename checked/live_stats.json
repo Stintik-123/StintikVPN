@@ -1,41 +1,41 @@
 {
-  "last_update": "2026-05-26 16:57:48",
-  "total_alive": 5112,
-  "total_dead": 9866,
-  "duration_sec": 286.0,
+  "last_update": "2026-05-26 18:52:00",
+  "total_alive": 1991,
+  "total_dead": 12356,
+  "duration_sec": 612.54,
   "categories": {
-    "black": 500,
+    "black": 211,
     "white_all": 250,
     "white_sni": 250,
-    "white_cidr": 120,
+    "white_cidr": 59,
     "premium": 0
   },
   "protocols": {
     "vless": 300,
     "vmess": 0,
-    "trojan": 19,
-    "ss": 15
+    "trojan": 18,
+    "ss": 0
   },
   "top_sources": [
     {
       "url": "vless",
-      "count": 3703
+      "count": 1296
+    },
+    {
+      "url": "white",
+      "count": 146
     },
     {
       "url": "ru_white",
-      "count": 239
+      "count": 141
     },
     {
       "url": "white",
-      "count": 239
+      "count": 140
     },
     {
-      "url": "white",
-      "count": 239
-    },
-    {
-      "url": "fast",
-      "count": 61
+      "url": "vless",
+      "count": 28
     }
   ]
 }

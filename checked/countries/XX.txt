@@ -1,270 +1,80 @@
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://246ec801-282d-413d-9c8e-b6116c892a1c@b3hst4gbrm.vk-maps.net:52006?type=tcp&headerType=none&security=reality&encryption=none&sni=api4.vk-maps.net&fp=qq&pbk=o_ZQuEx_ealt_YkqgtYRqFhee0pzFkg9ObUhODLTAB8&sid=28a059440d3d5ba1&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://246ec801-282d-413d-9c8e-b6116c892a1c@b3hst4gbrm.vk-maps.net:52006?type=tcp&headerType=none&security=reality&encryption=none&sni=api4.vk-maps.net&fp=qq&pbk=o_ZQuEx_ealt_YkqgtYRqFhee0pzFkg9ObUhODLTAB8&sid=28a059440d3d5ba1&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@213.165.51.235:55014?pbk=M5JsVXPIvyT6PzqDivrchgM0I7H6z9bq1YTCitP7IgE&security=reality&serviceName=ripecouncilor&sid=6d&sni=apple.com&type=grpc#🇺🇸 США
+vless://a85a4d28-7d14-4004-98ce-ed1ccd6c50bd@plmw.verymad.net:28737?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Q8yB9j_8uP7SgGdVZdQQBzcnB7IROViEbnGtedncSVo&sid=ea7d&spx=%2FnDxS0fLAH2tG35O#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://a85a4d28-7d14-4004-98ce-ed1ccd6c50bd@plmw.verymad.net:28737?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Q8yB9j_8uP7SgGdVZdQQBzcnB7IROViEbnGtedncSVo&sid=ea7d&spx=%2FnDxS0fLAH2tG35O#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
+vless://a85a4d28-7d14-4004-98ce-ed1ccd6c50bd@plmw.verymad.net:28737?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Q8yB9j_8uP7SgGdVZdQQBzcnB7IROViEbnGtedncSVo&sid=ea7d&spx=%2FnDxS0fLAH2tG35O#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&security=reality&serviceName=jitterycraftsman&sid=f679b4f2&sni=discord.com&type=grpc#🇩🇪 Германия 1
 # 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@se4.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=INmtu9cD_d9ausw_AGcZCMUjbAJGiZxlr5CVC6I_aVQ&sid=21f43bea&sni=se4.gofizz.in&spx=/5n1bxEnT8DPmRex#%F0%9F%87%B8%F0%9F%87%AA%20Sweden%2C%20Stockholm%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://106c376f-431d-4ea0-bc61-f82308fefb4e@144.31.130.33:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=2f49bccf11150ef2&sni=ads.x5.ru&type=tcp#🇸🇪 Швеция 1
-# 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
 vless://a18f7c2d-9e45-4b8a-af3c-1d5e7f9c8b2a@144.31.4.220:443?fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=2f49bccf11150ef2&sni=ads.x5.ru&type=tcp#🇵🇱 Польша 4
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@144.31.131.240:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇲🇩 Молдова 1
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@se4.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=INmtu9cD_d9ausw_AGcZCMUjbAJGiZxlr5CVC6I_aVQ&sid=21f43bea&sni=se4.gofizz.in&spx=/5n1bxEnT8DPmRex#%F0%9F%87%B8%F0%9F%87%AA%20Sweden%2C%20Stockholm%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@144.31.130.33:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇸🇪 Швеция 1
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
+vless://a85a4d28-7d14-4004-98ce-ed1ccd6c50bd@plmw.verymad.net:28737?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Q8yB9j_8uP7SgGdVZdQQBzcnB7IROViEbnGtedncSVo&sid=ea7d&spx=%2FnDxS0fLAH2tG35O#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@89.125.88.63:20869?pbk=W2gBPaIMQnUPxQXYmmrU7atIgDOUtD8mobvYFckeaxY&security=reality&serviceName=easydishwasher&sid=db&sni=github.com&type=grpc#🇫🇮 Финляндия 1
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.84.1.182:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇷🇺 Россия 8
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@51.250.113.157:443?fp=random&pbk=65nqcY-jE1J_G27W-X_qGCSpXMEHif6MBLXN8kBoFB0&security=reality&sid=1f18adc24d1d&sni=www.google.com&type=tcp#🇷🇺 Россия 2
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@pl1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=pl1.gofizz.in&fp=firefox&pbk=jh6G6JAWc1IoJ-ZfIgqeUKKARzJnTTk4qti21iprkTM&sid=d39b0c5e&spx=%2FD0tSilsKUxmJa1W&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.84.1.182:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=2f49bccf11150ef2&sni=ads.x5.ru&type=tcp#🇷🇺 Россия 8
 # 🇽🇽 Unknown | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&security=reality&sid=917fd5a45e8840&sni=ads.x5.ru&type=tcp#🇷🇺 Россия 5
 # 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B06%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@185.211.103.41:44144?pbk=ueshRzCIxRLWqRpP1fFPVB9_gOH2joCp9EmiBJbD1h4&security=reality&serviceName=stalewear&sid=7b885342&sni=github.com&type=grpc#🇦🇹 Австрия
+vless://a85a4d28-7d14-4004-98ce-ed1ccd6c50bd@plmw.verymad.net:28737?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Q8yB9j_8uP7SgGdVZdQQBzcnB7IROViEbnGtedncSVo&sid=ea7d&spx=%2FnDxS0fLAH2tG35O#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
+vless://a85a4d28-7d14-4004-98ce-ed1ccd6c50bd@plmw.verymad.net:28737?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Q8yB9j_8uP7SgGdVZdQQBzcnB7IROViEbnGtedncSVo&sid=ea7d&spx=%2FnDxS0fLAH2tG35O#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B05%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
+vless://246ec801-282d-413d-9c8e-b6116c892a1c@b3hst4gbrm.vk-maps.net:52006?type=tcp&headerType=none&security=reality&encryption=none&sni=api4.vk-maps.net&fp=qq&pbk=o_ZQuEx_ealt_YkqgtYRqFhee0pzFkg9ObUhODLTAB8&sid=28a059440d3d5ba1&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
+vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
+vless://246ec801-282d-413d-9c8e-b6116c892a1c@b3hst4gbrm.vk-maps.net:52006?type=tcp&headerType=none&security=reality&encryption=none&sni=api4.vk-maps.net&fp=qq&pbk=o_ZQuEx_ealt_YkqgtYRqFhee0pzFkg9ObUhODLTAB8&sid=28a059440d3d5ba1&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
+vless://246ec801-282d-413d-9c8e-b6116c892a1c@b3hst4gbrm.vk-maps.net:52006?type=tcp&headerType=none&security=reality&encryption=none&sni=api4.vk-maps.net&fp=qq&pbk=o_ZQuEx_ealt_YkqgtYRqFhee0pzFkg9ObUhODLTAB8&sid=28a059440d3d5ba1&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
 # 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&security=reality&serviceName=newinsight&sid=6bcde426&sni=github.com&type=grpc#🇷🇺 Россия 1
-# 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&security=reality&sid=6b26829083&sni=ads.x5.ru&type=tcp#🇷🇺 Россия 4
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&security=reality&sid=a1e1a7&sni=www.google.com&type=tcp#🇷🇺 Россия 3
-# 🇽🇽 Unknown | StintikVPN
-vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.84.1.182:80?mode=auto&path=/&security=tls&sni=obhod.riotvpn.eu&type=xhttp#🇷🇺 Россия 9
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&sni=jp1.gofizz.in&spx=/5zkRyLTqRCvs92H#%F0%9F%87%AF%F0%9F%87%B5%20Japan%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://106c376f-431d-4ea0-bc61-f82308fefb4e@144.31.130.33:80?mode=auto&path=/&security=tls&sni=obhod.riotvpn.eu&type=xhttp#🇸🇪 Швеция 2
-# 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tr2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tr2.gofizzin.com&fp=firefox&pbk=0dZQFilWbZVW8qj2DqVgiXZndL20ZuxmSuS4KyGRbQc&sid=fa273564&spx=%2FsAM5ChRQN8DKvXM&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%B7%20%20Turkey%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://e3da803c-9c04-4ffb-a0f2-32cda93dd868@pl-1.shadowhub.cc:443?type=xhttp&security=reality&fp=chrome&pbk=OgJz7oQ3aYL5w5mQjdMp0QgCTwRoPuj0LgEZlBtpTRY&sid=6fce2d08&sni=static.gcore.pro&mode=auto#%F0%9F%87%B5%F0%9F%87%B1%20Poland%2C%20Gdansk%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp2.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp2.gofizzin.com&fp=firefox&pbk=K6eVNy67IuzMQ4iC3p7Iyc56ByqyxuE23pKVVKWzp24&sid=0d67c953&spx=%2FymiO10twVFOt86q&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link20.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=ios&pbk=QE5l0RUqs4OsH3j3u_xHm06-4NlILmQivZUJqiEx11o&sid=6314e825&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&sni=jp1.gofizz.in&spx=/5zkRyLTqRCvs92H#%F0%9F%87%AF%F0%9F%87%B5%20Japan%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://e3da803c-9c04-4ffb-a0f2-32cda93dd868@pl-1.shadowhub.cc:443?type=xhttp&security=reality&fp=chrome&pbk=OgJz7oQ3aYL5w5mQjdMp0QgCTwRoPuj0LgEZlBtpTRY&sid=6fce2d08&sni=static.gcore.pro&mode=auto#%F0%9F%87%B5%F0%9F%87%B1%20Poland%2C%20Gdansk%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://6343ce34-3357-45cc-9c94-64501f232d06@95.85.229.247:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=jY_8Ie_jAzScf94tyz152mXFWeHizA2SjBgJ3KedqHg&sid=480161102e58c1b3&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B03%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&sni=jp1.gofizz.in&spx=/5zkRyLTqRCvs92H#%F0%9F%87%AF%F0%9F%87%B5%20Japan%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://50b8c74a-e18e-4a61-b64c-f4010464c4dd@aws-link23.liangxin1.xyz:443?type=tcp&headerType=none&security=reality&encryption=none&sni=download-porter.hoyoverse.com&fp=safari&pbk=dLmUAqcdy4Z7iucApd9zjOhkXTjl-xt_eHumShIYW0c&sid=ba826a54&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@tw1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tw1.gofizzin.com&fp=chrome&pbk=3OEqq4MiCKoUP5yKBOmZsjuwg4i8A1fb8WrEDOFQek8&sid=2c14765d0b&spx=%2FzcYLl2XWnztIfaS&flow=xtls-rprx-vision#%F0%9F%87%B9%F0%9F%87%BC%20%20Taiwan%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@jp1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=jp1.gofizz.in&fp=firefox&pbk=pDECY2XE-65nJHqK-WMKQ82lv0ExC7svd3BL8513qjE&sid=74937b45ce0a&spx=%2F5zkRyLTqRCvs92H&flow=xtls-rprx-vision#%F0%9F%87%AF%F0%9F%87%B5%20%20Japan%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://feae759b-c492-4e41-975d-c6315a40bcf9@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ng1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ng1.gofizz.in&fp=chrome&pbk=SYKJ-zsxnjo1DG-ChEhfq2Smfo-f7CvKKssj9rzuCRw&sid=2d850fa7&spx=%2Fu19yLxVTJAXu75b&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%AC%20%20Nigeria%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@hk1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hk1.gofizz.in&fp=chrome&pbk=9hl6jLaUS7QJtOnrsN_9I43CNV08Fr1mcHN8uTteeHQ&sid=2a2d17fb&spx=%2FwDBSJMFXu4KMKdl&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%B0%20%20Hong%20Kong%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=my1.gofizz.in&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&spx=%2Ffg4kmplpUdM3Scx&flow=xtls-rprx-vision#%F0%9F%87%B2%F0%9F%87%BE%20%20Malaysia%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://f0c9dd61-8033-4381-a601-d80e9fc73388@95.85.227.157:443?type=tcp&headerType=none&security=reality&encryption=none&sni=teamdocs.su&fp=firefox&pbk=eLDbbbpsbgPHP6kVW695Pi-VCRfIx9x6nRAJl0oT3WU&sid=a26ebcc1cb&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%B5%F0%9F%87%B1%20%20Poland%20%20%5B04%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
-# 🇽🇽 Unknown | StintikVPN
-vless://e3da803c-9c04-4ffb-a0f2-32cda93dd868@pl-1.shadowhub.cc:443?type=xhttp&security=reality&fp=chrome&pbk=OgJz7oQ3aYL5w5mQjdMp0QgCTwRoPuj0LgEZlBtpTRY&sid=6fce2d08&sni=static.gcore.pro&mode=auto#%F0%9F%87%B5%F0%9F%87%B1%20Poland%2C%20Gdansk%20%7C%20%5BBL%5D
-# 🇽🇽 Unknown | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.6.161:26870?pbk=DDOraaqhOwYbSvvRaWyRJwfjJYhOHCWOdwL9w1r6oDw&security=reality&serviceName=stakingoffense&sid=cc6e1ab86cd9de56&sni=google.com&type=grpc#🇹🇷 Турция
+vless://246ec801-282d-413d-9c8e-b6116c892a1c@b3hst4gbrm.vk-maps.net:52006?type=tcp&headerType=none&security=reality&encryption=none&sni=api4.vk-maps.net&fp=qq&pbk=o_ZQuEx_ealt_YkqgtYRqFhee0pzFkg9ObUhODLTAB8&sid=28a059440d3d5ba1&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA

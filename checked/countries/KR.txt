@@ -1,11 +1,5 @@
 # 🇰🇷 South Korea | StintikVPN
 vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
-# 🇰🇷 Republic of Korea | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@kr1.gofizzin.com:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=GX6upBR4abLxfIJsbHx1-78x7JTXZEUla45-M3iRV1I&sid=610f7f7d96fcb1a6&sni=kr1.gofizzin.com&spx=/LvLlTG0CWs3d1YL#%F0%9F%87%B0%F0%9F%87%B7%20South%20Korea%2C%20Geumcheon-gu%20%7C%20%5BBL%5D
-# 🇰🇷 South Korea | StintikVPN
-vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
-# 🇰🇷 Republic of Korea | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@kr1.gofizzin.com:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=GX6upBR4abLxfIJsbHx1-78x7JTXZEUla45-M3iRV1I&sid=610f7f7d96fcb1a6&sni=kr1.gofizzin.com&spx=/LvLlTG0CWs3d1YL#%F0%9F%87%B0%F0%9F%87%B7%20South%20Korea%2C%20Geumcheon-gu%20%7C%20%5BBL%5D
 # 🇰🇷 South Korea | StintikVPN
 vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
 # 🇰🇷 South Korea | StintikVPN
@@ -14,7 +8,7 @@ vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&hea
 vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
 # 🇰🇷 South Korea | StintikVPN
 vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
-# 🇰🇷 Republic of Korea | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@kr1.gofizzin.com:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=GX6upBR4abLxfIJsbHx1-78x7JTXZEUla45-M3iRV1I&sid=610f7f7d96fcb1a6&sni=kr1.gofizzin.com&spx=/LvLlTG0CWs3d1YL#%F0%9F%87%B0%F0%9F%87%B7%20South%20Korea%2C%20Geumcheon-gu%20%7C%20%5BBL%5D
+# 🇰🇷 South Korea | StintikVPN
+vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
 # 🇰🇷 South Korea | StintikVPN
 vless://d4bffeb8-2364-4997-a4b0-0bfcd68f1fda@lvmw.verymad.net:50207?type=tcp&headerType=none&security=reality&encryption=none&sni=www.yandex.net&fp=firefox&pbk=OSldWqB5yqBblJ4SRrbiZliMwpJIT3bYR8FCvV0Btwk&sid=d4a93cd9&spx=%2F1dzC11Fv8WBNYv4#%F0%9F%87%BA%F0%9F%87%A6%20%20Ukraine%20%20%5B01%5D%20%20MIFA
