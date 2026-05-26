@@ -12,6 +12,14 @@ trojan://1710442808@188.114.98.0:443?security=tls&sni=subb.nrshop198.workers.dev
 # 🇺🇸 United States | StintikVPN
 trojan://mSzFVhUczD@104.20.6.134:443?type=ws&path=%2F&security=tls&alpn=http%2F1.1&fp=chrome&sni=abest.api-tel.xyz#Шкатулка запретов — 🇺🇸US
 # 🇷🇺 Russia | StintikVPN
+trojan://162534@46.250.230.93:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
+# 🇷🇺 Russia | StintikVPN
+trojan://162534@46.250.230.93:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
+# 🇷🇺 Russia | StintikVPN
+trojan://162534@46.250.230.93:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
+# 🇷🇺 Russia | StintikVPN
+trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
+# 🇷🇺 Russia | StintikVPN
 trojan://162534@5.223.56.239:8443?ed=2560&eh=Sec-WebSocket-Protocol&host=cchh2.pages.dev&path=/%3Fhttps%253A%252F%252Ft.me%252FWangCai2%25F0%259F%2587%25A8%25F0%259F%2587%25B3%3D&sni=cchh2.pages.dev&type=ws#Шкатулка запретов — 🇷🇺RU
 # 🇷🇺 Russia | StintikVPN
 trojan://162534@5.223.56.239:8443?ed=2560&eh=Sec-WebSocket-Protocol&host=cchh2.pages.dev&path=/%3Fhttps%253A%252F%252Ft.me%252FWangCai2%25F0%259F%2587%25A8%25F0%259F%2587%25B3%3D&sni=cchh2.pages.dev&type=ws#Шкатулка запретов — 🇷🇺RU
@@ -20,18 +28,10 @@ trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&al
 # 🇷🇺 Russia | StintikVPN
 trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
 # 🇷🇺 Russia | StintikVPN
-trojan://162534@46.250.230.93:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
+trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
 # 🇷🇺 Russia | StintikVPN
 trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
 # 🇷🇺 Russia | StintikVPN
 trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
 # 🇷🇺 Russia | StintikVPN
 trojan://162534@5.223.56.239:8443?ed=2560&eh=Sec-WebSocket-Protocol&host=cchh2.pages.dev&path=/%3Fhttps%253A%252F%252Ft.me%252FWangCai2%25F0%259F%2587%25A8%25F0%259F%2587%25B3%3D&sni=cchh2.pages.dev&type=ws#Шкатулка запретов — 🇷🇺RU
-# 🇷🇺 Russia | StintikVPN
-trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
-# 🇷🇺 Russia | StintikVPN
-trojan://162534@5.223.56.239:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
-# 🇷🇺 Russia | StintikVPN
-trojan://162534@46.250.230.93:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU
-# 🇷🇺 Russia | StintikVPN
-trojan://162534@46.250.230.93:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#Шкатулка запретов — 🇷🇺RU

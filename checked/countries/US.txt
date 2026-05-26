@@ -13,7 +13,27 @@ vless://246ec801-282d-413d-9c8e-b6116c892a1c@api.rock-roll.rutube.info:443?type=
 # 🇺🇸 United States | StintikVPN
 vless://246ec801-282d-413d-9c8e-b6116c892a1c@api.rock-roll.rutube.info:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=qq&pbk=0avHPgwKcQEgcKbhMAoO6NR8vj90Gw2NGzWqg37cMkQ&sid=22fc0bf5c3da61c6&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B03%5D%20%20MIFA
 # 🇺🇸 United States | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&headerType=none&security=reality&encryption=none&sni=discord.com&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&serviceName=jitterycraftsman#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B05%5D%20%20MIFA
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://d78c12c4-6927-40b8-8550-ed9be00334da@usacxc1.chickenkiller.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=usacxc1.chickenkiller.com&fp=chrome&pbk=k-WrE7fxrWw-M-Kskiq7TExuUIjy-zeE4sniPR3fcX8&sid=edaadbecb5733a1a&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B07%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
 # 🇺🇸 United States | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&headerType=none&security=reality&encryption=none&sni=discord.com&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&serviceName=jitterycraftsman#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B05%5D%20%20MIFA
 # 🇺🇸 United States | StintikVPN
@@ -26,3 +46,11 @@ vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&headerT
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&headerType=none&security=reality&encryption=none&sni=discord.com&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&serviceName=jitterycraftsman#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B05%5D%20%20MIFA
 # 🇺🇸 United States | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&headerType=none&security=reality&encryption=none&sni=discord.com&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&serviceName=jitterycraftsman#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B05%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&headerType=none&security=reality&encryption=none&sni=discord.com&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&serviceName=jitterycraftsman#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B05%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
+# 🇺🇸 United States | StintikVPN
+vless://c6c1c62f-b788-4dce-9e9c-e43b2505d2db@185.33.86.34:51608?type=tcp&headerType=none&security=reality&encryption=none&sni=ya.ru&fp=chrome&pbk=FuP-t3bufgX252PbrvA0lc8wgj5x5xNsTAwzOeWL5yE&sid=aabbccdd&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B09%5D%20%20MIFA
