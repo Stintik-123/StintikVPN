@@ -232,8 +232,8 @@ EURO_CODES = {"NL", "DE", "FI", "GB", "FR", "SE", "PL", "CZ", "AT", "CH", "IT", 
 ASIA_CODES = {"TR", "AE", "SG", "HK", "JP", "KR", "IN", "TH", "VN", "ID", "MY", "PH"}
 US_CODES = {"US", "USA", "UNITED STATES"}
 
-BAD_MARKERS = ["CN", "IR", "RELAY", "POOL"]
-CDN_KEYWORDS = ["cloudflare", "cdn", "akamai"]
+BAD_MARKERS = ["CN", "IR", "KP", "RELAY", "POOL", "ANYCAST"]
+CDN_KEYWORDS = ["cloudflare", "cdn", "akamai", "anycast"]
 
 RU_CIS_IP_PREFIXES = [
     "5.", "31.", "37.", "46.", "62.", "77.", "78.", "79.", "80.", "81.", "82.", "83.", "84.", "85.", "86.", "87.",
@@ -747,9 +747,25 @@ def process_key(item):
         return None
         
     update_reputation(host, port, True)
-    update_health_score(host, port, ping, True)
-    
     name = item.get('name', '')
+    
+    update_health_score(host, port, ping, True)
+    raw = item.get('raw', '')
+
+    # 🔥 ANTI-ANYCAST FILTER: Block CDN/Anycast servers
+    name_upper = name.upper()
+    raw_lower = raw.lower()
+    
+    # Check for Anycast/CDN markers in name and raw config
+    for keyword in CDN_KEYWORDS:
+        if keyword.upper() in name_upper or keyword in raw_lower:
+            return None  # Skip Anycast/CDN servers
+    
+    # Additional check: if host looks like CDN domain
+    host_lower = host.lower() if host else ""
+    if any(cdn in host_lower for cdn in ["cloudflare", "cdn", "akamai", "fastly"]):
+        return None
+
     
     # HARDCORE GeoIP lookup with rate limiting (this is what makes it take 15-20 minutes)
     country_code, country_name = fetch_geoip_multi(host)

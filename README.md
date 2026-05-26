@@ -1,5 +1,11 @@
 # 🚀 StintikVPN — Интернет свобода ближе чем кажется
 
+<div align="center">
+
+**🇷🇺 Русский** | [🇬🇧 English](ReadMe_EN.md) | [🇨🇳 中文](ReadMe_CN.md) | [🇮🇷 فارسی](ReadMe_IR.md)
+
+</div>
+
 **StintikVPN** автоматически собирает, проверяет и обновляет конфиги для обхода блокировок в России.  
 Вам не нужно ничего настраивать — просто берите готовые ссылки и вставляйте в ваш VPN-клиент.
 
@@ -103,7 +109,42 @@
 - **Shadowsocks**: [`checked/protocols/ss.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/ss.txt)
 
 ### 🌍 По странам
-Смотрите папку [`checked/countries/`](https://github.com/Stintik-Official/StintikVPN-/tree/main/checked/countries) – там файлы для России (RU), США (US), Германии (DE), Нидерландов (NL) и других стран.
+
+<details>
+<summary>🗺️ Нажмите, чтобы открыть подписки по странам</summary>
+
+| Страна | Файл | Ссылка |
+|:---:|:---|:---|
+| 🇷🇺 Россия | `RU.txt` | [`checked/countries/RU.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/RU.txt) |
+| 🇺🇸 США | `US.txt` | [`checked/countries/US.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/US.txt) |
+| 🇩🇪 Германия | `DE.txt` | [`checked/countries/DE.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/DE.txt) |
+| 🇳🇱 Нидерланды | `NL.txt` | [`checked/countries/NL.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/NL.txt) |
+| 🇫🇮 Финляндия | `FI.txt` | [`checked/countries/FI.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/FI.txt) |
+| 🇸🇪 Швеция | `SE.txt` | [`checked/countries/SE.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/SE.txt) |
+| 🇫🇷 Франция | `FR.txt` | [`checked/countries/FR.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/FR.txt) |
+| 🇪🇸 Испания | `ES.txt` | [`checked/countries/ES.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/ES.txt) |
+| 🇮🇹 Италия | `IT.txt` | [`checked/countries/IT.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/IT.txt) |
+| 🇦🇹 Австрия | `AT.txt` | [`checked/countries/AT.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/AT.txt) |
+| 🇨🇭 Швейцария | `CH.txt` | [`checked/countries/CH.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/CH.txt) |
+| 🇳🇴 Норвегия | `NO.txt` | [`checked/countries/NO.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/NO.txt) |
+| 🇮🇪 Ирландия | `IE.txt` | [`checked/countries/IE.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/IE.txt) |
+| 🇪🇪 Эстония | `EE.txt` | [`checked/countries/EE.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/EE.txt) |
+| 🇱🇻 Латвия | `LV.txt` | [`checked/countries/LV.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/LV.txt) |
+| 🇱🇹 Литва | `LT.txt` | [`checked/countries/LT.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/LT.txt) |
+| 🇹🇷 Турция | `TR.txt` | [`checked/countries/TR.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/TR.txt) |
+| 🇦🇪 ОАЭ | `AE.txt` | [`checked/countries/AE.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/AE.txt) |
+| 🇯🇵 Япония | `JP.txt` | [`checked/countries/JP.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/JP.txt) |
+| 🇰🇷 Южная Корея | `KR.txt` | [`checked/countries/KR.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/KR.txt) |
+| 🇮🇳 Индия | `IN.txt` | [`checked/countries/IN.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/IN.txt) |
+| 🇹🇭 Таиланд | `TH.txt` | [`checked/countries/TH.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/TH.txt) |
+| 🇨🇾 Кипр | `CY.txt` | [`checked/countries/CY.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/CY.txt) |
+| 🇹🇼 Тайвань | `TW.txt` | [`checked/countries/TW.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/TW.txt) |
+| 🇨🇮 СНГ | `CIS.txt` | [`checked/countries/CIS.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/CIS.txt) |
+| 🏴‍☠️ Другие | `XX.txt` | [`checked/countries/XX.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/countries/XX.txt) |
+
+> Полный список всех доступных стран смотрите в папке [`checked/countries/`](https://github.com/Stintik-Official/StintikVPN-/tree/main/checked/countries).
+
+</details>
 
 ---
 
@@ -111,9 +152,16 @@
 
 > Последнее обновление: **26.05.2026**
 
+<!-- TG_PROXY_SECTION_START -->
+<details>
+<summary>🔓 Нажмите, чтобы открыть доступные Telegram прокси</summary>
+
 | # | Сервер | Порт | Подключить |
 |:---:|:---|:---:|:---:|
 | 1 | `87.242.100.25` | `443` | [🔗 Добавить](https://t.me/proxy?server=87.242.100.25&port=443&secret=eefa41d7ab59231ab714b7865c9016a1356164732e78352e7275) |
+
+</details>
+<!-- TG_PROXY_SECTION_END -->
 
 ---
 
