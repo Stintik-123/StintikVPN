@@ -1,4 +1,4 @@
-# 🚀 StintikVPN — готовые рабочие подписки
+# 🚀 StintikVPN — Интернет свобода ближе чем кажется
 
 **StintikVPN** автоматически собирает, проверяет и обновляет конфиги для обхода блокировок в России.  
 Вам не нужно ничего настраивать — просто берите готовые ссылки и вставляйте в ваш VPN-клиент.
@@ -6,6 +6,23 @@
 [![GitHub stars](https://img.shields.io/github/stars/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/network/members)
 [![GitHub watchers](https://img.shields.io/github/watchers/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/watchers)
+
+---
+
+## 📑 Навигация
+
+- [🚀 Как пользоваться](#-как-пользоваться)
+- [📱 Рекомендуемые VPN-клиенты](#-рекомендуемые-vpn-клиенты)
+- [🏴‍☠️ Чёрные и белые списки](#️-чёрные-и-белые-списки-–-что-это-и-когда-использовать)
+- [📡 Подробнее о белых списках: SNI и CIDR](#-подробнее-о-белых-списках-sni-и-cidr)
+- [🛠️ Протоколы – что лучше для чего](#️-протоколы-–-что-лучше-для-чего)
+- [📦 Готовые подписки](#-готовые-подписки)
+- [🤖 Telegram прокси (MTProto)](#-telegram-прокси-mtproto)
+- [🔗 Зеркала](#-зеркала)
+- [❓ Часто задаваемые вопросы](#-часто-задаваемые-вопросы-faq)
+- [⚠️ Важное предупреждение](#️-важное-предупреждение)
+- [🧑‍💻 Для более продвинутых (внутренности проекта)](#-для-более-продвинутых-внутренности-проекта)
+- [💰 Поддержать проект](#-поддержать-проект)
 
 ---
 
