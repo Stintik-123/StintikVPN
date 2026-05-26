@@ -343,13 +343,15 @@ def get_migration_suggestion(country_code):
     if country_code not in BLOCKED_COUNTRIES:
         return None
 
+    # 🗺️ EXTENDED MIGRATION MAP v2.0 - Больше альтернатив чем у конкурентов
     migration_options = {
-        "CN": ["HK", "TW", "JP", "KR", "SG"],
-        "IR": ["TR", "AE", "DE", "NL", "FR"],
+        "CN": ["HK", "TW", "JP", "KR", "SG", "MO"],
+        "IR": ["TR", "AE", "DE", "NL", "FR", "IQ", "AM"],
         "KP": ["RU", "CN"],
+        "RU": ["FI", "EE", "LV", "LT", "PL", "GE", "KZ", "AZ"],  # 🆕 Уникальная фича для России
     }
 
-    options = migration_options.get(country_code, ["DE", "NL", "FI"])
+    options = migration_options.get(country_code, ["DE", "NL", "FI", "SE", "EE"])
     with _mig_lock:
         if country_code not in _migration_map:
             _migration_map[country_code] = {"suggested": options[0], "alternatives": options[1:], "timestamp": time.time()}
@@ -504,7 +506,7 @@ COUNTRY_NAMES = {
     "AZ": "Azerbaijan", "GE": "Georgia", "AM": "Armenia",
 }
 
-BLOCKED_COUNTRIES = {"CN", "IR", "KP"}
+BLOCKED_COUNTRIES = {"CN", "IR", "KP", "RU"}  # 🆕 Добавлена Россия для миграционных рекомендаций
 
 
 def process_key(item):
