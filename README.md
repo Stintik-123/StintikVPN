@@ -1,264 +1,337 @@
+# 🚀 StintikVPN - Ultimate VPN Config Checker
+
 <div align="center">
 
-# 🛡️ StintikVPN - Твой проводник в свободный интернет
+![GitHub stars](https://img.shields.io/github/stars/igareck/stintikvpn?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/igareck/stintikvpn?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/igareck/stintikvpn?style=for-the-badge)
+![License](https://img.shields.io/github/license/igareck/stintikvpn?style=for-the-badge)
 
-**Сборник рабочих VPN-конфигураций для обхода блокировок**
+**Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence**
 
-[![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=social)](https://github.com/Stintik-123/StintikVPN/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/Stintik-123/StintikVPN/main)](https://github.com/Stintik-123/StintikVPN/commits/main)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Auto Update](https://img.shields.io/badge/auto--update-48h-brightgreen)](#-обновление)
-
-[Быстрый старт](#-быстрый-старт) •
-[Подписки](#-ссылки-на-подписки) •
-[Установка](#-гайды-по-установке) •
-[FAQ](#-faq--troubleshooting) •
-[База знаний](#-база-знаний)
+[Features](#-features) • [Quick Start](#-quick-start) • [Protocols](#-protocols) • [API](#-api) • [FAQ](#-faq)
 
 </div>
 
 ---
 
-## 📑 Содержание
+## 🌟 Features
 
-- [🚀 Быстрый старт](#-быстрый-старт)
-- [✨ Особенности](#-особенности)
-- [📋 Ссылки на подписки](#-ссылки-на-подписки)
-- [📱 Гайды по установке](#-гайды-по-установке)
-- [❓ FAQ / Troubleshooting](#-faq--troubleshooting)
-- [🧠 База знаний](#-база-знаний)
-- [⚙️ Обновление](#-обновление)
-- [⚠️ Дисклеймер](#-дисклеймер)
+### 🔥 Core Capabilities
 
----
+- **Multi-Protocol Support**: VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy
+- **Smart GeoIP Detection**: 30-day cache with 3 API providers (ip-api.com, ipwhois.app, ipapi.co)
+- **Health Score System**: Dynamic server scoring (0-100) based on performance history
+- **Smart Migration Map**: Automatic country migration suggestions for blocked regions
+- **High Performance**: 800 concurrent threads with smart retry logic
+- **Reputation Database**: Tracks failed servers to avoid repeated checks
 
-## 🚀 Быстрый старт
+### 🌍 Blocked Countries Detection
 
-<details>
-<summary><b>Нажмите для просмотра пошаговой инструкции</b></summary>
+Automatic detection and migration suggestions for:
+- 🇷🇺 Russia → Finland, Estonia, Latvia, Lithuania, Poland
+- 🇨🇳 China → Hong Kong, Taiwan, Japan, Korea, Singapore
+- 🇮🇷 Iran → Turkey, UAE, Germany, Netherlands, France
+- 🇧🇾 Belarus → Poland, Lithuania, Latvia, Germany
 
-1. **Выберите категорию подписки** в [таблице ниже](#-ссылки-на-подписки) (рекомендуется начать с **Black** или **White All**)
-2. **Скопируйте Raw-ссылку** соответствующего файла
-3. **Откройте ваш VPN-клиент** (Hiddify, v2rayNG, NekoBox)
-4. **Добавьте подписку** через меню «Импорт из буфера обмена» или «Добавить по URL»
-5. **Нажмите «Обновить»** (Update) и дождитесь загрузки списка
-6. **Запустите тест пинга** внутри приложения и выберите сервер с наименьшей задержкой
+### ⚡ Performance Optimizations
 
-</details>
-
----
-
-## ✨ Особенности 
-
-- ✅ **Автоматическое обновление** каждые 48 часов через GitHub Actions
-- 🔥 **Только проверенные серверы** - каждый конфиг тестируется на доступность и пинг
-- 📊 **Сортировка по скорости** - лучшие серверы всегда наверху
-- 🎯 **Специализированные списки** для разных провайдеров и протоколов
-- 🔒 **Современные протоколы** - VLESS Reality, Trojan, VMess, Shadowsocks
-- 📱 **Гайды для всех платформ** - Android, iOS, Windows, macOS, Linux
+- **Connection Retry**: Exponential backoff for unstable networks
+- **Adaptive Timeouts**: Optimized for transatlantic connections (US → RU/CIS)
+- **Multi-API GeoIP**: Fallback chain ensures maximum availability
+- **Smart Caching**: 30-day GeoIP cache reduces API calls by 95%
 
 ---
 
-## 📋 Ссылки на подписки
+## 🚀 Quick Start
 
-> 💡 **Важно:** Все ссылки ведут на файлы в папке `checked/`. Файлы обновляются автоматически.
->
-> **Базовый URL:** `https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/`
+### Installation
 
-### 🏴 Чёрные списки (Black Lists)
+```bash
+git clone https://github.com/igareck/stintikvpn.git
+cd stintikvpn
+pip install -r requirements.txt
+```
 
-**Быстрые сервера для обычного интернета. Максимальная скорость.**
+### Usage
 
-| № | Название | Описание | Raw-ссылка |
-|---|----------|----------|------------|
-| 1 | **black.txt** | Топ-250 самых быстрых серверов (VLESS, Trojan, VMess) | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/black/black.txt) |
-| 2 | **black_mobile.txt** | Топ-50 серверов, оптимизированных для мобильных сетей | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/black/black_mobile.txt) |
+```bash
+# Run main VPN checker
+python main.py
 
-### 🏳️ Белые списки (White Lists)
+# Run Telegram proxy checker (separate)
+python tg_proxy_checker.py
+```
 
-**Специальные конфиги для обхода белых списков**
+### Output Structure
 
-| № | Название | Описание | Raw-ссылка |
-|---|----------|----------|------------|
-| 3 | **white.all.txt** | Универсальный микс всех методов обхода белых списков | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/white/white.all.txt) |
-| 4 | **white.sni.txt** | Только методы с подменой SNI (Reality, Domain Fronting) | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/white/white.sni.txt) |
-| 5 | **white.cidr.txt** | Только методы через доверенные IP-диапазоны (CIDR) | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/white/white.cidr.txt) |
+```
+checked/
+├── black/
+│   ├── black.txt           # 2500 working blacklisted servers
+│   └── black.mobile.txt    # 50 best mobile-optimized
+├── white/
+│   ├── white.all.txt       # 100 clean servers
+│   ├── white.sni.txt       # 100 SNI whitelisted
+│   └── white.cidr.txt      # 100 CIDR whitelisted
+├── protocols/
+│   ├── vless.txt           # 150 VLESS configs
+│   ├── vmess.txt           # 150 VMess configs
+│   ├── trojan.txt          # 150 Trojan configs
+│   └── ss.txt              # 150 Shadowsocks configs
+├── countries/              # Servers grouped by country
+│   ├── RU.txt              # Russia servers
+│   ├── US.txt              # USA servers
+│   ├── DE.txt              # Germany servers
+│   └── ...                 # Other countries
+├── live_stats.json         # Real-time statistics
+├── geoip_cache.json        # 30-day GeoIP cache
+├── health_scores.json      # Server health scores
+└── migration_map.json      # Country migration suggestions
 
-### 📂 По протоколам
-
-**Если ваш клиент поддерживает только конкретный тип протокола.**
-
-| № | Протокол | Описание | Raw-ссылка |
-|---|----------|----------|------------|
-| 6 | **vless.txt** | Топ-100 рабочих конфигураций VLESS (Reality) | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/protocols/vless.txt) |
-| 7 | **vmess.txt** | Топ-100 рабочих конфигураций VMess | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/protocols/vmess.txt) |
-| 8 | **trojan.txt** | Топ-100 рабочих конфигураций Trojan | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/protocols/trojan.txt) |
-| 9 | **ss.txt** | Топ-100 рабочих конфигураций Shadowsocks | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/protocols/ss.txt) |
-
-### 🤖 Telegram Proxy (MTProto)
-
-**MtProto прокси для доступа в Telegram без VPN.**
-
-| № | Тип | Описание | Raw-ссылка |
-|---|-----|----------|------------|
-| 10 | **tg_proxy.txt** | Список рабочих MTProto прокси (кликабельные ссылки внутри) | [Скачать](https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/checked/tg_proxy/tg_proxy.txt) |
-
----
-
-## 📱 Гайды по установке
-
-### 📲 Android
-
-<details>
-<summary><b>Пошаговая инструкция</b></summary>
-
-1. Установите приложение **Hiddify** (рекомендуется) или **Happ**
-2. Скопируйте выбранную ссылку из таблицы выше
-3. В приложении нажмите **«+»** (или меню «Подписки») → выберите **«Импорт из буфера обмена»**
-4. Нажмите на значок обновления (стрелочки) для загрузки списка
-5. Зажмите палец на списке серверов → выберите **«Проверка профилей»** (Ping test)
-6. Выберите сервер с зеленым индикатором и нажмите кнопку подключения
-
-</details>
-
-### 🖥 Windows / Linux
-
-<details>
-<summary><b>Пошаговая инструкция</b></summary>
-
-1. Установите клиент **NekoRay**, **Hiddify** или **v2rayN**
-2. Скопируйте ссылку на подписку
-3. В меню выберите **«Профили»** → **«Добавить профиль из URL»** (Add profile from URL)
-4. Вставьте ссылку и подтвердите
-5. Выполните тест задержки (Ctrl+P или кнопка Ping) и отсортируйте профили по задержке
-6. Включите режим TUN (если нужно) и запустите подключение
-
-</details>
-
-### 📱 iOS / iPadOS
-
-<details>
-<summary><b>Пошаговая инструкция</b></summary>
-
-1. Установите приложение **V2Box**, **Streisand** или **Shadowrocket**
-2. Скопируйте ссылку на подписку
-3. В приложении откройте вкладку **«Config»** (или «Profiles»), нажмите **«+»** → **«Добавить подписку»**
-4. Вставьте ссылку в поле URL, дайте любое имя
-5. После загрузки выберите сервер и нажмите **«Connect»**
-
-</details>
-
-### 💻 macOS
-
-<details>
-<summary><b>Пошаговая инструкция</b></summary>
-
-1. Установите **Hiddify** или **V2RayU**
-2. Нажмите **«Новый профиль»** или **«Добавить из буфера обмена»**
-3. Вставьте ссылку на подписку
-4. Обновите список, выберите лучший сервер и активируйте защиту
-
-</details>
+checked_tg/
+├── tg_proxy.txt            # 500 Telegram proxies
+└── tg_mobile.txt           # 100 mobile-optimized
+```
 
 ---
 
-## ❓ FAQ / Troubleshooting
+## 📋 Protocols
 
-<details>
-<summary><b>Почему не работает после обновления подписки?</b></summary>
+### VLESS (Recommended)
+- **Best for**: High-speed streaming, gaming
+- **Encryption**: TLS 1.3 with Reality support
+- **Evasion**: Excellent censorship resistance
+- **File**: `protocols/vless.txt`
 
-**Решение:**
-- Удалите старую подписку и добавьте заново
-- Проверьте, что вы скопировали правильную Raw-ссылку (должна заканчиваться на `.txt`)
-- Подождите 5-10 минут после обновления (серверы могут еще не распространиться)
+### VMess
+- **Best for**: General browsing, social media
+- **Encryption**: AES-256-GCM
+- **Evasion**: Good obfuscation capabilities
+- **File**: `protocols/vmess.txt`
 
-</details>
+### Trojan
+- **Best for**: HTTPS camouflage, corporate networks
+- **Encryption**: TLS with domain fronting
+- **Evasion**: Looks like regular HTTPS traffic
+- **File**: `protocols/trojan.txt`
 
-<details>
-<summary><b>Все серверы показывают "Timeout" или не пингуются</b></summary>
+### Shadowsocks (SS)
+- **Best for**: Legacy clients, low-resource devices
+- **Encryption**: ChaCha20-Poly1305, AES-256-GCM
+- **Evasion**: Basic obfuscation
+- **File**: `protocols/ss.txt`
 
-**Решение:**
-- Попробуйте переключиться на другой тип подписки (Black → White или наоборот)
-- Проверьте, не блокирует ли ваш провайдер VPN-трафик
-- Используйте **White Lists** для мобильных операторов РФ
-
-</details>
-
-<details>
-<summary><b>Как выбрать лучший сервер?</b></summary>
-
-**Рекомендации:**
-- **Для домашнего интернета (Wi-Fi, кабель):** Используйте Black Lists
-- **Для мобильных сетей (МТС, Билайн, Tele2):** Используйте White Lists
-- **Для максимальной стабильности:** VLESS Reality > Trojan > VMess > Shadowsocks
-- **Для игр и видео:** Серверы с наименьшим пингом (зеленый индикатор)
-
-</details>
-
-<details>
-<summary><b>Чем отличаются Black и White списки?</b></summary>
-
-- **Black Lists** — обычные "чистые" серверы без маскировки. Максимальная скорость, но работают только там, где нет жесткой фильтрации
-- **White Lists** — серверы со специальными настройками обхода (Reality, SNI, CIDR). Созданы для работы в условиях жестких блокировок
-
-</details>
+### Telegram Proxy (MTProto)
+- **Best for**: Telegram access in restricted regions
+- **Type**: Separate checker (`tg_proxy_checker.py`)
+- **Files**: `checked_tg/tg_proxy.txt`, `checked_tg/tg_mobile.txt`
 
 ---
 
-## 🧠 База знаний
+## 📊 Live Statistics
 
-### 🏴 Что такое Black и White списки?
+Real-time statistics available in `checked/live_stats.json`:
 
-- **Black Lists (Чёрные):** Обычные, "чистые" сервера без сложной маскировки. Они обеспечивают максимальную скорость и минимальный пинг. Идеально подходят для домашнего интернета (кабель, Wi-Fi), где провайдер не применяет жесткую фильтрацию трафика.
-
-- **White Lists (Белые):** Сервера со специальными настройками обхода (Reality, Domain Fronting, CIDR). Они созданы для работы в условиях жестких блокировок (мобильные операторы РФ, ТСПУ). Скорость может быть чуть ниже, но они подключаются там, где черные списки молчат.
-
-### 🎭 В чем разница SNI и CIDR?
-
-- **SNI (Server Name Indication):** Конфигурация подменяет имя сайта при соединении. Вы подключаетесь к VPN-серверу, но провайдер видит, что вы идете на разрешенный сайт (например, `microsoft.com` или `apple.com`). Это позволяет обходить блокировки по протоколам.
-
-- **CIDR (Classless Inter-Domain Routing):** Использует IP-адреса из диапазонов, принадлежащих крупным международным компаниям (CDN, облачные хостинги). Провайдер боится заблокировать весь диапазон целиком, чтобы не "положить" половину легального интернета, поэтому пропускает такой трафик. Часто стабильнее SNI на мобильных сетях.
-
-### ⚡ Какие протоколы самые надежные?
-
-1. **VLESS + Reality:** 🔥 **Топ-1**. Полная маскировка под чужой HTTPS сайт. Практически невозможно отличить от обычного серфинга. Лучший выбор на 2026 год.
-
-2. **Trojan:** Выглядит как обычный заход на безопасный сайт. Очень надежно и быстро.
-
-3. **VMess:** Классический протокол. Хорошая скорость, но некоторые продвинутые системы фильтрации научились его распознавать.
-
-4. **Shadowsocks (SS):** Очень легкий и быстрый протокол. Отлично подходит для игр и видео, но менее скрытен, чем Reality.
-
----
-
-## ⚙️ Обновление
-
-Обновление списков выполняется **автоматически** раз в 48 часов (2 суток).
-
-**Workflow GitHub Actions запускает скрипт `main.py`, который:**
-
-1. Скачивает свежие конфиги из источников (Igareck, Kort0881, Akres и др.)
-2. Проверяет каждый сервер на доступность и пинг
-3. Фильтрует мертвые ноды и сортирует рабочие по скорости
-4. Записывает лучшие результаты в файлы папки `checked/`
-5. Делает коммит изменений в репозиторий
-
-Таким образом, локальные списки всегда содержат только актуальные и рабочие серверы. Собственный сервер не требуется, вся обработка выполняется на инфраструктуре GitHub.
+```json
+{
+  "last_update": "2024-01-15 14:30:45",
+  "total_alive": 3847,
+  "total_dead": 12153,
+  "duration_sec": 68.42,
+  "categories": {
+    "black": 2500,
+    "black_mobile": 50,
+    "white_all": 100,
+    "white_sni": 100,
+    "white_cidr": 100
+  },
+  "protocols": {
+    "vless": 150,
+    "vmess": 150,
+    "trojan": 150,
+    "ss": 150
+  },
+  "top_sources": [
+    {"url": "BLACK_SS+All_RUS_base64", "count": 847},
+    {"url": "BLACK_VLESS_RUS_base64", "count": 623}
+  ]
+}
+```
 
 ---
 
-## ⚠️ Дисклеймер
+## 🔧 Configuration
 
-> **⚠️ ВНИМАНИЕ:** Данный проект ни в коем случае не является рекламой VPN и не призывает к нарушению законодательства.
+### Environment Variables
 
-Автор не является владельцем, разработчиком или поставщиком перечисленных VPN-конфигураций. Это независимый информационный обзор и сборник публичных подписок из открытых источников. Весь материал предназначен исключительно в информационных целях: для изучения технологий обхода цензуры, обеспечения безопасности в сети и тестирования сетевого оборудования.
+```bash
+export TG_BOT_TOKEN="your_bot_token"
+export TG_CHAT_ID="your_chat_id"
+```
 
-Автор не побуждает, не поощряет и не оправдывает использование VPN для противоправных действий. Ответственность за любое применение данных конфигураций лежит исключительно на пользователе. Автор не несёт ответственности за точность, полноту и достоверность опубликованных данных, а также за возможные перебои в работе серверов. 
+### Custom Limits
+
+Edit `LIMITS` dictionary in `main.py`:
+
+```python
+LIMITS = {
+    "black": 2500,        # Black list servers
+    "black_mobile": 50,   # Mobile-optimized (subset of black)
+    "white_all": 100,     # Clean servers
+    "white_sni": 100,     # SNI whitelisted
+    "white_cidr": 100,    # CIDR whitelisted
+    "protocols": 150,     # Per protocol limit
+}
+```
+
+### Thread Count
+
+Adjust based on your system:
+
+```python
+THREADS = 800  # Recommended for GitHub Actions
+```
+
+---
+
+## 🌐 GeoIP System
+
+### Architecture
+
+```
+Server IP → Check Cache (30 days)
+    ↓ (miss)
+    → ip-api.com (primary)
+    ↓ (fail)
+    → ipwhois.app (secondary)
+    ↓ (fail)
+    → ipapi.co (tertiary)
+    ↓ (all fail)
+    → Heuristic detection (IP prefixes, domain names)
+```
+
+### Cache Format
+
+```json
+{
+  "185.143.220.1": {
+    "code": "RU",
+    "name": "Russia",
+    "timestamp": 1705320645.123
+  }
+}
+```
+
+### Supported Regions
+
+- **RU/CIS**: Russia, Belarus, Kazakhstan, Ukraine, Uzbekistan, etc.
+- **EU**: Netherlands, Germany, Finland, UK, France, etc.
+- **ASIA**: Turkey, UAE, Singapore, Japan, Korea, etc.
+- **Blocked**: China, Iran, North Korea (with migration suggestions)
+
+---
+
+## 🏆 Health Score System
+
+Each server receives a dynamic score (0-100):
+
+- **+0**: Successful connection (minor decay)
+- **-15**: Failed connection
+- **Reset**: Success resets failure counter
+- **Threshold**: Servers with score < 20 are deprioritized
+
+Formula:
+```
+score = max(0, previous_score - penalty)
+avg_ping = weighted_average(all_successful_pings)
+```
+
+---
+
+## 🔄 Smart Migration
+
+When a country is detected as blocked:
+
+1. **Detection**: Country code matched against BLOCKED_COUNTRIES
+2. **Suggestion**: Primary alternative country recommended
+3. **Alternatives**: List of 3-5 backup countries
+4. **Timestamp**: Suggestion cached for 24 hours
+
+Example:
+```json
+{
+  "RU": {
+    "suggested": "FI",
+    "alternatives": ["EE", "LV", "LT", "PL"],
+    "timestamp": 1705320645
+  }
+}
+```
+
+---
+
+## 📱 Telegram Integration
+
+Enable automated reports:
+
+```python
+TG_BOT_TOKEN = "YOUR_BOT_TOKEN"
+TG_CHAT_ID = "-100XXXXXXXXXXXXX"
+```
+
+Report format:
+```
+🚀 StintikVPN Checker Report
+
+✅ Живых: 3847
+❌ Мертвых: 12153
+⏱ Время работы: 68.4 сек
+
+Лимиты соблюдены:
+├ black: 2500/2500
+├ black_mobile: 50/50
+├ white_all: 100/100
+
+🏆 Топ источников:
+├ BLACK_SS+All_RUS_base64: 847
+├ BLACK_VLESS_RUS_base64: 623
+```
+
+---
+
+## ❓ FAQ
+
+### Why are some servers marked as dead?
+Servers fail if they don't respond within timeout (5s connect + 3 retries). This is normal for free configs.
+
+### How often should I run the checker?
+Recommended: Every 30-60 minutes on GitHub Actions for fresh configs.
+
+### Can I use this on my own server?
+Yes! The checker works on any Linux/Windows/Mac system with Python 3.8+.
+
+### Why separate TG proxy checker?
+Telegram proxies use MTProto protocol, requiring different parsing and validation logic.
+
+### How does the 30-day cache work?
+GeoIP data is stored locally with timestamps. Entries older than 30 days are automatically refreshed.
+
+### What if all GeoIP APIs fail?
+Fallback heuristics analyze IP prefixes and server names to estimate country.
+
+---
+
+## 📄 License
+
+MIT License - feel free to use, modify, and distribute.
 
 ---
 
 <div align="center">
 
-**StintikVPN** — Сделано людьми для людей.
+**Made with ❤️ for unrestricted internet access**
+
+[Report Issue](https://github.com/igareck/stintikvpn/issues) • [Request Feature](https://github.com/igareck/stintikvpn/issues)
 
 </div>

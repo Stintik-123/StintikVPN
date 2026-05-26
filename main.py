@@ -11,78 +11,78 @@ from urllib.parse import unquote, urlparse, parse_qs
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 
-# ==========================================
-# ⚙️ КОНФИГУРАЦИЯ (ОПТИМИЗИРОВАНО ДЛЯ СКОРОСТИ)
-# ==========================================
 BASE_DIR = "checked"
-TIMEOUT = 2          # Жесткий таймаут для скорости
-THREADS = 300          # Много потоков для быстрой проверки
-MAX_PING_MS = 3000     # Строгий лимит пинга
+TIMEOUT_CONNECT = 5.0
+TIMEOUT_SSL = 4.0
+TIMEOUT_READ = 4.0
+MAX_PING_MS = 6000
+RETRY_COUNT = 3
+RETRY_DELAY = 0.8
+THREADS = 800
+BATCH_SIZE = 60
 
-# ЛИМИТЫ НА ВЫХОДЕ
 LIMITS = {
-    "black": 300,
-    "black_mobile": 75,
+    "black": 2500,
+    "black_mobile": 50,
     "white_all": 100,
-    "white_sni": 75,
-    "white_cidr": 75,
-    "tg_proxy": 100,
-    "protocols": 150,
-    "best": 50
+    "white_sni": 100,
+    "white_cidr": 100,
+    "protocols": 150
 }
 
-# Файлы данных
 HISTORY_FILE = os.path.join(BASE_DIR, "history.json")
 REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
 STATS_FILE = os.path.join(BASE_DIR, "stats.json")
 LIVE_STATS_FILE = os.path.join(BASE_DIR, "live_stats.json")
+GEOIP_CACHE_FILE = os.path.join(BASE_DIR, "geoip_cache.json")
+HEALTH_SCORE_FILE = os.path.join(BASE_DIR, "health_scores.json")
+MIGRATION_FILE = os.path.join(BASE_DIR, "migration_map.json")
 
-FAIL_THRESHOLD = 2     # Исключать сервер после 2 неудач подряд
+FAIL_THRESHOLD = 4
+SPEED_TEST_ENABLED = True
+MIN_SPEED_KBPS = 100
 
-# TELEGRAM CONFIG
-TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"      # ВСТАВЬТЕ ТОКЕН СЮДА
-TG_CHAT_ID = "-1003884045475"        # ВСТАВЬТЕ ID ЧАТА СЮДА
+TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"
+TG_CHAT_ID = "-1003884045475"
 
-# ==========================================
-# 🌍 МАРКЕРЫ И ФИЛЬТРЫ (БЕЗ GEOIP API)
-# ==========================================
 RU_MARKERS_STRICT = [
     ".ru", "moscow", "msk", "spb", "saint-peter", "russia",
     "россия", "москва", "питер", "ru-", "-ru.",
     "178.154.", "77.88.", "5.255.", "87.250.",
     "95.108.", "213.180.", "195.208.", "91.108.", "149.154.",
+    ".kz", ".by", ".ua", ".uz", ".az", ".ge", ".am", ".md",
+    "kazakhstan", "belarus", "ukraine", "tashkent", "baku", "tbilisi",
 ]
 EURO_CODES = {"NL", "DE", "FI", "GB", "FR", "SE", "PL", "CZ", "AT", "CH", "IT", "ES", "NO", "DK", "BE", "IE", "LU", "EE", "LV", "LT"}
+ASIA_CODES = {"TR", "AE", "SG", "HK", "JP", "KR", "IN", "TH", "VN", "ID", "MY", "PH"}
+US_CODES = {"US", "USA", "UNITED STATES"}
 
-BAD_MARKERS = ["CN", "IR", "KP", "RELAY", "POOL"]
+BAD_MARKERS = ["CN", "IR", "RELAY", "POOL"]
 CDN_KEYWORDS = ["cloudflare", "cdn", "akamai"]
 
-# ==========================================
-# 📂 ИСТОЧНИКИ ДАННЫХ (ПРЕМИУМ + TOP SOURCES)
-# ==========================================
+RU_CIS_IP_PREFIXES = [
+    "5.", "31.", "37.", "46.", "62.", "77.", "78.", "79.", "80.", "81.", "82.", "83.", "84.", "85.", "86.", "87.",
+    "88.", "89.", "91.", "92.", "93.", "94.", "95.", "109.", "128.", "134.", "141.", "145.", "149.", "151.", "158.",
+    "164.", "171.", "176.", "178.", "185.", "188.", "193.", "194.", "195.", "212.", "213.", "217.",
+]
+
 OUTPUTS = {
     "black": {
         "folder": os.path.join(BASE_DIR, "black"),
         "file": "black.txt",
         "urls": [
-            # Premium Tier - самые надежные источники
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt",
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt",
             "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt",
             "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/sub.txt",
-            # Secondary Tier
             "https://vpn.akres.fun/all",
             "https://mifa.world/fast",
             "https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/tri_228.txt",
             "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/black/vless.txt",
-        ],
-    },
-    "black_mobile": {
-        "folder": os.path.join(BASE_DIR, "black_mobile"),
-        "file": "black_mobile.txt",
-        "urls": [
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_mobile_base64.txt",
-            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/mobile.txt",
+            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_black.txt",
+            "https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/black.txt",
+            "https://raw.githubusercontent.com/FreeRadar/v2ray/main/black.txt",
+            "https://raw.githubusercontent.com/aliilapro/v2ray/main/config.txt",
         ],
     },
     "white_all": {
@@ -93,6 +93,8 @@ OUTPUTS = {
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
             "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/white.txt",
             "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_white.txt",
+            "https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/white.txt",
+            "https://raw.githubusercontent.com/FreeRadar/v2ray/main/white.txt",
         ],
     },
     "white_sni": {
@@ -101,6 +103,7 @@ OUTPUTS = {
         "urls": [
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-SNI-RU-all-base64.txt",
             "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/sni/vless.txt",
+            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_sni.txt",
         ],
     },
     "white_cidr": {
@@ -109,15 +112,7 @@ OUTPUTS = {
         "urls": [
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-CIDR-RU-all-base64.txt",
             "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/cidr/vless.txt",
-        ],
-    },
-    "tg_proxy": {
-        "folder": os.path.join(BASE_DIR, "tg_proxy"),
-        "file": "tg_proxy.txt",
-        "urls": [
-            "https://t.me/proxy?server=84.201.168.161&port=8443&secret=ddf7d43a5e2ca0a8fa4cec27829869cb6b",
-            "https://t.me/proxy?server=85.192.34.153&port=8443&secret=dde3d3a09a31f5c857890cfc2a0bcab4c1",
-            "https://t.me/proxy?server=jtproxy.life&port=443&secret=eef0050d30441bab41f60acae779df0c4076646673696e612e7275",
+            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_cidr.txt",
         ],
     },
 }
@@ -129,9 +124,6 @@ PROTOCOL_FILES = {
     "ss": os.path.join(BASE_DIR, "protocols", "ss.txt"),
 }
 
-# ==========================================
-# 🔧 ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-# ==========================================
 for meta in OUTPUTS.values():
     os.makedirs(meta["folder"], exist_ok=True)
 os.makedirs(os.path.dirname(PROTOCOL_FILES["vless"]), exist_ok=True)
@@ -139,14 +131,18 @@ os.makedirs(BASE_DIR, exist_ok=True)
 
 _reputation_db = {}
 _stats = {"sources": defaultdict(int), "total_checked": 0, "alive": 0, "dead": 0, "sources_alive": defaultdict(int)}
-
+_geoip_cache = {}
 _lock = threading.Lock()
 _rep_lock = threading.Lock()
 _stats_lock = threading.Lock()
+_geo_lock = threading.Lock()
 
-# ==========================================
-# 🧠 РЕПУТАЦИЯ И КЭШ
-# ==========================================
+_health_scores = {}
+_migration_map = {}
+_geo_lock = threading.Lock()
+_health_lock = threading.Lock()
+_mig_lock = threading.Lock()
+
 def load_json(path):
     if os.path.exists(path):
         try:
@@ -165,9 +161,33 @@ def load_reputation():
     global _reputation_db
     _reputation_db = load_json(REPUTATION_FILE)
 
+def load_geoip_cache():
+    global _geoip_cache
+    _geoip_cache = load_json(GEOIP_CACHE_FILE)
+
+def load_health_scores():
+    global _health_scores
+    _health_scores = load_json(HEALTH_SCORE_FILE)
+
+def load_migration_map():
+    global _migration_map
+    _migration_map = load_json(MIGRATION_FILE)
+
 def save_reputation():
     with _rep_lock:
         save_json(REPUTATION_FILE, _reputation_db)
+
+def save_geoip_cache():
+    with _geo_lock:
+        save_json(GEOIP_CACHE_FILE, _geoip_cache)
+
+def save_health_scores():
+    with _health_lock:
+        save_json(HEALTH_SCORE_FILE, _health_scores)
+
+def save_migration_map():
+    with _mig_lock:
+        save_json(MIGRATION_FILE, _migration_map)
 
 def check_reputation(host, port):
     key = f"{host}:{port}"
@@ -186,6 +206,108 @@ def update_reputation(host, port, success):
             _reputation_db[key]["fails"] = 0
         else:
             _reputation_db[key]["fails"] += 1
+
+def get_geoip_cached(host):
+    with _geo_lock:
+        return _geoip_cache.get(host)
+
+def set_geoip_cached(host, country_code, country_name):
+    with _geo_lock:
+        _geoip_cache[host] = {
+            "code": country_code,
+            "name": country_name,
+            "timestamp": time.time()
+        }
+
+def fetch_geoip_multi(host):
+    cached = get_geoip_cached(host)
+    if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
+        return cached["code"], cached["name"]
+    
+    apis = [
+        lambda: fetch_geoip_ipapi(host),
+        lambda: fetch_geoip_ipwhois(host),
+        lambda: fetch_geoip_ipgb(host),
+    ]
+    
+    for api_fn in apis:
+        try:
+            result = api_fn()
+            if result:
+                code, name = result
+                set_geoip_cached(host, code, name)
+                return code, name
+        except Exception:
+            continue
+    
+    return None, None
+
+def fetch_geoip_ipapi(host):
+    try:
+        r = requests.get(f"http://ip-api.com/json/{host}?fields=countryCode,country", timeout=4)
+        if r.status_code == 200:
+            data = r.json()
+            if data.get("status") == "success":
+                return data.get("countryCode", "XX"), data.get("country", "Unknown")
+    except Exception:
+        pass
+    return None, None
+
+def fetch_geoip_ipwhois(host):
+    try:
+        r = requests.get(f"http://ipwhois.app/json/{host}?lang=en", timeout=4)
+        if r.status_code == 200:
+            data = r.json()
+            if data.get("success"):
+                return data.get("country_code", "XX"), data.get("country", "Unknown")
+    except Exception:
+        pass
+    return None, None
+
+def fetch_geoip_ipgb(host):
+    try:
+        r = requests.get(f"https://ipapi.co/{host}/json/", timeout=4)
+        if r.status_code == 200:
+            data = r.json()
+            return data.get("country_code", "XX"), data.get("country_name", "Unknown")
+    except Exception:
+        pass
+    return None, None
+
+def update_health_score(host, port, ping, success):
+    key = f"{host}:{port}"
+    with _health_lock:
+        if key not in _health_scores:
+            _health_scores[key] = {"score": 100, "checks": 0, "fails": 0, "avg_ping": 0}
+
+        entry = _health_scores[key]
+        entry["checks"] += 1
+
+        if success:
+            new_avg = ((entry["avg_ping"] * (entry["checks"] - 1)) + ping) / entry["checks"]
+            entry["avg_ping"] = new_avg
+            entry["score"] = max(0, entry["score"] - 0.5)
+            entry["fails"] = 0
+        else:
+            entry["score"] = max(0, entry["score"] - 15)
+            entry["fails"] += 1
+
+def get_migration_suggestion(country_code):
+    if country_code not in BLOCKED_COUNTRIES:
+        return None
+
+    migration_options = {
+        "RU": ["FI", "EE", "LV", "LT", "PL"],
+        "CN": ["HK", "TW", "JP", "KR", "SG"],
+        "IR": ["TR", "AE", "DE", "NL", "FR"],
+        "BY": ["PL", "LT", "LV", "DE"],
+    }
+
+    options = migration_options.get(country_code, ["DE", "NL", "FI"])
+    with _mig_lock:
+        if country_code not in _migration_map:
+            _migration_map[country_code] = {"suggested": options[0], "alternatives": options[1:], "timestamp": time.time()}
+        return _migration_map[country_code]
 
 # ==========================================
 # 🕵️ ПАРСИНГ И ПРОВЕРКА (БЕЗ GEOIP)
@@ -245,72 +367,141 @@ def parse_proxy_line(line, source_url=""):
         
     return None
 
-def check_socket(host, port, timeout=TIMEOUT):
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(timeout)
-        start = time.time()
-        result = sock.connect_ex((host, port))
-        ping = (time.time() - start) * 1000
-        sock.close()
-        if result == 0 and ping < MAX_PING_MS:
-            return True, ping
-        return False, ping
-    except:
-        return False, 9999
+
+def check_socket_with_retry(host, port, retries=RETRY_COUNT):
+    """Проверка сокета с повторными попытками для нестабильных соединений (РФ/СНГ из США)"""
+    last_error = None
+    
+    for attempt in range(retries + 1):
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            
+            # Оптимизированные таймауты для трансатлантических соединений
+            sock.settimeout(TIMEOUT_CONNECT)
+            
+            start = time.time()
+            result = sock.connect_ex((host, port))
+            ping = (time.time() - start) * 1000
+            
+            if result == 0:
+                # Успешное подключение - проверяем пинг
+                # Для РФ/СНГ допускаем высокий пинг до MAX_PING_MS
+                sock.close()
+                return True, ping
+            
+            sock.close()
+            
+            # Если это не последняя попытка и была ошибка - ждем перед следующей
+            if attempt < retries and result != 0:
+                time.sleep(RETRY_DELAY * (attempt + 1))  # Экспоненциальная задержка
+                
+        except socket.timeout as e:
+            last_error = e
+            if attempt < retries:
+                time.sleep(RETRY_DELAY * (attempt + 1))
+        except socket.error as e:
+            last_error = e
+            if attempt < retries:
+                time.sleep(RETRY_DELAY * (attempt + 1))
+        except Exception as e:
+            last_error = e
+            break
+    
+    return False, 9999
+
+
+def check_socket(host, port, timeout=TIMEOUT_CONNECT):
+    """Базовая проверка сокета (обратная совместимость)"""
+    return check_socket_with_retry(host, port, retries=0)
+
 
 def get_country_approx(host, name):
-    """Быстрое определение страны только по имени и хосту (без API)"""
     host_l = host.lower() if host else ""
     name_u = name.upper() if name else ""
     
     if host_l.endswith(".ru") or "RU" in name_u or "ROSSIA" in name_u or "MOSCOW" in name_u:
-        return "RU"
+        return "RU", "Russia"
+    
+    for prefix in RU_CIS_IP_PREFIXES:
+        if host_l.startswith(prefix):
+            if any(marker in name_u for marker in ["RU", "KZ", "BY", "UA", "UZ"]):
+                return "RU" if "RU" in name_u else "CIS", "CIS Region"
+    
     for code in EURO_CODES:
         if code in name_u:
-            return code
-    return "UNKNOWN"
+            return code, COUNTRY_NAMES.get(code, "Europe")
+    
+    for code in ASIA_CODES:
+        if code in name_u:
+            return code, COUNTRY_NAMES.get(code, "Asia")
+    
+    for code in US_CODES:
+        if code in name_u:
+            return "US", "United States"
+    
+    if any(marker in name_u for marker in ["KAZAKHSTAN", "BELARUS", "UKRAINE", "UZBEKISTAN"]):
+        return "CIS", "CIS Region"
+    
+    return "XX", "Unknown"
+
+COUNTRY_NAMES = {
+    "RU": "Russia", "NL": "Netherlands", "DE": "Germany", "FI": "Finland", "GB": "United Kingdom",
+    "FR": "France", "SE": "Sweden", "PL": "Poland", "CZ": "Czech Republic", "AT": "Austria",
+    "CH": "Switzerland", "IT": "Italy", "ES": "Spain", "NO": "Norway", "DK": "Denmark",
+    "BE": "Belgium", "IE": "Ireland", "LU": "Luxembourg", "EE": "Estonia", "LV": "Latvia",
+    "LT": "Lithuania", "TR": "Turkey", "AE": "UAE", "SG": "Singapore", "HK": "Hong Kong",
+    "JP": "Japan", "KR": "South Korea", "IN": "India", "TH": "Thailand", "VN": "Vietnam",
+    "ID": "Indonesia", "MY": "Malaysia", "PH": "Philippines", "US": "United States",
+    "CN": "China", "IR": "Iran", "BY": "Belarus", "UA": "Ukraine",
+    "KZ": "Kazakhstan", "UZ": "Uzbekistan", "AZ": "Azerbaijan", "GE": "Georgia", "AM": "Armenia",
+}
+
+BLOCKED_COUNTRIES = {"CN", "IR", "RU", "BY"}
+
 
 def process_key(item):
     p_type = item.get('type')
     source = item.get('source_url', 'unknown')
     
-    if p_type == 'tg_proxy':
-        return {'valid': True, 'item': item, 'ping': 0, 'country': 'XX', 'source': source}
-
     host = item.get('host')
     port = item.get('port')
     
     if not host or not port:
         return None
     
-    # 1. Проверка репутации
     if not check_reputation(host, port):
         return None
 
-    # 2. Socket Check (Самая быстрая часть)
-    is_online, ping = check_socket(host, port)
+    is_online, ping = check_socket_with_retry(host, port)
     
     if not is_online:
         update_reputation(host, port, False)
+        update_health_score(host, port, 9999, False)
         return None
         
     update_reputation(host, port, True)
+    update_health_score(host, port, ping, True)
     
-    # 3. Быстрое определение страны (без API!)
     name = item.get('name', '')
-    country = get_country_approx(host, name)
+    country_code, country_name = fetch_geoip_multi(host)
     
-    # Фильтр плохих стран (если явно видно в имени)
-    if country == "UNKNOWN":
-        # Можно добавить дополнительную эвристику, но пока пропускаем
-        pass
+    if not country_code:
+        country_code, country_name = get_country_approx(host, name)
+    
+    item['country_name'] = country_name
     
     for bad in BAD_MARKERS:
         if bad in name.upper():
             return None
 
-    return {'valid': True, 'item': item, 'ping': ping, 'country': country, 'source': source}
+    migration = None
+    if country_code in BLOCKED_COUNTRIES:
+        migration = get_migration_suggestion(country_code)
+
+    health = _health_scores.get(f"{host}:{port}", {}).get("score", 100)
+
+    return {'valid': True, 'item': item, 'ping': ping, 'country': country_code, 'country_name': country_name, 'source': source, 'health': health, 'migration': migration}
 
 def classify_white_smart(item, country):
     """Автоматическое определение SNI vs CIDR (Безопасная версия)"""
@@ -351,29 +542,56 @@ def classify_white_smart(item, country):
     return "white_all"
 
 def fetch_urls(urls, category_name):
+    """Загрузка URL с улучшенной обработкой ошибок и retry для нестабильных соединений"""
     all_items = []
+    
+    # Настраиваем сессию с оптимальными параметрами для GitHub/РФ
+    session = requests.Session()
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
+    })
+    
     for url in urls:
         try:
-            r = requests.get(url.strip(), timeout=10)
-            if r.status_code == 200:
-                content = r.text
+            # Пробуем с retry для нестабильных источников
+            for attempt in range(3):
                 try:
-                    decoded = base64.b64decode(content).decode('utf-8')
-                    lines = decoded.splitlines()
-                except:
-                    lines = content.splitlines()
+                    r = session.get(url.strip(), timeout=15)  # Увеличенный таймаут для РФ
+                    if r.status_code == 200:
+                        content = r.text
+                        break
+                    elif r.status_code == 404:
+                        print(f"⚠️ 404 Not Found: {url.split('/')[-1]}")
+                        break
+                    else:
+                        time.sleep(1)
+                except requests.exceptions.RequestException as e:
+                    if attempt < 2:
+                        time.sleep(2 ** attempt)  # Экспоненциальная задержка
+                    else:
+                        raise
+            
+            try:
+                decoded = base64.b64decode(content).decode('utf-8')
+                lines = decoded.splitlines()
+            except:
+                lines = content.splitlines()
+
+            valid_count = 0
+            for line in lines:
+                parsed = parse_proxy_line(line, source_url=url)
+                if parsed:
+                    all_items.append(parsed)
+                    valid_count += 1
+
+            with _stats_lock:
+                _stats["sources"][url] += valid_count
                 
-                valid_count = 0
-                for line in lines:
-                    parsed = parse_proxy_line(line, source_url=url)
-                    if parsed:
-                        all_items.append(parsed)
-                        valid_count += 1
-                
-                with _stats_lock:
-                    _stats["sources"][url] += valid_count
         except Exception as e:
-            print(f"Error fetching {url}: {e}")
+            print(f"⚠️ Error fetching {url.split('/')[-1]}: {e}")
+    
     return all_items
 
 def send_telegram_report(stats, counts):
@@ -411,12 +629,15 @@ def send_telegram_report(stats, counts):
 
 def main():
     start_time = time.time()
-    print(f"🚀 StintikVPN Fast Checker Started (Threads: {THREADS}, GeoIP: OFF)")
+    print(f"🚀 StintikVPN Checker v3.0 IMBA | Threads: {THREADS} | Health Score | Migration Map | 30d GeoIP Cache")
     load_reputation()
+    load_geoip_cache()
+    load_health_scores()
+    load_migration_map()
     
     results = {
         'black': [], 'black_mobile': [], 'white_all': [],
-        'white_sni': [], 'white_cidr': [], 'tg_proxy': [],
+        'white_sni': [], 'white_cidr': [],
         'protocols': defaultdict(list)
     }
     
@@ -429,12 +650,8 @@ def main():
     white_urls = OUTPUTS['white_all']['urls'] + OUTPUTS['white_sni']['urls'] + OUTPUTS['white_cidr']['urls']
     white_items = fetch_urls(white_urls, 'white')
     for item in white_items: all_tasks.append((item, 'white'))
-        
-    tg_items = fetch_urls(OUTPUTS['tg_proxy']['urls'], 'tg')
-    for item in tg_items:
-        results['tg_proxy'].append({'valid': True, 'item': item, 'ping': 0, 'country': 'XX', 'source': item.get('source_url')})
 
-    print(f"🔍 Проверка {len(all_tasks)} ключей (без GeoIP)...")
+    print(f"🔍 Проверка {len(all_tasks)} ключей с GeoIP кэшированием...")
     
     alive_count = 0
     
@@ -475,7 +692,7 @@ def main():
     print("💾 Сохранение результатов...")
     
     def save_list_category(name, data_list, filename):
-        data_list.sort(key=lambda x: x['ping'])
+        data_list.sort(key=lambda x: (x['ping'], x.get('country', 'ZZ')))
         limited = data_list[:LIMITS.get(name, 100)]
         path = os.path.join(BASE_DIR, filename)
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -486,18 +703,39 @@ def main():
         return len(limited)
 
     final_counts = {}
-    final_counts['black'] = save_list_category('black', results['black'], OUTPUTS['black']['file'])
-    final_counts['black_mobile'] = save_list_category('black_mobile', results['black'], OUTPUTS['black_mobile']['file'])
+    final_counts['black'] = save_list_category('black', results['black'], 'black/black.txt')
+    
+    mobile_sorted = sorted(results['black'], key=lambda x: (x['ping'], x.get('country', 'ZZ')))[:LIMITS['black_mobile']]
+    black_folder = os.path.join(BASE_DIR, 'black')
+    os.makedirs(black_folder, exist_ok=True)
+    mobile_path = os.path.join(black_folder, 'black.mobile.txt')
+    header = f"# StintikVPN Auto-Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(mobile_sorted)}\n"
+    with open(mobile_path, 'w', encoding='utf-8') as f:
+        f.write(header)
+        f.write('\n'.join([x['item']['raw'] for x in mobile_sorted]))
+    final_counts['black_mobile'] = len(mobile_sorted)
+    
+    country_results = defaultdict(list)
+    for item in results['black']:
+        cc = item.get('country', 'XX')
+        country_results[cc].append(item)
+    
+    countries_folder = os.path.join(BASE_DIR, 'countries')
+    os.makedirs(countries_folder, exist_ok=True)
+    
+    for cc, items in country_results.items():
+        items.sort(key=lambda x: x['ping'])
+        cc_name = COUNTRY_NAMES.get(cc, cc)
+        safe_cc = "".join(c for c in cc if c.isalnum())
+        file_path = os.path.join(countries_folder, f"{safe_cc}.txt")
+        header = f"# {cc_name} Servers | Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(items)}\n"
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(header)
+            f.write('\n'.join([x['item']['raw'] for x in items]))
+    
     final_counts['white_all'] = save_list_category('white_all', results['white_all'], OUTPUTS['white_all']['file'])
     final_counts['white_sni'] = save_list_category('white_sni', results['white_sni'], OUTPUTS['white_sni']['file'])
     final_counts['white_cidr'] = save_list_category('white_cidr', results['white_cidr'], OUTPUTS['white_cidr']['file'])
-    
-    tg_path = OUTPUTS['tg_proxy']['file']
-    limited_tg = results['tg_proxy'][:LIMITS['tg_proxy']]
-    with open(tg_path, 'w', encoding='utf-8') as f:
-        f.write(f"# TG Proxies Updated: {time.strftime('%Y-%m-%d')}\n")
-        f.write('\n'.join([x['item']['raw'] for x in limited_tg]))
-    final_counts['tg_proxy'] = len(limited_tg)
     
     for proto, data in results['protocols'].items():
         data.sort(key=lambda x: x['ping'])
@@ -509,31 +747,23 @@ def main():
         final_counts[f'proto_{proto}'] = len(limited)
 
     save_reputation()
+    save_geoip_cache()
+    save_health_scores()
+    save_migration_map()
     save_json(STATS_FILE, _stats)
     
-    # 💾 NEW: Save Best List (TOP-50 servers across all categories)
-    print("🏆 Сохранение TOP-50 лучших серверов...")
     all_servers = []
     for category in ['black', 'white_all', 'white_sni', 'white_cidr']:
         all_servers.extend(results.get(category, []))
     
-    # Сортировка: пинг + приоритет VLESS Reality
     def score(x):
         ping_score = x['ping']
         type_bonus = 0 if x['item'].get('type') == 'vless' else 50
-        return ping_score + type_bonus
+        country_bonus = 0 if x.get('country') == 'RU' else 20
+        return ping_score + type_bonus + country_bonus
     
     all_servers.sort(key=score)
-    best_50 = all_servers[:LIMITS.get('best', 50)]
     
-    best_path = os.path.join(BASE_DIR, "best.txt")
-    with open(best_path, 'w', encoding='utf-8') as f:
-        f.write(f"# 🏆 TOP-50 Best Servers - StintikVPN Auto-Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(best_50)}\n")
-        f.write('# These are the fastest and most reliable servers across all categories!\n')
-        f.write('\n'.join([x['item']['raw'] for x in best_50]))
-    final_counts['best'] = len(best_50)
-    
-    # 📊 NEW: Save Live Stats JSON for API/Website
     live_stats = {
         "last_update": time.strftime('%Y-%m-%d %H:%M:%S'),
         "total_alive": _stats['alive'],
@@ -545,8 +775,6 @@ def main():
             "white_all": final_counts.get('white_all', 0),
             "white_sni": final_counts.get('white_sni', 0),
             "white_cidr": final_counts.get('white_cidr', 0),
-            "tg_proxy": final_counts.get('tg_proxy', 0),
-            "best": final_counts.get('best', 0)
         },
         "protocols": {
             "vless": final_counts.get('proto_vless', 0),
@@ -565,8 +793,8 @@ def main():
     send_telegram_report(_stats, final_counts)
     
     print(f"✅ ГОТОВО! Время: {_stats['duration']:.2f} сек. Рабочих: {_stats['alive']}")
-    print(f"🏆 TOP-50 сохранено в best.txt")
     print(f"📊 Live stats сохранено в live_stats.json")
+    print(f"💾 GeoIP cache сохранено в geoip_cache.json")
 
 if __name__ == "__main__":
     main()
