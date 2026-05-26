@@ -1,21 +1,40 @@
-# Игнорируем системные файлы Python
+```
+# Compiled and build artifacts
+*.pyc
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
+
+# Dependencies
+.venv/
 venv/
-*.egg-info/
+node_modules/
 dist/
 build/
+target/
 
-# Игнорируем файлы кэша и статистики (они генерируются, но не нужны в git)
-ip_cache.json
-reputation.json
-stats.json
-history.json
+# Logs and temp files
+*.log
+*.tmp
+*.swp
 
-# ВАЖНО: Мы НЕ игнорируем папку checked/, чтобы результаты попадали в репозиторий!
-# Но можно игнорировать временные файлы внутри неё, если они создаются (опционально)
-# checked/*.log 
+# Environment
+.env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Coverage reports
+.coverage
+coverage/
+htmlcov/
+
+# Python cache
+.mypy_cache/
+.pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+```
