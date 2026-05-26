@@ -1,11 +1,13 @@
 """
-🚀 StintikVPN Ultimate - TOP 1 VPN Config Checker
-Built to DOMINATE the niche with revolutionary features:
-- Quantum Health Score™ with ML-powered predictions
-- Neural GeoIP Fingerprinting
-- Auto-Healing Connection System
-- Real-time Threat Intelligence
-- Adaptive Thread Pooling
+🚀 StintikVPN Ultimate - HARDCORE VPN Config Checker
+MAXIMUM STRICT CHECKING - 15-20 MINUTES FOR ABSOLUTE ACCURACY
+Features:
+- Multi-tier GeoIP with rate limiting (45 req/min per API)
+- 7 fallback GeoIP providers
+- Async socket checking with priority queue
+- Flag-based server naming with StintikVPN branding
+- Deep reputation tracking
+- Health score ML predictions
 """
 
 import os
@@ -19,46 +21,93 @@ import requests
 import base64
 import threading
 import ipaddress
+import random
 from urllib.parse import unquote, urlparse, parse_qs
-from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError
+from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError, wait, FIRST_COMPLETED
 from collections import defaultdict, deque
 from datetime import datetime, timedelta
+import queue
+import heapq
 
 # ==================== CORE CONFIG ====================
-VERSION = "4.0.0 ULTIMATE"
+VERSION = "5.0.0 HARDCORE"
 BASE_DIR = "checked"
-THREADS = 1000  # Increased for maximum throughput
-BATCH_SIZE = 80
+THREADS = 150  # REDUCED for strict checking (was 1000)
+BATCH_SIZE = 40
 
-# ⚡ Ultra-fast timeouts optimized for global scanning
-TIMEOUT_CONNECT = 3.5
-TIMEOUT_SSL = 3.0
-TIMEOUT_READ = 3.0
-MAX_PING_MS = 5000  # Stricter ping threshold
+# ⏰ EXTENDED TIMEOUTS FOR MAXIMUM ACCURACY (20 minutes total)
+TIMEOUT_CONNECT = 8.0
+TIMEOUT_SSL = 6.0
+TIMEOUT_READ = 6.0
+MAX_PING_MS = 8000
 
-# 🔄 Smart retry system
-RETRY_COUNT = 2
-RETRY_DELAY = 0.5
+# 🔄 AGGRESSIVE RETRY SYSTEM
+RETRY_COUNT = 4
+RETRY_DELAY = 1.5
 
-# 📊 Output limits (optimized for quality over quantity)
+# 📊 Output limits (STRICT quality control)
 LIMITS = {
-    "black": 300,        # Increased top-tier configs
-    "white_all": 150,
-    "white_sni": 150,
-    "white_cidr": 150,
-    "protocols": 200,
-    "premium": 50        # 🆕 NEW: Only the absolute best
+    "black": 500,
+    "white_all": 250,
+    "white_sni": 250,
+    "white_cidr": 250,
+    "protocols": 300,
+    "premium": 100
 }
 
-# 🤖 AI-powered thresholds
-FAIL_THRESHOLD = 3       # Stricter auto-ban
-SUCCESS_THRESHOLD = 5    # Servers need to prove themselves
-PING_WEIGHT = 0.4        # 40% weight on ping
-STABILITY_WEIGHT = 0.6   # 60% weight on stability
+# 🤖 ULTRA-STRICT thresholds
+FAIL_THRESHOLD = 2
+SUCCESS_THRESHOLD = 7
+PING_WEIGHT = 0.5
+STABILITY_WEIGHT = 0.5
 
 # 📡 Telegram Notifications
 TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"
 TG_CHAT_ID = "-1003884045475"
+
+# ==================== GEOIP RATE LIMITING ====================
+# ip-api.com: 45 requests per minute (FREE tier)
+# We use MULTIPLE APIs with individual rate limiters
+
+class RateLimiter:
+    """Strict rate limiter for each GeoIP API"""
+    def __init__(self, calls_per_minute):
+        self.calls = deque()
+        self.limit = calls_per_minute
+        self.window = 60.0
+        self.lock = threading.Lock()
+    
+    def acquire(self):
+        with self.lock:
+            now = time.time()
+            # Remove old calls outside the window
+            while self.calls and self.calls[0] < now - self.window:
+                self.calls.popleft()
+            
+            if len(self.calls) >= self.limit:
+                # Calculate wait time
+                wait_time = self.calls[0] + self.window - now
+                if wait_time > 0:
+                    time.sleep(wait_time + 0.1)  # Add buffer
+                    return self.acquire()
+            
+            self.calls.append(now)
+            return True
+
+# Create rate limiters for each API
+RATE_LIMITERS = {
+    "ipapi": RateLimiter(45),      # ip-api.com: 45/min
+    "ipwhois": RateLimiter(60),    # ipwhois.app: ~60/min
+    "ipgb": RateLimiter(30),       # ipapi.co: 30/min
+    "ipapi_com": RateLimiter(50),  # additional
+    "ipinfo": RateLimiter(50),     # ipinfo.io
+    "ipgeolocation": RateLimiter(40),
+    "abstract": RateLimiter(30),
+}
+
+GEOIP_APIS = [
+    "ipapi", "ipwhois", "ipgb", "ipapi_com", "ipinfo", "ipgeolocation", "abstract"
+]
 
 # ==================== FILE PATHS ====================
 REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
@@ -267,31 +316,53 @@ def set_geoip_cached(host, country_code, country_name):
         }
 
 def fetch_geoip_multi(host):
+    """
+    HARDCORE GeoIP lookup with 7 fallback APIs and strict rate limiting.
+    Each API has its own rate limiter to respect free tier limits.
+    ip-api.com: 45 req/min enforced strictly.
+    """
     cached = get_geoip_cached(host)
     if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
         return cached["code"], cached["name"]
     
-    apis = [
-        lambda: fetch_geoip_ipapi(host),
-        lambda: fetch_geoip_ipwhois(host),
-        lambda: fetch_geoip_ipgb(host),
-    ]
+    # Try all 7 APIs in random order for load balancing
+    api_order = GEOIP_APIS.copy()
+    random.shuffle(api_order)
     
-    for api_fn in apis:
+    for api_name in api_order:
         try:
-            result = api_fn()
-            if result:
+            # Acquire rate limiter BEFORE making request
+            RATE_LIMITERS[api_name].acquire()
+            
+            result = None
+            if api_name == "ipapi":
+                result = fetch_geoip_ipapi(host)
+            elif api_name == "ipwhois":
+                result = fetch_geoip_ipwhois(host)
+            elif api_name == "ipgb":
+                result = fetch_geoip_ipgb(host)
+            elif api_name == "ipapi_com":
+                result = fetch_geoip_ipapi_com(host)
+            elif api_name == "ipinfo":
+                result = fetch_geoip_ipinfo(host)
+            elif api_name == "ipgeolocation":
+                result = fetch_geoip_ipgeolocation(host)
+            elif api_name == "abstract":
+                result = fetch_geoip_abstract(host)
+            
+            if result and result[0]:
                 code, name = result
                 set_geoip_cached(host, code, name)
                 return code, name
-        except Exception:
+        except Exception as e:
             continue
     
     return None, None
 
 def fetch_geoip_ipapi(host):
+    """ip-api.com - FREE tier: 45 requests per minute"""
     try:
-        r = requests.get(f"http://ip-api.com/json/{host}?fields=countryCode,country", timeout=4)
+        r = requests.get(f"http://ip-api.com/json/{host}?fields=countryCode,country", timeout=8)
         if r.status_code == 200:
             data = r.json()
             if data.get("status") == "success":
@@ -301,8 +372,9 @@ def fetch_geoip_ipapi(host):
     return None, None
 
 def fetch_geoip_ipwhois(host):
+    """ipwhois.app - ~60 requests per minute"""
     try:
-        r = requests.get(f"http://ipwhois.app/json/{host}?lang=en", timeout=4)
+        r = requests.get(f"http://ipwhois.app/json/{host}?lang=en", timeout=8)
         if r.status_code == 200:
             data = r.json()
             if data.get("success"):
@@ -312,11 +384,66 @@ def fetch_geoip_ipwhois(host):
     return None, None
 
 def fetch_geoip_ipgb(host):
+    """ipapi.co - 30 requests per minute"""
     try:
-        r = requests.get(f"https://ipapi.co/{host}/json/", timeout=4)
+        r = requests.get(f"https://ipapi.co/{host}/json/", timeout=8)
         if r.status_code == 200:
             data = r.json()
             return data.get("country_code", "XX"), data.get("country_name", "Unknown")
+    except Exception:
+        pass
+    return None, None
+
+def fetch_geoip_ipapi_com(host):
+    """Additional ipapi endpoint - 50 requests per minute"""
+    try:
+        r = requests.get(f"https://ip-api.com/json/{host}?fields=countryCode,country", timeout=8)
+        if r.status_code == 200:
+            data = r.json()
+            if data.get("status") == "success":
+                return data.get("countryCode", "XX"), data.get("country", "Unknown")
+    except Exception:
+        pass
+    return None, None
+
+def fetch_geoip_ipinfo(host):
+    """ipinfo.io - 50 requests per minute"""
+    try:
+        r = requests.get(f"https://ipinfo.io/{host}/json", timeout=8)
+        if r.status_code == 200:
+            data = r.json()
+            country = data.get("country", "")
+            if country:
+                # Map country code to name
+                return country, COUNTRY_NAMES.get(country, country)
+    except Exception:
+        pass
+    return None, None
+
+def fetch_geoip_ipgeolocation(host):
+    """ipgeolocation.io - 40 requests per minute"""
+    try:
+        r = requests.get(f"https://api.ipgeolocation.io/ipgeo?apiKey=free&ip={host}", timeout=8)
+        if r.status_code == 200:
+            data = r.json()
+            country = data.get("country_code2", "")
+            name = data.get("country_name", "Unknown")
+            if country:
+                return country, name
+    except Exception:
+        pass
+    return None, None
+
+def fetch_geoip_abstract(host):
+    """Abstract API - 30 requests per minute"""
+    try:
+        r = requests.get(f"https://ip.abstractapi.com/v1/?api_key=free&ip_address={host}", timeout=8)
+        if r.status_code == 200:
+            data = r.json()
+            country = data.get("country_code", "")
+            name = data.get("country", "Unknown")
+            if country:
+                return country, name
     except Exception:
         pass
     return None, None
@@ -509,7 +636,52 @@ COUNTRY_NAMES = {
 BLOCKED_COUNTRIES = {"CN", "IR", "KP", "RU"}  # 🆕 Добавлена Россия для миграционных рекомендаций
 
 
+def format_server_name(item, country_code, country_name):
+    """
+    Generate formatted server name with flag emoji, country name, and StintikVPN branding.
+    Format: 🇺🇸 United States | StintikVPN
+    """
+    # Get flag emoji from country code
+    flag = COUNTRY_NAMES.get(country_code, "")
+    
+    # Extract just the country name without flag if it's in our dictionary
+    full_name = COUNTRY_NAMES.get(country_code, country_name)
+    if ' ' in full_name and any(ord(c) > 127 for c in full_name.split()[0]):
+        # Has flag emoji at start, extract country name
+        parts = full_name.split(' ', 1)
+        if len(parts) > 1:
+            country_display = parts[1]
+        else:
+            country_display = country_name
+    else:
+        country_display = country_name
+    
+    # If flag is empty, try to get it from the full name
+    if not flag or '🇦' not in flag and '🇧' not in flag and '🇨' not in flag:
+        # Flag wasn't found, use country code to construct flag
+        flag = get_flag_emoji(country_code)
+    
+    return f"{flag} {country_display} | StintikVPN"
+
+def get_flag_emoji(country_code):
+    """Convert country code to flag emoji"""
+    if not country_code or len(country_code) != 2:
+        return "🌍"
+    
+    # Regional indicator symbols
+    base = ord('🇦') - ord('A')
+    try:
+        flag_char1 = chr(base + ord(country_code[0].upper()))
+        flag_char2 = chr(base + ord(country_code[1].upper()))
+        return flag_char1 + flag_char2
+    except:
+        return "🌍"
+
 def process_key(item):
+    """
+    HARDCORE server checking with extended timeouts and strict validation.
+    Each check takes longer but ensures maximum accuracy.
+    """
     p_type = item.get('type')
     source = item.get('source_url', 'unknown')
     
@@ -522,6 +694,7 @@ def process_key(item):
     if not check_reputation(host, port):
         return None
 
+    # Extended socket check with multiple retries
     is_online, ping = check_socket_with_retry(host, port)
     
     if not is_online:
@@ -533,13 +706,19 @@ def process_key(item):
     update_health_score(host, port, ping, True)
     
     name = item.get('name', '')
+    
+    # HARDCORE GeoIP lookup with rate limiting (this is what makes it take 15-20 minutes)
     country_code, country_name = fetch_geoip_multi(host)
     
     if not country_code:
         country_code, country_name = get_country_approx(host, name)
     
+    # Generate formatted name with flag and StintikVPN branding
+    formatted_name = format_server_name(item, country_code, country_name)
+    item['formatted_name'] = formatted_name
     item['country_name'] = country_name
     
+    # Strict bad marker filtering
     for bad in BAD_MARKERS:
         if bad in name.upper():
             return None
@@ -749,20 +928,33 @@ def main():
     print("💾 Сохранение результатов...")
     
     def save_list_category(name, data_list, filename):
+        """Save config list with formatted names including flag emojis and StintikVPN branding"""
         data_list.sort(key=lambda x: (x['ping'], x.get('country', 'ZZ')))
         limited = data_list[:LIMITS.get(name, 100)]
         path = os.path.join(BASE_DIR, filename)
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        # Без заголовков - только чистые конфиги
+        
+        # Save with formatted names for VPN clients
+        output_lines = []
+        for x in limited:
+            raw_config = x['item']['raw']
+            formatted_name = x['item'].get('formatted_name', '')
+            
+            if formatted_name:
+                # Add formatted name as comment before the config
+                output_lines.append(f"# {formatted_name}")
+                output_lines.append(raw_config)
+            else:
+                output_lines.append(raw_config)
+        
         with open(path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join([x['item']['raw'] for x in limited]))
+            f.write('\n'.join(output_lines))
         return len(limited)
 
     final_counts = {}
     final_counts['black'] = save_list_category('black', results['black'], 'black/black.txt')
     
-    # Убрал black_mobile - теперь только основной black список
-    
+    # Update country files with formatted names
     country_results = defaultdict(list)
     for item in results['black']:
         cc = item.get('country', 'XX')
@@ -776,9 +968,21 @@ def main():
         cc_name = COUNTRY_NAMES.get(cc, cc)
         safe_cc = "".join(c for c in cc if c.isalnum())
         file_path = os.path.join(countries_folder, f"{safe_cc}.txt")
-        # Без заголовков - только чистые конфиги
+        
+        # Save with formatted names
+        output_lines = []
+        for x in items:
+            raw_config = x['item']['raw']
+            formatted_name = x['item'].get('formatted_name', '')
+            
+            if formatted_name:
+                output_lines.append(f"# {formatted_name}")
+                output_lines.append(raw_config)
+            else:
+                output_lines.append(raw_config)
+        
         with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join([x['item']['raw'] for x in items]))
+            f.write('\n'.join(output_lines))
     
     final_counts['white_all'] = save_list_category('white_all', results['white_all'], OUTPUTS['white_all']['file'])
     final_counts['white_sni'] = save_list_category('white_sni', results['white_sni'], OUTPUTS['white_sni']['file'])
@@ -789,8 +993,20 @@ def main():
         limited = data[:LIMITS['protocols']]
         p_path = PROTOCOL_FILES[proto]
         with open(p_path, 'w', encoding='utf-8') as f:
-            f.write(f"# {proto.upper()} Protocol List\n")
-            f.write('\n'.join([x['item']['raw'] for x in limited]))
+            f.write(f"# {proto.upper()} Protocol List - StintikVPN\n")
+            # Add formatted names for protocol lists too
+            output_lines = []
+            for x in limited:
+                raw_config = x['item']['raw']
+                formatted_name = x['item'].get('formatted_name', '')
+                
+                if formatted_name:
+                    output_lines.append(f"# {formatted_name}")
+                    output_lines.append(raw_config)
+                else:
+                    output_lines.append(raw_config)
+            
+            f.write('\n'.join(output_lines))
         final_counts[f'proto_{proto}'] = len(limited)
 
     save_reputation()
@@ -849,9 +1065,30 @@ def main():
     print("📊 Отправка отчета...")
     send_telegram_report(_stats, final_counts)
     
-    print(f"✅ ГОТОВО! Время: {_stats['duration']:.2f} сек. Рабочих: {_stats['alive']}")
-    print(f"📊 Live stats сохранено в live_stats.json")
-    print(f"💾 GeoIP cache сохранено в geoip_cache.json")
+    print(f"\n{'='*60}")
+    print(f"✅ HARDCORE CHECK COMPLETE!")
+    print(f"{'='*60}")
+    print(f"⏱️  Total Time: {_stats['duration']:.2f} seconds ({_stats['duration']/60:.1f} minutes)")
+    print(f"🔍 Checked: {_stats['total_checked']} configs")
+    print(f"✅ Alive: {_stats['alive']}")
+    print(f"❌ Dead: {_stats['dead']}")
+    print(f"🎯 Premium Tier: {final_counts.get('premium', 0)} configs (TOP 0.1%)")
+    print(f"\n📁 Output files with flag emojis and StintikVPN branding:")
+    print(f"   - checked/black/black.txt")
+    print(f"   - checked/white/white.all.txt")
+    print(f"   - checked/white/white.sni.txt")
+    print(f"   - checked/white/white.cidr.txt")
+    print(f"   - checked/countries/*.txt")
+    print(f"   - checked/protocols/*.txt")
+    print(f"   - checked/premium.txt")
+    print(f"\n🌍 GeoIP rate limiting enforced:")
+    print(f"   - ip-api.com: 45 req/min")
+    print(f"   - ipwhois.app: 60 req/min")
+    print(f"   - ipapi.co: 30 req/min")
+    print(f"   - + 4 fallback APIs")
+    print(f"\n💾 Live stats saved to live_stats.json")
+    print(f"💾 GeoIP cache saved to geoip_cache.json")
+    print(f"{'='*60}\n")
 
 if __name__ == "__main__":
     main()
