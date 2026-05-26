@@ -1,801 +1,313 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StintikVPN - Premium Free VPN Configs</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <title>StintikVPN - Ultimate VPN Config Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --black: #0a0a0a;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #2a2a2a;
-            --orange: #ff6b00;
-            --orange-light: #ff8533;
-            --orange-dark: #cc5500;
-            --white: #ffffff;
-            --gray: #888888;
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --success: #22c55e;
+            --warning: #f59e0b;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--orange);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--orange);
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: var(--white);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--orange);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--orange);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(180deg, var(--black) 0%, var(--dark-gray) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        .hero-content {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero h1 span {
-            color: var(--orange);
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
-            border: 2px solid transparent;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.5);
-            background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 100%);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--orange);
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background: var(--orange);
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 80px 0;
-            background: var(--dark-gray);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .stat-card {
-            background: var(--medium-gray);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--orange), var(--orange-light));
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--orange);
-            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--orange);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            color: var(--gray);
-            font-weight: 600;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background: var(--black);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            font-weight: 900;
-            margin-bottom: 60px;
-        }
-
-        .section-title span {
-            color: var(--orange);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: var(--dark-gray);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--medium-gray);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: var(--orange);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--orange);
-        }
-
-        .feature-description {
-            color: var(--gray);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: var(--light);
             line-height: 1.6;
         }
-
-        /* Files Section */
-        .files {
-            padding: 100px 0;
-            background: var(--dark-gray);
-        }
-
-        .files-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .file-card {
-            background: var(--medium-gray);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .file-card:hover {
-            border-color: var(--orange);
-            transform: scale(1.02);
-        }
-
-        .file-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--white);
-        }
-
-        .file-desc {
-            color: var(--gray);
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .file-link {
-            display: inline-block;
-            padding: 10px 25px;
-            background: var(--orange);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .file-link:hover {
-            background: var(--orange-light);
-            transform: translateX(5px);
-        }
-
-        /* Comparison Table */
-        .comparison {
-            padding: 100px 0;
-            background: var(--black);
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--dark-gray);
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        th {
-            background: var(--medium-gray);
-            font-weight: 700;
-            color: var(--orange);
-            font-size: 16px;
-        }
-
-        td {
-            color: var(--white);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover {
-            background: var(--medium-gray);
-        }
-
-        .check {
-            color: var(--orange);
-            font-weight: 700;
-        }
-
-        .cross {
-            color: var(--gray);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-gray);
-            padding: 60px 0 30px;
-            border-top: 2px solid var(--orange);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            color: var(--orange);
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: var(--gray);
-            line-height: 1.8;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--orange);
-        }
-
-        .footer-bottom {
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        header {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--medium-gray);
-            color: var(--gray);
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
         }
-
-        /* Responsive */
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        .badges { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .protocols { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .protocol-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
+        .stat-label { opacity: 0.7; margin-top: 0.5rem; }
+        .migration-map {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        .country-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .country-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .flag { font-size: 2rem; margin-bottom: 0.5rem; }
+        .arrow { color: var(--accent); font-weight: bold; }
+        .code-section {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 15px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            margin: 1rem;
+        }
+        .btn:hover { transform: scale(1.05); }
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .btn {
-                display: block;
-                margin: 10px 0;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-            }
-
-            .stat-number {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
+            h1 { font-size: 2.5rem; }
+            .container { padding: 1rem; }
         }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Stintik<span>VPN</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#stats">Статистика</a></li>
-                    <li><a href="#features">Преимущества</a></li>
-                    <li><a href="#files">Файлы</a></li>
-                    <li><a href="#comparison">Сравнение</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> StintikVPN</h1>
+            <p class="subtitle">Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence</p>
+            <div class="badges">
+                <span class="badge"><i class="fas fa-bolt"></i> 800 Threads</span>
+                <span class="badge"><i class="fas fa-globe"></i> 30-Day GeoIP Cache</span>
+                <span class="badge"><i class="fas fa-heartbeat"></i> Health Score</span>
+                <span class="badge"><i class="fas fa-sync"></i> Smart Migration</span>
+            </div>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="animate">Бесплатные VPN<br><span>Премиум Качества</span></h1>
-                <p class="animate delay-1">Агрегируем лучшие конфигурации из топ источников. VLESS, VMess, Trojan, Shadowsocks - всё в одном месте с проверкой работоспособности.</p>
-                <div class="animate delay-2">
-                    <a href="#files" class="btn">Скачать конфиги</a>
-                    <a href="https://github.com/Stintik/StintikVPN" class="btn btn-outline">GitHub</a>
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                <h3>Multi-Protocol</h3>
+                <p>VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy support with automatic detection</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h3>Smart GeoIP</h3>
+                <p>3 API providers with 30-day cache for maximum accuracy and minimal API calls</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Health Score</h3>
+                <p>Dynamic server scoring (0-100) based on performance history and reliability</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
+                <h3>Migration Map</h3>
+                <p>Automatic country suggestions for blocked regions (RU, CN, IR, KP, BY)</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <h3>High Performance</h3>
+                <p>800 concurrent threads with smart retry logic and exponential backoff</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-database"></i></div>
+                <h3>Reputation DB</h3>
+                <p>Tracks failed servers to avoid repeated checks and save resources</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-book"></i> Protocols</h2>
+            <div class="protocols">
+                <div class="protocol-card">
+                    <h3><i class="fas fa-bolt"></i> VLESS</h3>
+                    <p><strong>Best:</strong> Streaming, Gaming</p>
+                    <p><strong>Encryption:</strong> TLS 1.3 + Reality</p>
+                    <p><strong>Evasion:</strong> Excellent</p>
+                </div>
+                <div class="protocol-card">
+                    <h3><i class="fas fa-envelope"></i> VMess</h3>
+                    <p><strong>Best:</strong> Browsing, Social</p>
+                    <p><strong>Encryption:</strong> AES-256-GCM</p>
+                    <p><strong>Evasion:</strong> Good</p>
+                </div>
+                <div class="protocol-card">
+                    <h3><i class="fas fa-user-secret"></i> Trojan</h3>
+                    <p><strong>Best:</strong> HTTPS Camouflage</p>
+                    <p><strong>Encryption:</strong> TLS + Domain Fronting</p>
+                    <p><strong>Evasion:</strong> Excellent</p>
+                </div>
+                <div class="protocol-card">
+                    <h3><i class="fas fa-shadow"></i> Shadowsocks</h3>
+                    <p><strong>Best:</strong> Legacy Devices</p>
+                    <p><strong>Encryption:</strong> ChaCha20-Poly1305</p>
+                    <p><strong>Evasion:</strong> Basic</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Stats Section -->
-    <section class="stats" id="stats">
-        <div class="container">
+        <section>
+            <h2 style="text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-chart-bar"></i> Live Statistics</h2>
             <div class="stats-grid">
-                <div class="stat-card animate">
-                    <div class="stat-number">4+</div>
-                    <div class="stat-label">Топ Источника</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-alive">-</div>
+                    <div class="stat-label">Alive Servers</div>
                 </div>
-                <div class="stat-card animate delay-1">
-                    <div class="stat-number">650+</div>
-                    <div class="stat-label">Конфигураций</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-dead">-</div>
+                    <div class="stat-label">Dead Servers</div>
                 </div>
-                <div class="stat-card animate delay-2">
-                    <div class="stat-number">TOP-50</div>
-                    <div class="stat-label">Лучших Серверов</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="black-count">-</div>
+                    <div class="stat-label">Black List</div>
                 </div>
-                <div class="stat-card animate delay-3">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Проверено</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="white-count">-</div>
+                    <div class="stat-label">White List</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">Почему <span>StintikVPN</span>?</h2>
-            <div class="features-grid">
-                <div class="feature-card animate">
-                    <div class="feature-icon">🚀</div>
-                    <h3 class="feature-title">VLESS Reality Приоритет</h3>
-                    <p class="feature-description">Наш алгоритм приоритезирует современные VLESS Reality конфигурации для максимальной скорости и обхода блокировок.</p>
+        <section class="migration-map">
+            <h2><i class="fas fa-route"></i> Smart Migration Map</h2>
+            <p>Automatic country suggestions when primary location is blocked</p>
+            <div class="country-grid">
+                <div class="country-item">
+                    <div class="flag">🇷🇺</div>
+                    <div>Russia</div>
+                    <div class="arrow">→</div>
+                    <div>🇫🇮 🇪🇪 🇱🇻 🇱🇹 🇵🇱</div>
                 </div>
-                <div class="feature-card animate delay-1">
-                    <div class="feature-icon">✅</div>
-                    <h3 class="feature-title">Автоматическая Проверка</h3>
-                    <p class="feature-description">Каждая конфигурация проходит проверку на работоспособность перед добавлением в финальный список.</p>
+                <div class="country-item">
+                    <div class="flag">🇨🇳</div>
+                    <div>China</div>
+                    <div class="arrow">→</div>
+                    <div>🇭🇰 🇹🇼 🇯🇵 🇰🇷 🇸🇬</div>
                 </div>
-                <div class="feature-card animate delay-2">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Репутационная Система</h3>
-                    <p class="feature-description">Уникальная система оценки серверов по количеству успешных проверок за последние циклы.</p>
+                <div class="country-item">
+                    <div class="flag">🇮🇷</div>
+                    <div>Iran</div>
+                    <div class="arrow">→</div>
+                    <div>🇹🇷 🇦🇪 🇩🇪 🇳🇱 🇫🇷</div>
                 </div>
-                <div class="feature-card animate delay-3">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">TOP-50 Best List</h3>
-                    <p class="feature-description">Отдельный файл с 50 лучшими серверами, отобранными по скорости, стабильности и репутации.</p>
+                <div class="country-item">
+                    <div class="flag">🇰🇵</div>
+                    <div>North Korea</div>
+                    <div class="arrow">→</div>
+                    <div>🇰🇷 🇯🇵 🇺🇸</div>
                 </div>
-                <div class="feature-card animate delay-4">
-                    <div class="feature-icon">🔄</div>
-                    <h3 class="feature-title">4 Источника</h3>
-                    <p class="feature-description">Агрегация из Igareck, Goida, Epodonios и Kort0881 - только проверенные временем проекты.</p>
-                </div>
-                <div class="feature-card animate">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Ежедневные Обновления</h3>
-                    <p class="feature-description">Автоматическое обновление каждые 12 часов через GitHub Actions для актуальности данных.</p>
+                <div class="country-item">
+                    <div class="flag">🇧🇾</div>
+                    <div>Belarus</div>
+                    <div class="arrow">→</div>
+                    <div>🇵🇱 🇱🇹 🇱🇻 🇩🇪</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Files Section -->
-    <section class="files" id="files">
-        <div class="container">
-            <h2 class="section-title">Доступные <span>Файлы</span></h2>
-            <div class="files-grid">
-                <div class="file-card">
-                    <div class="file-name">black.txt</div>
-                    <div class="file-desc">Все рабочие конфигурации (лимит: 300)</div>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/black.txt" class="file-link">Скачать</a>
-                </div>
-                <div class="file-card">
-                    <div class="file-name">white.txt</div>
-                    <div class="file-desc">Только премиум источники (лимит: 100)</div>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/white.txt" class="file-link">Скачать</a>
-                </div>
-                <div class="file-card">
-                    <div class="file-name">best.txt</div>
-                    <div class="file-desc">TOP-50 лучших серверов (VLESS приоритет)</div>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/best.txt" class="file-link">Скачать</a>
-                </div>
-                <div class="file-card">
-                    <div class="file-name">tg_proxy.txt</div>
-                    <div class="file-desc">Telegram MTProxy конфигурации (лимит: 100)</div>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/tg_proxy.txt" class="file-link">Скачать</a>
-                </div>
-                <div class="file-card">
-                    <div class="file-name">protocols.json</div>
-                    <div class="file-desc">Статистика по протоколам (лимит: 150)</div>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/protocols.json" class="file-link">Скачать</a>
-                </div>
-                <div class="file-card">
-                    <div class="file-name">live_stats.json</div>
-                    <div class="file-desc">API живой статистики для интеграции</div>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/live_stats.json" class="file-link">Скачать</a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section>
+            <h2 style="text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-code"></i> Quick Start</h2>
+            <div class="code-section">
+                <pre><code># Clone repository
+git clone https://github.com/igareck/stintikvpn.git
+cd stintikvpn
 
-    <!-- Comparison Section -->
-    <section class="comparison" id="comparison">
-        <div class="container">
-            <h2 class="section-title">Сравнение с <span>Конкурентами</span></h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Функция</th>
-                            <th>StintikVPN</th>
-                            <th>Igareck</th>
-                            <th>Goida</th>
-                            <th>Epodonios</th>
-                            <th>Kort0881</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Количество источников</td>
-                            <td class="check">4</td>
-                            <td class="cross">1</td>
-                            <td class="cross">1</td>
-                            <td class="cross">1</td>
-                            <td class="cross">1</td>
-                        </tr>
-                        <tr>
-                            <td>TOP-50 Best List</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                        </tr>
-                        <tr>
-                            <td>Репутационная система</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                        </tr>
-                        <tr>
-                            <td>JSON API статистики</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                        </tr>
-                        <tr>
-                            <td>VLESS Reality приоритет</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                        </tr>
-                        <tr>
-                            <td>Частота обновлений</td>
-                            <td class="check">12 часов</td>
-                            <td class="check">24 часа</td>
-                            <td class="check">24 часа</td>
-                            <td class="check">24 часа</td>
-                            <td class="check">24 часа</td>
-                        </tr>
-                        <tr>
-                            <td>Разделение Black/White</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                        </tr>
-                        <tr>
-                            <td>Telegram Proxy</td>
-                            <td class="check">✓</td>
-                            <td class="check">✓</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                            <td class="cross">✗</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+# Install dependencies
+pip install -r requirements.txt
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>StintikVPN</h3>
-                    <p>Агрегатор лучших бесплатных VPN конфигураций с автоматической проверкой работоспособности.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Источники</h3>
-                    <a href="https://github.com/Igareck/Igareck" target="_blank">Igareck VPN</a>
-                    <a href="https://github.com/GoidaHQ/GoidaHQ" target="_blank">Goida VPN</a>
-                    <a href="https://github.com/Epodonios/v2ray-configs" target="_blank">Epodonios V2Ray</a>
-                    <a href="https://github.com/Kort0881/Kort0881" target="_blank">Kort0881</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Файлы</h3>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/black.txt">black.txt</a>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/white.txt">white.txt</a>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/best.txt">best.txt</a>
-                    <a href="https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/tg_proxy.txt">tg_proxy.txt</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <a href="https://github.com/Stintik/StintikVPN" target="_blank">GitHub Repository</a>
-                    <a href="https://github.com/Stintik" target="_blank">Автор проекта</a>
-                </div>
+# Run VPN checker
+python main.py
+
+# Run Telegram proxy checker
+python tg_proxy_checker.py</code></pre>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 StintikVPN. Все права защищены. Проект создан в образовательных целях.</p>
+            <div style="text-align: center;">
+                <a href="https://github.com/igareck/stintikvpn" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
+                <a href="https://github.com/igareck/stintikvpn/issues" class="btn"><i class="fas fa-bug"></i> Report Issue</a>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> for unrestricted internet access</p>
+            <p style="opacity: 0.7; margin-top: 1rem;">MIT License © 2024 StintikVPN</p>
+        </footer>
+    </div>
 
     <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-card, .feature-card, .file-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Update stats dynamically from live_stats.json
-        async function updateStats() {
+        async function loadStats() {
             try {
-                const response = await fetch('https://raw.githubusercontent.com/Stintik/StintikVPN/refs/heads/main/checked/live_stats.json');
-                const data = await response.json();
-                
-                const statNumbers = document.querySelectorAll('.stat-number');
-                if (data.total_configs && statNumbers[1]) {
-                    statNumbers[1].textContent = data.total_configs + '+';
+                const response = await fetch('checked/live_stats.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('total-alive').textContent = data.total_alive || 0;
+                    document.getElementById('total-dead').textContent = data.total_dead || 0;
+                    document.getElementById('black-count').textContent = data.categories?.black || 0;
+                    document.getElementById('white-count').textContent = (data.categories?.white_all || 0) + (data.categories?.white_sni || 0) + (data.categories?.white_cidr || 0);
                 }
-            } catch (error) {
-                console.log('Stats update skipped:', error);
+            } catch (e) {
+                console.log('Stats not available yet');
             }
         }
-
-        updateStats();
+        loadStats();
+        setInterval(loadStats, 60000);
     </script>
 </body>
 </html>

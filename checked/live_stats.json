@@ -1,0 +1,43 @@
+{
+  "last_update": "2026-05-26 07:04:29",
+  "total_alive": 7870,
+  "total_dead": 7740,
+  "duration_sec": 69.18,
+  "categories": {
+    "black": 500,
+    "black_mobile": 150,
+    "white_all": 200,
+    "white_sni": 150,
+    "white_cidr": 150,
+    "tg_proxy": 0,
+    "best": 100
+  },
+  "protocols": {
+    "vless": 300,
+    "vmess": 0,
+    "trojan": 300,
+    "ss": 87
+  },
+  "top_sources": [
+    {
+      "url": "vless",
+      "count": 4428
+    },
+    {
+      "url": "BLACK_SS+All_RUS_base64",
+      "count": 1240
+    },
+    {
+      "url": "ru_white",
+      "count": 256
+    },
+    {
+      "url": "white",
+      "count": 256
+    },
+    {
+      "url": "white",
+      "count": 255
+    }
+  ]
+}
