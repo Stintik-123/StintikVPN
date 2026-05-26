@@ -97,6 +97,44 @@
 ### ⚫ Чёрный список (основной)
 [`checked/black/black.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/black/black.txt) – около 300 серверов, лучший баланс скорости и стабильности.
 
+### 📱 Black Mobile (50 лучших без Anycast)
+<details>
+<summary>📲 Нажмите, чтобы открыть 50 лучших серверов для мобильных (без Anycast)</summary>
+
+```
+vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
+vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
+vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.157.233.47:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇩🇪 Германия 11
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.157.233.47:80?mode=auto&path=/&security=tls&sni=obhod.riotvpn.eu&type=xhttp#🇩🇪 Германия 12
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@94.125.103.219:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇧🇬 Болгария 2
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ca1.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ca1.gofizz.in&fp=chrome&pbk=ohlUVAqq5MT6I7ozknXy0Mi5zW_uH94DV-lC7Ip2Ygk&sid=37f069d7ad&spx=%2Fp4vP02NguyoAtlF&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%A6%20%20Canada%20%20%5B01%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@fr1.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=fr1.gofizzin.com&fp=chrome&pbk=uvYdcBw9FFSxYXpZy5Pr5gzgXan7PWkWJKg940ogxSU&sid=50ea8dd3&spx=%2FvfQwzjXv7de2ZZd&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%B7%20%20France%20%20%5B01%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@fr1.gofizzin.com:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=uvYdcBw9FFSxYXpZy5Pr5gzgXan7PWkWJKg940ogxSU&sid=50ea8dd3&sni=fr1.gofizzin.com&spx=/vfQwzjXv7de2ZZd#%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%7C%20%5BBL%5D
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@nl3.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=nl3.gofizz.in&fp=firefox&pbk=51ZCyVOxvcD_smARtd9mV-3Rh_WurOzMGRFxk9u2Kgo&sid=fa1754221e4c5f9e&spx=%2FZ7S8RI9jF45fcJM&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B05%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@uk1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=UHbwATrfIcPdOXTOUL5pUldKOtzYE2lFmBnr_--AnBo&sid=499396ad&sni=uk1.gofizz.in&spx=/QGTgJ2bCpcISttI#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@uk2.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=uk2.gofizz.in&fp=chrome&pbk=WgTZR-o6VbFYeqb7iZNBh-izcWAQlpotOyxibJnAXVc&sid=f51489cb3d7e8be2&spx=%2F3uGRsfAPy04MHW9&flow=xtls-rprx-vision#%F0%9F%87%AC%F0%9F%87%A7%20%20Great%20Britain%20%20%5B01%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@us3.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=us3.gofizz.in&fp=chrome&pbk=Ti0m82YFaY2ngtx1D3jicy2K1HnOWEsCfYYQPqhXImg&sid=6117837d3efb&spx=%2Fh5dylfspt86jDZS&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B02%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@us6.gofizzin.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=us6.gofizzin.com&fp=chrome&pbk=ccq4Wk9V2_8IBXou2URsapbdszbxNc7IWD6ExNuB7hU&sid=39be97366fac&spx=%2FRtOItepbDnH62Mt&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B03%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@us6.gofizzin.com:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=ccq4Wk9V2_8IBXou2URsapbdszbxNc7IWD6ExNuB7hU&sid=39be97366fac&sni=us6.gofizzin.com&spx=/RtOItepbDnH62Mt#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Fremont%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@us9.gofizz.in:443?type=tcp&headerType=none&security=reality&encryption=none&sni=us9.gofizzin.com&fp=chrome&pbk=s8fHxyx8AAuzd9RxBxSOuwaJt5hYMtV2UAPfR4kxkyE&sid=07287e50e3d22a5a&spx=%2FXgqRbklQBkDeU3S&flow=xtls-rprx-vision#%F0%9F%87%A6%F0%9F%87%B9%20%20Austria%20%20%5B01%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@us9.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=s8fHxyx8AAuzd9RxBxSOuwaJt5hYMtV2UAPfR4kxkyE&sid=07287e50e3d22a5a&sni=us9.gofizzin.com&spx=/XgqRbklQBkDeU3S#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://35325a3c-411e-42a8-962b-db12e55b071d@185.236.25.24:2027?flow=xtls-rprx-vision&fp=chrome&pbk=EApxy12MeXpqt-78odxizwcXT6hX9f8XeAcbMDVRAV0&security=reality&sid=6ba7b8109dad11d1&sni=sp.skysafe.online&type=tcp#%F0%9F%87%AA%F0%9F%87%B8%20Spain%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://48264301-dce4-4c4a-a91a-f5d8276ff362@nl-u16.vpn-port.com:443?type=grpc&headerType=none&security=reality&encryption=none&sni=www.yimg.com&fp=chrome&pbk=ixTpiJJA-oOL0jUjjc9N_feC-WX_1tsgqfyZmzYNcTI&sid=c804d085f2d1&spx=%2FIlxVGULLCSpDFtY#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B04%5D%20%20MIFA
+vless://70440b40-5e3b-41c1-a9cb-d7113d216ef8@demw.verymad.net:27439?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Re0aWbYgk775QZ2eiIzh9fwPANq8HfLlrp9vbTC8vXQ&sid=ac2ceae11eb0&spx=%2F093szYMnd9mlA4v#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B02%5D%20%20MIFA
+vless://7402e534-54dc-34cc-ac5b-c85ac6e236fd@s881.ccgfw.top:443?type=tcp&security=tls&flow=xtls-rprx-vision&sni=s881.ccgfw.top&path=&mode=&serviceName=#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Salt%20Lake%20City%20%7C%20%5BBL%5D
+vless://ac195240-6005-412b-9829-1e56e5d5c52a@ddfs.ummapeople.online:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ddfs.ummapeople.online&fp=chrome&pbk=NPt7NbrWjFl5Uq8xIuolxDDJFTzj5x5jwmiSTRPuuD8&flow=xtls-rprx-vision#%F0%9F%87%A9%F0%9F%87%AA%20%20Germany%20%20%5B01%5D%20%20MIFA
+vless://b5006142-80d3-4cbd-8e29-91120798f0dc@ne77.kubservice.icu:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ne77.kubservice.icu&fp=chrome&security=reality&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&sid=#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Eygelshoven%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://b5006142-80d3-4cbd-8e29-91120798f0dc@ne77.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ne77.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&flow=xtls-rprx-vision#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B01%5D%20%20MIFA
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@166.88.130.116:17003?pbk=hZ8x5pcgeqUgtzpmY-boIoC3hPoh8nXAbkpqLo92sTc&security=reality&serviceName=synonymousdeployment&sid=33c3&sni=cloudflare.com&type=grpc#🇨🇦 Канада
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@213.165.51.235:55014?pbk=M5JsVXPIvyT6PzqDivrchgM0I7H6z9bq1YTCitP7IgE&security=reality&serviceName=ripecouncilor&sid=6d&sni=apple.com&type=grpc#🇺🇸 США 1
+vless://fc5f38ed-a9d0-49f8-ac16-4aac9fc3d0c8@vm88523.vpsone.xyz:38941?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.com&fp=firefox&pbk=Yked1lhut59cOfUoCajb_H1XJvYdEc1ub5NSUAGfLn0&sid=c57b1b79&spx=%2FcNeQDJpBN8Egd4f#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B06%5D%20%20MIFA
+```
+
+> 💡 **Совет:** Эти серверы отфильтрованы от Anycast и подходят для быстрого подключения на мобильных устройствах.
+
+</details>
+
 ### ⚪ Белые списки
 - [`checked/white/white.all.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.all.txt) – все рабочие конфиги (~150 серверов)
 - [`checked/white/white.sni.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.sni.txt) – конфиги с валидным SNI (лучше маскируются)
