@@ -1,286 +1,164 @@
-# 🚀 StintikVPN Ultimate v4.0 — WORLD'S #1 VPN Config Checker
+# 🚀 StintikVPN — готовые рабочие подписки
 
-<div align="center">
+**StintikVPN** автоматически собирает, проверяет и обновляет конфиги для обхода блокировок в России.  
+Вам не нужно ничего настраивать — просто берите готовые ссылки и вставляйте в ваш VPN-клиент.
 
-[🇷🇺 Русский](#-russian) | [🇬🇧 English](#-english)
-
-![Version](https://img.shields.io/badge/Version-4.0.0%20ULTIMATE-orange?style=for-the-badge)
-![Python](https://img.shields.io/badge/Python-3.9+-orange?style=for-the-badge&logo=python)
-![Threads](https://img.shields.io/badge/Threads-1000-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-orange?style=for-the-badge)
-
-**🏆 DOMINATING the niche since 2024**
-
-</div>
+[![GitHub stars](https://img.shields.io/github/stars/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-Official/StintikVPN-?style=flat-square)](https://github.com/Stintik-Official/StintikVPN-/watchers)
 
 ---
 
-<h2 id="-russian">🇷🇺 Русский</h2>
+## 🚀 Как пользоваться
 
-**StintikVPN Ultimate** — это РЕВОЛЮЦИОННЫЙ чекер VPN конфигураций, который ПОЛНОСТЬЮ изменил правила игры. Мы не просто лучше конкурентов — мы создали новую лигу.
-
-## 🔥 Почему StintikVPN — ТОП 1 в нише?
-
-### 🏆 Quantum Health Score™ v4.0
-Единственная в мире система оценки здоровья серверов с **ML-предсказанием отказов**:
-- Динамический скоринг 0-100 с экспоненциальным взвешиванием
-- Анализ трендов (improving/stable/declining/critical)
-- Momentum-бонусы за серийные успехи
-- Вариабельность пинга как метрика стабильности
-- **Авто-бан при 3+ неудачах** (строже чем у всех)
-
-### 🧠 Neural GeoIP Fingerprinting
-Точность определения локации **99.7%** благодаря:
-- 3 независимым API источникам
-- Умному fallback при недоступности
-- 30-дневному кэшу с confidence score
-- Аппроксимации по IP-префиксам СНГ
-
-### ⚡ Auto-Healing Connection System
-Самовосстанавливающаяся система подключений:
-- Адаптивные таймауты (3.5s connect, 3.0s SSL)
-- Экспоненциальная задержка между попытками
-- SO_REUSEADDR оптимизация
-- Детекция трансатлантических соединений
-
-### 🎯 Premium Tier Selection (TOP 0.1%)
-Эксклюзивный фильтр лучших конфигов:
-- Health Score ≥ 90
-- Ping < 500ms
-- Только абсолютная элита попадает в premium.txt
-
-### 📊 Historical Performance Tracking
-Полная история каждого сервера:
-- Последние 10 пингов в deque
-- Счётчики успехов/неудач
-- Анализ долгосрочных трендов
-- Сохранение между запусками
-
-### 🗺️ Smart Migration Map v2.0
-Расширенные рекомендации для заблокированных стран:
-```
-🇷🇺 Russia → 🇫🇮 Finland, 🇪🇪 Estonia, 🇱🇻 Latvia, 🇱🇹 Lithuania, 🇵🇱 Poland, 🇬🇪 Georgia, 🇰🇿 Kazakhstan, 🇦🇿 Azerbaijan
-🇨🇳 China  → 🇭🇰 Hong Kong, 🇹🇼 Taiwan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇲🇴 Macau
-🇮🇷 Iran   → 🇹🇷 Turkey, 🇦🇪 UAE, 🇩🇪 Germany, 🇳🇱 Netherlands, 🇫🇷 France, 🇮🇶 Iraq, 🇦🇲 Armenia
-🇰🇵 NKorea → 🇷🇺 Russia, 🇨🇳 China
-```
-
-### 🤖 AI Analysis Engine
-Умные рекомендации в Telegram отчётах:
-- Анализ стабильности VLESS протокола
-- Оценка общей доступности серверов
-- Предупреждения при малом количестве рабочих конфигов
-- Динамические советы на основе статистики
-
-### 🌐 Multi-Protocol Support
-Поддержка ВСЕХ популярных протоколов:
-- **VLESS** + Reality (лучший для обхода)
-- **VMess** + AES-256-GCM
-- **Trojan** + TLS Domain Fronting
-- **Shadowsocks** + ChaCha20-Poly1305
+1. Скопируйте нужную ссылку из раздела «Готовые подписки».
+2. Вставьте её в ваш VPN-клиент через кнопку **«Добавить подписку»** или **«Импорт из буфера обмена»**.
+3. Обновите список → выберите сервер → подключитесь.
 
 ---
 
-## 🔗 Быстрый доступ к результатам
+## 📱 Рекомендуемые VPN-клиенты
 
-### 📦 Основные списки
-| Список | Кол-во | Описание |
-|--------|--------|----------|
-| **[⚫ Black List](checked/black/black.txt)** | 300 | Оптимальный баланс скорости и стабильности |
-| **[⭐ Premium](checked/premium.txt)** | 50 | TOP 0.1% — только абсолютная элита |
-| **[⚪ White All](checked/white/white.all.txt)** | 150 | Полностью рабочие конфиги |
-| **[🔍 White SNI](checked/white/white.sni.txt)** | 150 | Конфигурации с валидным SNI/Reality |
-| **[🌐 White CIDR](checked/white/white.cidr.txt)** | 150 | Конфигурации с CIDR масками |
+| Устройство | Клиент | Ссылка |
+|:---|:---|:---|
+| **Windows** | Hiddify / v2rayN | [Hiddify](https://github.com/hiddify/hiddify-next/releases) / [v2rayN](https://github.com/2dust/v2rayN/releases) |
+| **Android** | Incy / NekoBox | [Incy](https://play.google.com/store/apps/details?id=com.glarimy.incy) / [NekoBox](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) |
+| **Android TV** | NekoBox (TV версия) | [NekoBox](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) |
+| **iOS / iPadOS** | Streisand / V2Box | [Streisand](https://apps.apple.com/app/streisand/id6450534064) / [V2Box](https://apps.apple.com/app/v2box/id6443654552) |
+| **Linux** | Hiddify / NekoRay | [Hiddify](https://github.com/hiddify/hiddify-next/releases) / [NekoRay](https://github.com/MatsuriDayo/nekoray/releases) |
+| **macOS** | Hiddify / Streisand | [Hiddify](https://github.com/hiddify/hiddify-next/releases) / [Streisand](https://apps.apple.com/app/streisand/id6450534064) |
 
-### 🛠 Протоколы
-**[VLESS](checked/protocols/vless.txt)** | **[VMess](checked/protocols/vmess.txt)** | **[Trojan](checked/protocols/trojan.txt)** | **[Shadowsocks](checked/protocols/ss.txt)**
+---
+
+## 🏴‍☠️ Чёрные и белые списки – что это и когда использовать
+
+- **🏴 Чёрные списки** – для обычного интернета (домашний Wi‑Fi, кабель, 4G без жёстких блокировок).  
+  Конфиги проверяются на скорость и стабильность. Подходят для YouTube, Discord, Telegram, Instagram, ChatGPT, когда провайдер ещё не включил «белые списки».
+
+- **🏳️ Белые списки** – для жёстких блокировок (мобильный интернет, когда провайдер включает «белые списки» и разрешает только сайты из списка РКН).  
+  Конфиги из белых списков маскируются под легитимные российские сервисы (Yandex, VK, Gosuslugi и др.). **Рекомендуется использовать только при включённых белых списках провайдера.**
+
+**Как выбрать?**  
+Начните с чёрного списка. Если YouTube / Discord не открываются — переключайтесь на белый. Если белый список работает, но тормозит – попробуйте другие протоколы или смените страну (в папке `checked/countries/`).
+
+---
+
+## 📡 Подробнее о белых списках: SNI и CIDR
+
+Внутри белых списков есть три типа файлов. Вот что они означают:
+
+- **white.all.txt** – обычные рабочие конфиги. Подходят для большинства ситуаций.
+
+- **white.sni.txt** – конфиги с **валидным SNI**.  
+  *Что такое SNI?* SNI (Server Name Indication) – это имя сервера, которое ваш клиент передаёт при подключении. DPI-системы провайдера проверяют SNI и блокируют подозрительные. Конфиги с валидным SNI маскируются под обычный сайт (например, «yandex.ru») и проходят блокировку. Если обычные белые списки работают плохо – попробуйте SNI‑версию.
+
+- **white.cidr.txt** – конфиги с **CIDR-масками**.  
+  *Что такое CIDR?* CIDR (Classless Inter-Domain Routing) – способ записи целых подсетей (например, `192.168.0.0/16`). Некоторые провайдеры блокируют не отдельные IP, а целые диапазоны. Конфиги с CIDR-масками могут обходить такие блокировки, так как указывают не конкретный IP, а подсеть. Если ваш IP попал под массовую блокировку – пробуйте CIDR‑версию.
+
+---
+
+## 🛠️ Протоколы – что лучше для чего
+
+- **VLESS (с Reality)** – **лучший для обхода блокировок**. Самый современный, хорошо маскируется. Рекомендуем начинать с него.
+- **VLESS (обычный)** – быстрее, но чуть хуже маскируется. Если Reality не работает – пробуйте этот.
+- **VMess** – более старый, но очень надёжный. Работает почти везде, но может быть чуть медленнее.
+- **Trojan** – хорош для маскировки, часто работает там, где VLESS не проходит.
+- **Shadowsocks** – лёгкий и быстрый. Подойдёт, если нужна просто скорость, а блокировки не очень жёсткие.
+
+**Совет:** Если не знаете, что выбрать – берите **VLESS (Reality)**. Если не работает – пробуйте Trojan или обычный VLESS.
+
+---
+
+## 📦 Готовые подписки
+
+### ⚫ Чёрный список (основной)
+[`checked/black/black.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/black/black.txt) – около 300 серверов, лучший баланс скорости и стабильности.
+
+### ⚪ Белые списки
+- [`checked/white/white.all.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.all.txt) – все рабочие конфиги (~150 серверов)
+- [`checked/white/white.sni.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.sni.txt) – конфиги с валидным SNI (лучше маскируются)
+- [`checked/white/white.cidr.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.cidr.txt) – конфиги с CIDR-масками (для обхода блокировок целых подсетей)
+
+### 🛠️ По протоколам
+- **VLESS (Reality)**: [`checked/protocols/vless.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vless.txt)
+- **VMess**: [`checked/protocols/vmess.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vmess.txt)
+- **Trojan**: [`checked/protocols/trojan.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/trojan.txt)
+- **Shadowsocks**: [`checked/protocols/ss.txt`](https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/ss.txt)
 
 ### 🌍 По странам
-**[📂 Countries Folder](checked/countries/)** — отдельные файлы для каждой страны (RU, US, DE, NL, etc.)
+Смотрите папку [`checked/countries/`](https://github.com/Stintik-Official/StintikVPN-/tree/main/checked/countries) – там файлы для России (RU), США (US), Германии (DE), Нидерландов (NL) и других стран.
 
 ---
 
-## ⚙️ Настройка и запуск
+## 🤖 Telegram прокси (MTProto)
 
-### Требования
-```bash
-Python 3.9+
-pip install -r requirements.txt
-```
+> Последнее обновление: **26.05.2026**
 
-### Запуск
-```bash
-# Основной чекер VPN конфигов
-python main.py
-
-# Чекер Telegram прокси (отдельно)
-python tg_proxy_checker.py
-```
-
-### Конфигурация (main.py)
-```python
-VERSION = "4.0.0 ULTIMATE"
-THREADS = 1000              # Максимальная производительность
-TIMEOUT_CONNECT = 3.5       # Оптимизировано для глобального сканирования
-FAIL_THRESHOLD = 3          # Строгий авто-бан
-LIMITS = {
-    "black": 300,           # Увеличено для качества
-    "premium": 50,          # NEW: элитный tier
-    "protocols": 200        # Больше вариантов
-}
-PING_WEIGHT = 0.4           # 40% веса на пинг
-STABILITY_WEIGHT = 0.6      # 60% веса на стабильность
-```
+| # | Сервер | Порт | Подключить |
+|:---:|:---|:---:|:---:|
+| 1 | `87.242.100.25` | `443` | [🔗 Добавить](https://t.me/proxy?server=87.242.100.25&port=443&secret=eefa41d7ab59231ab714b7865c9016a1356164732e78352e7275) |
 
 ---
 
-## 📊 Live Statistics
+## 🔗 Зеркала
 
-Файл `checked/live_stats.json` содержит полную статистику:
-- Общее количество проверенных серверов
-- Распределение по категориям и протоколам
-- Топ источников по качеству
-- Health Distribution (excellent/good/fair/poor)
-- Версия и время последнего обновления
+(здесь появятся зеркала проекта, если GitHub будет недоступен)
 
 ---
 
-<h2 id="-english">🇬🇧 English</h2>
+## ❓ Часто задаваемые вопросы (FAQ)
 
-**StintikVPN Ultimate** — This is a REVOLUTIONARY VPN config checker that COMPLETELY changed the game. We're not just better than competitors — we created a new league.
+**1. Подписка не работает / очень медленно. Что делать?**  
+Обновите список в клиенте (кнопка «Обновить подписку»). Если не помогло – попробуйте сменить протокол (например, с VLESS на Trojan) или страну в папке `checked/countries/`. Иногда помогает смена клиента (например, с Hiddify на NekoBox).
 
-## 🔥 Why StintikVPN is #1 in the niche?
+**2. Как часто обновляются конфиги?**  
+Скрипт запускается автоматически каждый день. Все ссылки в README всегда ведут на свежие версии.
 
-### 🏆 Quantum Health Score™ v4.0
-The world's only server health scoring system with **ML-powered failure prediction**:
-- Dynamic 0-100 scoring with exponential weighting
-- Trend analysis (improving/stable/declining/critical)
-- Momentum bonuses for consecutive successes
-- Ping variance as stability metric
-- **Auto-ban after 3+ failures** (stricter than anyone)
+**3. Белые списки – когда они реально нужны?**  
+Только когда ваш мобильный оператор (МТС, Билайн, Tele2 и др.) включает режим «белых списков» – тогда перестают открываться большинство сайтов и приложений. В такой ситуации обычные чёрные списки не работают, и только белые списки помогают оставаться онлайн.
 
-### 🧠 Neural GeoIP Fingerprinting
-**99.7% location accuracy** thanks to:
-- 3 independent API sources
-- Smart fallback when APIs unavailable
-- 30-day cache with confidence scores
-- CIS IP prefix approximation
+**4. Какой клиент проще всего для новичка?**  
+**Hiddify** – самый простой интерфейс и автопоиск лучшего сервера. Для Windows и Android подходит одинаково хорошо. На iOS – **Streisand**.
 
-### ⚡ Auto-Healing Connection System
-Self-healing connection system:
-- Adaptive timeouts (3.5s connect, 3.0s SSL)
-- Exponential backoff between retries
-- SO_REUSEADDR optimization
-- Transatlantic connection detection
-
-### 🎯 Premium Tier Selection (TOP 0.1%)
-Exclusive filter for best configs:
-- Health Score ≥ 90
-- Ping < 500ms
-- Only absolute elite makes it to premium.txt
-
-### 📊 Historical Performance Tracking
-Complete history for every server:
-- Last 10 pings in deque
-- Success/failure counters
-- Long-term trend analysis
-- Persistence between runs
-
-### 🗺️ Smart Migration Map v2.0
-Extended recommendations for blocked countries:
-```
-🇷🇺 Russia → 🇫🇮 Finland, 🇪🇪 Estonia, 🇱🇻 Latvia, 🇱🇹 Lithuania, 🇵🇱 Poland, 🇬🇪 Georgia, 🇰🇿 Kazakhstan, 🇦🇿 Azerbaijan
-🇨🇳 China  → 🇭🇰 Hong Kong, 🇹🇼 Taiwan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇲🇴 Macau
-🇮🇷 Iran   → 🇹🇷 Turkey, 🇦🇪 UAE, 🇩🇪 Germany, 🇳🇱 Netherlands, 🇫🇷 France, 🇮🇶 Iraq, 🇦🇲 Armenia
-🇰🇵 NKorea → 🇷🇺 Russia, 🇨🇳 China
-```
-
-### 🤖 AI Analysis Engine
-Smart recommendations in Telegram reports:
-- VLESS protocol stability analysis
-- Overall server availability assessment
-- Warnings when few working configs
-- Dynamic tips based on statistics
-
-### 🌐 Multi-Protocol Support
-Support for ALL popular protocols:
-- **VLESS** + Reality (best for bypassing)
-- **VMess** + AES-256-GCM
-- **Trojan** + TLS Domain Fronting
-- **Shadowsocks** + ChaCha20-Poly1305
+**5. Что делать, если Telegram прокси не подключается?**  
+Прокси берутся из открытых источников и могут умирать. Просто подождите следующего автоматического обновления (раз в сутки) или следите за [Telegram-каналом](https://t.me/StintikVPN) – там публикуются свежие.
 
 ---
 
-## 🔗 Quick Links to Results
+## ⚠️ Важное предупреждение
 
-### 📦 Main Lists
-| List | Count | Description |
-|------|-------|-------------|
-| **[⚫ Black List](checked/black/black.txt)** | 300 | Optimal speed/stability balance |
-| **[⭐ Premium](checked/premium.txt)** | 50 | TOP 0.1% — absolute elite only |
-| **[⚪ White All](checked/white/white.all.txt)** | 150 | Fully working configs |
-| **[🔍 White SNI](checked/white/white.sni.txt)** | 150 | Configs with valid SNI/Reality |
-| **[🌐 White CIDR](checked/white/white.cidr.txt)** | 150 | Configs with CIDR masks |
-
-### 🛠 Protocols
-**[VLESS](checked/protocols/vless.txt)** | **[VMess](checked/protocols/vmess.txt)** | **[Trojan](checked/protocols/trojan.txt)** | **[Shadowsocks](checked/protocols/ss.txt)**
-
-### 🌍 By Country
-**[📂 Countries Folder](checked/countries/)** — separate files per country (RU, US, DE, NL, etc.)
+> Все конфиги собраны из публичных открытых источников. **Работоспособность не гарантирована на 100%** – многое зависит от провайдера и региона.  
+> **Запрещено** использовать эти конфиги в противоправных действиях, нарушающих законодательство РФ.  
+> Создатель проекта **не несёт ответственности** за ваши действия. Используя ссылки, вы подтверждаете, что не нарушаете закон.
 
 ---
 
-## ⚙️ Setup & Usage
+## 🧑‍💻 Для более продвинутых (внутренности проекта)
 
-### Requirements
-```bash
-Python 3.9+
-pip install -r requirements.txt
-```
+Проект не просто собирает ссылки – он использует несколько уникальных технологий.
 
-### Run
-```bash
-# Main VPN config checker
-python main.py
+- **Quantum Health Score** – сервера получают оценку от 0 до 100, где учитывается не только пинг, но и стабильность, долговременные тренды и количество неудач. Сервера с плохой оценкой автоматически отсеиваются.
 
-# Telegram proxy checker (separate)
-python tg_proxy_checker.py
-```
+- **Neural GeoIP Fingerprinting** – определение страны сервера с точностью 99.7% по трём независимым источникам. Если один источник недоступен, система переключается на резервный.
 
-### Configuration (main.py)
-```python
-VERSION = "4.0.0 ULTIMATE"
-THREADS = 1000              # Maximum performance
-TIMEOUT_CONNECT = 3.5       # Optimized for global scanning
-FAIL_THRESHOLD = 3          # Strict auto-ban
-LIMITS = {
-    "black": 300,           # Increased for quality
-    "premium": 50,          # NEW: elite tier
-    "protocols": 200        # More options
-}
-PING_WEIGHT = 0.4           # 40% weight on ping
-STABILITY_WEIGHT = 0.6      # 60% weight on stability
-```
+- **Auto-Healing Connection** – система сама подбирает таймауты, повторяет запросы при сбоях и умеет отличать трансатлантические соединения от обычных.
+
+- **Historical Performance Tracking** – каждый сервер запоминает последние 10 пингов. Если сервер начинает деградировать, его рейтинг падает.
+
+- **Smart Migration Map** – для заблокированных стран предлагаются лучшие альтернативы. Например, при блокировке России рекомендуются сервера в Финляндии, Эстонии, Латвии, Польше и других странах СНГ.
+
+- **AI Analysis Engine** – при каждом запуске анализируется общая доступность протоколов (VLESS, VMess, Trojan, Shadowsocks) и выдаются рекомендации в Telegram‑отчёт.
+
+- **Статистика в реальном времени** – файл `checked/live_stats.json` содержит полную статистику по каждому запуску: количество проверенных серверов, распределение по странам и протоколам, топ источников по качеству.
 
 ---
 
-## 📊 Live Statistics
+## 💰 Поддержать проект
 
-`checked/live_stats.json` contains complete statistics:
-- Total checked servers
-- Category and protocol distribution
-- Top sources by quality
-- Health Distribution (excellent/good/fair/poor)
-- Version and last update timestamp
+Проект живёт на энтузиазме. Если он вам полезен – поставьте ⭐ звёздочку на GitHub, это бесплатно и очень помогает.
+
+**Карта для поддержки:** `79960694715` (Озон)
 
 ---
 
-<div align="center">
-
-**🚀 Made with ❤️ for unrestricted internet access**
-
-**No competitors. No comparisons. Just dominance.**
-
-MIT License © 2024 StintikVPN Ultimate
-
-</div>
+*StintikVPN – сделано людьми для людей*
