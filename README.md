@@ -59,9 +59,10 @@
 ### 🗺️ Smart Migration Map v2.0
 Расширенные рекомендации для заблокированных стран:
 ```
-🇷🇺 Russia → 🇫🇮 Finland, 🇪🇪 Estonia, 🇱🇻 Latvia, 🇱🇹 Lithuania, 🇵🇱 Poland
-🇨🇳 China  → 🇭🇰 Hong Kong, 🇹🇼 Taiwan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore
-🇮🇷 Iran   → 🇹🇷 Turkey, 🇦🇪 UAE, 🇩🇪 Germany, 🇳🇱 Netherlands, 🇫🇷 France
+🇷🇺 Russia → 🇫🇮 Finland, 🇪🇪 Estonia, 🇱🇻 Latvia, 🇱🇹 Lithuania, 🇵🇱 Poland, 🇬🇪 Georgia, 🇰🇿 Kazakhstan, 🇦🇿 Azerbaijan
+🇨🇳 China  → 🇭🇰 Hong Kong, 🇹🇼 Taiwan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇲🇴 Macau
+🇮🇷 Iran   → 🇹🇷 Turkey, 🇦🇪 UAE, 🇩🇪 Germany, 🇳🇱 Netherlands, 🇫🇷 France, 🇮🇶 Iraq, 🇦🇲 Armenia
+🇰🇵 NKorea → 🇷🇺 Russia, 🇨🇳 China
 ```
 
 ### 🤖 AI Analysis Engine
@@ -188,9 +189,10 @@ Complete history for every server:
 ### 🗺️ Smart Migration Map v2.0
 Extended recommendations for blocked countries:
 ```
-🇷🇺 Russia → 🇫🇮 Finland, 🇪🇪 Estonia, 🇱🇻 Latvia, 🇱🇹 Lithuania, 🇵🇱 Poland
-🇨🇳 China  → 🇭🇰 Hong Kong, 🇹🇼 Taiwan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore
-🇮🇷 Iran   → 🇹🇷 Turkey, 🇦🇪 UAE, 🇩🇪 Germany, 🇳🇱 Netherlands, 🇫🇷 France
+🇷🇺 Russia → 🇫🇮 Finland, 🇪🇪 Estonia, 🇱🇻 Latvia, 🇱🇹 Lithuania, 🇵🇱 Poland, 🇬🇪 Georgia, 🇰🇿 Kazakhstan, 🇦🇿 Azerbaijan
+🇨🇳 China  → 🇭🇰 Hong Kong, 🇹🇼 Taiwan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇲🇴 Macau
+🇮🇷 Iran   → 🇹🇷 Turkey, 🇦🇪 UAE, 🇩🇪 Germany, 🇳🇱 Netherlands, 🇫🇷 France, 🇮🇶 Iraq, 🇦🇲 Armenia
+🇰🇵 NKorea → 🇷🇺 Russia, 🇨🇳 China
 ```
 
 ### 🤖 AI Analysis Engine
