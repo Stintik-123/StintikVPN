@@ -1,53 +1,27 @@
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&security=tls&flow=xtls-rprx-vision&fp=random&sni=sub.sbrf-cdn342.ru#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
 vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
+vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
+vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
@@ -55,324 +29,288 @@ vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerT
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
+vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
 vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B13%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
+vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&security=reality&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&sni=yahoo.com&spx=/#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
+vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&security=reality&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&sni=yahoo.com&spx=/#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
+vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://35325a3c-411e-42a8-962b-db12e55b071d@85.239.47.177:2027?flow=xtls-rprx-vision&fp=chrome&pbk=EApxy12MeXpqt-78odxizwcXT6hX9f8XeAcbMDVRAV0&security=reality&sid=6ba7b8109dad11d1&sni=ru.skysafe.online&type=tcp#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
+# 🇷🇺 Russia | StintikVPN
 vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ru2.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=AUw092Z2A823Yxhj-aUSYibaBayaLL6gPPNuQosdUkM&sid=c461b8224ba692&sni=ru2.gofizz.in&spx=/bkZgChag4jgIAjV#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B11%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
 vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@212.192.14.50:61825?type=grpc&headerType=none&security=reality&encryption=none&sni=github.com&pbk=G8hjZomMXOCmbVboqMiuf2sVvcnihjQ4BdyVo3XewW4&sid=6bcde426&serviceName=newinsight#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B08%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@84.201.187.42:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=8zVjmI0JrsjZBlImD8TbPAb_de26b_YKRARmp-T_eH4&sid=6b26829083#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B17%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.146.195:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B04%5D%20%20MIFA
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@186.246.6.198:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇫🇮 Финляндия 2
 # 🇷🇺 Russia | StintikVPN
 vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
+vless://bd6acaa8-4579-3d31-9bcb-0dae59f756e9@178.154.243.251:443?type=tcp&headerType=none&security=reality&encryption=none&sni=www.google.com&fp=random&pbk=JkiFzvTq6FFDb44V8ifby6-P7QZo7Z1B5VOrGTgAQEY&sid=a1e1a7#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B12%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
 vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B02%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ru2.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=AUw092Z2A823Yxhj-aUSYibaBayaLL6gPPNuQosdUkM&sid=c461b8224ba692&sni=ru2.gofizz.in&spx=/bkZgChag4jgIAjV#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
+vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@158.160.250.45:443?type=tcp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=mDtiIWLFPJoPVrDLOCvKn6lvlS8r0TdRO9MxmmdIDmo&sid=917fd5a45e8840#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B09%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&security=reality&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&sni=yahoo.com&spx=/#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
 vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://76713d07-5a6b-49c2-abd8-bc450a2fa7fc@45.91.8.55:443?mode=gun&type=grpc&security=reality&sni=down.spectrum.vu&fp=chrome&pbk=ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA&sid=f2a6d1c1e4b8&serviceName=vless#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
+vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://35325a3c-411e-42a8-962b-db12e55b071d@85.239.47.177:2027?flow=xtls-rprx-vision&fp=chrome&pbk=EApxy12MeXpqt-78odxizwcXT6hX9f8XeAcbMDVRAV0&security=reality&sid=6ba7b8109dad11d1&sni=ru.skysafe.online&type=tcp#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
+vless://76713d07-5a6b-49c2-abd8-bc450a2fa7fc@45.91.8.55:443?mode=gun&type=grpc&security=reality&sni=down.spectrum.vu&fp=chrome&pbk=ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA&sid=f2a6d1c1e4b8&serviceName=vless#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
 vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%BA%F0%9F%87%B8%20%20USA%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@cy1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=XSh3jB8zXtqpI38glgwN2Bn5imxN8Rkyc39LeBSD8BQ&sid=24f1fa53275b&sni=cy1.gofizz.in&spx=/y7VS9gcNZvig1HA#%F0%9F%87%A8%F0%9F%87%BE%20Cyprus%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
 vless://76713d07-5a6b-49c2-abd8-bc450a2fa7fc@45.91.8.55:443?mode=gun&type=grpc&security=reality&sni=down.spectrum.vu&fp=chrome&pbk=ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA&sid=f2a6d1c1e4b8&serviceName=vless#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&security=reality&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&sni=yahoo.com&spx=/#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@62.217.179.4:443?type=xhttp&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521b2&path=%2Fapi%2Fv3%2Ff29479507adb&host=ads.x5.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B05%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&security=tls&flow=xtls-rprx-vision&fp=random&sni=sub.sbrf-cdn342.ru#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none&fp=chrome&path=%2F&host=ru3.alexanderoff.ru#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B14%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ru2.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=AUw092Z2A823Yxhj-aUSYibaBayaLL6gPPNuQosdUkM&sid=c461b8224ba692&sni=ru2.gofizz.in&spx=/bkZgChag4jgIAjV#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
 vless://edffa88b-0373-4596-a4dc-9c7dfac35dc5@by.verymad.net:26146?type=tcp&headerType=none&security=reality&encryption=none&sni=www.vk.ru&fp=firefox&pbk=gX3_zVtbvWNZH7lXyrsBBCcyCVKkkr_LMw9JRqpAmmQ&sid=39f734ac&spx=%2FibXdFu0mLfkK7AB#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B07%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://35325a3c-411e-42a8-962b-db12e55b071d@85.239.47.177:2027?flow=xtls-rprx-vision&fp=chrome&pbk=EApxy12MeXpqt-78odxizwcXT6hX9f8XeAcbMDVRAV0&security=reality&sid=6ba7b8109dad11d1&sni=ru.skysafe.online&type=tcp#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&security=reality&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&sni=yahoo.com&spx=/#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
 vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://35325a3c-411e-42a8-962b-db12e55b071d@85.239.47.177:2027?flow=xtls-rprx-vision&fp=chrome&pbk=EApxy12MeXpqt-78odxizwcXT6hX9f8XeAcbMDVRAV0&security=reality&sid=6ba7b8109dad11d1&sni=ru.skysafe.online&type=tcp#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.81.33.107:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇷🇺 Россия 6
 # 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&sni=my1.gofizz.in&spx=/fg4kmplpUdM3Scx#%F0%9F%87%B2%F0%9F%87%BE%20Malaysia%2C%20Johor%20Bahru%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
 vless://76713d07-5a6b-49c2-abd8-bc450a2fa7fc@45.91.8.55:443?mode=gun&type=grpc&security=reality&sni=down.spectrum.vu&fp=chrome&pbk=ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA&sid=f2a6d1c1e4b8&serviceName=vless#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B15%5D%20%20MIFA
+# 🇷🇺 Russia | StintikVPN
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&sni=my1.gofizz.in&spx=/fg4kmplpUdM3Scx#%F0%9F%87%B2%F0%9F%87%BE%20Malaysia%2C%20Johor%20Bahru%20%7C%20%5BBL%5D
+# 🇷🇺 Russia | StintikVPN
+vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&sni=my1.gofizz.in&spx=/fg4kmplpUdM3Scx#%F0%9F%87%B2%F0%9F%87%BE%20Malaysia%2C%20Johor%20Bahru%20%7C%20%5BBL%5D
+# 🇷🇺 Russia | StintikVPN
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@45.81.33.107:4443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇷🇺 Россия 7
 # 🇷🇺 Russia | StintikVPN
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?type=tcp&headerType=none&security=none&encryption=none#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B16%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ru2.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=AUw092Z2A823Yxhj-aUSYibaBayaLL6gPPNuQosdUkM&sid=c461b8224ba692&sni=ru2.gofizz.in&spx=/bkZgChag4jgIAjV#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
+vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 # 🇷🇺 Russia | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&sni=my1.gofizz.in&spx=/fg4kmplpUdM3Scx#%F0%9F%87%B2%F0%9F%87%BE%20Malaysia%2C%20Johor%20Bahru%20%7C%20%5BBL%5D
+vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
 vless://874efcea-d7b6-41fd-8ce8-c07e3fd8ff67@balance3.nvrsk-not-news.ru:17150?type=tcp&headerType=none&security=reality&encryption=none&sni=www.ya.ru&fp=firefox&pbk=ZUdwtucb8z3bwumEukh2eUMzei_kjjbs8iKNq2bzuww&sid=9dd0b33c&spx=%2F3z2nBE55miCqEiL#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B06%5D%20%20MIFA
 # 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@ru2.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=AUw092Z2A823Yxhj-aUSYibaBayaLL6gPPNuQosdUkM&sid=c461b8224ba692&sni=ru2.gofizz.in&spx=/bkZgChag4jgIAjV#%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&sni=my1.gofizz.in&spx=/fg4kmplpUdM3Scx#%F0%9F%87%B2%F0%9F%87%BE%20Malaysia%2C%20Johor%20Bahru%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&security=tls&flow=xtls-rprx-vision&fp=random&sni=sub.sbrf-cdn342.ru#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@ru1.bloodofwar.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=tradingview.com&fp=chrome&pbk=hd4dEiJ3ba7pm7kUF9l4DYAm6M34do8TO6QEprgqFl0&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://24e61e7c-4130-490d-9b6e-9d9ffffaa706@my1.gofizz.in:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=firefox&pbk=xE5R41I9u0Ro2Ru4TUDVqA0a1GRyS5K6zh1DJcJLEUw&sid=4af284210d&sni=my1.gofizz.in&spx=/fg4kmplpUdM3Scx#%F0%9F%87%B2%F0%9F%87%BE%20Malaysia%2C%20Johor%20Bahru%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@nl-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%B3%F0%9F%87%B1%20%20Netherlands%20%20%5B05%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?type=grpc&headerType=none&security=reality&encryption=none&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5@85.193.91.14:443?type=tcp&headerType=none&security=reality&encryption=none&sni=yahoo.com&fp=chrome&pbk=cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc&sid=af0e&spx=%2F#%F0%9F%87%B7%F0%9F%87%BA%20%20Russia%20%20%5B03%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇷🇺 Russia | StintikVPN
-vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#%F0%9F%87%AA%F0%9F%87%AA%20%20Estonia%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://6b435511-6abb-46e3-85fd-709bcc5882ee@finland-1.afihideos.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=finland-1.afihideos.ru&fp=chrome&pbk=Ll3YSjSgdnZ0UahskfjLoyagjeBR3rJBwVKAY95kk1E&sid=a1b2c3d4&flow=xtls-rprx-vision#%F0%9F%87%A8%F0%9F%87%AD%20%20Switzerland%20%20%5B02%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
-# 🇷🇺 Russia | StintikVPN
-vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
+vless://106c376f-431d-4ea0-bc61-f82308fefb4e@186.246.6.198:80?mode=auto&path=/&security=tls&sni=obhod.riotvpn.eu&type=xhttp#🇫🇮 Финляндия 3
 # 🇷🇺 Russia | StintikVPN
 vless://071f2d5b-a773-4952-a092-c130cba08747@fi.kuda-idem-nvrsk.ru:30904?type=tcp&headerType=none&security=reality&encryption=none&sni=vk.ru&fp=qq&pbk=G8lsgZQLC1cydeTSGFcugL-Zwxq-yIoaLONODkMuQA4&sid=92619fbd727564a1&spx=%2F78CZQmZ3fC60FCI#%F0%9F%87%AB%F0%9F%87%AE%20%20Finland%20%20%5B01%5D%20%20MIFA
