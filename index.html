@@ -33,6 +33,26 @@
         }
         h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .subtitle { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
         .badges { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
         .badge {
             background: rgba(255,255,255,0.1);
@@ -132,7 +152,13 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-shield-alt"></i> StintikVPN</h1>
-            <p class="subtitle">Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence</p>
+            <p class="subtitle" data-en="Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence" data-ru="Продвинутый мультипротокольный чекер VPN конфигураций с GeoIP интеллектом" data-zh="具有 GeoIP 智能的高级多协议 VPN 配置检查器" data-fa="بررسی کننده پیشرفته پیکربندی VPN چند پروتکلی با هوش GeoIP">Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence</p>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('ru')">🇷🇺 RU</button>
+                <button class="lang-btn" onclick="setLang('zh')">🇨🇳 CN</button>
+                <button class="lang-btn" onclick="setLang('fa')">🇮🇷 FA</button>
+                <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
+            </div>
             <div class="badges">
                 <span class="badge"><i class="fas fa-bolt"></i> 800 Threads</span>
                 <span class="badge"><i class="fas fa-globe"></i> 30-Day GeoIP Cache</span>
@@ -144,91 +170,91 @@
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
-                <h3>Multi-Protocol</h3>
-                <p>VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy support with automatic detection</p>
+                <h3 data-en="Multi-Protocol" data-ru="Мультипротокол" data-zh="多协议支持" data-fa="چند پروتکلی">Multi-Protocol</h3>
+                <p data-en="VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy support" data-ru="Поддержка VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy" data-zh="支持 VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy" data-fa="پشتیبانی از VLESS، VMess، Trojan، Shadowsocks، پروکسی تلگرام">VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy support</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
-                <h3>Smart GeoIP</h3>
-                <p>3 API providers with 30-day cache for maximum accuracy and minimal API calls</p>
+                <h3 data-en="Smart GeoIP" data-ru="Умный GeoIP" data-zh="智能 GeoIP" data-fa="GeoIP هوشمند">Smart GeoIP</h3>
+                <p data-en="3 API providers with 30-day cache" data-ru="3 API провайдера с 30-дневным кэшем" data-zh="3 个 API 提供商，30 天缓存" data-fa="۳ ارائه‌دهنده API با کش ۳۰ روزه">3 API providers with 30-day cache</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Health Score</h3>
-                <p>Dynamic server scoring (0-100) based on performance history and reliability</p>
+                <h3 data-en="Health Score" data-ru="Рейтинг здоровья" data-zh="健康评分" data-fa="امتیاز سلامت">Health Score</h3>
+                <p data-en="Dynamic server scoring (0-100)" data-ru="Динамический рейтинг серверов (0-100)" data-zh="动态服务器评分 (0-100)" data-fa="امتیازدهی پویا به سرورها (۰-۱۰۰)">Dynamic server scoring (0-100)</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h3>Migration Map</h3>
-                <p>Automatic country suggestions for blocked regions (RU, CN, IR, KP, BY)</p>
+                <h3 data-en="Migration Map" data-ru="Карта миграции" data-zh="迁移地图" data-fa="نقشه مهاجرت">Migration Map</h3>
+                <p data-en="Auto country suggestions for blocked regions" data-ru="Авто-рекомендации стран для заблокированных регионов" data-zh="自动推荐被封锁地区的替代国家" data-fa="پیشنهادات خودکار کشور برای مناطق مسدود">Auto country suggestions for blocked regions</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-                <h3>High Performance</h3>
-                <p>800 concurrent threads with smart retry logic and exponential backoff</p>
+                <h3 data-en="High Performance" data-ru="Высокая производительность" data-zh="高性能" data-fa="عملکرد بالا">High Performance</h3>
+                <p data-en="800 concurrent threads with smart retry" data-ru="800 потоков с умной повторной попыткой" data-zh="800 并发线程，智能重试" data-fa="۸۰۰ رشته همزمان با تلاش مجدد هوشمند">800 concurrent threads with smart retry</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-database"></i></div>
-                <h3>Reputation DB</h3>
-                <p>Tracks failed servers to avoid repeated checks and save resources</p>
+                <h3 data-en="Reputation DB" data-ru="База репутации" data-zh="信誉数据库" data-fa="پایگاه داده اعتبار">Reputation DB</h3>
+                <p data-en="Tracks failed servers to avoid repeated checks" data-ru="Отслеживает неудачные сервера для экономии ресурсов" data-zh="跟踪失败的服务器以避免重复检查" data-fa="سرورهای ناموفق را ردیابی می‌کند تا از بررسی‌های تکراری جلوگیری شود">Tracks failed servers to avoid repeated checks</p>
             </div>
         </section>
 
         <section>
-            <h2 style="text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-book"></i> Protocols</h2>
+            <h2 style="text-align: center; margin: 3rem 0 2rem;" data-en="Protocols" data-ru="Протоколы" data-zh="协议说明" data-fa="پروتکل‌ها">Protocols</h2>
             <div class="protocols">
                 <div class="protocol-card">
                     <h3><i class="fas fa-bolt"></i> VLESS</h3>
-                    <p><strong>Best:</strong> Streaming, Gaming</p>
-                    <p><strong>Encryption:</strong> TLS 1.3 + Reality</p>
-                    <p><strong>Evasion:</strong> Excellent</p>
+                    <p data-en="Best: Streaming, Gaming" data-ru="Лучше: Стриминг, Игры" data-zh="最佳：流媒体，游戏" data-fa="بهترین: استریم، بازی">Best: Streaming, Gaming</p>
+                    <p data-en="Encryption: TLS 1.3 + Reality" data-ru="Шифрование: TLS 1.3 + Reality" data-zh="加密：TLS 1.3 + Reality" data-fa="رمزنگاری: TLS 1.3 + Reality">Encryption: TLS 1.3 + Reality</p>
+                    <p data-en="Evasion: Excellent" data-ru="Обход: Отличный" data-zh="绕过：优秀" data-fa="فرار: عالی">Evasion: Excellent</p>
                 </div>
                 <div class="protocol-card">
                     <h3><i class="fas fa-envelope"></i> VMess</h3>
-                    <p><strong>Best:</strong> Browsing, Social</p>
-                    <p><strong>Encryption:</strong> AES-256-GCM</p>
-                    <p><strong>Evasion:</strong> Good</p>
+                    <p data-en="Best: Browsing, Social" data-ru="Лучше: Браузинг, Соцсети" data-zh="最佳：浏览，社交" data-fa="بهترین: مرور، شبکه‌های اجتماعی">Best: Browsing, Social</p>
+                    <p data-en="Encryption: AES-256-GCM" data-ru="Шифрование: AES-256-GCM" data-zh="加密：AES-256-GCM" data-fa="رمزنگاری: AES-256-GCM">Encryption: AES-256-GCM</p>
+                    <p data-en="Evasion: Good" data-ru="Обход: Хороший" data-zh="绕过：良好" data-fa="فرار: خوب">Evasion: Good</p>
                 </div>
                 <div class="protocol-card">
                     <h3><i class="fas fa-user-secret"></i> Trojan</h3>
-                    <p><strong>Best:</strong> HTTPS Camouflage</p>
-                    <p><strong>Encryption:</strong> TLS + Domain Fronting</p>
-                    <p><strong>Evasion:</strong> Excellent</p>
+                    <p data-en="Best: HTTPS Camouflage" data-ru="Лучше: Маскировка HTTPS" data-zh="最佳：HTTPS 伪装" data-fa="بهترین: استتار HTTPS">Best: HTTPS Camouflage</p>
+                    <p data-en="Encryption: TLS + Domain Fronting" data-ru="Шифрование: TLS + Domain Fronting" data-zh="加密：TLS + Domain Fronting" data-fa="رمزنگاری: TLS + Domain Fronting">Encryption: TLS + Domain Fronting</p>
+                    <p data-en="Evasion: Excellent" data-ru="Обход: Отличный" data-zh="绕过：优秀" data-fa="فرار: عالی">Evasion: Excellent</p>
                 </div>
                 <div class="protocol-card">
                     <h3><i class="fas fa-shadow"></i> Shadowsocks</h3>
-                    <p><strong>Best:</strong> Legacy Devices</p>
-                    <p><strong>Encryption:</strong> ChaCha20-Poly1305</p>
-                    <p><strong>Evasion:</strong> Basic</p>
+                    <p data-en="Best: Legacy Devices" data-ru="Лучше: Старые устройства" data-zh="最佳：旧设备" data-fa="بهترین: دستگاه‌های قدیمی">Best: Legacy Devices</p>
+                    <p data-en="Encryption: ChaCha20-Poly1305" data-ru="Шифрование: ChaCha20-Poly1305" data-zh="加密：ChaCha20-Poly1305" data-fa="رمزنگاری: ChaCha20-Poly1305">Encryption: ChaCha20-Poly1305</p>
+                    <p data-en="Evasion: Basic" data-ru="Обход: Базовый" data-zh="绕过：基础" data-fa="فرار: پایه">Evasion: Basic</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2 style="text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-chart-bar"></i> Live Statistics</h2>
+            <h2 style="text-align: center; margin: 3rem 0 2rem;" data-en="Live Statistics" data-ru="Статистика" data-zh="实时统计" data-fa="آمار زنده">Live Statistics</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number" id="total-alive">-</div>
-                    <div class="stat-label">Alive Servers</div>
+                    <div class="stat-label" data-en="Alive Servers" data-ru="Рабочих серверов" data-zh="活跃服务器" data-fa="سرورهای فعال">Alive Servers</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="total-dead">-</div>
-                    <div class="stat-label">Dead Servers</div>
+                    <div class="stat-label" data-en="Dead Servers" data-ru="Мертвых серверов" data-zh="失效服务器" data-fa="سرورهای مرده">Dead Servers</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="black-count">-</div>
-                    <div class="stat-label">Black List</div>
+                    <div class="stat-label" data-en="Black List" data-ru="Black список" data-zh="黑名单" data-fa="لیست سیاه">Black List</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="white-count">-</div>
-                    <div class="stat-label">White List</div>
+                    <div class="stat-label" data-en="White List" data-ru="White список" data-zh="白名单" data-fa="لیست سفید">White List</div>
                 </div>
             </div>
         </section>
 
         <section class="migration-map">
-            <h2><i class="fas fa-route"></i> Smart Migration Map</h2>
-            <p>Automatic country suggestions when primary location is blocked</p>
+            <h2 data-en="Smart Migration Map" data-ru="Карта миграции" data-zh="智能迁移地图" data-fa="نقشه مهاجرت هوشمند">Smart Migration Map</h2>
+            <p data-en="Automatic country suggestions when primary location is blocked" data-ru="Автоматические рекомендации стран при блокировке" data-zh="当主要位置被封锁时的自动国家建议" data-fa="پیشنهادات خودکار کشور هنگام مسدود بودن موقعیت اصلی">Automatic country suggestions when primary location is blocked</p>
             <div class="country-grid">
                 <div class="country-item">
                     <div class="flag">🇷🇺</div>
@@ -248,23 +274,11 @@
                     <div class="arrow">→</div>
                     <div>🇹🇷 🇦🇪 🇩🇪 🇳🇱 🇫🇷</div>
                 </div>
-                <div class="country-item">
-                    <div class="flag">🇰🇵</div>
-                    <div>North Korea</div>
-                    <div class="arrow">→</div>
-                    <div>🇰🇷 🇯🇵 🇺🇸</div>
-                </div>
-                <div class="country-item">
-                    <div class="flag">🇧🇾</div>
-                    <div>Belarus</div>
-                    <div class="arrow">→</div>
-                    <div>🇵🇱 🇱🇹 🇱🇻 🇩🇪</div>
-                </div>
             </div>
         </section>
 
         <section>
-            <h2 style="text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-code"></i> Quick Start</h2>
+            <h2 style="text-align: center; margin: 3rem 0 2rem;" data-en="Quick Start" data-ru="Быстрый старт" data-zh="快速开始" data-fa="شروع سریع">Quick Start</h2>
             <div class="code-section">
                 <pre><code># Clone repository
 git clone https://github.com/igareck/stintikvpn.git
@@ -286,12 +300,39 @@ python tg_proxy_checker.py</code></pre>
         </section>
 
         <footer>
-            <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> for unrestricted internet access</p>
+            <p data-en="Made with" data-ru="Сделано с" data-zh="制作于" data-fa="ساخته شده با">Made with</p> <i class="fas fa-heart" style="color: var(--accent);"></i> <p data-en="for unrestricted internet access" data-ru="для свободного доступа в интернет" data-zh="为不受限制的互联网访问" data-fa="برای دسترسی بدون محدودیت به اینترنت">for unrestricted internet access</p>
             <p style="opacity: 0.7; margin-top: 1rem;">MIT License © 2024 StintikVPN</p>
         </footer>
     </div>
 
     <script>
+        const translations = {
+            ru: {
+                subtitle: "Продвинутый мультипротокольный чекер VPN конфигураций с GeoIP интеллектом",
+                features: ["Мультипротокол", "Умный GeoIP", "Рейтинг здоровья", "Карта миграции", "Высокая производительность", "База репутации"]
+            },
+            zh: {
+                subtitle: "具有 GeoIP 智能的高级多协议 VPN 配置检查器",
+                features: ["多协议支持", "智能 GeoIP", "健康评分", "迁移地图", "高性能", "信誉数据库"]
+            },
+            fa: {
+                subtitle: "بررسی کننده پیشرفته پیکربندی VPN چند پروتکلی با هوش GeoIP",
+                features: ["چند پروتکلی", "GeoIP هوشمند", "امتیاز سلامت", "نقشه مهاجرت", "عملکرد بالا", "پایگاه داده اعتبار"]
+            },
+            en: {
+                subtitle: "Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence",
+                features: ["Multi-Protocol", "Smart GeoIP", "Health Score", "Migration Map", "High Performance", "Reputation DB"]
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                if (el.dataset[lang]) el.textContent = el.dataset[lang];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
         async function loadStats() {
             try {
                 const response = await fetch('checked/live_stats.json');

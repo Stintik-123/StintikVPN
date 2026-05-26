@@ -22,7 +22,7 @@ THREADS = 800
 BATCH_SIZE = 60
 
 LIMITS = {
-    "black": 2500,
+    "black": 250,
     "black_mobile": 50,
     "white_all": 100,
     "white_sni": 100,
@@ -297,10 +297,9 @@ def get_migration_suggestion(country_code):
         return None
 
     migration_options = {
-        "RU": ["FI", "EE", "LV", "LT", "PL"],
         "CN": ["HK", "TW", "JP", "KR", "SG"],
         "IR": ["TR", "AE", "DE", "NL", "FR"],
-        "BY": ["PL", "LT", "LV", "DE"],
+        "KP": ["RU", "CN"],
     }
 
     options = migration_options.get(country_code, ["DE", "NL", "FI"])
@@ -426,7 +425,7 @@ def get_country_approx(host, name):
     for prefix in RU_CIS_IP_PREFIXES:
         if host_l.startswith(prefix):
             if any(marker in name_u for marker in ["RU", "KZ", "BY", "UA", "UZ"]):
-                return "RU" if "RU" in name_u else "CIS", "CIS Region"
+                return "CIS", "CIS Region"
     
     for code in EURO_CODES:
         if code in name_u:
@@ -453,11 +452,12 @@ COUNTRY_NAMES = {
     "LT": "Lithuania", "TR": "Turkey", "AE": "UAE", "SG": "Singapore", "HK": "Hong Kong",
     "JP": "Japan", "KR": "South Korea", "IN": "India", "TH": "Thailand", "VN": "Vietnam",
     "ID": "Indonesia", "MY": "Malaysia", "PH": "Philippines", "US": "United States",
-    "CN": "China", "IR": "Iran", "BY": "Belarus", "UA": "Ukraine",
-    "KZ": "Kazakhstan", "UZ": "Uzbekistan", "AZ": "Azerbaijan", "GE": "Georgia", "AM": "Armenia",
+    "CN": "China", "IR": "Iran", "KP": "North Korea",
+    "BY": "Belarus", "UA": "Ukraine", "KZ": "Kazakhstan", "UZ": "Uzbekistan", 
+    "AZ": "Azerbaijan", "GE": "Georgia", "AM": "Armenia",
 }
 
-BLOCKED_COUNTRIES = {"CN", "IR", "RU", "BY"}
+BLOCKED_COUNTRIES = {"CN", "IR", "KP"}
 
 
 def process_key(item):
