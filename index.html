@@ -1,402 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StintikVPN - Ultimate VPN Config Checker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>StintikVPN – готовые рабочие подписки</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary: #ff6b00;
-            --secondary: #ff8c00;
-            --accent: #ffa500;
-            --dark: #0a0a0a;
-            --darker: #050505;
-            --light: #f8fafc;
-            --gray: #1a1a1a;
-            --success: #22c55e;
-            --warning: #f59e0b;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a0a00 100%);
-            color: var(--light);
-            line-height: 1.6;
-            min-height: 100vh;
+            background: #0a0c10;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+            color: #eef2ff;
+            line-height: 1.5;
+            padding: 20px;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        header {
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 140, 0, 0.05));
-            border: 1px solid rgba(255, 107, 0, 0.2);
-            border-radius: 20px;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 60px rgba(255, 107, 0, 0.15), inset 0 0 30px rgba(255, 107, 0, 0.05);
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 40px;
         }
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-        h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 1rem; 
-            text-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
-            background: linear-gradient(135deg, #ff6b00, #ffa500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #ffb347);
             background-clip: text;
-            position: relative;
-            z-index: 1;
-        }
-        .subtitle { 
-            font-size: 1.3rem; 
-            opacity: 0.9; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            position: relative;
-            z-index: 1;
-        }
-        .lang-switch {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .lang-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .lang-btn:hover, .lang-btn.active {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
-        }
-        .badges { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-        .badge {
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
-        .feature-card {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
-        }
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: transparent;
+            letter-spacing: -0.02em;
         }
-        .protocols { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-        .protocol-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
+        .subhead {
+            color: #9aa4b2;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+            background: #141a24;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #2a3342;
         }
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            padding: 1.5rem;
-            border-radius: 12px;
+        .step {
+            flex: 1;
             text-align: center;
         }
-        .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
-        .stat-label { opacity: 0.7; margin-top: 0.5rem; }
-        .migration-map {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 3rem 0;
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background: #ffb347;
+            color: #0a0c10;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0 auto 12px;
         }
-        .country-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-        .country-item {
-            background: rgba(255,255,255,0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
+        .step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
         }
-        .flag { font-size: 2rem; margin-bottom: 0.5rem; }
-        .arrow { color: var(--accent); font-weight: bold; }
-        .code-section {
-            background: #1e293b;
-            padding: 2rem;
-            border-radius: 15px;
-            overflow-x: auto;
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
+        .step p {
+            color: #acb8cc;
+            font-size: 0.85rem;
         }
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .link-card {
+            background: #141a24;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border: 1px solid #2a3342;
+            transition: 0.2s;
+        }
+        .link-card:hover {
+            border-color: #ffb347;
+        }
+        .link-info {
+            flex: 1;
+        }
+        .link-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .link-desc {
+            font-size: 0.75rem;
+            color: #8a9bb5;
+        }
+        .copy-btn {
+            background: #2a3440;
+            border: none;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+        .copy-btn:hover {
+            background: #ffb347;
+            color: #0a0c10;
+        }
+        .clients {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        .client-btn {
+            background: #1f2a36;
+            padding: 12px 24px;
+            border-radius: 40px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s;
-            margin: 1rem;
+            color: #fff;
+            font-weight: 500;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn:hover { transform: scale(1.05); }
-        footer {
+        .client-btn:hover {
+            background: #ffb347;
+            color: #0a0c10;
+        }
+        .faq {
+            background: #141a24;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 40px;
+            border: 1px solid #2a3342;
+        }
+        .faq h3 {
+            margin-bottom: 16px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            font-weight: 700;
+            color: #ffb347;
+            margin-bottom: 6px;
+        }
+        .footer {
             text-align: center;
-            padding: 3rem 0;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
+            color: #5f6c82;
+            border-top: 1px solid #2a3342;
+            padding-top: 24px;
+            margin-top: 24px;
         }
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 1rem; }
+        .badge {
+            display: inline-block;
+            background: #2a3440;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: #ffb347;
+            margin-right: 8px;
+        }
+        @media (max-width: 700px) {
+            .steps { flex-direction: column; }
+            .link-card { flex-direction: column; align-items: stretch; }
+            .copy-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-shield-alt"></i> StintikVPN</h1>
-            <p class="subtitle" data-en="Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence" data-ru="Продвинутый мультипротокольный чекер VPN конфигураций с GeoIP интеллектом" data-zh="具有 GeoIP 智能的高级多协议 VPN 配置检查器" data-fa="بررسی کننده پیشرفته پیکربندی VPN چند پروتکلی با هوش GeoIP">Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence</p>
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="setLang('ru')">🇷🇺 RU</button>
-                <button class="lang-btn" onclick="setLang('zh')">🇨🇳 CN</button>
-                <button class="lang-btn" onclick="setLang('fa')">🇮🇷 FA</button>
-                <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
-            </div>
-            <div class="badges">
-                <span class="badge"><i class="fas fa-bolt"></i> 1000 Threads</span>
-                <span class="badge"><i class="fas fa-globe"></i> 30-Day GeoIP Cache</span>
-                <span class="badge"><i class="fas fa-heartbeat"></i> Health Score</span>
-                <span class="badge"><i class="fas fa-sync"></i> Smart Migration</span>
-            </div>
-        </header>
-
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
-                <h3 data-en="Multi-Protocol" data-ru="Мультипротокол" data-zh="多协议支持" data-fa="چند پروتکلی">Multi-Protocol</h3>
-                <p data-en="VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy support" data-ru="Поддержка VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy" data-zh="支持 VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy" data-fa="پشتیبانی از VLESS، VMess، Trojan، Shadowsocks، پروکسی تلگرام">VLESS, VMess, Trojan, Shadowsocks, Telegram Proxy support</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
-                <h3 data-en="Smart GeoIP" data-ru="Умный GeoIP" data-zh="智能 GeoIP" data-fa="GeoIP هوشمند">Smart GeoIP</h3>
-                <p data-en="3 API providers with 30-day cache" data-ru="3 API провайдера с 30-дневным кэшем" data-zh="3 个 API 提供商，30 天缓存" data-fa="۳ ارائه‌دهنده API با کش ۳۰ روزه">3 API providers with 30-day cache</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 data-en="Health Score" data-ru="Рейтинг здоровья" data-zh="健康评分" data-fa="امتیاز سلامت">Health Score</h3>
-                <p data-en="Dynamic server scoring (0-100)" data-ru="Динамический рейтинг серверов (0-100)" data-zh="动态服务器评分 (0-100)" data-fa="امتیازدهی پویا به سرورها (۰-۱۰۰)">Dynamic server scoring (0-100)</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h3 data-en="Migration Map" data-ru="Карта миграции" data-zh="迁移地图" data-fa="نقشه مهاجرت">Migration Map</h3>
-                <p data-en="Auto country suggestions for blocked regions" data-ru="Авто-рекомендации стран для заблокированных регионов" data-zh="自动推荐被封锁地区的替代国家" data-fa="پیشنهادات خودکار کشور برای مناطق مسدود">Auto country suggestions for blocked regions</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-                <h3 data-en="High Performance" data-ru="Высокая производительность" data-zh="高性能" data-fa="عملکرد بالا">High Performance</h3>
-                <p data-en="1000 concurrent threads with smart retry — FASTEST in niche" data-ru="1000 потоков с умной повторной попыткой — БЫСТРЕЙШИЙ в нише" data-zh="1000 并发线程，智能重试 — 业界最快" data-fa="۱۰۰۰ رشته همزمان با تلاش مجدد هوشمند — سریع‌ترین در نیچ">1000 concurrent threads with smart retry — FASTEST in niche</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-database"></i></div>
-                <h3 data-en="Reputation DB" data-ru="База репутации" data-zh="信誉数据库" data-fa="پایگاه داده اعتبار">Reputation DB</h3>
-                <p data-en="Tracks failed servers to avoid repeated checks" data-ru="Отслеживает неудачные сервера для экономии ресурсов" data-zh="跟踪失败的服务器以避免重复检查" data-fa="سرورهای ناموفق را ردیابی می‌کند تا از بررسی‌های تکراری جلوگیری شود">Tracks failed servers to avoid repeated checks</p>
-            </div>
-        </section>
-
-        <section>
-            <h2 style="text-align: center; margin: 3rem 0 2rem;" data-en="Protocols" data-ru="Протоколы" data-zh="协议说明" data-fa="پروتکل‌ها">Protocols</h2>
-            <div class="protocols">
-                <div class="protocol-card">
-                    <h3><i class="fas fa-bolt"></i> VLESS</h3>
-                    <p data-en="Best: Streaming, Gaming" data-ru="Лучше: Стриминг, Игры" data-zh="最佳：流媒体，游戏" data-fa="بهترین: استریم، بازی">Best: Streaming, Gaming</p>
-                    <p data-en="Encryption: TLS 1.3 + Reality" data-ru="Шифрование: TLS 1.3 + Reality" data-zh="加密：TLS 1.3 + Reality" data-fa="رمزنگاری: TLS 1.3 + Reality">Encryption: TLS 1.3 + Reality</p>
-                    <p data-en="Evasion: Excellent" data-ru="Обход: Отличный" data-zh="绕过：优秀" data-fa="فرار: عالی">Evasion: Excellent</p>
-                </div>
-                <div class="protocol-card">
-                    <h3><i class="fas fa-envelope"></i> VMess</h3>
-                    <p data-en="Best: Browsing, Social" data-ru="Лучше: Браузинг, Соцсети" data-zh="最佳：浏览，社交" data-fa="بهترین: مرور، شبکه‌های اجتماعی">Best: Browsing, Social</p>
-                    <p data-en="Encryption: AES-256-GCM" data-ru="Шифрование: AES-256-GCM" data-zh="加密：AES-256-GCM" data-fa="رمزنگاری: AES-256-GCM">Encryption: AES-256-GCM</p>
-                    <p data-en="Evasion: Good" data-ru="Обход: Хороший" data-zh="绕过：良好" data-fa="فرار: خوب">Evasion: Good</p>
-                </div>
-                <div class="protocol-card">
-                    <h3><i class="fas fa-user-secret"></i> Trojan</h3>
-                    <p data-en="Best: HTTPS Camouflage" data-ru="Лучше: Маскировка HTTPS" data-zh="最佳：HTTPS 伪装" data-fa="بهترین: استتار HTTPS">Best: HTTPS Camouflage</p>
-                    <p data-en="Encryption: TLS + Domain Fronting" data-ru="Шифрование: TLS + Domain Fronting" data-zh="加密：TLS + Domain Fronting" data-fa="رمزنگاری: TLS + Domain Fronting">Encryption: TLS + Domain Fronting</p>
-                    <p data-en="Evasion: Excellent" data-ru="Обход: Отличный" data-zh="绕过：优秀" data-fa="فرار: عالی">Evasion: Excellent</p>
-                </div>
-                <div class="protocol-card">
-                    <h3><i class="fas fa-shadow"></i> Shadowsocks</h3>
-                    <p data-en="Best: Legacy Devices" data-ru="Лучше: Старые устройства" data-zh="最佳：旧设备" data-fa="بهترین: دستگاه‌های قدیمی">Best: Legacy Devices</p>
-                    <p data-en="Encryption: ChaCha20-Poly1305" data-ru="Шифрование: ChaCha20-Poly1305" data-zh="加密：ChaCha20-Poly1305" data-fa="رمزنگاری: ChaCha20-Poly1305">Encryption: ChaCha20-Poly1305</p>
-                    <p data-en="Evasion: Basic" data-ru="Обход: Базовый" data-zh="绕过：基础" data-fa="فرار: پایه">Evasion: Basic</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 style="text-align: center; margin: 3rem 0 2rem;" data-en="Live Statistics" data-ru="Статистика" data-zh="实时统计" data-fa="آمار زنده">Live Statistics</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="total-alive">-</div>
-                    <div class="stat-label" data-en="Alive Servers" data-ru="Рабочих серверов" data-zh="活跃服务器" data-fa="سرورهای فعال">Alive Servers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="total-dead">-</div>
-                    <div class="stat-label" data-en="Dead Servers" data-ru="Мертвых серверов" data-zh="失效服务器" data-fa="سرورهای مرده">Dead Servers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="black-count">-</div>
-                    <div class="stat-label" data-en="Black List" data-ru="Black список" data-zh="黑名单" data-fa="لیست سیاه">Black List</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="premium-count" style="color: var(--accent);">-</div>
-                    <div class="stat-label" data-en="Premium Tier (TOP 0.1%)" data-ru="Premium (ТОП 0.1%)" data-zh="高级层（前 0.1%）" data-fa="سطح پریمیوم (۰.۱٪ برتر)">Premium (ТОП 0.1%)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="white-count">-</div>
-                    <div class="stat-label" data-en="White List" data-ru="White список" data-zh="白名单" data-fa="لیست سفید">White List</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="migration-map">
-            <h2 data-en="Smart Migration Map v2.0" data-ru="Карта миграции v2.0" data-zh="智能迁移地图 v2.0" data-fa="نقشه مهاجرت هوشمند v2.0">Smart Migration Map v2.0</h2>
-            <p data-en="Automatic country suggestions when primary location is blocked — EXTENDED with Baltic & Caucasus routes" data-ru="Автоматические рекомендации стран при блокировке — РАСШИРЕНО маршрутами через Балтию и Кавказ" data-zh="当主要位置被封锁时的自动国家建议 — 扩展波罗的海和高加索路线" data-fa="پیشنهادات خودکار کشور هنگام مسدود بودن موقعیت اصلی — گسترش یافته با مسیرهای بالتیک و قفقاز">Automatic country suggestions when primary location is blocked — EXTENDED with Baltic & Caucasus routes</p>
-            <div class="country-grid">
-                <div class="country-item">
-                    <div class="flag">🇷🇺</div>
-                    <div>Russia</div>
-                    <div class="arrow">→</div>
-                    <div>🇫🇮 🇪🇪 🇱🇻 🇱🇹 🇵🇱 🇬🇪 🇰🇿 🇦🇿</div>
-                </div>
-                <div class="country-item">
-                    <div class="flag">🇨🇳</div>
-                    <div>China</div>
-                    <div class="arrow">→</div>
-                    <div>🇭🇰 🇹🇼 🇯🇵 🇰🇷 🇸🇬 🇲🇴</div>
-                </div>
-                <div class="country-item">
-                    <div class="flag">🇮🇷</div>
-                    <div>Iran</div>
-                    <div class="arrow">→</div>
-                    <div>🇹🇷 🇦🇪 🇩🇪 🇳🇱 🇫🇷 🇮🇶 🇦🇲</div>
-                </div>
-                <div class="country-item">
-                    <div class="flag">🇰🇵</div>
-                    <div>North Korea</div>
-                    <div class="arrow">→</div>
-                    <div>🇷🇺 🇨🇳</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 style="text-align: center; margin: 3rem 0 2rem;" data-en="Quick Start" data-ru="Быстрый старт" data-zh="快速开始" data-fa="شروع سریع">Quick Start</h2>
-            <div class="code-section">
-                <pre><code># Clone repository
-git clone https://github.com/igareck/stintikvpn.git
-cd stintikvpn
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run VPN checker
-python main.py
-
-# Run Telegram proxy checker
-python tg_proxy_checker.py</code></pre>
-            </div>
-            <div style="text-align: center;">
-                <a href="https://github.com/igareck/stintikvpn" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
-                <a href="https://github.com/igareck/stintikvpn/issues" class="btn"><i class="fas fa-bug"></i> Report Issue</a>
-            </div>
-        </section>
-
-        <footer>
-            <p data-en="Made with" data-ru="Сделано с" data-zh="制作于" data-fa="ساخته شده با">Made with</p> <i class="fas fa-heart" style="color: var(--accent);"></i> <p data-en="for unrestricted internet access" data-ru="для свободного доступа в интернет" data-zh="为不受限制的互联网访问" data-fa="برای دسترسی بدون محدودیت به اینترنت">for unrestricted internet access</p>
-            <p style="opacity: 0.7; margin-top: 1rem;">MIT License © 2024 StintikVPN</p>
-        </footer>
+<div class="container">
+    <div class="header">
+        <div class="logo">StintikVPN</div>
+        <div class="subhead">готовые рабочие подписки для обхода блокировок</div>
     </div>
 
-    <script>
-        const translations = {
-            ru: {
-                subtitle: "Продвинутый мультипротокольный чекер VPN конфигураций с GeoIP интеллектом",
-                features: ["Мультипротокол", "Умный GeoIP", "Рейтинг здоровья", "Карта миграции", "Высокая производительность", "База репутации"]
-            },
-            zh: {
-                subtitle: "具有 GeoIP 智能的高级多协议 VPN 配置检查器",
-                features: ["多协议支持", "智能 GeoIP", "健康评分", "迁移地图", "高性能", "信誉数据库"]
-            },
-            fa: {
-                subtitle: "بررسی کننده پیشرفته پیکربندی VPN چند پروتکلی با هوش GeoIP",
-                features: ["چند پروتکلی", "GeoIP هوشمند", "امتیاز سلامت", "نقشه مهاجرت", "عملکرد بالا", "پایگاه داده اعتبار"]
-            },
-            en: {
-                subtitle: "Advanced Multi-Protocol VPN Configuration Checker with GeoIP Intelligence",
-                features: ["Multi-Protocol", "Smart GeoIP", "Health Score", "Migration Map", "High Performance", "Reputation DB"]
-            }
-        };
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Скопируйте ссылку</h3>
+            <p>Нажмите «Скопировать» рядом с нужным списком</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>Вставьте в клиент</h3>
+            <p>Добавьте ссылку как новую подписку (Hiddify, v2rayN, NekoBox и др.)</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Подключитесь</h3>
+            <p>Обновите список, выберите сервер и включите VPN</p>
+        </div>
+    </div>
 
-        function setLang(lang) {
-            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-                if (el.dataset[lang]) el.textContent = el.dataset[lang];
-            });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
+    <h2 style="margin-bottom: 16px;">📦 Готовые подписки</h2>
+    <div class="links-grid">
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/black/black.txt">
+            <div class="link-info"><div class="link-name">⚫ Чёрный список</div><div class="link-desc">Основной список, ~300 серверов. Лучший баланс скорости и стабильности.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.all.txt">
+            <div class="link-info"><div class="link-name">⚪ Белый список (все рабочие)</div><div class="link-desc">~150 полностью рабочих конфигов.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.sni.txt">
+            <div class="link-info"><div class="link-name">🔍 Белый список (SNI)</div><div class="link-desc">Конфиги с валидным SNI/Reality, лучше маскируются.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/white/white.cidr.txt">
+            <div class="link-info"><div class="link-name">🌐 Белый список (CIDR)</div><div class="link-desc">Конфиги с CIDR-масками, полезны при блокировках целых подсетей.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vless.txt">
+            <div class="link-info"><div class="link-name">⚡ VLESS (Reality)</div><div class="link-desc">Лучший для обхода блокировок, современный и хорошо маскируется.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/vmess.txt">
+            <div class="link-info"><div class="link-name">🔒 VMess</div><div class="link-desc">Надёжный, проверенный временем.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/trojan.txt">
+            <div class="link-info"><div class="link-name">🛡️ Trojan</div><div class="link-desc">Хорошая маскировка, часто работает там, где VLESS не проходит.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-Official/StintikVPN-/main/checked/protocols/ss.txt">
+            <div class="link-info"><div class="link-name">🚀 Shadowsocks</div><div class="link-desc">Лёгкий и быстрый, подойдёт, если блокировки не очень жёсткие.</div></div>
+            <button class="copy-btn">Скопировать</button>
+        </div>
+    </div>
 
-        async function loadStats() {
+    <h2 style="margin-bottom: 16px;">📱 Рекомендуемые VPN-клиенты</h2>
+    <div class="clients">
+        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="client-btn">✨ Hiddify (Win/Linux)</a>
+        <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="client-btn">🪟 v2rayN (Windows)</a>
+        <a href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" class="client-btn">📱 Incy (Android)</a>
+        <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" class="client-btn">🐱 NekoBox (Android/TV)</a>
+        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="client-btn">🍎 Streisand (iOS/macOS)</a>
+    </div>
+
+    <div class="faq">
+        <h3>❓ Часто задаваемые вопросы</h3>
+        <div class="faq-item"><div class="faq-question">Что такое SNI? Почему в белых списках есть отдельный файл white.sni.txt?</div>SNI (Server Name Indication) – это имя сервера, которое ваш клиент передаёт при подключении. DPI-системы провайдера проверяют SNI и блокируют подозрительные. Конфиги с валидным SNI/Reality маскируются под обычный сайт (например, «yandex.ru») и проходят блокировку. Файл white.sni.txt – это отфильтрованные конфиги, у которых SNI точно рабочий.</div>
+        <div class="faq-item"><div class="faq-question">Что такое CIDR и зачем файл white.cidr.txt?</div>CIDR (Classless Inter-Domain Routing) – способ записи подсетей (например, 192.168.0.0/16). Некоторые провайдеры блокируют не отдельные IP, а целые диапазоны. Конфиги с CIDR-масками могут обходить такие блокировки. Файл white.cidr.txt – это конфиги, которые лучше подходят для ситуаций, когда ваш IP попадает под массовую блокировку.</div>
+        <div class="faq-item"><div class="faq-question">Почему не работает подписка?</div>Попробуйте обновить список в клиенте (кнопка «Обновить подписку»). Если не помогло – попробуйте сменить протокол (например, с VLESS на Trojan) или страну в папке checked/countries/. Иногда помогает смена клиента (например, с Hiddify на NekoBox).</div>
+        <div class="faq-item"><div class="faq-question">Как часто обновляются конфиги?</div>Скрипт запускается каждый день. Все ссылки ведут на самые свежие версии.</div>
+        <div class="faq-item"><div class="faq-question">Какой клиент проще всего для новичка?</div>Hiddify – самый простой интерфейс и автопоиск лучшего сервера. Для Windows и Android подходит одинаково хорошо. На iOS – Streisand.</div>
+    </div>
+
+    <div class="footer">
+        <p>StintikVPN – сделано людьми для людей · <a href="https://github.com/Stintik-Official/StintikVPN-" style="color:#ffb347;">GitHub</a></p>
+        <p>📢 <a href="https://t.me/StintikVPN" style="color:#ffb347;">Telegram-канал</a> | ✉️ <a href="https://t.me/Keb04w" style="color:#ffb347;">Поддержка</a></p>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const url = this.closest('.link-card').getAttribute('data-url');
+            if (!url) return;
             try {
-                const response = await fetch('checked/live_stats.json');
-                if (response.ok) {
-                    const data = await response.json();
-                    document.getElementById('total-alive').textContent = data.total_alive || 0;
-                    document.getElementById('total-dead').textContent = data.total_dead || 0;
-                    document.getElementById('black-count').textContent = data.categories?.black || 0;
-                    document.getElementById('premium-count').textContent = data.categories?.premium || 0;
-                    document.getElementById('white-count').textContent = (data.categories?.white_all || 0) + (data.categories?.white_sni || 0) + (data.categories?.white_cidr || 0);
-                }
-            } catch (e) {
-                console.log('Stats not available yet');
+                await navigator.clipboard.writeText(url);
+                const original = this.innerText;
+                this.innerText = '✓ Скопировано!';
+                this.classList.add('copied');
+                setTimeout(() => {
+                    this.innerText = original;
+                    this.classList.remove('copied');
+                }, 1500);
+            } catch (err) {
+                alert('Не удалось скопировать, скопируйте вручную');
             }
-        }
-        loadStats();
-        setInterval(loadStats, 60000);
-    </script>
+        });
+    });
+</script>
 </body>
 </html>
