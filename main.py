@@ -21,20 +21,21 @@ MAX_PING_MS = 3000     # Строгий лимит пинга
 
 # ЛИМИТЫ НА ВЫХОДЕ
 LIMITS = {
-    "black": 250,
-    "black_mobile": 50,
-    "white_all": 50,
-    "white_sni": 50,
-    "white_cidr": 50,
-    "tg_proxy": 50,
-    "protocols": 100
+    "black": 300,
+    "black_mobile": 75,
+    "white_all": 100,
+    "white_sni": 75,
+    "white_cidr": 75,
+    "tg_proxy": 100,
+    "protocols": 150,
+    "best": 50
 }
 
 # Файлы данных
 HISTORY_FILE = os.path.join(BASE_DIR, "history.json")
 REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
 STATS_FILE = os.path.join(BASE_DIR, "stats.json")
-# IP_CACHE_FILE удален, так как мы отключили GeoIP
+LIVE_STATS_FILE = os.path.join(BASE_DIR, "live_stats.json")
 
 FAIL_THRESHOLD = 2     # Исключать сервер после 2 неудач подряд
 
@@ -57,18 +58,23 @@ BAD_MARKERS = ["CN", "IR", "KP", "RELAY", "POOL"]
 CDN_KEYWORDS = ["cloudflare", "cdn", "akamai"]
 
 # ==========================================
-# 📂 ИСТОЧНИКИ ДАННЫХ
+# 📂 ИСТОЧНИКИ ДАННЫХ (ПРЕМИУМ + TOP SOURCES)
 # ==========================================
 OUTPUTS = {
     "black": {
         "folder": os.path.join(BASE_DIR, "black"),
         "file": "black.txt",
         "urls": [
+            # Premium Tier - самые надежные источники
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt",
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt",
-            "https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/tri_228.txt",
+            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt",
+            "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/sub.txt",
+            # Secondary Tier
             "https://vpn.akres.fun/all",
             "https://mifa.world/fast",
+            "https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/tri_228.txt",
+            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/black/vless.txt",
         ],
     },
     "black_mobile": {
@@ -76,6 +82,7 @@ OUTPUTS = {
         "file": "black_mobile.txt",
         "urls": [
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_mobile_base64.txt",
+            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/mobile.txt",
         ],
     },
     "white_all": {
@@ -83,8 +90,9 @@ OUTPUTS = {
         "file": "white.all.txt",
         "urls": [
             "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt",
-            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_white.txt",
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
+            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/white.txt",
+            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_white.txt",
         ],
     },
     "white_sni": {
@@ -92,6 +100,7 @@ OUTPUTS = {
         "file": "white.sni.txt",
         "urls": [
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-SNI-RU-all-base64.txt",
+            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/sni/vless.txt",
         ],
     },
     "white_cidr": {
@@ -99,6 +108,7 @@ OUTPUTS = {
         "file": "white.cidr.txt",
         "urls": [
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-CIDR-RU-all-base64.txt",
+            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/cidr/vless.txt",
         ],
     },
     "tg_proxy": {
@@ -501,10 +511,62 @@ def main():
     save_reputation()
     save_json(STATS_FILE, _stats)
     
+    # 💾 NEW: Save Best List (TOP-50 servers across all categories)
+    print("🏆 Сохранение TOP-50 лучших серверов...")
+    all_servers = []
+    for category in ['black', 'white_all', 'white_sni', 'white_cidr']:
+        all_servers.extend(results.get(category, []))
+    
+    # Сортировка: пинг + приоритет VLESS Reality
+    def score(x):
+        ping_score = x['ping']
+        type_bonus = 0 if x['item'].get('type') == 'vless' else 50
+        return ping_score + type_bonus
+    
+    all_servers.sort(key=score)
+    best_50 = all_servers[:LIMITS.get('best', 50)]
+    
+    best_path = os.path.join(BASE_DIR, "best.txt")
+    with open(best_path, 'w', encoding='utf-8') as f:
+        f.write(f"# 🏆 TOP-50 Best Servers - StintikVPN Auto-Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(best_50)}\n")
+        f.write('# These are the fastest and most reliable servers across all categories!\n')
+        f.write('\n'.join([x['item']['raw'] for x in best_50]))
+    final_counts['best'] = len(best_50)
+    
+    # 📊 NEW: Save Live Stats JSON for API/Website
+    live_stats = {
+        "last_update": time.strftime('%Y-%m-%d %H:%M:%S'),
+        "total_alive": _stats['alive'],
+        "total_dead": _stats['dead'],
+        "duration_sec": round(_stats['duration'], 2),
+        "categories": {
+            "black": final_counts.get('black', 0),
+            "black_mobile": final_counts.get('black_mobile', 0),
+            "white_all": final_counts.get('white_all', 0),
+            "white_sni": final_counts.get('white_sni', 0),
+            "white_cidr": final_counts.get('white_cidr', 0),
+            "tg_proxy": final_counts.get('tg_proxy', 0),
+            "best": final_counts.get('best', 0)
+        },
+        "protocols": {
+            "vless": final_counts.get('proto_vless', 0),
+            "vmess": final_counts.get('proto_vmess', 0),
+            "trojan": final_counts.get('proto_trojan', 0),
+            "ss": final_counts.get('proto_ss', 0)
+        },
+        "top_sources": [
+            {"url": url.split('/')[-1].replace('.txt', '')[:30], "count": count}
+            for url, count in sorted(_stats.get('sources_alive', {}).items(), key=lambda x: x[1], reverse=True)[:5]
+        ]
+    }
+    save_json(LIVE_STATS_FILE, live_stats)
+    
     print("📊 Отправка отчета...")
     send_telegram_report(_stats, final_counts)
     
     print(f"✅ ГОТОВО! Время: {_stats['duration']:.2f} сек. Рабочих: {_stats['alive']}")
+    print(f"🏆 TOP-50 сохранено в best.txt")
+    print(f"📊 Live stats сохранено в live_stats.json")
 
 if __name__ == "__main__":
     main()
