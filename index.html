@@ -8,31 +8,68 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --accent: #ec4899;
-            --dark: #0f172a;
+            --primary: #ff6b00;
+            --secondary: #ff8c00;
+            --accent: #ffa500;
+            --dark: #0a0a0a;
+            --darker: #050505;
             --light: #f8fafc;
+            --gray: #1a1a1a;
             --success: #22c55e;
             --warning: #f59e0b;
         }
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a0a00 100%);
             color: var(--light);
             line-height: 1.6;
+            min-height: 100vh;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
         header {
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 140, 0, 0.05));
+            border: 1px solid rgba(255, 107, 0, 0.2);
             border-radius: 20px;
             margin-bottom: 3rem;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 60px rgba(255, 107, 0, 0.15), inset 0 0 30px rgba(255, 107, 0, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-        h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .subtitle { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 1rem; 
+            text-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+            background: linear-gradient(135deg, #ff6b00, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        .subtitle { 
+            font-size: 1.3rem; 
+            opacity: 0.9; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            position: relative;
+            z-index: 1;
+        }
         .lang-switch {
             display: flex;
             justify-content: center;
@@ -246,6 +283,10 @@
                     <div class="stat-label" data-en="Black List" data-ru="Black список" data-zh="黑名单" data-fa="لیست سیاه">Black List</div>
                 </div>
                 <div class="stat-card">
+                    <div class="stat-number" id="premium-count" style="color: var(--accent);">-</div>
+                    <div class="stat-label" data-en="Premium Tier (TOP 0.1%)" data-ru="Premium (ТОП 0.1%)" data-zh="高级层（前 0.1%）" data-fa="سطح پریمیوم (۰.۱٪ برتر)">Premium (ТОП 0.1%)</div>
+                </div>
+                <div class="stat-card">
                     <div class="stat-number" id="white-count">-</div>
                     <div class="stat-label" data-en="White List" data-ru="White список" data-zh="白名单" data-fa="لیست سفید">White List</div>
                 </div>
@@ -341,6 +382,7 @@ python tg_proxy_checker.py</code></pre>
                     document.getElementById('total-alive').textContent = data.total_alive || 0;
                     document.getElementById('total-dead').textContent = data.total_dead || 0;
                     document.getElementById('black-count').textContent = data.categories?.black || 0;
+                    document.getElementById('premium-count').textContent = data.categories?.premium || 0;
                     document.getElementById('white-count').textContent = (data.categories?.white_all || 0) + (data.categories?.white_sni || 0) + (data.categories?.white_cidr || 0);
                 }
             } catch (e) {

@@ -1,4 +1,3 @@
-# CIS Servers | Generated: 2026-05-26 09:01 | Count: 10
 vless://1933362c-1176-457b-b361-8c01f9e78b32@195.210.47.98:443?type=ws&headerType=none&security=none&encryption=none&path=%2F#%F0%9F%87%B0%F0%9F%87%BF%20%20Kazakhstan%20%20%5B01%5D%20%20MIFA
 vless://1933362c-1176-457b-b361-8c01f9e78b32@195.210.47.98:443?path=%2F&security=none&type=ws#%F0%9F%87%B0%F0%9F%87%BF%20Kazakhstan%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
 vless://1933362c-1176-457b-b361-8c01f9e78b32@195.210.47.98:443?type=ws&headerType=none&security=none&encryption=none&path=%2F#%F0%9F%87%B0%F0%9F%87%BF%20%20Kazakhstan%20%20%5B01%5D%20%20MIFA
