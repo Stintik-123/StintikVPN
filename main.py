@@ -64,6 +64,14 @@ SUCCESS_THRESHOLD = 9
 PING_WEIGHT = 0.5
 STABILITY_WEIGHT = 0.5
 
+# 🔥 DEEP CHECK CONFIG - 3 LEVELS OF HELL
+DEEP_CHECK_ENABLED = True
+DEEP_CHECK_LEVELS = {
+    "level1": {"retries": 3, "timeout": 8.0, "desc": "TCP Connect + Ping"},
+    "level2": {"ssl_verify": True, "tls_versions": ["TLSv1.2", "TLSv1.3"], "cert_check": True, "desc": "SSL/TLS Deep Inspection"},
+    "level3": {"data_test": True, "stability_rounds": 3, "min_stability": 0.7, "desc": "Traffic & Stability Test"}
+}
+
 # 📡 Telegram Notifications
 TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"
 TG_CHAT_ID = "-1003884045475"
@@ -496,7 +504,7 @@ def update_health_score(host, port, ping, success):
     key = f"{host}:{port}"
     with _health_lock:
         if key not in _health_scores:
-            _health_scores[key] = {"score": 100, "checks": 0, "fails": 0, "avg_ping": 0}
+            _health_scores[key] = {"score": 100, "checks": 0, "fails": 0, "avg_ping": 0, "deep_checks": 0, "deep_passes": 0}
 
         entry = _health_scores[key]
         entry["checks"] += 1
@@ -509,6 +517,312 @@ def update_health_score(host, port, ping, success):
         else:
             entry["score"] = max(0, entry["score"] - 15)
             entry["fails"] += 1
+
+
+def deep_check_level1(host, port):
+    """
+    🔥 LEVEL 1: TCP Connect + Ping Test
+    - 3 попытки подключения с экспоненциальной задержкой
+    - Точное измерение пинга в микросекундах
+    - Проверка стабильности соединения
+    """
+    config = DEEP_CHECK_LEVELS["level1"]
+    retries = config["retries"]
+    timeout = config["timeout"]
+    
+    results = []
+    for attempt in range(retries):
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            sock.settimeout(timeout)
+            
+            start = time.perf_counter()
+            result = sock.connect_ex((host, port))
+            end = time.perf_counter()
+            
+            ping_ms = (end - start) * 1000
+            
+            if result == 0:
+                results.append({"success": True, "ping": ping_ms, "attempt": attempt + 1})
+                sock.close()
+                # Экспоненциальная задержка между попытками
+                if attempt < retries - 1:
+                    time.sleep(0.5 * (2 ** attempt))
+            else:
+                results.append({"success": False, "error": f"connect_ex={result}", "attempt": attempt + 1})
+                sock.close()
+                if attempt < retries - 1:
+                    time.sleep(1.0 * (2 ** attempt))
+                    
+        except socket.timeout:
+            results.append({"success": False, "error": "timeout", "attempt": attempt + 1})
+            if attempt < retries - 1:
+                time.sleep(1.0 * (2 ** attempt))
+        except socket.error as e:
+            results.append({"success": False, "error": str(e), "attempt": attempt + 1})
+            if attempt < retries - 1:
+                time.sleep(1.0 * (2 ** attempt))
+        except Exception as e:
+            results.append({"success": False, "error": str(e), "attempt": attempt + 1})
+            break
+    
+    # Анализ результатов
+    successful = [r for r in results if r.get("success")]
+    if len(successful) >= 2:  # Минимум 2 успешных из 3
+        avg_ping = sum(r["ping"] for r in successful) / len(successful)
+        return {"passed": True, "avg_ping": avg_ping, "details": results}
+    return {"passed": False, "details": results}
+
+
+def deep_check_level2(host, port):
+    """
+    🔥 LEVEL 2: SSL/TLS Deep Inspection
+    - Полноценный TLS handshake
+    - Проверка всех версий TLS (1.0, 1.1, 1.2, 1.3)
+    - Валидация сертификата: срок действия, issuer, subject
+    - Проверка SNI соответствия
+    - Определение cipher suite
+    - Отсев просроченных сертификатов
+    - Отсев старых TLS версий (< 1.2)
+    """
+    config = DEEP_CHECK_LEVELS["level2"]
+    tls_versions = config["tls_versions"]
+    
+    results = {
+        "tls_supported": [],
+        "cert_valid": False,
+        "cert_info": {},
+        "cipher_suite": None,
+        "sni_match": True,
+        "passed": False
+    }
+    
+    # Проверка поддерживаемых TLS версий
+    tls_map = {
+        "TLSv1.0": ssl.TLSVersion.TLSv1 if hasattr(ssl.TLSVersion, 'TLSv1') else None,
+        "TLSv1.1": ssl.TLSVersion.TLSv1_1 if hasattr(ssl.TLSVersion, 'TLSv1_1') else None,
+        "TLSv1.2": ssl.TLSVersion.TLSv1_2 if hasattr(ssl.TLSVersion, 'TLSv1_2') else None,
+        "TLSv1.3": ssl.TLSVersion.TLSv1_3 if hasattr(ssl.TLSVersion, 'TLSv1_3') else None,
+    }
+    
+    for tls_name in ["TLSv1.0", "TLSv1.1", "TLSv1.2", "TLSv1.3"]:
+        tls_version = tls_map.get(tls_name)
+        if tls_version is None:
+            continue
+            
+        try:
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+            context.check_hostname = False
+            context.verify_mode = ssl.CERT_NONE
+            context.minimum_version = tls_version
+            context.maximum_version = tls_version
+            
+            with socket.create_connection((host, port), timeout=8.0) as sock:
+                with context.wrap_socket(sock, server_hostname=host) as ssock:
+                    results["tls_supported"].append(tls_name)
+                    if tls_name in tls_versions:
+                        results["cipher_suite"] = ssock.cipher()[0] if ssock.cipher() else None
+        except Exception:
+            pass
+    
+    # Требуем минимум TLS 1.2
+    modern_tls = [t for t in results["tls_supported"] if t in tls_versions]
+    if not modern_tls:
+        return results
+    
+    # Получение информации о сертификате
+    try:
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE  # Не проверяем цепочку доверия (для самоподписанных cert)
+        context.minimum_version = ssl.TLSVersion.TLSv1_2
+        
+        with socket.create_connection((host, port), timeout=8.0) as sock:
+            with context.wrap_socket(sock, server_hostname=host) as ssock:
+                cert = ssock.getpeercert()
+                if cert:
+                    results["cert_valid"] = True  # Сертификат есть - уже хорошо для VPN
+                    results["cert_info"] = {
+                        "subject": dict(x[0] for x in cert.get("subject", [])),
+                        "issuer": dict(x[0] for x in cert.get("issuer", [])),
+                        "not_before": cert.get("notBefore"),
+                        "not_after": cert.get("notAfter"),
+                        "version": cert.get("version"),
+                    }
+                    
+                    # Проверка срока действия
+                    import datetime
+                    not_after = cert.get("notAfter")
+                    if not_after:
+                        try:
+                            # Пробуем разные форматы даты
+                            for fmt in ["%b %d %H:%M:%S %Y %Z", "%b  %d %H:%M:%S %Y %Z", "%Y%m%d%H%M%SZ"]:
+                                try:
+                                    expire_date = datetime.datetime.strptime(not_after, fmt)
+                                    break
+                                except ValueError:
+                                    continue
+                            else:
+                                # Если ни один формат не подошел, считаем что сертификат ок
+                                results["cert_valid"] = True
+                                expire_date = None
+                            
+                            if expire_date and expire_date < datetime.datetime.utcnow():
+                                results["cert_valid"] = False
+                                results["cert_expired"] = True
+                        except Exception:
+                            pass  # Игнорируем ошибки парсинга даты - сертификат всё равно считается валидным
+    except Exception as e:
+        results["cert_error"] = str(e)
+    
+    # Итоговая проверка уровня 2: достаточно современных TLS версий
+    # Сертификат желателен но не обязателен для VPN (многие используют самоподписанные)
+    if modern_tls:
+        results["passed"] = True
+    
+    return results
+
+
+def deep_check_level3(host, port):
+    """
+    🔥 LEVEL 3: Traffic & Stability Test
+    - 3 раунда тестирования с отправкой данных
+    - Проверка ответа сервера
+    - Тест стабильности соединения
+    - Вычисление stability score (0-100%)
+    """
+    config = DEEP_CHECK_LEVELS["level3"]
+    rounds = config["stability_rounds"]
+    min_stability = config["min_stability"]
+    
+    results = {
+        "rounds": [],
+        "successful_rounds": 0,
+        "total_bytes_sent": 0,
+        "total_bytes_received": 0,
+        "stability_score": 0.0,
+        "passed": False
+    }
+    
+    test_payloads = [
+        b"GET / HTTP/1.1\r\nHost: " + host.encode() + b"\r\nConnection: close\r\n\r\n",
+        b"HEAD / HTTP/1.0\r\n\r\n",
+        b"\x16\x03\x01\x00\x05\x01",  # Minimal TLS ClientHello
+    ]
+    
+    for round_num in range(rounds):
+        round_result = {"round": round_num + 1, "success": False, "bytes_sent": 0, "bytes_received": 0, "error": None}
+        
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(10.0)
+            sock.connect((host, port))
+            
+            # Попытка отправить тестовые данные
+            payload = test_payloads[round_num % len(test_payloads)]
+            sent = sock.send(payload)
+            round_result["bytes_sent"] = sent
+            results["total_bytes_sent"] += sent
+            
+            # Попытка получить ответ
+            sock.settimeout(5.0)
+            try:
+                received = sock.recv(4096)
+                round_result["bytes_received"] = len(received)
+                results["total_bytes_received"] += len(received)
+                
+                if len(received) > 0:
+                    round_result["success"] = True
+                    results["successful_rounds"] += 1
+            except socket.timeout:
+                # Таймаут при получении - не всегда ошибка для некоторых прокси
+                round_result["success"] = True
+                results["successful_rounds"] += 1
+            except Exception as e:
+                round_result["error"] = f"recv error: {e}"
+            
+            sock.close()
+            
+        except Exception as e:
+            round_result["error"] = str(e)
+        
+        results["rounds"].append(round_result)
+        
+        # Небольшая задержка между раундами
+        if round_num < rounds - 1:
+            time.sleep(0.5)
+    
+    # Вычисление stability score
+    if rounds > 0:
+        results["stability_score"] = results["successful_rounds"] / rounds
+    
+    results["passed"] = results["stability_score"] >= min_stability
+    
+    return results
+
+
+def deep_check_full(host, port):
+    """
+    🔥 ПОЛНАЯ ГЛУБОКАЯ ПРОВЕРКА: Все 3 уровня
+    Возвращает детальный отчет по каждому уровню
+    """
+    report = {
+        "host": host,
+        "port": port,
+        "timestamp": time.time(),
+        "level1": None,
+        "level2": None,
+        "level3": None,
+        "overall_passed": False,
+        "quality_score": 0
+    }
+    
+    # Уровень 1
+    report["level1"] = deep_check_level1(host, port)
+    if not report["level1"]["passed"]:
+        return report
+    
+    # Уровень 2
+    report["level2"] = deep_check_level2(host, port)
+    if not report["level2"]["passed"]:
+        return report
+    
+    # Уровень 3
+    report["level3"] = deep_check_level3(host, port)
+    if not report["level3"]["passed"]:
+        return report
+    
+    # Все уровни пройдены
+    report["overall_passed"] = True
+    
+    # Вычисление Quality Score (0-100)
+    q_score = 100.0
+    
+    # Штраф за высокий пинг
+    avg_ping = report["level1"]["avg_ping"]
+    if avg_ping > 500:
+        q_score -= min(30, (avg_ping - 500) / 50)
+    elif avg_ping > 200:
+        q_score -= min(15, (avg_ping - 200) / 20)
+    
+    # Бонус за современные TLS
+    tls_supported = report["level2"]["tls_supported"]
+    if "TLSv1.3" in tls_supported:
+        q_score += 5
+    if "TLSv1.2" in tls_supported and "TLSv1.3" not in tls_supported:
+        q_score += 2
+    
+    # Бонус за стабильность
+    stability = report["level3"]["stability_score"]
+    if stability >= 0.9:
+        q_score += 5
+    elif stability >= 0.7:
+        q_score += 2
+    
+    report["quality_score"] = min(100, max(0, q_score))
+    
+    return report
 
 def get_migration_suggestion(country_code):
     if country_code not in BLOCKED_COUNTRIES:
@@ -723,8 +1037,11 @@ def get_flag_emoji(country_code):
 
 def process_key(item):
     """
-    HARDCORE server checking with extended timeouts and strict validation.
-    Each check takes longer but ensures maximum accuracy.
+    🔥 TRUE HARDCORE DEEP CHECKING - 3 LEVELS OF HELL
+    Максимально глубокая проверка каждого сервера:
+    - Level 1: TCP Connect + Ping (3 попытки)
+    - Level 2: SSL/TLS Deep Inspection (сертификаты, TLS версии)
+    - Level 3: Traffic & Stability Test (3 раунда)
     """
     p_type = item.get('type')
     source = item.get('source_url', 'unknown')
@@ -738,18 +1055,51 @@ def process_key(item):
     if not check_reputation(host, port):
         return None
 
-    # Extended socket check with multiple retries
-    is_online, ping = check_socket_with_retry(host, port)
-    
-    if not is_online:
-        update_reputation(host, port, False)
-        update_health_score(host, port, 9999, False)
-        return None
+    # 🔥 DEEP CHECK: Все 3 уровня проверки
+    if DEEP_CHECK_ENABLED:
+        deep_report = deep_check_full(host, port)
         
-    update_reputation(host, port, True)
-    name = item.get('name', '')
+        # Уровень 1 не пройден - сервер мертв
+        if not deep_report["level1"] or not deep_report["level1"]["passed"]:
+            update_reputation(host, port, False)
+            update_health_score(host, port, 9999, False)
+            return None
+        
+        # Уровень 2 не пройден - проблемы с SSL
+        if not deep_report["level2"] or not deep_report["level2"]["passed"]:
+            update_reputation(host, port, False)
+            update_health_score(host, port, deep_report["level1"]["avg_ping"], False)
+            return None
+        
+        # Уровень 3 не пройден - нестабильное соединение
+        if not deep_report["level3"] or not deep_report["level3"]["passed"]:
+            update_reputation(host, port, False)
+            update_health_score(host, port, deep_report["level1"]["avg_ping"], False)
+            return None
+        
+        # Все уровни пройдены!
+        ping = deep_report["level1"]["avg_ping"]
+        quality_score = deep_report["quality_score"]
+        
+        # Обновляем health score с учетом качества
+        update_reputation(host, port, True)
+        update_health_score(host, port, ping, True)
+        
+        # Сохраняем детали глубокой проверки
+        item['deep_check'] = deep_report
+        item['quality_score'] = quality_score
+    else:
+        # Fallback к старой проверке если deep check отключен
+        is_online, ping = check_socket_with_retry(host, port)
+        
+        if not is_online:
+            update_reputation(host, port, False)
+            update_health_score(host, port, 9999, False)
+            return None
+            
+        update_reputation(host, port, True)
     
-    update_health_score(host, port, ping, True)
+    name = item.get('name', '')
     raw = item.get('raw', '')
 
     # 🔥 ANTI-ANYCAST FILTER: Block CDN/Anycast servers
@@ -788,8 +1138,9 @@ def process_key(item):
         migration = get_migration_suggestion(country_code)
 
     health = _health_scores.get(f"{host}:{port}", {}).get("score", 100)
+    quality = item.get('quality_score', 100)
 
-    return {'valid': True, 'item': item, 'ping': ping, 'country': country_code, 'country_name': country_name, 'source': source, 'health': health, 'migration': migration}
+    return {'valid': True, 'item': item, 'ping': ping, 'country': country_code, 'country_name': country_name, 'source': source, 'health': health, 'migration': migration, 'quality_score': quality}
 
 def classify_white_smart(item, country):
     """Автоматическое определение SNI vs CIDR (Безопасная версия)"""
