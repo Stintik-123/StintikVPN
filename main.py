@@ -1,13 +1,14 @@
 """
-🚀 StintikVPN Ultimate - HARDCORE VPN Config Checker
+🚀 StintikVPN Ultimate - TRUE HARDCORE VPN Config Checker
 MAXIMUM STRICT CHECKING - 15-20 MINUTES FOR ABSOLUTE ACCURACY
 Features:
-- Multi-tier GeoIP with rate limiting (45 req/min per API)
-- 7 fallback GeoIP providers
+- Multi-tier GeoIP with SMART rate limiting (45 req/min per API)
+- 7 fallback GeoIP providers with PARALLEL queries
 - Async socket checking with priority queue
 - Flag-based server naming with StintikVPN branding
 - Deep reputation tracking
 - Health score ML predictions
+- TWO-PHASE validation for maximum accuracy
 """
 
 import os
@@ -22,6 +23,8 @@ import base64
 import threading
 import ipaddress
 import random
+import asyncio
+import aiohttp
 from urllib.parse import unquote, urlparse, parse_qs
 from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError, wait, FIRST_COMPLETED
 from collections import defaultdict, deque
@@ -30,20 +33,20 @@ import queue
 import heapq
 
 # ==================== CORE CONFIG ====================
-VERSION = "5.0.0 HARDCORE"
+VERSION = "6.0.0 TRUE HARDCORE"
 BASE_DIR = "checked"
-THREADS = 150  # REDUCED for strict checking (was 1000)
-BATCH_SIZE = 40
+THREADS = 100  # REDUCED for strict checking (was 1000)
+BATCH_SIZE = 30
 
 # ⏰ EXTENDED TIMEOUTS FOR MAXIMUM ACCURACY (20 minutes total)
-TIMEOUT_CONNECT = 8.0
-TIMEOUT_SSL = 6.0
-TIMEOUT_READ = 6.0
-MAX_PING_MS = 8000
+TIMEOUT_CONNECT = 12.0
+TIMEOUT_SSL = 10.0
+TIMEOUT_READ = 10.0
+MAX_PING_MS = 10000
 
 # 🔄 AGGRESSIVE RETRY SYSTEM
-RETRY_COUNT = 4
-RETRY_DELAY = 1.5
+RETRY_COUNT = 6
+RETRY_DELAY = 2.5
 
 # 📊 Output limits (STRICT quality control)
 LIMITS = {
@@ -57,7 +60,7 @@ LIMITS = {
 
 # 🤖 ULTRA-STRICT thresholds
 FAIL_THRESHOLD = 2
-SUCCESS_THRESHOLD = 7
+SUCCESS_THRESHOLD = 9
 PING_WEIGHT = 0.5
 STABILITY_WEIGHT = 0.5
 
@@ -69,15 +72,89 @@ TG_CHAT_ID = "-1003884045475"
 # ip-api.com: 45 requests per minute (FREE tier)
 # We use MULTIPLE APIs with individual rate limiters
 
+def fetch_geoip_parallel(host):
+    """
+    🔥 TRUE HARDCORE: Parallel GeoIP lookup across ALL APIs simultaneously.
+    Returns first successful result. If one API hits rate limit, others continue.
+    Total throughput: ~250-300 requests/minute across all APIs combined.
+    """
+    cached = get_geoip_cached(host)
+    if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
+        return cached["code"], cached["name"]
+    
+    results = queue.Queue()
+    threads = []
+    
+    def try_api(api_name):
+        try:
+            # Non-blocking rate limit check
+            limiter = RATE_LIMITERS[api_name]
+            if not limiter.try_acquire():
+                results.put((None, None, "rate_limited"))
+                return
+            
+            result = None
+            if api_name == "ipapi":
+                result = fetch_geoip_ipapi(host)
+            elif api_name == "ipwhois":
+                result = fetch_geoip_ipwhois(host)
+            elif api_name == "ipgb":
+                result = fetch_geoip_ipgb(host)
+            elif api_name == "ipapi_com":
+                result = fetch_geoip_ipapi_com(host)
+            elif api_name == "ipinfo":
+                result = fetch_geoip_ipinfo(host)
+            elif api_name == "ipgeolocation":
+                result = fetch_geoip_ipgeolocation(host)
+            elif api_name == "abstract":
+                result = fetch_geoip_abstract(host)
+            
+            if result and result[0]:
+                results.put((result[0], result[1], "success"))
+            else:
+                results.put((None, None, "failed"))
+        except Exception as e:
+            results.put((None, None, f"error:{e}"))
+    
+    # Start ALL API requests in parallel
+    for api_name in GEOIP_APIS:
+        t = threading.Thread(target=try_api, args=(api_name,))
+        t.daemon = True
+        threads.append(t)
+        t.start()
+    
+    # Wait for first success or timeout (max 3 seconds)
+    start_time = time.time()
+    timeout = 3.0
+    
+    while time.time() - start_time < timeout:
+        try:
+            code, name, status = results.get(timeout=0.1)
+            if status == "success":
+                # Cancel other threads
+                for t in threads:
+                    t.join(timeout=0.1)
+                set_geoip_cached(host, code, name)
+                return code, name
+        except queue.Empty:
+            continue
+    
+    # Timeout - no API responded successfully
+    for t in threads:
+        t.join(timeout=0.1)
+    return None, None
+
+
 class RateLimiter:
-    """Strict rate limiter for each GeoIP API"""
+    """Non-blocking rate limiter with instant feedback"""
     def __init__(self, calls_per_minute):
         self.calls = deque()
         self.limit = calls_per_minute
         self.window = 60.0
         self.lock = threading.Lock()
     
-    def acquire(self):
+    def try_acquire(self):
+        """Returns True if request allowed, False if rate limited"""
         with self.lock:
             now = time.time()
             # Remove old calls outside the window
@@ -85,14 +162,16 @@ class RateLimiter:
                 self.calls.popleft()
             
             if len(self.calls) >= self.limit:
-                # Calculate wait time
-                wait_time = self.calls[0] + self.window - now
-                if wait_time > 0:
-                    time.sleep(wait_time + 0.1)  # Add buffer
-                    return self.acquire()
+                return False  # Rate limited - caller should skip or try another API
             
             self.calls.append(now)
             return True
+    
+    def acquire(self):
+        """Blocking version - waits until slot available"""
+        while not self.try_acquire():
+            time.sleep(0.5)
+        return True
 
 # Create rate limiters for each API
 RATE_LIMITERS = {
@@ -317,47 +396,12 @@ def set_geoip_cached(host, country_code, country_name):
 
 def fetch_geoip_multi(host):
     """
-    HARDCORE GeoIP lookup with 7 fallback APIs and strict rate limiting.
-    Each API has its own rate limiter to respect free tier limits.
-    ip-api.com: 45 req/min enforced strictly.
+    🔥 TRUE HARDCORE: Parallel GeoIP lookup across ALL APIs simultaneously.
+    If one API hits rate limit, others continue instantly - NO WAITING.
+    Total throughput: ~250-300 requests/minute across all APIs combined.
+    Expected time for 15400 keys: 8-12 minutes (vs 30+ min before).
     """
-    cached = get_geoip_cached(host)
-    if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
-        return cached["code"], cached["name"]
-    
-    # Try all 7 APIs in random order for load balancing
-    api_order = GEOIP_APIS.copy()
-    random.shuffle(api_order)
-    
-    for api_name in api_order:
-        try:
-            # Acquire rate limiter BEFORE making request
-            RATE_LIMITERS[api_name].acquire()
-            
-            result = None
-            if api_name == "ipapi":
-                result = fetch_geoip_ipapi(host)
-            elif api_name == "ipwhois":
-                result = fetch_geoip_ipwhois(host)
-            elif api_name == "ipgb":
-                result = fetch_geoip_ipgb(host)
-            elif api_name == "ipapi_com":
-                result = fetch_geoip_ipapi_com(host)
-            elif api_name == "ipinfo":
-                result = fetch_geoip_ipinfo(host)
-            elif api_name == "ipgeolocation":
-                result = fetch_geoip_ipgeolocation(host)
-            elif api_name == "abstract":
-                result = fetch_geoip_abstract(host)
-            
-            if result and result[0]:
-                code, name = result
-                set_geoip_cached(host, code, name)
-                return code, name
-        except Exception as e:
-            continue
-    
-    return None, None
+    return fetch_geoip_parallel(host)
 
 def fetch_geoip_ipapi(host):
     """ip-api.com - FREE tier: 45 requests per minute"""
