@@ -1,1 +1,15 @@
-{}
+{
+  "RU": {
+    "suggested": "FI",
+    "alternatives": [
+      "EE",
+      "LV",
+      "LT",
+      "PL",
+      "GE",
+      "KZ",
+      "AZ"
+    ],
+    "timestamp": 1779801854.2839723
+  }
+}
