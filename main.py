@@ -1,14 +1,13 @@
 """
-🚀 StintikVPN Ultimate - TRUE HARDCORE VPN Config Checker
-MAXIMUM STRICT CHECKING - 15-20 MINUTES FOR ABSOLUTE ACCURACY
+🚀 StintikVPN Ultimate - Simplified but Powerful
 Features:
 - Multi-tier GeoIP with SMART rate limiting (45 req/min per API)
 - 7 fallback GeoIP providers with PARALLEL queries
 - Async socket checking with priority queue
-- Flag-based server naming with StintikVPN branding
 - Deep reputation tracking
-- Health score ML predictions
+- Health score predictions
 - TWO-PHASE validation for maximum accuracy
+- Normalized params for quality boost
 """
 
 import os
@@ -33,22 +32,22 @@ import queue
 import heapq
 
 # ==================== CORE CONFIG ====================
-VERSION = "6.0.0 TRUE HARDCORE"
+VERSION = "7.0.0 SIMPLIFIED"
 BASE_DIR = "checked"
-THREADS = 100  # REDUCED for strict checking (was 1000)
-BATCH_SIZE = 30
+THREADS = 150
+BATCH_SIZE = 50
 
-# ⏰ EXTENDED TIMEOUTS FOR MAXIMUM ACCURACY (20 minutes total)
-TIMEOUT_CONNECT = 12.0
-TIMEOUT_SSL = 10.0
-TIMEOUT_READ = 10.0
-MAX_PING_MS = 10000
+# ⏰ OPTIMIZED TIMEOUTS (3-5 seconds for TCP tests)
+TIMEOUT_CONNECT = 3.0
+TIMEOUT_SSL = 2.5
+TIMEOUT_READ = 2.5
+MAX_PING_MS = 5000
 
-# 🔄 AGGRESSIVE RETRY SYSTEM
-RETRY_COUNT = 6
-RETRY_DELAY = 2.5
+# 🔄 RETRY SYSTEM
+RETRY_COUNT = 3
+RETRY_DELAY = 1.0
 
-# 📊 Output limits (STRICT quality control)
+# 📊 Output limits
 LIMITS = {
     "black": 500,
     "white_all": 250,
@@ -58,18 +57,17 @@ LIMITS = {
     "premium": 100
 }
 
-# 🤖 ULTRA-STRICT thresholds
+# 🤖 STRICT thresholds
 FAIL_THRESHOLD = 2
-SUCCESS_THRESHOLD = 9
-PING_WEIGHT = 0.5
-STABILITY_WEIGHT = 0.5
+SUCCESS_THRESHOLD = 5
+PING_WEIGHT = 0.6
+STABILITY_WEIGHT = 0.4
 
-# 🔥 DEEP CHECK CONFIG - 3 LEVELS OF HELL
+# 🔥 DEEP CHECK CONFIG - 2 LEVELS (simplified)
 DEEP_CHECK_ENABLED = True
 DEEP_CHECK_LEVELS = {
-    "level1": {"retries": 3, "timeout": 8.0, "desc": "TCP Connect + Ping"},
-    "level2": {"ssl_verify": True, "tls_versions": ["TLSv1.2", "TLSv1.3"], "cert_check": True, "desc": "SSL/TLS Deep Inspection"},
-    "level3": {"data_test": True, "stability_rounds": 3, "min_stability": 0.7, "desc": "Traffic & Stability Test"}
+    "level1": {"retries": 2, "timeout": 2.5, "desc": "TCP Connect + Ping"},
+    "level2": {"ssl_verify": True, "tls_versions": ["TLSv1.2", "TLSv1.3"], "cert_check": True, "desc": "SSL/TLS Check"}
 }
 
 # 📡 Telegram Notifications
@@ -521,10 +519,10 @@ def update_health_score(host, port, ping, success):
 
 def deep_check_level1(host, port):
     """
-    🔥 LEVEL 1: TCP Connect + Ping Test
-    - 3 попытки подключения с экспоненциальной задержкой
+    🔥 LEVEL 1: TCP Connect + Ping Test (2 attempts)
+    - 2 попытки подключения для стабильности
     - Точное измерение пинга в микросекундах
-    - Проверка стабильности соединения
+    - SUCCESS RULE: 2/2 = GOOD, 1/2 = UNSTABLE, 0/2 = DEAD
     """
     config = DEEP_CHECK_LEVELS["level1"]
     retries = config["retries"]
@@ -546,33 +544,27 @@ def deep_check_level1(host, port):
             if result == 0:
                 results.append({"success": True, "ping": ping_ms, "attempt": attempt + 1})
                 sock.close()
-                # Экспоненциальная задержка между попытками
-                if attempt < retries - 1:
-                    time.sleep(0.5 * (2 ** attempt))
             else:
                 results.append({"success": False, "error": f"connect_ex={result}", "attempt": attempt + 1})
                 sock.close()
-                if attempt < retries - 1:
-                    time.sleep(1.0 * (2 ** attempt))
                     
         except socket.timeout:
             results.append({"success": False, "error": "timeout", "attempt": attempt + 1})
-            if attempt < retries - 1:
-                time.sleep(1.0 * (2 ** attempt))
         except socket.error as e:
             results.append({"success": False, "error": str(e), "attempt": attempt + 1})
-            if attempt < retries - 1:
-                time.sleep(1.0 * (2 ** attempt))
         except Exception as e:
             results.append({"success": False, "error": str(e), "attempt": attempt + 1})
             break
     
-    # Анализ результатов
+    # Анализ результатов: 2/2 = GOOD, 1/2 = UNSTABLE, 0/2 = DEAD
     successful = [r for r in results if r.get("success")]
-    if len(successful) >= 2:  # Минимум 2 успешных из 3
+    if len(successful) == retries:  # 2/2 = GOOD
         avg_ping = sum(r["ping"] for r in successful) / len(successful)
-        return {"passed": True, "avg_ping": avg_ping, "details": results}
-    return {"passed": False, "details": results}
+        return {"passed": True, "status": "GOOD", "avg_ping": avg_ping, "details": results}
+    elif len(successful) > 0:  # 1/2 = UNSTABLE
+        avg_ping = sum(r["ping"] for r in successful) / len(successful)
+        return {"passed": True, "status": "UNSTABLE", "avg_ping": avg_ping, "details": results}
+    return {"passed": False, "status": "DEAD", "details": results}
 
 
 def deep_check_level2(host, port):
@@ -845,6 +837,79 @@ def get_migration_suggestion(country_code):
 # ==========================================
 # 🕵️ ПАРСИНГ И ПРОВЕРКА (БЕЗ GEOIP)
 # ==========================================
+def normalize_config_params(item):
+    """
+    🔥 NORMALIZE CONFIG PARAMS for quality boost
+    Normalizes: type, security, sni, host, path, alpn, fp, pbk, sid, flow, 
+                 serviceName, mode, headerType, seed, quicSecurity, key, encryption
+    
+    Returns normalized config string for deduplication
+    """
+    params = item.get('params', {})
+    p_type = item.get('type', '')
+    host = (item.get('host') or '').lower().strip()
+    port = item.get('port')
+    
+    # Normalize security
+    security = ''
+    if isinstance(params, dict):
+        sec_list = params.get('security', [])
+        security = sec_list[0] if isinstance(sec_list, list) and sec_list else sec_list
+    security = (security or '').lower().strip()
+    
+    # Normalize SNI
+    sni = ''
+    if isinstance(params, dict):
+        sni_list = params.get('sni', [])
+        sni = sni_list[0] if isinstance(sni_list, list) and sni_list else sni_list
+    sni = (sni or host).lower().strip()
+    
+    # Normalize other params
+    def get_param(name):
+        val = params.get(name, []) if isinstance(params, dict) else []
+        return val[0] if isinstance(val, list) and val else val
+    
+    alpn = get_param('alpn') or ''
+    fp = get_param('fp') or ''
+    pbk = get_param('pbk') or ''
+    sid = get_param('sid') or ''
+    flow = get_param('flow') or ''
+    serviceName = get_param('serviceName') or ''
+    mode = get_param('mode') or ''
+    headerType = get_param('headerType') or ''
+    seed = get_param('seed') or ''
+    quicSecurity = get_param('quicSecurity') or ''
+    key = get_param('key') or ''
+    encryption = get_param('encryption') or ''
+    path = get_param('path') or ''
+    
+    # Build normalized config string for deduplication
+    normalized = f"{p_type}|{host}|{port}|{security}|{sni}|{pbk}|{sid}|{flow}"
+    
+    # Store normalized params in item
+    item['normalized'] = {
+        'type': p_type,
+        'security': security,
+        'sni': sni,
+        'host': host,
+        'path': path,
+        'alpn': alpn,
+        'fp': fp,
+        'pbk': pbk,
+        'sid': sid,
+        'flow': flow,
+        'serviceName': serviceName,
+        'mode': mode,
+        'headerType': headerType,
+        'seed': seed,
+        'quicSecurity': quicSecurity,
+        'key': key,
+        'encryption': encryption,
+    }
+    
+    return normalized
+
+
 def parse_proxy_line(line, source_url=""):
     line = line.strip()
     if not line or line.startswith('#'):
@@ -867,7 +932,9 @@ def parse_proxy_line(line, source_url=""):
             port = parsed.port
             name = unquote(parsed.fragment)
             params = parse_qs(parsed.query)
-            return {"type": "vless", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
+            item = {"type": "vless", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
+            normalize_config_params(item)
+            return item
         except: return None
     
     # VMess
@@ -875,7 +942,9 @@ def parse_proxy_line(line, source_url=""):
         try:
             decoded = base64.b64decode(line[8:] + '==').decode('utf-8')
             data = json.loads(decoded)
-            return {"type": "vmess", "host": data.get('add'), "port": int(data.get('port', 443)), "name": data.get('ps', ''), "raw": line, "params": data, "source_url": source_url}
+            item = {"type": "vmess", "host": data.get('add'), "port": int(data.get('port', 443)), "name": data.get('ps', ''), "raw": line, "params": data, "source_url": source_url}
+            normalize_config_params(item)
+            return item
         except: return None
         
     # Trojan
@@ -885,7 +954,9 @@ def parse_proxy_line(line, source_url=""):
             host = parsed.hostname
             port = parsed.port
             name = unquote(parsed.fragment)
-            return {"type": "trojan", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+            item = {"type": "trojan", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+            normalize_config_params(item)
+            return item
         except: return None
 
     # SS
@@ -895,7 +966,9 @@ def parse_proxy_line(line, source_url=""):
             host = parsed.hostname
             port = parsed.port
             name = unquote(parsed.fragment)
-            return {"type": "ss", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+            item = {"type": "ss", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+            normalize_config_params(item)
+            return item
         except: return None
         
     return None
@@ -1035,13 +1108,29 @@ def get_flag_emoji(country_code):
     except:
         return "🌍"
 
+# Global deduplication set
+_seen_configs = set()
+_seen_lock = threading.Lock()
+
 def process_key(item):
     """
-    🔥 TRUE HARDCORE DEEP CHECKING - 3 LEVELS OF HELL
-    Максимально глубокая проверка каждого сервера:
-    - Level 1: TCP Connect + Ping (3 попытки)
-    - Level 2: SSL/TLS Deep Inspection (сертификаты, TLS версии)
-    - Level 3: Traffic & Stability Test (3 раунда)
+    🔥 SIMPLIFIED DEEP CHECKING - 2 LEVELS
+    - Level 1: TCP Connect + Ping (2 attempts) - 2/2=GOOD, 1/2=UNSTABLE, 0/2=DEAD
+    - Level 2: SSL/TLS Check
+    
+    DEDUP BY:
+    - normalized config string
+    - host + port + uuid
+    - host + port + pbk
+    - host + port + password
+    
+    REMOVE:
+    - malformed UUID
+    - empty host
+    - invalid port
+    - configs without tls/reality
+    - broken reality params
+    - duplicate configs
     """
     p_type = item.get('type')
     source = item.get('source_url', 'unknown')
@@ -1052,34 +1141,88 @@ def process_key(item):
     if not host or not port:
         return None
     
+    # Validate port
+    try:
+        port = int(port)
+        if port < 1 or port > 65535:
+            return None
+    except (ValueError, TypeError):
+        return None
+    
+    # DEDUP check using normalized config
+    normalized = item.get('normalized', {})
+    if normalized:
+        dedup_key = f"{normalized.get('type')}|{normalized.get('host')}|{normalized.get('port')}|{normalized.get('pbk')}|{normalized.get('sid')}"
+        with _seen_lock:
+            if dedup_key in _seen_configs:
+                return None  # Duplicate
+            _seen_configs.add(dedup_key)
+    
+    # Additional dedup by host+port+uuid/pbk/password
+    params = item.get('params', {})
+    uuid = ''
+    password = ''
+    pbk = normalized.get('pbk', '') if normalized else ''
+    
+    if p_type == 'vless':
+        uuid = params.get('id', [''])[0] if isinstance(params, dict) else ''
+    elif p_type == 'trojan':
+        password = params.get('password', [''])[0] if isinstance(params, dict) else ''
+    
+    if uuid:
+        dedup_uuid = f"{host}|{port}|{uuid}"
+        with _seen_lock:
+            if dedup_uuid in _seen_configs:
+                return None
+            _seen_configs.add(dedup_uuid)
+    
+    if pbk:
+        dedup_pbk = f"{host}|{port}|{pbk}"
+        with _seen_lock:
+            if dedup_pbk in _seen_configs:
+                return None
+            _seen_configs.add(dedup_pbk)
+    
+    if password:
+        dedup_pass = f"{host}|{port}|{password}"
+        with _seen_lock:
+            if dedup_pass in _seen_configs:
+                return None
+            _seen_configs.add(dedup_pass)
+    
+    # Check for TLS/Reality requirement
+    security = normalized.get('security', '') if normalized else ''
+    if security not in ['tls', 'reality']:
+        return None  # Remove configs without tls/reality
+    
+    # Validate Reality params if reality is used
+    if security == 'reality':
+        if not pbk:  # pbk is required for reality
+            return None  # Broken reality params
+    
     if not check_reputation(host, port):
         return None
 
-    # 🔥 DEEP CHECK: Все 3 уровня проверки
+    # 🔥 DEEP CHECK: 2 levels (simplified)
     if DEEP_CHECK_ENABLED:
         deep_report = deep_check_full(host, port)
         
         # Уровень 1 не пройден - сервер мертв
-        if not deep_report["level1"] or not deep_report["level1"]["passed"]:
+        if not deep_report.get("level1") or not deep_report["level1"].get("passed"):
             update_reputation(host, port, False)
             update_health_score(host, port, 9999, False)
             return None
         
         # Уровень 2 не пройден - проблемы с SSL
-        if not deep_report["level2"] or not deep_report["level2"]["passed"]:
+        if not deep_report.get("level2") or not deep_report["level2"].get("passed"):
             update_reputation(host, port, False)
-            update_health_score(host, port, deep_report["level1"]["avg_ping"], False)
-            return None
-        
-        # Уровень 3 не пройден - нестабильное соединение
-        if not deep_report["level3"] or not deep_report["level3"]["passed"]:
-            update_reputation(host, port, False)
-            update_health_score(host, port, deep_report["level1"]["avg_ping"], False)
+            update_health_score(host, port, deep_report["level1"].get("avg_ping", 9999), False)
             return None
         
         # Все уровни пройдены!
-        ping = deep_report["level1"]["avg_ping"]
-        quality_score = deep_report["quality_score"]
+        ping = deep_report["level1"].get("avg_ping", 9999)
+        quality_score = deep_report.get("quality_score", 100)
+        tcp_status = deep_report["level1"].get("status", "GOOD")
         
         # Обновляем health score с учетом качества
         update_reputation(host, port, True)
@@ -1088,6 +1231,7 @@ def process_key(item):
         # Сохраняем детали глубокой проверки
         item['deep_check'] = deep_report
         item['quality_score'] = quality_score
+        item['tcp_status'] = tcp_status
     else:
         # Fallback к старой проверке если deep check отключен
         is_online, ping = check_socket_with_retry(host, port)
@@ -1117,7 +1261,7 @@ def process_key(item):
         return None
 
     
-    # HARDCORE GeoIP lookup with rate limiting (this is what makes it take 15-20 minutes)
+    # HARDCORE GeoIP lookup with rate limiting
     country_code, country_name = fetch_geoip_multi(host)
     
     if not country_code:
@@ -1139,8 +1283,9 @@ def process_key(item):
 
     health = _health_scores.get(f"{host}:{port}", {}).get("score", 100)
     quality = item.get('quality_score', 100)
+    tcp_status = item.get('tcp_status', 'GOOD')
 
-    return {'valid': True, 'item': item, 'ping': ping, 'country': country_code, 'country_name': country_name, 'source': source, 'health': health, 'migration': migration, 'quality_score': quality}
+    return {'valid': True, 'item': item, 'ping': ping, 'country': country_code, 'country_name': country_name, 'source': source, 'health': health, 'migration': migration, 'quality_score': quality, 'tcp_status': tcp_status}
 
 def classify_white_smart(item, country):
     """Автоматическое определение SNI vs CIDR (Безопасная версия)"""
