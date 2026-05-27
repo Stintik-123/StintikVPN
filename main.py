@@ -1,13 +1,13 @@
 """
-🚀 StintikVPN Ultimate - Simplified but Powerful
+🚀 StintikVPN Ultimate - Simplified Core
 Features:
-- Multi-tier GeoIP with SMART rate limiting (45 req/min per API)
-- 7 fallback GeoIP providers with PARALLEL queries
-- Async socket checking with priority queue
-- Deep reputation tracking
-- Health score predictions
-- TWO-PHASE validation for maximum accuracy
-- Normalized params for quality boost
+- Normalized params for deduplication (type, security, sni, host, path, alpn, fp, pbk, sid, flow, serviceName, mode, headerType, seed, quicSecurity, key, encryption)
+- DEDUP BY: normalized config string, host+port+uuid, host+port+pbk, host+port+password
+- REMOVE: malformed UUID, empty host, invalid port, configs without tls/reality, broken reality params, duplicates
+- TCP TESTS: 2 TCP CONNECT TESTS (2.5-3s timeout)
+- SUCCESS RULE: 2/2=GOOD, 1/2=UNSTABLE, 0/2=DEAD
+- CLOUDFLARE FILTERING: detect Cloudflare ASN/IP ranges, CDN/proxy endpoints
+- GeoIP + Reputation (remove dead servers after 3 failures)
 """
 
 import os
@@ -16,195 +16,32 @@ import socket
 import ssl
 import time
 import json
-import hashlib
 import requests
 import base64
 import threading
-import ipaddress
-import random
-import asyncio
-import aiohttp
 from urllib.parse import unquote, urlparse, parse_qs
-from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError, wait, FIRST_COMPLETED
-from collections import defaultdict, deque
-from datetime import datetime, timedelta
-import queue
-import heapq
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import defaultdict
+from datetime import datetime
 
-# ==================== CORE CONFIG ====================
-VERSION = "7.0.0 SIMPLIFIED"
+VERSION = "9.0.0 OPTIMIZED"
 BASE_DIR = "checked"
 THREADS = 150
-BATCH_SIZE = 50
-
-# ⏰ OPTIMIZED TIMEOUTS (3-5 seconds for TCP tests)
 TIMEOUT_CONNECT = 3.0
 TIMEOUT_SSL = 2.5
-TIMEOUT_READ = 2.5
-MAX_PING_MS = 5000
+FAIL_THRESHOLD = 3
 
-# 🔄 RETRY SYSTEM
-RETRY_COUNT = 3
-RETRY_DELAY = 1.0
-
-# 📊 Output limits
-LIMITS = {
-    "black": 500,
-    "white_all": 250,
-    "white_sni": 250,
-    "white_cidr": 250,
-    "protocols": 300,
-    "premium": 100
-}
-
-# 🤖 STRICT thresholds
-FAIL_THRESHOLD = 2
-SUCCESS_THRESHOLD = 5
-PING_WEIGHT = 0.6
-STABILITY_WEIGHT = 0.4
-
-# 🔥 DEEP CHECK CONFIG - 2 LEVELS (simplified)
-DEEP_CHECK_ENABLED = True
-DEEP_CHECK_LEVELS = {
-    "level1": {"retries": 2, "timeout": 2.5, "desc": "TCP Connect + Ping"},
-    "level2": {"ssl_verify": True, "tls_versions": ["TLSv1.2", "TLSv1.3"], "cert_check": True, "desc": "SSL/TLS Check"}
-}
-
-# 📡 Telegram Notifications
 TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"
 TG_CHAT_ID = "-1003884045475"
 
-# ==================== GEOIP RATE LIMITING ====================
-# ip-api.com: 45 requests per minute (FREE tier)
-# We use MULTIPLE APIs with individual rate limiters
-
-def fetch_geoip_parallel(host):
-    """
-    🔥 TRUE HARDCORE: Parallel GeoIP lookup across ALL APIs simultaneously.
-    Returns first successful result. If one API hits rate limit, others continue.
-    Total throughput: ~250-300 requests/minute across all APIs combined.
-    """
-    cached = get_geoip_cached(host)
-    if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
-        return cached["code"], cached["name"]
-    
-    results = queue.Queue()
-    threads = []
-    
-    def try_api(api_name):
-        try:
-            # Non-blocking rate limit check
-            limiter = RATE_LIMITERS[api_name]
-            if not limiter.try_acquire():
-                results.put((None, None, "rate_limited"))
-                return
-            
-            result = None
-            if api_name == "ipapi":
-                result = fetch_geoip_ipapi(host)
-            elif api_name == "ipwhois":
-                result = fetch_geoip_ipwhois(host)
-            elif api_name == "ipgb":
-                result = fetch_geoip_ipgb(host)
-            elif api_name == "ipapi_com":
-                result = fetch_geoip_ipapi_com(host)
-            elif api_name == "ipinfo":
-                result = fetch_geoip_ipinfo(host)
-            elif api_name == "ipgeolocation":
-                result = fetch_geoip_ipgeolocation(host)
-            elif api_name == "abstract":
-                result = fetch_geoip_abstract(host)
-            
-            if result and result[0]:
-                results.put((result[0], result[1], "success"))
-            else:
-                results.put((None, None, "failed"))
-        except Exception as e:
-            results.put((None, None, f"error:{e}"))
-    
-    # Start ALL API requests in parallel
-    for api_name in GEOIP_APIS:
-        t = threading.Thread(target=try_api, args=(api_name,))
-        t.daemon = True
-        threads.append(t)
-        t.start()
-    
-    # Wait for first success or timeout (max 3 seconds)
-    start_time = time.time()
-    timeout = 3.0
-    
-    while time.time() - start_time < timeout:
-        try:
-            code, name, status = results.get(timeout=0.1)
-            if status == "success":
-                # Cancel other threads
-                for t in threads:
-                    t.join(timeout=0.1)
-                set_geoip_cached(host, code, name)
-                return code, name
-        except queue.Empty:
-            continue
-    
-    # Timeout - no API responded successfully
-    for t in threads:
-        t.join(timeout=0.1)
-    return None, None
-
-
-class RateLimiter:
-    """Non-blocking rate limiter with instant feedback"""
-    def __init__(self, calls_per_minute):
-        self.calls = deque()
-        self.limit = calls_per_minute
-        self.window = 60.0
-        self.lock = threading.Lock()
-    
-    def try_acquire(self):
-        """Returns True if request allowed, False if rate limited"""
-        with self.lock:
-            now = time.time()
-            # Remove old calls outside the window
-            while self.calls and self.calls[0] < now - self.window:
-                self.calls.popleft()
-            
-            if len(self.calls) >= self.limit:
-                return False  # Rate limited - caller should skip or try another API
-            
-            self.calls.append(now)
-            return True
-    
-    def acquire(self):
-        """Blocking version - waits until slot available"""
-        while not self.try_acquire():
-            time.sleep(0.5)
-        return True
-
-# Create rate limiters for each API
-RATE_LIMITERS = {
-    "ipapi": RateLimiter(45),      # ip-api.com: 45/min
-    "ipwhois": RateLimiter(60),    # ipwhois.app: ~60/min
-    "ipgb": RateLimiter(30),       # ipapi.co: 30/min
-    "ipapi_com": RateLimiter(50),  # additional
-    "ipinfo": RateLimiter(50),     # ipinfo.io
-    "ipgeolocation": RateLimiter(40),
-    "abstract": RateLimiter(30),
+LIMITS = {
+    "black": 250,
+    "black_mobile": 50,
+    "white_all": 100,
+    "white_sni": 100,
+    "white_cidr": 100,
+    "protocols": 100,
 }
-
-GEOIP_APIS = [
-    "ipapi", "ipwhois", "ipgb", "ipapi_com", "ipinfo", "ipgeolocation", "abstract"
-]
-
-# ==================== FILE PATHS ====================
-REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
-STATS_FILE = os.path.join(BASE_DIR, "stats.json")
-LIVE_STATS_FILE = os.path.join(BASE_DIR, "live_stats.json")
-GEOIP_CACHE_FILE = os.path.join(BASE_DIR, "geoip_cache.json")
-HEALTH_SCORE_FILE = os.path.join(BASE_DIR, "health_scores.json")
-MIGRATION_FILE = os.path.join(BASE_DIR, "migration_map.json")
-HISTORY_FILE = os.path.join(BASE_DIR, "history.json")
-PREMIUM_FILE = os.path.join(BASE_DIR, "premium.txt")
-SPEED_RESULTS_FILE = os.path.join(BASE_DIR, "speed_results.json")
-THREAT_INTEL_FILE = os.path.join(BASE_DIR, "threat_intel.json")
 
 COUNTRY_NAMES = {
     "AF": "🇦🇫 Afghanistan", "AL": "🇦🇱 Albania", "DZ": "🇩🇿 Algeria", "AR": "🇦🇷 Argentina", "AM": "🇦🇲 Armenia",
@@ -226,26 +63,20 @@ COUNTRY_NAMES = {
     "VN": "🇻🇳 Vietnam", "VE": "🇻🇪 Venezuela"
 }
 
-RU_MARKERS_STRICT = [
-    ".ru", "moscow", "msk", "spb", "saint-peter", "russia",
-    "россия", "москва", "питер", "ru-", "-ru.",
-    "178.154.", "77.88.", "5.255.", "87.250.",
-    "95.108.", "213.180.", "195.208.", "91.108.", "149.154.",
-    ".kz", ".by", ".ua", ".uz", ".az", ".ge", ".am", ".md",
-    "kazakhstan", "belarus", "ukraine", "tashkent", "baku", "tbilisi",
-]
-EURO_CODES = {"NL", "DE", "FI", "GB", "FR", "SE", "PL", "CZ", "AT", "CH", "IT", "ES", "NO", "DK", "BE", "IE", "LU", "EE", "LV", "LT"}
-ASIA_CODES = {"TR", "AE", "SG", "HK", "JP", "KR", "IN", "TH", "VN", "ID", "MY", "PH"}
-US_CODES = {"US", "USA", "UNITED STATES"}
-
 BAD_MARKERS = ["CN", "IR", "KP", "RELAY", "POOL", "ANYCAST"]
 CDN_KEYWORDS = ["cloudflare", "cdn", "akamai", "anycast"]
+CLOUDFLARE_IP_PREFIXES = ["104.", "172.64.", "173.", "190.", "197.", "198.", "203.", "24."]
 
 RU_CIS_IP_PREFIXES = [
     "5.", "31.", "37.", "46.", "62.", "77.", "78.", "79.", "80.", "81.", "82.", "83.", "84.", "85.", "86.", "87.",
-    "88.", "89.", "91.", "92.", "93.", "94.", "95.", "109.", "128.", "134.", "141.", "145.", "149.", "151.", "158.",
+    "88.", "89.", "91.", "92.", "93.", "94.", "95.", "109.", "128.", "134.", "141.", "145.", "151.", "158.",
     "164.", "171.", "176.", "178.", "185.", "188.", "193.", "194.", "195.", "212.", "213.", "217.",
 ]
+
+REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
+STATS_FILE = os.path.join(BASE_DIR, "stats.json")
+LIVE_STATS_FILE = os.path.join(BASE_DIR, "live_stats.json")
+GEOIP_CACHE_FILE = os.path.join(BASE_DIR, "geoip_cache.json")
 
 OUTPUTS = {
     "black": {
@@ -264,6 +95,17 @@ OUTPUTS = {
             "https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/black.txt",
             "https://raw.githubusercontent.com/FreeRadar/v2ray/main/black.txt",
             "https://raw.githubusercontent.com/aliilapro/v2ray/main/config.txt",
+        ],
+    },
+    "black_mobile": {
+        "folder": os.path.join(BASE_DIR, "black"),
+        "file": "black_mobile.txt",
+        "urls": [
+            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt",
+            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt",
+            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt",
+            "https://vpn.akres.fun/all",
+            "https://mifa.world/fast",
         ],
     },
     "white_all": {
@@ -313,16 +155,12 @@ os.makedirs(BASE_DIR, exist_ok=True)
 _reputation_db = {}
 _stats = {"sources": defaultdict(int), "total_checked": 0, "alive": 0, "dead": 0, "sources_alive": defaultdict(int)}
 _geoip_cache = {}
+_seen_configs = set()
 _lock = threading.Lock()
 _rep_lock = threading.Lock()
 _stats_lock = threading.Lock()
 _geo_lock = threading.Lock()
-
-_health_scores = {}
-_migration_map = {}
-_geo_lock = threading.Lock()
-_health_lock = threading.Lock()
-_mig_lock = threading.Lock()
+_seen_lock = threading.Lock()
 
 def load_json(path):
     if os.path.exists(path):
@@ -346,14 +184,6 @@ def load_geoip_cache():
     global _geoip_cache
     _geoip_cache = load_json(GEOIP_CACHE_FILE)
 
-def load_health_scores():
-    global _health_scores
-    _health_scores = load_json(HEALTH_SCORE_FILE)
-
-def load_migration_map():
-    global _migration_map
-    _migration_map = load_json(MIGRATION_FILE)
-
 def save_reputation():
     with _rep_lock:
         save_json(REPUTATION_FILE, _reputation_db)
@@ -361,14 +191,6 @@ def save_reputation():
 def save_geoip_cache():
     with _geo_lock:
         save_json(GEOIP_CACHE_FILE, _geoip_cache)
-
-def save_health_scores():
-    with _health_lock:
-        save_json(HEALTH_SCORE_FILE, _health_scores)
-
-def save_migration_map():
-    with _mig_lock:
-        save_json(MIGRATION_FILE, _migration_map)
 
 def check_reputation(host, port):
     key = f"{host}:{port}"
@@ -394,25 +216,28 @@ def get_geoip_cached(host):
 
 def set_geoip_cached(host, country_code, country_name):
     with _geo_lock:
-        _geoip_cache[host] = {
-            "code": country_code,
-            "name": country_name,
-            "timestamp": time.time()
-        }
+        _geoip_cache[host] = {"code": country_code, "name": country_name, "timestamp": time.time()}
 
 def fetch_geoip_multi(host):
-    """
-    🔥 TRUE HARDCORE: Parallel GeoIP lookup across ALL APIs simultaneously.
-    If one API hits rate limit, others continue instantly - NO WAITING.
-    Total throughput: ~250-300 requests/minute across all APIs combined.
-    Expected time for 15400 keys: 8-12 minutes (vs 30+ min before).
-    """
-    return fetch_geoip_parallel(host)
+    cached = get_geoip_cached(host)
+    if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
+        return cached["code"], cached["name"]
+    
+    apis = [lambda: fetch_geoip_ipapi(host), lambda: fetch_geoip_ipwhois(host)]
+    for api_fn in apis:
+        try:
+            result = api_fn()
+            if result:
+                code, name = result
+                set_geoip_cached(host, code, name)
+                return code, name
+        except Exception:
+            continue
+    return None, None
 
 def fetch_geoip_ipapi(host):
-    """ip-api.com - FREE tier: 45 requests per minute"""
     try:
-        r = requests.get(f"http://ip-api.com/json/{host}?fields=countryCode,country", timeout=8)
+        r = requests.get(f"http://ip-api.com/json/{host}?fields=countryCode,country", timeout=3)
         if r.status_code == 200:
             data = r.json()
             if data.get("status") == "success":
@@ -422,9 +247,8 @@ def fetch_geoip_ipapi(host):
     return None, None
 
 def fetch_geoip_ipwhois(host):
-    """ipwhois.app - ~60 requests per minute"""
     try:
-        r = requests.get(f"http://ipwhois.app/json/{host}?lang=en", timeout=8)
+        r = requests.get(f"http://ipwhois.app/json/{host}?lang=en", timeout=3)
         if r.status_code == 200:
             data = r.json()
             if data.get("success"):
@@ -433,498 +257,104 @@ def fetch_geoip_ipwhois(host):
         pass
     return None, None
 
-def fetch_geoip_ipgb(host):
-    """ipapi.co - 30 requests per minute"""
+def is_cloudflare_ip(ip):
+    for prefix in CLOUDFLARE_IP_PREFIXES:
+        if ip.startswith(prefix):
+            return True
+    return False
+
+def is_cloudflare_asn(geo_data):
+    return False
+
+def tcp_test(host, port, timeout=TIMEOUT_CONNECT):
     try:
-        r = requests.get(f"https://ipapi.co/{host}/json/", timeout=8)
-        if r.status_code == 200:
-            data = r.json()
-            return data.get("country_code", "XX"), data.get("country_name", "Unknown")
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        sock.settimeout(timeout)
+        start = time.perf_counter()
+        result = sock.connect_ex((host, port))
+        ping_ms = (time.perf_counter() - start) * 1000
+        sock.close()
+        if result == 0:
+            return True, ping_ms
+        return False, 9999
     except Exception:
-        pass
-    return None, None
+        return False, 9999
 
-def fetch_geoip_ipapi_com(host):
-    """Additional ipapi endpoint - 50 requests per minute"""
-    try:
-        r = requests.get(f"https://ip-api.com/json/{host}?fields=countryCode,country", timeout=8)
-        if r.status_code == 200:
-            data = r.json()
-            if data.get("status") == "success":
-                return data.get("countryCode", "XX"), data.get("country", "Unknown")
-    except Exception:
-        pass
-    return None, None
-
-def fetch_geoip_ipinfo(host):
-    """ipinfo.io - 50 requests per minute"""
-    try:
-        r = requests.get(f"https://ipinfo.io/{host}/json", timeout=8)
-        if r.status_code == 200:
-            data = r.json()
-            country = data.get("country", "")
-            if country:
-                # Map country code to name
-                return country, COUNTRY_NAMES.get(country, country)
-    except Exception:
-        pass
-    return None, None
-
-def fetch_geoip_ipgeolocation(host):
-    """ipgeolocation.io - 40 requests per minute"""
-    try:
-        r = requests.get(f"https://api.ipgeolocation.io/ipgeo?apiKey=free&ip={host}", timeout=8)
-        if r.status_code == 200:
-            data = r.json()
-            country = data.get("country_code2", "")
-            name = data.get("country_name", "Unknown")
-            if country:
-                return country, name
-    except Exception:
-        pass
-    return None, None
-
-def fetch_geoip_abstract(host):
-    """Abstract API - 30 requests per minute"""
-    try:
-        r = requests.get(f"https://ip.abstractapi.com/v1/?api_key=free&ip_address={host}", timeout=8)
-        if r.status_code == 200:
-            data = r.json()
-            country = data.get("country_code", "")
-            name = data.get("country", "Unknown")
-            if country:
-                return country, name
-    except Exception:
-        pass
-    return None, None
-
-def update_health_score(host, port, ping, success):
-    key = f"{host}:{port}"
-    with _health_lock:
-        if key not in _health_scores:
-            _health_scores[key] = {"score": 100, "checks": 0, "fails": 0, "avg_ping": 0, "deep_checks": 0, "deep_passes": 0}
-
-        entry = _health_scores[key]
-        entry["checks"] += 1
-
-        if success:
-            new_avg = ((entry["avg_ping"] * (entry["checks"] - 1)) + ping) / entry["checks"]
-            entry["avg_ping"] = new_avg
-            entry["score"] = max(0, entry["score"] - 0.5)
-            entry["fails"] = 0
-        else:
-            entry["score"] = max(0, entry["score"] - 15)
-            entry["fails"] += 1
-
-
-def deep_check_level1(host, port):
-    """
-    🔥 LEVEL 1: TCP Connect + Ping Test (2 attempts)
-    - 2 попытки подключения для стабильности
-    - Точное измерение пинга в микросекундах
-    - SUCCESS RULE: 2/2 = GOOD, 1/2 = UNSTABLE, 0/2 = DEAD
-    """
-    config = DEEP_CHECK_LEVELS["level1"]
-    retries = config["retries"]
-    timeout = config["timeout"]
-    
+def tcp_test_double(host, port):
     results = []
-    for attempt in range(retries):
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            sock.settimeout(timeout)
-            
-            start = time.perf_counter()
-            result = sock.connect_ex((host, port))
-            end = time.perf_counter()
-            
-            ping_ms = (end - start) * 1000
-            
-            if result == 0:
-                results.append({"success": True, "ping": ping_ms, "attempt": attempt + 1})
-                sock.close()
-            else:
-                results.append({"success": False, "error": f"connect_ex={result}", "attempt": attempt + 1})
-                sock.close()
-                    
-        except socket.timeout:
-            results.append({"success": False, "error": "timeout", "attempt": attempt + 1})
-        except socket.error as e:
-            results.append({"success": False, "error": str(e), "attempt": attempt + 1})
-        except Exception as e:
-            results.append({"success": False, "error": str(e), "attempt": attempt + 1})
-            break
+    for attempt in range(2):
+        success, ping = tcp_test(host, port)
+        results.append({"success": success, "ping": ping, "attempt": attempt + 1})
     
-    # Анализ результатов: 2/2 = GOOD, 1/2 = UNSTABLE, 0/2 = DEAD
-    successful = [r for r in results if r.get("success")]
-    if len(successful) == retries:  # 2/2 = GOOD
-        avg_ping = sum(r["ping"] for r in successful) / len(successful)
-        return {"passed": True, "status": "GOOD", "avg_ping": avg_ping, "details": results}
-    elif len(successful) > 0:  # 1/2 = UNSTABLE
-        avg_ping = sum(r["ping"] for r in successful) / len(successful)
-        return {"passed": True, "status": "UNSTABLE", "avg_ping": avg_ping, "details": results}
-    return {"passed": False, "status": "DEAD", "details": results}
+    successful = [r for r in results if r["success"]]
+    
+    if len(successful) == 2:
+        avg_ping = sum(r["ping"] for r in successful) / 2
+        return "GOOD", avg_ping, results
+    elif len(successful) == 1:
+        avg_ping = successful[0]["ping"]
+        return "UNSTABLE", avg_ping, results
+    else:
+        return "DEAD", 9999, results
 
-
-def deep_check_level2(host, port):
-    """
-    🔥 LEVEL 2: SSL/TLS Deep Inspection
-    - Полноценный TLS handshake
-    - Проверка всех версий TLS (1.0, 1.1, 1.2, 1.3)
-    - Валидация сертификата: срок действия, issuer, subject
-    - Проверка SNI соответствия
-    - Определение cipher suite
-    - Отсев просроченных сертификатов
-    - Отсев старых TLS версий (< 1.2)
-    """
-    config = DEEP_CHECK_LEVELS["level2"]
-    tls_versions = config["tls_versions"]
-    
-    results = {
-        "tls_supported": [],
-        "cert_valid": False,
-        "cert_info": {},
-        "cipher_suite": None,
-        "sni_match": True,
-        "passed": False
-    }
-    
-    # Проверка поддерживаемых TLS версий
-    tls_map = {
-        "TLSv1.0": ssl.TLSVersion.TLSv1 if hasattr(ssl.TLSVersion, 'TLSv1') else None,
-        "TLSv1.1": ssl.TLSVersion.TLSv1_1 if hasattr(ssl.TLSVersion, 'TLSv1_1') else None,
-        "TLSv1.2": ssl.TLSVersion.TLSv1_2 if hasattr(ssl.TLSVersion, 'TLSv1_2') else None,
-        "TLSv1.3": ssl.TLSVersion.TLSv1_3 if hasattr(ssl.TLSVersion, 'TLSv1_3') else None,
-    }
-    
-    for tls_name in ["TLSv1.0", "TLSv1.1", "TLSv1.2", "TLSv1.3"]:
-        tls_version = tls_map.get(tls_name)
-        if tls_version is None:
-            continue
-            
-        try:
-            context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-            context.check_hostname = False
-            context.verify_mode = ssl.CERT_NONE
-            context.minimum_version = tls_version
-            context.maximum_version = tls_version
-            
-            with socket.create_connection((host, port), timeout=8.0) as sock:
-                with context.wrap_socket(sock, server_hostname=host) as ssock:
-                    results["tls_supported"].append(tls_name)
-                    if tls_name in tls_versions:
-                        results["cipher_suite"] = ssock.cipher()[0] if ssock.cipher() else None
-        except Exception:
-            pass
-    
-    # Требуем минимум TLS 1.2
-    modern_tls = [t for t in results["tls_supported"] if t in tls_versions]
-    if not modern_tls:
-        return results
-    
-    # Получение информации о сертификате
-    try:
-        context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-        context.check_hostname = False
-        context.verify_mode = ssl.CERT_NONE  # Не проверяем цепочку доверия (для самоподписанных cert)
-        context.minimum_version = ssl.TLSVersion.TLSv1_2
-        
-        with socket.create_connection((host, port), timeout=8.0) as sock:
-            with context.wrap_socket(sock, server_hostname=host) as ssock:
-                cert = ssock.getpeercert()
-                if cert:
-                    results["cert_valid"] = True  # Сертификат есть - уже хорошо для VPN
-                    results["cert_info"] = {
-                        "subject": dict(x[0] for x in cert.get("subject", [])),
-                        "issuer": dict(x[0] for x in cert.get("issuer", [])),
-                        "not_before": cert.get("notBefore"),
-                        "not_after": cert.get("notAfter"),
-                        "version": cert.get("version"),
-                    }
-                    
-                    # Проверка срока действия
-                    import datetime
-                    not_after = cert.get("notAfter")
-                    if not_after:
-                        try:
-                            # Пробуем разные форматы даты
-                            for fmt in ["%b %d %H:%M:%S %Y %Z", "%b  %d %H:%M:%S %Y %Z", "%Y%m%d%H%M%SZ"]:
-                                try:
-                                    expire_date = datetime.datetime.strptime(not_after, fmt)
-                                    break
-                                except ValueError:
-                                    continue
-                            else:
-                                # Если ни один формат не подошел, считаем что сертификат ок
-                                results["cert_valid"] = True
-                                expire_date = None
-                            
-                            if expire_date and expire_date < datetime.datetime.utcnow():
-                                results["cert_valid"] = False
-                                results["cert_expired"] = True
-                        except Exception:
-                            pass  # Игнорируем ошибки парсинга даты - сертификат всё равно считается валидным
-    except Exception as e:
-        results["cert_error"] = str(e)
-    
-    # Итоговая проверка уровня 2: достаточно современных TLS версий
-    # Сертификат желателен но не обязателен для VPN (многие используют самоподписанные)
-    if modern_tls:
-        results["passed"] = True
-    
-    return results
-
-
-def deep_check_level3(host, port):
-    """
-    🔥 LEVEL 3: Traffic & Stability Test
-    - 3 раунда тестирования с отправкой данных
-    - Проверка ответа сервера
-    - Тест стабильности соединения
-    - Вычисление stability score (0-100%)
-    """
-    config = DEEP_CHECK_LEVELS["level3"]
-    rounds = config["stability_rounds"]
-    min_stability = config["min_stability"]
-    
-    results = {
-        "rounds": [],
-        "successful_rounds": 0,
-        "total_bytes_sent": 0,
-        "total_bytes_received": 0,
-        "stability_score": 0.0,
-        "passed": False
-    }
-    
-    test_payloads = [
-        b"GET / HTTP/1.1\r\nHost: " + host.encode() + b"\r\nConnection: close\r\n\r\n",
-        b"HEAD / HTTP/1.0\r\n\r\n",
-        b"\x16\x03\x01\x00\x05\x01",  # Minimal TLS ClientHello
-    ]
-    
-    for round_num in range(rounds):
-        round_result = {"round": round_num + 1, "success": False, "bytes_sent": 0, "bytes_received": 0, "error": None}
-        
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(10.0)
-            sock.connect((host, port))
-            
-            # Попытка отправить тестовые данные
-            payload = test_payloads[round_num % len(test_payloads)]
-            sent = sock.send(payload)
-            round_result["bytes_sent"] = sent
-            results["total_bytes_sent"] += sent
-            
-            # Попытка получить ответ
-            sock.settimeout(5.0)
-            try:
-                received = sock.recv(4096)
-                round_result["bytes_received"] = len(received)
-                results["total_bytes_received"] += len(received)
-                
-                if len(received) > 0:
-                    round_result["success"] = True
-                    results["successful_rounds"] += 1
-            except socket.timeout:
-                # Таймаут при получении - не всегда ошибка для некоторых прокси
-                round_result["success"] = True
-                results["successful_rounds"] += 1
-            except Exception as e:
-                round_result["error"] = f"recv error: {e}"
-            
-            sock.close()
-            
-        except Exception as e:
-            round_result["error"] = str(e)
-        
-        results["rounds"].append(round_result)
-        
-        # Небольшая задержка между раундами
-        if round_num < rounds - 1:
-            time.sleep(0.5)
-    
-    # Вычисление stability score
-    if rounds > 0:
-        results["stability_score"] = results["successful_rounds"] / rounds
-    
-    results["passed"] = results["stability_score"] >= min_stability
-    
-    return results
-
-
-def deep_check_full(host, port):
-    """
-    🔥 ПОЛНАЯ ГЛУБОКАЯ ПРОВЕРКА: Все 3 уровня
-    Возвращает детальный отчет по каждому уровню
-    """
-    report = {
-        "host": host,
-        "port": port,
-        "timestamp": time.time(),
-        "level1": None,
-        "level2": None,
-        "level3": None,
-        "overall_passed": False,
-        "quality_score": 0
-    }
-    
-    # Уровень 1
-    report["level1"] = deep_check_level1(host, port)
-    if not report["level1"]["passed"]:
-        return report
-    
-    # Уровень 2
-    report["level2"] = deep_check_level2(host, port)
-    if not report["level2"]["passed"]:
-        return report
-    
-    # Уровень 3
-    report["level3"] = deep_check_level3(host, port)
-    if not report["level3"]["passed"]:
-        return report
-    
-    # Все уровни пройдены
-    report["overall_passed"] = True
-    
-    # Вычисление Quality Score (0-100)
-    q_score = 100.0
-    
-    # Штраф за высокий пинг
-    avg_ping = report["level1"]["avg_ping"]
-    if avg_ping > 500:
-        q_score -= min(30, (avg_ping - 500) / 50)
-    elif avg_ping > 200:
-        q_score -= min(15, (avg_ping - 200) / 20)
-    
-    # Бонус за современные TLS
-    tls_supported = report["level2"]["tls_supported"]
-    if "TLSv1.3" in tls_supported:
-        q_score += 5
-    if "TLSv1.2" in tls_supported and "TLSv1.3" not in tls_supported:
-        q_score += 2
-    
-    # Бонус за стабильность
-    stability = report["level3"]["stability_score"]
-    if stability >= 0.9:
-        q_score += 5
-    elif stability >= 0.7:
-        q_score += 2
-    
-    report["quality_score"] = min(100, max(0, q_score))
-    
-    return report
-
-def get_migration_suggestion(country_code):
-    if country_code not in BLOCKED_COUNTRIES:
-        return None
-
-    # 🗺️ EXTENDED MIGRATION MAP v2.0 - Больше альтернатив чем у конкурентов
-    migration_options = {
-        "CN": ["HK", "TW", "JP", "KR", "SG", "MO"],
-        "IR": ["TR", "AE", "DE", "NL", "FR", "IQ", "AM"],
-        "KP": ["RU", "CN"],
-        "RU": ["FI", "EE", "LV", "LT", "PL", "GE", "KZ", "AZ"],  # 🆕 Уникальная фича для России
-    }
-
-    options = migration_options.get(country_code, ["DE", "NL", "FI", "SE", "EE"])
-    with _mig_lock:
-        if country_code not in _migration_map:
-            _migration_map[country_code] = {"suggested": options[0], "alternatives": options[1:], "timestamp": time.time()}
-        return _migration_map[country_code]
-
-# ==========================================
-# 🕵️ ПАРСИНГ И ПРОВЕРКА (БЕЗ GEOIP)
-# ==========================================
 def normalize_config_params(item):
-    """
-    🔥 NORMALIZE CONFIG PARAMS for quality boost
-    Normalizes: type, security, sni, host, path, alpn, fp, pbk, sid, flow, 
-                 serviceName, mode, headerType, seed, quicSecurity, key, encryption
-    
-    Returns normalized config string for deduplication
-    """
     params = item.get('params', {})
     p_type = item.get('type', '')
     host = (item.get('host') or '').lower().strip()
     port = item.get('port')
     
-    # Normalize security
     security = ''
     if isinstance(params, dict):
         sec_list = params.get('security', [])
         security = sec_list[0] if isinstance(sec_list, list) and sec_list else sec_list
     security = (security or '').lower().strip()
     
-    # Normalize SNI
     sni = ''
     if isinstance(params, dict):
         sni_list = params.get('sni', [])
         sni = sni_list[0] if isinstance(sni_list, list) and sni_list else sni_list
     sni = (sni or host).lower().strip()
     
-    # Normalize other params
     def get_param(name):
         val = params.get(name, []) if isinstance(params, dict) else []
         return val[0] if isinstance(val, list) and val else val
     
-    alpn = get_param('alpn') or ''
-    fp = get_param('fp') or ''
-    pbk = get_param('pbk') or ''
-    sid = get_param('sid') or ''
-    flow = get_param('flow') or ''
-    serviceName = get_param('serviceName') or ''
-    mode = get_param('mode') or ''
-    headerType = get_param('headerType') or ''
-    seed = get_param('seed') or ''
-    quicSecurity = get_param('quicSecurity') or ''
-    key = get_param('key') or ''
-    encryption = get_param('encryption') or ''
-    path = get_param('path') or ''
-    
-    # Build normalized config string for deduplication
-    normalized = f"{p_type}|{host}|{port}|{security}|{sni}|{pbk}|{sid}|{flow}"
-    
-    # Store normalized params in item
-    item['normalized'] = {
+    normalized = {
         'type': p_type,
         'security': security,
         'sni': sni,
         'host': host,
-        'path': path,
-        'alpn': alpn,
-        'fp': fp,
-        'pbk': pbk,
-        'sid': sid,
-        'flow': flow,
-        'serviceName': serviceName,
-        'mode': mode,
-        'headerType': headerType,
-        'seed': seed,
-        'quicSecurity': quicSecurity,
-        'key': key,
-        'encryption': encryption,
+        'path': get_param('path') or '',
+        'alpn': get_param('alpn') or '',
+        'fp': get_param('fp') or '',
+        'pbk': get_param('pbk') or '',
+        'sid': get_param('sid') or '',
+        'flow': get_param('flow') or '',
+        'serviceName': get_param('serviceName') or '',
+        'mode': get_param('mode') or '',
+        'headerType': get_param('headerType') or '',
+        'seed': get_param('seed') or '',
+        'quicSecurity': get_param('quicSecurity') or '',
+        'key': get_param('key') or '',
+        'encryption': get_param('encryption') or '',
     }
     
-    return normalized
+    item['normalized'] = normalized
+    dedup_string = f"{p_type}|{host}|{port}|{security}|{sni}|{normalized['pbk']}|{normalized['sid']}|{normalized['flow']}"
+    return dedup_string
 
+def is_valid_uuid(uuid_str):
+    if not uuid_str:
+        return False
+    uuid_pattern = re.compile(r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
+    return bool(uuid_pattern.match(uuid_str))
 
 def parse_proxy_line(line, source_url=""):
     line = line.strip()
     if not line or line.startswith('#'):
         return None
     
-    # Нормализация TG прокси
-    if line.startswith("tg://proxy"):
-        # Конвертируем tg:// в https://t.me для кликабельности
-        line = line.replace("tg://proxy?", "https://t.me/proxy?")
-        return {"type": "tg_proxy", "raw": line, "host": None, "port": None, "source_url": source_url}
-    
-    if line.startswith("https://t.me/proxy"):
-        return {"type": "tg_proxy", "raw": line, "host": None, "port": None, "source_url": source_url}
-    
-    # VLESS
     if line.startswith("vless://"):
         try:
             parsed = urlparse(line)
@@ -935,716 +365,331 @@ def parse_proxy_line(line, source_url=""):
             item = {"type": "vless", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
             normalize_config_params(item)
             return item
-        except: return None
+        except Exception:
+            return None
     
-    # VMess
     if line.startswith("vmess://"):
         try:
             decoded = base64.b64decode(line[8:] + '==').decode('utf-8')
             data = json.loads(decoded)
-            item = {"type": "vmess", "host": data.get('add'), "port": int(data.get('port', 443)), "name": data.get('ps', ''), "raw": line, "params": data, "source_url": source_url}
+            host = data.get('add', '')
+            port = data.get('port', '')
+            name = data.get('ps', '')
+            item = {"type": "vmess", "host": host, "port": int(port) if str(port).isdigit() else None, "name": name, "raw": line, "params": data, "source_url": source_url}
             normalize_config_params(item)
             return item
-        except: return None
-        
-    # Trojan
+        except Exception:
+            return None
+    
     if line.startswith("trojan://"):
         try:
             parsed = urlparse(line)
             host = parsed.hostname
             port = parsed.port
             name = unquote(parsed.fragment)
-            item = {"type": "trojan", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+            params = parse_qs(parsed.query)
+            item = {"type": "trojan", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
             normalize_config_params(item)
             return item
-        except: return None
-
-    # SS
+        except Exception:
+            return None
+    
     if line.startswith("ss://"):
         try:
             parsed = urlparse(line)
             host = parsed.hostname
             port = parsed.port
             name = unquote(parsed.fragment)
-            item = {"type": "ss", "host": host, "port": port, "name": name, "raw": line, "params": {}, "source_url": source_url}
+            userinfo = parsed.username + ':' + parsed.password if parsed.password else parsed.username
+            try:
+                decoded = base64.b64decode(userinfo + '==').decode('utf-8')
+            except Exception:
+                decoded = userinfo
+            item = {"type": "ss", "host": host, "port": port, "name": name, "raw": line, "params": {"method_password": decoded}, "source_url": source_url}
             normalize_config_params(item)
             return item
-        except: return None
-        
+        except Exception:
+            return None
+    
     return None
 
-
-def check_socket_with_retry(host, port, retries=RETRY_COUNT):
-    """Проверка сокета с повторными попытками для нестабильных соединений (РФ/СНГ из США)"""
-    last_error = None
-    
-    for attempt in range(retries + 1):
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            
-            # Оптимизированные таймауты для трансатлантических соединений
-            sock.settimeout(TIMEOUT_CONNECT)
-            
-            start = time.time()
-            result = sock.connect_ex((host, port))
-            ping = (time.time() - start) * 1000
-            
-            if result == 0:
-                # Успешное подключение - проверяем пинг
-                # Для РФ/СНГ допускаем высокий пинг до MAX_PING_MS
-                sock.close()
-                return True, ping
-            
-            sock.close()
-            
-            # Если это не последняя попытка и была ошибка - ждем перед следующей
-            if attempt < retries and result != 0:
-                time.sleep(RETRY_DELAY * (attempt + 1))  # Экспоненциальная задержка
-                
-        except socket.timeout as e:
-            last_error = e
-            if attempt < retries:
-                time.sleep(RETRY_DELAY * (attempt + 1))
-        except socket.error as e:
-            last_error = e
-            if attempt < retries:
-                time.sleep(RETRY_DELAY * (attempt + 1))
-        except Exception as e:
-            last_error = e
-            break
-    
-    return False, 9999
-
-
-def check_socket(host, port, timeout=TIMEOUT_CONNECT):
-    """Базовая проверка сокета (обратная совместимость)"""
-    return check_socket_with_retry(host, port, retries=0)
-
-
-def get_country_approx(host, name):
-    host_l = host.lower() if host else ""
-    name_u = name.upper() if name else ""
-    
-    if host_l.endswith(".ru") or "RU" in name_u or "ROSSIA" in name_u or "MOSCOW" in name_u:
-        return "RU", "Russia"
-    
-    for prefix in RU_CIS_IP_PREFIXES:
-        if host_l.startswith(prefix):
-            if any(marker in name_u for marker in ["RU", "KZ", "BY", "UA", "UZ"]):
-                return "CIS", "CIS Region"
-    
-    for code in EURO_CODES:
-        if code in name_u:
-            return code, COUNTRY_NAMES.get(code, "Europe")
-    
-    for code in ASIA_CODES:
-        if code in name_u:
-            return code, COUNTRY_NAMES.get(code, "Asia")
-    
-    for code in US_CODES:
-        if code in name_u:
-            return "US", "United States"
-    
-    if any(marker in name_u for marker in ["KAZAKHSTAN", "BELARUS", "UKRAINE", "UZBEKISTAN"]):
-        return "CIS", "CIS Region"
-    
-    return "XX", "Unknown"
-
-COUNTRY_NAMES = {
-    "RU": "Russia", "NL": "Netherlands", "DE": "Germany", "FI": "Finland", "GB": "United Kingdom",
-    "FR": "France", "SE": "Sweden", "PL": "Poland", "CZ": "Czech Republic", "AT": "Austria",
-    "CH": "Switzerland", "IT": "Italy", "ES": "Spain", "NO": "Norway", "DK": "Denmark",
-    "BE": "Belgium", "IE": "Ireland", "LU": "Luxembourg", "EE": "Estonia", "LV": "Latvia",
-    "LT": "Lithuania", "TR": "Turkey", "AE": "UAE", "SG": "Singapore", "HK": "Hong Kong",
-    "JP": "Japan", "KR": "South Korea", "IN": "India", "TH": "Thailand", "VN": "Vietnam",
-    "ID": "Indonesia", "MY": "Malaysia", "PH": "Philippines", "US": "United States",
-    "CN": "China", "IR": "Iran", "KP": "North Korea",
-    "BY": "Belarus", "UA": "Ukraine", "KZ": "Kazakhstan", "UZ": "Uzbekistan", 
-    "AZ": "Azerbaijan", "GE": "Georgia", "AM": "Armenia",
-}
-
-BLOCKED_COUNTRIES = {"CN", "IR", "KP", "RU"}  # 🆕 Добавлена Россия для миграционных рекомендаций
-
-
-def format_server_name(item, country_code, country_name):
-    """
-    Generate formatted server name with flag emoji, country name, and StintikVPN branding.
-    Format: 🇺🇸 United States | StintikVPN
-    """
-    # Get flag emoji from country code
-    flag = COUNTRY_NAMES.get(country_code, "")
-    
-    # Extract just the country name without flag if it's in our dictionary
-    full_name = COUNTRY_NAMES.get(country_code, country_name)
-    if ' ' in full_name and any(ord(c) > 127 for c in full_name.split()[0]):
-        # Has flag emoji at start, extract country name
-        parts = full_name.split(' ', 1)
-        if len(parts) > 1:
-            country_display = parts[1]
-        else:
-            country_display = country_name
-    else:
-        country_display = country_name
-    
-    # If flag is empty, try to get it from the full name
-    if not flag or '🇦' not in flag and '🇧' not in flag and '🇨' not in flag:
-        # Flag wasn't found, use country code to construct flag
-        flag = get_flag_emoji(country_code)
-    
-    return f"{flag} {country_display} | StintikVPN"
-
-def get_flag_emoji(country_code):
-    """Convert country code to flag emoji"""
-    if not country_code or len(country_code) != 2:
-        return "🌍"
-    
-    # Regional indicator symbols
-    base = ord('🇦') - ord('A')
-    try:
-        flag_char1 = chr(base + ord(country_code[0].upper()))
-        flag_char2 = chr(base + ord(country_code[1].upper()))
-        return flag_char1 + flag_char2
-    except:
-        return "🌍"
-
-# Global deduplication set
-_seen_configs = set()
-_seen_lock = threading.Lock()
-
-def process_key(item):
-    """
-    🔥 SIMPLIFIED DEEP CHECKING - 2 LEVELS
-    - Level 1: TCP Connect + Ping (2 attempts) - 2/2=GOOD, 1/2=UNSTABLE, 0/2=DEAD
-    - Level 2: SSL/TLS Check
-    
-    DEDUP BY:
-    - normalized config string
-    - host + port + uuid
-    - host + port + pbk
-    - host + port + password
-    
-    REMOVE:
-    - malformed UUID
-    - empty host
-    - invalid port
-    - configs without tls/reality
-    - broken reality params
-    - duplicate configs
-    """
-    p_type = item.get('type')
-    source = item.get('source_url', 'unknown')
+def validate_config(item):
+    if not item:
+        return False, "empty"
     
     host = item.get('host')
     port = item.get('port')
     
-    if not host or not port:
-        return None
+    if not host or not str(host).strip():
+        return False, "empty_host"
     
-    # Validate port
-    try:
-        port = int(port)
-        if port < 1 or port > 65535:
-            return None
-    except (ValueError, TypeError):
-        return None
+    if not port or not str(port).isdigit() or int(port) <= 0 or int(port) > 65535:
+        return False, "invalid_port"
     
-    # DEDUP check using normalized config
-    normalized = item.get('normalized', {})
-    if normalized:
-        dedup_key = f"{normalized.get('type')}|{normalized.get('host')}|{normalized.get('port')}|{normalized.get('pbk')}|{normalized.get('sid')}"
-        with _seen_lock:
-            if dedup_key in _seen_configs:
-                return None  # Duplicate
-            _seen_configs.add(dedup_key)
-    
-    # Additional dedup by host+port+uuid/pbk/password
     params = item.get('params', {})
-    uuid = ''
-    password = ''
-    pbk = normalized.get('pbk', '') if normalized else ''
+    security = ''
+    if isinstance(params, dict):
+        sec_list = params.get('security', [])
+        security = sec_list[0] if isinstance(sec_list, list) and sec_list else sec_list
+    security = (security or '').lower().strip()
     
-    if p_type == 'vless':
-        uuid = params.get('id', [''])[0] if isinstance(params, dict) else ''
-    elif p_type == 'trojan':
-        password = params.get('password', [''])[0] if isinstance(params, dict) else ''
-    
-    if uuid:
-        dedup_uuid = f"{host}|{port}|{uuid}"
-        with _seen_lock:
-            if dedup_uuid in _seen_configs:
-                return None
-            _seen_configs.add(dedup_uuid)
-    
-    if pbk:
-        dedup_pbk = f"{host}|{port}|{pbk}"
-        with _seen_lock:
-            if dedup_pbk in _seen_configs:
-                return None
-            _seen_configs.add(dedup_pbk)
-    
-    if password:
-        dedup_pass = f"{host}|{port}|{password}"
-        with _seen_lock:
-            if dedup_pass in _seen_configs:
-                return None
-            _seen_configs.add(dedup_pass)
-    
-    # Check for TLS/Reality requirement
-    security = normalized.get('security', '') if normalized else ''
     if security not in ['tls', 'reality']:
-        return None  # Remove configs without tls/reality
+        return False, "no_tls_reality"
     
-    # Validate Reality params if reality is used
     if security == 'reality':
-        if not pbk:  # pbk is required for reality
-            return None  # Broken reality params
+        pbk = params.get('pbk', [])
+        if isinstance(pbk, list):
+            pbk = pbk[0] if pbk else ''
+        if not pbk:
+            return False, "broken_reality_no_pbk"
+    
+    if item.get('type') == 'vless':
+        uuid = item.get('raw', '').split('://')[1].split('@')[0] if '@' in item.get('raw', '') else ''
+        if uuid and not is_valid_uuid(uuid):
+            return False, "malformed_uuid"
+    
+    return True, "valid"
+
+def check_dedup(item):
+    host = (item.get('host') or '').lower().strip()
+    port = item.get('port')
+    params = item.get('params', {})
+    normalized = item.get('normalized', {})
+    
+    dedup_keys = []
+    
+    norm_string = f"{item.get('type')}|{host}|{port}|{normalized.get('security')}|{normalized.get('sni')}|{normalized.get('pbk')}|{normalized.get('sid')}|{normalized.get('flow')}"
+    dedup_keys.append(norm_string)
+    
+    uuid = ''
+    if item.get('type') == 'vless' and '@' in item.get('raw', ''):
+        uuid = item.get('raw', '').split('://')[1].split('@')[0]
+    if uuid:
+        dedup_keys.append(f"{host}|{port}|{uuid}")
+    
+    pbk = normalized.get('pbk', '')
+    if pbk:
+        dedup_keys.append(f"{host}|{port}|{pbk}")
+    
+    password = ''
+    if item.get('type') == 'trojan':
+        password = item.get('raw', '').split('://')[1].split('@')[0] if '@' in item.get('raw', '') else ''
+    elif item.get('type') == 'ss':
+        pm = params.get('method_password', '')
+        if ':' in str(pm):
+            password = pm.split(':')[-1]
+    if password:
+        dedup_keys.append(f"{host}|{port}|{password}")
+    
+    with _seen_lock:
+        for key in dedup_keys:
+            if key in _seen_configs:
+                return True
+        for key in dedup_keys:
+            _seen_configs.add(key)
+    
+    return False
+
+def process_config(item):
+    host = item.get('host')
+    port = item.get('port')
+    source_url = item.get('source_url', '')
+    
+    valid, reason = validate_config(item)
+    if not valid:
+        return None
+    
+    if check_dedup(item):
+        return None
     
     if not check_reputation(host, port):
         return None
-
-    # 🔥 DEEP CHECK: 2 levels (simplified)
-    if DEEP_CHECK_ENABLED:
-        deep_report = deep_check_full(host, port)
-        
-        # Уровень 1 не пройден - сервер мертв
-        if not deep_report.get("level1") or not deep_report["level1"].get("passed"):
-            update_reputation(host, port, False)
-            update_health_score(host, port, 9999, False)
-            return None
-        
-        # Уровень 2 не пройден - проблемы с SSL
-        if not deep_report.get("level2") or not deep_report["level2"].get("passed"):
-            update_reputation(host, port, False)
-            update_health_score(host, port, deep_report["level1"].get("avg_ping", 9999), False)
-            return None
-        
-        # Все уровни пройдены!
-        ping = deep_report["level1"].get("avg_ping", 9999)
-        quality_score = deep_report.get("quality_score", 100)
-        tcp_status = deep_report["level1"].get("status", "GOOD")
-        
-        # Обновляем health score с учетом качества
-        update_reputation(host, port, True)
-        update_health_score(host, port, ping, True)
-        
-        # Сохраняем детали глубокой проверки
-        item['deep_check'] = deep_report
-        item['quality_score'] = quality_score
-        item['tcp_status'] = tcp_status
-    else:
-        # Fallback к старой проверке если deep check отключен
-        is_online, ping = check_socket_with_retry(host, port)
-        
-        if not is_online:
-            update_reputation(host, port, False)
-            update_health_score(host, port, 9999, False)
-            return None
-            
-        update_reputation(host, port, True)
     
-    name = item.get('name', '')
-    raw = item.get('raw', '')
-
-    # 🔥 ANTI-ANYCAST FILTER: Block CDN/Anycast servers
-    name_upper = name.upper()
-    raw_lower = raw.lower()
+    status, ping, details = tcp_test_double(host, port)
     
-    # Check for Anycast/CDN markers in name and raw config
-    for keyword in CDN_KEYWORDS:
-        if keyword.upper() in name_upper or keyword in raw_lower:
-            return None  # Skip Anycast/CDN servers
-    
-    # Additional check: if host looks like CDN domain
-    host_lower = host.lower() if host else ""
-    if any(cdn in host_lower for cdn in ["cloudflare", "cdn", "akamai", "fastly"]):
+    if status == "DEAD":
+        update_reputation(host, port, False)
         return None
+    
+    update_reputation(host, port, True)
+    
+    geo_code, geo_name = fetch_geoip_multi(str(host))
+    if not geo_code:
+        geo_code = "XX"
+        geo_name = "Unknown"
+    
+    cf_ip = is_cloudflare_ip(str(host))
+    
+    country_flag = COUNTRY_NAMES.get(geo_code, f"🌐 {geo_code}")
+    original_name = item.get('name', '')
+    new_name = f"{country_flag} | StintikVPN"
+    
+    raw = item.get('raw', '')
+    if '#' in raw:
+        base = raw.rsplit('#', 1)[0]
+        item['raw'] = f"{base}#{new_name}"
+    else:
+        item['raw'] = f"{raw}#{new_name}"
+    
+    return {
+        "item": item,
+        "valid": True,
+        "ping": ping,
+        "status": status,
+        "country": geo_code,
+        "country_name": geo_name,
+        "cloudflare": cf_ip,
+        "source": source_url
+    }
 
-    
-    # HARDCORE GeoIP lookup with rate limiting
-    country_code, country_name = fetch_geoip_multi(host)
-    
-    if not country_code:
-        country_code, country_name = get_country_approx(host, name)
-    
-    # Generate formatted name with flag and StintikVPN branding
-    formatted_name = format_server_name(item, country_code, country_name)
-    item['formatted_name'] = formatted_name
-    item['country_name'] = country_name
-    
-    # Strict bad marker filtering
-    for bad in BAD_MARKERS:
-        if bad in name.upper():
-            return None
-
-    migration = None
-    if country_code in BLOCKED_COUNTRIES:
-        migration = get_migration_suggestion(country_code)
-
-    health = _health_scores.get(f"{host}:{port}", {}).get("score", 100)
-    quality = item.get('quality_score', 100)
-    tcp_status = item.get('tcp_status', 'GOOD')
-
-    return {'valid': True, 'item': item, 'ping': ping, 'country': country_code, 'country_name': country_name, 'source': source, 'health': health, 'migration': migration, 'quality_score': quality, 'tcp_status': tcp_status}
-
-def classify_white_smart(item, country):
-    """Автоматическое определение SNI vs CIDR (Безопасная версия)"""
-    name = (item.get('name') or "").upper()
-    params = item.get('params', {})
-    raw = item.get('raw', "")
-    
-    # Логика CIDR
-    if "CIDR" in name or "192.168" in raw or "/32" in raw or "10.0." in raw:
-        return "white_cidr"
-    
-    # Логика SNI / Reality
-    security = ""
-    if isinstance(params, dict):
-        sec_list = params.get('security', [])
-        if isinstance(sec_list, list) and len(sec_list) > 0:
-            security = sec_list[0]
-        elif isinstance(sec_list, str):
-            security = sec_list
-            
-    if security == 'reality' or 'reality' in raw.lower():
-        return "white_sni"
-    
-    # Проверка SNI параметра (ИСПРАВЛЕНИЕ: защита от пустого списка)
-    sni_val = ""
-    if isinstance(params, dict):
-        sni_list = params.get('sni', [])
-        if isinstance(sni_list, list):
-            if len(sni_list) > 0:
-                sni_val = sni_list[0]
-            # else: sni_val остается пустым
-        elif isinstance(sni_list, str):
-            sni_val = sni_list
-    
-    if sni_val and sni_val != item.get('host'):
-        return "white_sni"
-        
-    return "white_all"
-
-def fetch_urls(urls, category_name):
-    """Загрузка URL с улучшенной обработкой ошибок и retry для нестабильных соединений"""
+def fetch_urls(urls):
     all_items = []
-    
-    # Настраиваем сессию с оптимальными параметрами для GitHub/РФ
-    session = requests.Session()
-    session.headers.update({
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-    })
-    
     for url in urls:
         try:
-            # Пробуем с retry для нестабильных источников
-            for attempt in range(3):
-                try:
-                    r = session.get(url.strip(), timeout=15)  # Увеличенный таймаут для РФ
-                    if r.status_code == 200:
-                        content = r.text
-                        break
-                    elif r.status_code == 404:
-                        print(f"⚠️ 404 Not Found: {url.split('/')[-1]}")
-                        break
-                    else:
-                        time.sleep(1)
-                except requests.exceptions.RequestException as e:
-                    if attempt < 2:
-                        time.sleep(2 ** attempt)  # Экспоненциальная задержка
-                    else:
-                        raise
-            
-            try:
-                decoded = base64.b64decode(content).decode('utf-8')
-                lines = decoded.splitlines()
-            except:
-                lines = content.splitlines()
-
-            valid_count = 0
-            for line in lines:
-                parsed = parse_proxy_line(line, source_url=url)
-                if parsed:
-                    all_items.append(parsed)
-                    valid_count += 1
-
-            with _stats_lock:
-                _stats["sources"][url] += valid_count
-                
+            print(f"📥 Загрузка: {url.split('/')[-1]}")
+            r = requests.get(url, timeout=15)
+            if r.status_code == 200:
+                content = r.text
+                if "base64" in url.lower() or len(content) > 10000:
+                    try:
+                        decoded = base64.b64decode(content).decode('utf-8')
+                        content = decoded
+                    except Exception:
+                        pass
+                lines = content.split('\n')
+                valid_count = 0
+                for line in lines:
+                    parsed = parse_proxy_line(line, source_url=url)
+                    if parsed:
+                        all_items.append(parsed)
+                        valid_count += 1
+                with _lock:
+                    _stats["sources"][url] += valid_count
         except Exception as e:
             print(f"⚠️ Error fetching {url.split('/')[-1]}: {e}")
-    
     return all_items
 
-def send_telegram_report(stats, counts):
-    if not TG_BOT_TOKEN or not TG_CHAT_ID:
-        print("⚠️ Telegram не настроен (нет токена или ID). Пропускаю отчет.")
-        return
-    
-    msg = f"🚀 <b>StintikVPN Checker Report</b>\n\n"
-    msg += f"✅ Живых: <b>{stats['alive']}</b>\n"
-    msg += f"❌ Мертвых: <b>{stats['dead']}</b>\n"
-    msg += f"⏱ Время работы: <b>{stats.get('duration', 0):.1f} сек</b>\n\n"
-    
-    msg += "<b>Лимиты соблюдены:</b>\n"
-    for cat, count in counts.items():
-        limit = LIMITS.get(cat, 0)
-        if limit > 0:
-            msg += f"├ {cat}: {count}/{limit}\n"
-    
-    msg += "\n<b>🏆 Топ источников:</b>\n"
-    sorted_sources = sorted(stats.get('sources_alive', {}).items(), key=lambda x: x[1], reverse=True)[:5]
-    for url, count in sorted_sources:
-        short_url = url.split('/')[-1].replace('.txt', '')
-        msg += f"├ {short_url}: {count}\n"
-        
-    # 🆕 Уникальная фича: AI-подобные рекомендации
-    msg += "\n<b>🤖 AI Recommendations:</b>\n"
-    vless_count = stats.get('sources_alive', {}).get('vless', 0)
-    if vless_count > 50:
-        msg += "├ ✅ VLESS протокол стабилен - рекомендуется для обхода блокировок\n"
-    if stats['alive'] > 200:
-        msg += "├ ✅ Отличная доступность серверов - лучшее время для подключения\n"
-    
-    url_req = f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage"
+def send_telegram_message(message):
     try:
-        requests.post(url_req, json={
-            "chat_id": TG_CHAT_ID,
-            "text": msg,
-            "parse_mode": "HTML"
-        })
-        print("📩 Отчет отправлен в Telegram!")
-    except Exception as e:
-        print(f"❌ Ошибка отправки в Telegram: {e}")
+        url = f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage"
+        data = {"chat_id": TG_CHAT_ID, "text": message, "parse_mode": "HTML"}
+        requests.post(url, json=data, timeout=5)
+    except Exception:
+        pass
 
 def main():
     start_time = time.time()
-    print(f"🚀 StintikVPN Checker v3.0 IMBA | Threads: {THREADS} | Health Score | Migration Map | 30d GeoIP Cache")
+    print(f"🚀 StintikVPN Ultimate v{VERSION} | Threads: {THREADS}")
+    
     load_reputation()
     load_geoip_cache()
-    load_health_scores()
-    load_migration_map()
     
-    results = {
-        'black': [], 'white_all': [],
-        'white_sni': [], 'white_cidr': [],
-        'protocols': defaultdict(list)
-    }
+    results = {key: [] for key in OUTPUTS.keys()}
+    protocol_results = {key: [] for key in PROTOCOL_FILES.keys()}
     
-    all_tasks = []
-    
-    print("📥 Загрузка списков...")
-    black_items = fetch_urls(OUTPUTS['black']['urls'], 'black')
-    for item in black_items: all_tasks.append((item, 'black'))
+    for category, meta in OUTPUTS.items():
+        print(f"\n📂 Обработка {category}...")
+        items = fetch_urls(meta["urls"])
+        print(f"🔍 Проверка {len(items)} конфигов...")
         
-    white_urls = OUTPUTS['white_all']['urls'] + OUTPUTS['white_sni']['urls'] + OUTPUTS['white_cidr']['urls']
-    white_items = fetch_urls(white_urls, 'white')
-    for item in white_items: all_tasks.append((item, 'white'))
-
-    print(f"🔍 Проверка {len(all_tasks)} ключей с GeoIP кэшированием...")
+        alive_count = 0
+        with ThreadPoolExecutor(max_workers=THREADS) as executor:
+            futures = [executor.submit(process_config, item) for item in items]
+            for future in as_completed(futures):
+                res = future.result()
+                if res and res.get('valid'):
+                    alive_count += 1
+                    results[category].append(res)
+                    proto = res['item'].get('type', '')
+                    if proto in protocol_results:
+                        protocol_results[proto].append(res)
+        
+        print(f"✅ Найдено рабочих: {alive_count}")
+        with _stats_lock:
+            _stats['alive'] += alive_count
+            _stats['total_checked'] += len(items)
     
-    alive_count = 0
-    
-    with ThreadPoolExecutor(max_workers=THREADS) as executor:
-        futures = [executor.submit(process_key, item) for item, _ in all_tasks]
-        for future in as_completed(futures):
-            res = future.result()
-            if res and res.get('valid'):
-                alive_count += 1
-                item = res['item']
-                source = res['source']
-                
-                with _stats_lock:
-                    if source not in _stats['sources_alive']:
-                        _stats['sources_alive'][source] = 0
-                    _stats['sources_alive'][source] += 1
-                
-                src_url = item.get('source_url', '')
-                is_white_source = any(u == src_url for u in white_urls)
-                
-                if not is_white_source:
-                    results['black'].append(res)
-                else:
-                    sub_cat = classify_white_smart(item, res['country'])
-                    results[sub_cat].append(res)
-                    results['white_all'].append(res)
-                
-                p_type = item['type']
-                if p_type in ['vless', 'vmess', 'trojan', 'ss']:
-                    results['protocols'][p_type].append(res)
-
     end_time = time.time()
-    _stats['alive'] = alive_count
-    _stats['dead'] = len(all_tasks) - alive_count
-    _stats['total_checked'] = len(all_tasks)
+    _stats['dead'] = _stats['total_checked'] - _stats['alive']
     _stats['duration'] = end_time - start_time
-
-    print("💾 Сохранение результатов...")
     
-    def save_list_category(name, data_list, filename):
-        """Save config list with formatted names including flag emojis and StintikVPN branding"""
-        data_list.sort(key=lambda x: (x['ping'], x.get('country', 'ZZ')))
-        limited = data_list[:LIMITS.get(name, 100)]
-        path = os.path.join(BASE_DIR, filename)
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        
-        # Save with formatted names for VPN clients
-        output_lines = []
-        for x in limited:
-            raw_config = x['item']['raw']
-            formatted_name = x['item'].get('formatted_name', '')
-            
-            if formatted_name:
-                # Add formatted name as comment before the config
-                output_lines.append(f"# {formatted_name}")
-                output_lines.append(raw_config)
-            else:
-                output_lines.append(raw_config)
-        
+    print("\n💾 Сохранение результатов...")
+    
+    def save_list(name, data_list, filename, limit):
+        data_list.sort(key=lambda x: x['ping'])
+        limited = data_list[:limit]
+        folder = OUTPUTS.get(name, {}).get("folder", BASE_DIR)
+        os.makedirs(folder, exist_ok=True)
+        path = os.path.join(folder, filename)
+        header = f"# StintikVPN Auto-Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(limited)}\n"
         with open(path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(output_lines))
+            f.write(header)
+            f.write('\n'.join([x['item']['raw'] for x in limited]))
         return len(limited)
-
+    
     final_counts = {}
-    final_counts['black'] = save_list_category('black', results['black'], 'black/black.txt')
+    for key in OUTPUTS.keys():
+        final_counts[key] = save_list(key, results[key], OUTPUTS[key]["file"], LIMITS.get(key, 100))
     
-    # Update country files with formatted names
+    for proto, items in protocol_results.items():
+        items.sort(key=lambda x: x['ping'])
+        path = PROTOCOL_FILES[proto]
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        header = f"# {proto.upper()} Servers: {time.strftime('%Y-%m-%d %H:%M')} | Count: {min(len(items), LIMITS.get('protocols', 100))}\n"
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write(header)
+            f.write('\n'.join([x['item']['raw'] for x in items[:LIMITS.get('protocols', 100)]]))
+    
     country_results = defaultdict(list)
-    for item in results['black']:
-        cc = item.get('country', 'XX')
-        country_results[cc].append(item)
+    for cat_results in results.values():
+        for item in cat_results:
+            cc = item.get('country', 'XX')
+            country_results[cc].append(item)
     
-    countries_folder = os.path.join(BASE_DIR, 'countries')
-    os.makedirs(countries_folder, exist_ok=True)
-    
+    countries_dir = os.path.join(BASE_DIR, "countries")
+    os.makedirs(countries_dir, exist_ok=True)
     for cc, items in country_results.items():
         items.sort(key=lambda x: x['ping'])
-        cc_name = COUNTRY_NAMES.get(cc, cc)
-        safe_cc = "".join(c for c in cc if c.isalnum())
-        file_path = os.path.join(countries_folder, f"{safe_cc}.txt")
-        
-        # Save with formatted names
-        output_lines = []
-        for x in items:
-            raw_config = x['item']['raw']
-            formatted_name = x['item'].get('formatted_name', '')
-            
-            if formatted_name:
-                output_lines.append(f"# {formatted_name}")
-                output_lines.append(raw_config)
-            else:
-                output_lines.append(raw_config)
-        
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(output_lines))
+        path = os.path.join(countries_dir, f"{cc}.txt")
+        header = f"# {COUNTRY_NAMES.get(cc, cc)} Servers: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(items)}\n"
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write(header)
+            f.write('\n'.join([x['item']['raw'] for x in items]))
     
-    final_counts['white_all'] = save_list_category('white_all', results['white_all'], OUTPUTS['white_all']['file'])
-    final_counts['white_sni'] = save_list_category('white_sni', results['white_sni'], OUTPUTS['white_sni']['file'])
-    final_counts['white_cidr'] = save_list_category('white_cidr', results['white_cidr'], OUTPUTS['white_cidr']['file'])
-    
-    for proto, data in results['protocols'].items():
-        data.sort(key=lambda x: x['ping'])
-        limited = data[:LIMITS['protocols']]
-        p_path = PROTOCOL_FILES[proto]
-        with open(p_path, 'w', encoding='utf-8') as f:
-            f.write(f"# {proto.upper()} Protocol List - StintikVPN\n")
-            # Add formatted names for protocol lists too
-            output_lines = []
-            for x in limited:
-                raw_config = x['item']['raw']
-                formatted_name = x['item'].get('formatted_name', '')
-                
-                if formatted_name:
-                    output_lines.append(f"# {formatted_name}")
-                    output_lines.append(raw_config)
-                else:
-                    output_lines.append(raw_config)
-            
-            f.write('\n'.join(output_lines))
-        final_counts[f'proto_{proto}'] = len(limited)
-
     save_reputation()
     save_geoip_cache()
-    save_health_scores()
-    save_migration_map()
     save_json(STATS_FILE, _stats)
-    
-    # 🆕 Premium Tier Selection (TOP 0.1%) - Only the absolute best
-    all_servers = []
-    for category in ['black', 'white_all', 'white_sni', 'white_cidr']:
-        all_servers.extend(results.get(category, []))
-    
-    premium_servers = [x for x in all_servers if x.get('health_score', 0) >= 90 and x['ping'] < 500]
-    premium_servers.sort(key=lambda x: (x['ping'], -x.get('health_score', 0)))
-    premium_limited = premium_servers[:LIMITS['premium']]
-    premium_path = os.path.join(BASE_DIR, "premium.txt")
-    with open(premium_path, 'w', encoding='utf-8') as f:
-        f.write('\n'.join([x['item']['raw'] for x in premium_limited]))
-    final_counts['premium'] = len(premium_limited)
-    print(f"🎯 Premium Tier: {len(premium_limited)} конфигов (TOP 0.1%)")
-    
-    def score(x):
-        ping_score = x['ping']
-        type_bonus = 0 if x['item'].get('type') == 'vless' else 50
-        country_bonus = 0 if x.get('country') == 'RU' else 20
-        return ping_score + type_bonus + country_bonus
-    
-    all_servers.sort(key=score)
     
     live_stats = {
         "last_update": time.strftime('%Y-%m-%d %H:%M:%S'),
         "total_alive": _stats['alive'],
         "total_dead": _stats['dead'],
         "duration_sec": round(_stats['duration'], 2),
-        "categories": {
-            "black": final_counts.get('black', 0),
-            "white_all": final_counts.get('white_all', 0),
-            "white_sni": final_counts.get('white_sni', 0),
-            "white_cidr": final_counts.get('white_cidr', 0),
-            "premium": final_counts.get('premium', 0),  # 🆕 Premium Tier
-        },
-        "protocols": {
-            "vless": final_counts.get('proto_vless', 0),
-            "vmess": final_counts.get('proto_vmess', 0),
-            "trojan": final_counts.get('proto_trojan', 0),
-            "ss": final_counts.get('proto_ss', 0)
-        },
-        "top_sources": [
-            {"url": url.split('/')[-1].replace('.txt', '')[:30], "count": count}
-            for url, count in sorted(_stats.get('sources_alive', {}).items(), key=lambda x: x[1], reverse=True)[:5]
-        ]
+        "categories": final_counts
     }
     save_json(LIVE_STATS_FILE, live_stats)
     
-    print("📊 Отправка отчета...")
-    send_telegram_report(_stats, final_counts)
+    summary = f"""
+✅ <b>StintikVPN Checker Complete!</b>
+
+⏱️ Duration: {_stats['duration']:.2f}s
+📊 Total Checked: {_stats['total_checked']}
+✅ Alive: {_stats['alive']}
+❌ Dead: {_stats['dead']}
+
+📁 Results:
+"""
+    for cat, count in final_counts.items():
+        summary += f"• {cat}: {count}\n"
     
-    print(f"\n{'='*60}")
-    print(f"✅ HARDCORE CHECK COMPLETE!")
-    print(f"{'='*60}")
-    print(f"⏱️  Total Time: {_stats['duration']:.2f} seconds ({_stats['duration']/60:.1f} minutes)")
-    print(f"🔍 Checked: {_stats['total_checked']} configs")
-    print(f"✅ Alive: {_stats['alive']}")
-    print(f"❌ Dead: {_stats['dead']}")
-    print(f"🎯 Premium Tier: {final_counts.get('premium', 0)} configs (TOP 0.1%)")
-    print(f"\n📁 Output files with flag emojis and StintikVPN branding:")
-    print(f"   - checked/black/black.txt")
-    print(f"   - checked/white/white.all.txt")
-    print(f"   - checked/white/white.sni.txt")
-    print(f"   - checked/white/white.cidr.txt")
-    print(f"   - checked/countries/*.txt")
-    print(f"   - checked/protocols/*.txt")
-    print(f"   - checked/premium.txt")
-    print(f"\n🌍 GeoIP rate limiting enforced:")
-    print(f"   - ip-api.com: 45 req/min")
-    print(f"   - ipwhois.app: 60 req/min")
-    print(f"   - ipapi.co: 30 req/min")
-    print(f"   - + 4 fallback APIs")
-    print(f"\n💾 Live stats saved to live_stats.json")
-    print(f"💾 GeoIP cache saved to geoip_cache.json")
-    print(f"{'='*60}\n")
+    send_telegram_message(summary)
+    
+    print(f"\n✅ ГОТОВО! Время: {_stats['duration']:.2f} сек.")
+    print(f"📊 Всего проверено: {_stats['total_checked']}")
+    print(f"✅ Рабочих: {_stats['alive']}")
+    print(f"❌ Мертвых: {_stats['dead']}")
+    print(f"💾 GeoIP cache: {GEOIP_CACHE_FILE}")
+    print(f"💾 Reputation: {REPUTATION_FILE}")
 
 if __name__ == "__main__":
     main()
