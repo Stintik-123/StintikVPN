@@ -140,7 +140,15 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 
 ## 🔗 Зеркала проекта StintikVPN 
 
-- **GitLab**: [https://gitlab.com/Stintik-123/StintikVPN](https://gitlab.com/Stintik-123/StintikVPN)
+Поскольку ходят слухи о блокировке GitHub в России я создал зеркала StintikVPN 
+
+- **GitLab**: https://gitlab.com/Stintik-123/StintikVPN
+
+- **GitVerse**: https://gitverse.ru/Stintik-123/StintikVPN
+
+- **Codeberg**:
+https://codeberg.org/Stintik-123/StintikVPN
+
 
 ---
 
