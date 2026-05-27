@@ -1,14 +1,2 @@
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
-# 🇭🇺 Hungary | StintikVPN
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?type=tcp&headerType=none&security=reality&encryption=none&sni=hu03.kubservice.icu&fp=chrome&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&spx=%2F&flow=xtls-rprx-vision#%F0%9F%87%AD%F0%9F%87%BA%20%20Hungary%20%20%5B01%5D%20%20MIFA
+# 🇭🇺 Hungary Servers: 2026-05-27 04:56 | Count: 1
+vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?security=reality&encryption=none&echfq=none&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&headerType=none&fp=chrome&spx=%2F&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=hu03.kubservice.icu#🇭🇺 Hungary | StintikVPN

@@ -1,6 +1,2 @@
-# 🇫🇷 France | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&security=reality&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&sni=discord.com&mode=&serviceName=jitterycraftsman&authority=#%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇫🇷 France | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&security=reality&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&sni=discord.com&mode=&serviceName=jitterycraftsman&authority=#%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
-# 🇫🇷 France | StintikVPN
-vless://b6083a84-80a5-3e88-9dbb-5c8ef241be3a@2.26.112.78:55919?type=grpc&security=reality&pbk=tBsuKfKgNI5muCQ9HBEn-qBCQcA3Sot1PwqVTjWDdBU&sid=f679b4f2&sni=discord.com&mode=&serviceName=jitterycraftsman&authority=#%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D
+# 🇫🇷 France Servers: 2026-05-27 04:56 | Count: 1
+vless://15efeadc-234a-4642-89b1-e34210e51758@89.44.80.22:59999?encryption=none&flow=xtls-rprx-vision&fp=&pbk=x0t1otRGBv62aJKGNbsQRJGtwh-sp6CEScFS6S8y3EM&security=reality&sid=3e4f5a6b&sni=yastatic.net&type=tcp#🇫🇷 France | StintikVPN

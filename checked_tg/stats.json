@@ -1,9 +1,7 @@
 {
-  "sources": {
-    "https://t.me/publicproxies": 0
-  },
+  "sources": {},
   "total_checked": 0,
   "alive": 0,
   "dead": 0,
-  "duration": 0.9392907619476318
+  "duration": 0.627068281173706
 }
