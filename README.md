@@ -6,7 +6,7 @@
 
 </div>
 
-**StintikVPN** — это сборник лучших бесплатных VPN-подписок. Ничего настраивать не нужно: просто копируй ссылку, вставляй в клиент и пользуйся.
+**StintikVPN** — это сборник лучших бесплатных VPN-подписок. Ничего настраивать не нужно: просто копируйте ссылку, вставляйте в VPN клиент и пользуйтесь
 
 [![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN/network/members)
@@ -34,7 +34,7 @@
 
 1. Скопируйте нужную ссылку из раздела «Готовые подписки».
 2. Вставьте её в ваш VPN-клиент через кнопку **«Добавить подписку»** или **«Импорт из буфера обмена»**.
-3. Обновите список → выберите сервер → подключитесь.
+3. Нажмите кнопку "Пинг" → выберите живой сервер → подключитесь.
 
 ---
 
@@ -56,49 +56,43 @@
 - **🏴 Чёрные списки** — для обычного интернета (домашний Wi-Fi, кабель, 4G без жёстких блокировок).  
 - **🏳️ Белые списки** — для жёстких блокировок (мобильный интернет при включённых «белых списках» РКН).
 
-**Рекомендация:** Начните с чёрного списка. Если не работает — переходите на белый.
-
 ---
 
 ## 📡 Подробнее о белых списках: SNI и CIDR
 
-- **`white.all.txt`** — обычные конфиги
-- **`white.sni.txt`** — с валидным **SNI** (лучше маскировка)
-- **`white.cidr.txt`** — с **CIDR**-масками (обход блокировки подсетей)
+- **White SNI** Подписка с SNI фильтрует трафик по текстовым именам сайтов (например: youtube.com).
+- **White CIDR** — Подписка с CIDR фильтрует трафик по цифровым IP-диапазонам (например: 173.194.0.0/16)
+
+**Простыми словами если не работает SNI используйте CIDR, если не работает CIDT используйте SNI**
 
 ---
 
 ## 🛠️ Протоколы – что лучше и для чего
 
-- **VLESS (Reality)** — лучший для обхода блокировок
-- **VLESS** — быстрее, но слабее маскировка
+- **VLESS** — лучший по скорости и маскировке но в последнее время плохо с надёжностью, РКН активно блокирует 
 - **Trojan** — хорошая маскировка
-- **VMess** — надёжный
-- **Shadowsocks** — максимальная скорость
+- **VMess** — Самый надёжный протокол из всех
+- **Shadowsocks** — максимальная скорость (Рекомендуется для онлайн игр)
 
 ---
 
 ## 📦 VPN подписки
 
-### ⚫ Чёрный список (основной)
-[**Aetris VPN**](https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt)
+### 🏴 Чёрный список (основной) -https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
 
-### 🔲 Чёрный список (запасной)
-[**Theakres VPN**](https://vpn.akres.fun/all)
+### 🏴 Чёрный список (запасной) -https://vpn.akres.fun/all
 
-### 📱 Black Mobile
-[**KvRuVPN**](https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt)
+### 👑 Black Mobile (20 ЛУЧШИХ серверов специально для телефонов) - https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
 
-### ⚪ Белые списки
-- [**AetrisVPN (White)**](https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt)
-- [**Igarechek CIDR**](https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt)
-- [**Igarechek SNI**](https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt)
+### 🏳️ Белые списки (Основные) -https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
+### Белые списки (CIDR) - https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
+### Белые списки (SNI) - https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 
 ### 🛠️ По протоколам
-- **VLESS**: [MifaWorld](https://mifa.world/vless)
-- **VMess**: [MifaWorld](https://mifa.world/vmess)
-- **Trojan**: [MifaWorld](https://mifa.world/trojan)
-- **Shadowsocks**: [MifaWorld](https://mifa.world/ss)
+- **VLESS**: https://mifa.world/vless
+- **VMess**: https://mifa.world/vmess
+- **Trojan**: https://mifa.world/trojan
+- **Shadowsocks**: https://mifa.world/ss
 
 ---
 
@@ -106,7 +100,7 @@
 
 > Последнее обновление: **27.05.2026**
 
-**Скопируйте нужную ссылку и отправьте её себе в Telegram (или нажмите):**
+**Скопируйте нужную ссылку и подключайтесь**
 
 **1. SOCKS5**  
 `84.201.182.112:1080`  
@@ -181,5 +175,6 @@
 
 **Карта:** `79960694715` (Озон)  
 
+---
 
 *StintikVPN — сделано людьми для людей*
