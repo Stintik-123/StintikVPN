@@ -1,2 +1,1 @@
-# 🇵🇱 Poland Servers: 2026-05-27 04:56 | Count: 1
-vless://106c376f-431d-4ea0-bc61-f82308fefb4e@83.168.91.237:443?flow=xtls-rprx-vision&fp=chrome&pbk=8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho&security=reality&sid=b76dcf9e1183fe1b&sni=ads.x5.ru&type=tcp#🇵🇱 Poland | StintikVPN
+{"type": "mtproto", "host": "91.224.75.242", "port": 2083, "secret": "ee018852e3ccd792819792849767f5882a636f666665652e73616d6172617765622e74656368", "name": "\ud83c\uddf5\ud83c\uddf1 Poland | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 156, "cc": "PL"}

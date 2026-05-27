@@ -1,3 +1,1 @@
-# 🇬🇧 United Kingdom Servers: 2026-05-27 04:56 | Count: 2
-vless://bdd008a1-7acb-4847-91b8-a6fc23bc5d4c@gb.nodes.rocketnetwork.ru:443?type=tcp&headerType=none&security=reality&encryption=none&sni=gb.nodes.rocketnetwork.ru&fp=chrome&pbk=Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs&sid=428ef87fd47a3a32&flow=xtls-rprx-vision#🇬🇧 United Kingdom | StintikVPN
-vless://d78c12c4-6927-40b8-8550-ed9be00334da@france1cxc.chickenkiller.com:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&sni=France1cxc.chickenkiller.com&fp=chrome&pbk=UJSYKOEr3a3V1P_obd9zNBq4Pr3Vbd_a2nHE7-rstRk&sid=6089640857a72237#🇬🇧 United Kingdom | StintikVPN
+{"type": "mtproto", "host": "prx-1-velora.getvelora.space", "port": 443, "secret": "eee8a13cbfd00919e3d686b0c8e99939d8636c6f7564666c6172652e636f6d", "name": "\ud83c\uddec\ud83c\udde7 United Kingdom | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 528, "cc": "GB"}
