@@ -15,7 +15,7 @@ LIMITS = {
     "white_sni": 100,
     "white_cidr": 100,
     "protocols": 100,
-    "telegram": 20
+    "telegram": 100
 }
 
 TIMEOUT_CONNECT = 2.5
@@ -88,8 +88,9 @@ def parse_vless(line):
         if len(main_part) != 2: return None
         
         uuid, rest = main_part
-        if not re.match(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', uuid, re.I):
-            pass 
+        # Basic UUID check relaxed to allow some variations, but strict is usually better
+        # if not re.match(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', uuid, re.I):
+        #     pass 
 
         host_port = rest.split("?")[0]
         if ":" not in host_port: return None
@@ -422,6 +423,7 @@ async def main():
     print(f"   UNSTABLE: {stats['unstable']}")
     print(f"   DEAD: {stats['dead']}")
     print(f"   REJECTED (XX/Invalid): {stats['rejected_xx']}")
+    print(f"   DUPLICATES REMOVED: {len(stats['seen'])}")
     
     by_country = {}
     for cfg in results:
@@ -437,8 +439,17 @@ async def main():
                 f.write(json.dumps(item) + "\n")
         print(f"💾 Saved {len(items)} to {fname}")
 
+    # FIX: Convert 'seen' set to length for JSON serialization
+    stats_json_safe = {
+        "total_good": stats['good'],
+        "total_unstable": stats['unstable'],
+        "total_dead": stats['dead'],
+        "rejected_xx": stats['rejected_xx'],
+        "unique_checked": len(stats['seen'])
+    }
+
     with open(RESULTS_FILE, 'w') as f:
-        json.dump({"total": len(results), "by_category": stats}, f, indent=2)
+        json.dump({"total_results": len(results), "statistics": stats_json_safe}, f, indent=2)
         
     print("✅ Done!")
 
