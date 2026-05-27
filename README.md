@@ -78,20 +78,20 @@
 
 ## 📦 VPN подписки
 
-### 🏴 Чёрный список (основной) -
+### 🏴 Чёрный список (основной)
 https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
 
-### 🏴 Чёрный список (запасной) -
+### 🏴 Чёрный список (запасной)
 https://vpn.akres.fun/all
 
-### 👑 Black Mobile (20 ЛУЧШИХ серверов специально для телефонов) - 
+### 👑 Black Mobile (20 ЛУЧШИХ серверов специально для телефонов) 
 https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
 
-### 🏳️ Белые списки (Основные) -
+### 🏳️ Белые списки (Основные)
 https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
-### Белые списки (CIDR) - 
+### Белые списки (CIDR)
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
-### Белые списки (SNI) - 
+### Белые списки (SNI)
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 
 ### 🛠️ По протоколам
