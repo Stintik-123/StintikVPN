@@ -78,15 +78,21 @@
 
 ## 📦 VPN подписки
 
-### 🏴 Чёрный список (основной) -https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
+### 🏴 Чёрный список (основной) -
+https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
 
-### 🏴 Чёрный список (запасной) -https://vpn.akres.fun/all
+### 🏴 Чёрный список (запасной) -
+https://vpn.akres.fun/all
 
-### 👑 Black Mobile (20 ЛУЧШИХ серверов специально для телефонов) - https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
+### 👑 Black Mobile (20 ЛУЧШИХ серверов специально для телефонов) - 
+https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
 
-### 🏳️ Белые списки (Основные) -https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
-### Белые списки (CIDR) - https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
-### Белые списки (SNI) - https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
+### 🏳️ Белые списки (Основные) -
+https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
+### Белые списки (CIDR) - 
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
+### Белые списки (SNI) - 
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 
 ### 🛠️ По протоколам
 - **VLESS**: https://mifa.world/vless
@@ -104,31 +110,31 @@
 
 **1. SOCKS5**  
 `84.201.182.112:1080`  
-[🔗 Подключить](https://t.me/socks?server=84.201.182.112&port=1080&user=86XFhWe7j9&pass=e4GwQtyVaZ)
+- https://t.me/socks?server=84.201.182.112&port=1080&user=86XFhWe7j9&pass=e4GwQtyVaZ
 
 **2. MTProto**  
 `46.243.235.29:853`  
-[🔗 Подключить](https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275)
+- https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
 
 **3. MTProto**  
-`de4.kael.fuckrkn.net:443`  
-[🔗 Подключить](tg://proxy?server=de4.kael.fuckrkn.net&port=443&secret=ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275)
+`?`  
+- https://t.me/proxy?server=de4.kael.fuckrkn.net&port=443&secret=ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275
 
 **4. MTProto**  
 `mtp1.sosproxy.space:443`  
-[🔗 Подключить](tg://proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d)
+- https://t.me/proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d
 
 **5. MTProto**  
 `adsl.myrka.digital:443`  
-[🔗 Подключить](tg://proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c)
+- https://t.me/proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c)
 
 **6. MTProto**  
 `95.163.176.204:2083`  
-[🔗 Подключить](https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368)
+https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368
 
 **7. MTProto**  
 `89.169.32.31:2083`  
-[🔗 Подключить](https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368)
+https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368
 
 ---
 
