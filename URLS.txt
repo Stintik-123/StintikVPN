@@ -1,38 +1,33 @@
-# ==================== BLACK LIST SOURCES ====================
-# Черные списки VPN конфигов
-
+# BLACK
 https://vpn.akres.fun/all
 https://mifa.world/fast
 https://gitverse.ru/api/repos/Niyakwi/Kfg/raw/branch/master/new_file
 https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
 https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/wl_228.txt
 
-# ==================== BLACK MOBILE SOURCES ====================
-# Мобильная версия черного списка (50 серверов)
+# BLACK MOBILE
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt
 https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt
 https://vpn.akres.fun/all
 https://mifa.world/fast
 
-# ==================== WHITE LIST SOURCES ====================
-# Белые списки VPN конфигов (100 серверов каждый тип)
+# WHITE
 https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
 https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/pc_228.txt
 https://raw.githubusercontent.com/redmi9cnfc/TV/main/NoriVPN.txt
 
-# ==================== WHITE SNI SOURCES ====================
+# WHITE SNI
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-SNI-RU-all-base64.txt
 https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/sni/vless.txt
 https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_sni.txt
 
-# ==================== WHITE CIDR SOURCES ====================
+# WHITE CIDR
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-CIDR-RU-all-base64.txt
 https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/cidr/vless.txt
 https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_cidr.txt
 
-# ==================== TELEGRAM PROXY SOURCES ====================
-# Прокси для Telegram
+# TELEGRAM
 https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
 https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
 tg://proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c
