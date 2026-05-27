@@ -1,5 +1,7 @@
 # 🚀 StintikVPN — Интернет свобода ближе чем кажется
 
+<img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/refs/heads/main/Image.png" alt="StintikVPN Freedom" width="100%">
+  
 <div align="center">
 
 **🇷🇺 Русский** | [🇬🇧 English](ReadMe_EN.md) | [🇨🇳 中文](ReadMe_CN.md) | [🇮🇷 فارسی](ReadMe_IR.md)
@@ -7,12 +9,6 @@
 </div>
 
 **StintikVPN** — это сборник лучших бесплатных VPN-подписок. Ничего настраивать не нужно: просто копируйте ссылку, вставляйте в VPN клиент и пользуйтесь
-
-https://github.com/Stintik-123/StintikVPN/blob/main/Image.png
-
-[![GitHub stars](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/Stintik-123/StintikVPN?style=flat-square)](https://github.com/Stintik-123/StintikVPN/watchers)
 
 ---
 
