@@ -1,39 +1,13 @@
-"""
-🚀 StintikVPN Ultimate - Simplified Core
-Features:
-- Normalized params for deduplication (type, security, sni, host, path, alpn, fp, pbk, sid, flow, serviceName, mode, headerType, seed, quicSecurity, key, encryption)
-- DEDUP BY: normalized config string, host+port+uuid, host+port+pbk, host+port+password
-- REMOVE: malformed UUID, empty host, invalid port, configs without tls/reality, broken reality params, duplicates
-- TCP TESTS: 2 TCP CONNECT TESTS (2.5-3s timeout)
-- SUCCESS RULE: 2/2=GOOD, 1/2=UNSTABLE, 0/2=DEAD
-- CLOUDFLARE FILTERING: detect Cloudflare ASN/IP ranges, CDN/proxy endpoints
-- GeoIP + Reputation (remove dead servers after 3 failures)
-"""
-
-import os
+import asyncio
+import aiohttp
 import re
-import socket
-import ssl
-import time
 import json
-import requests
-import base64
-import threading
-from urllib.parse import unquote, urlparse, parse_qs
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import defaultdict
-from datetime import datetime
+import os
+import time
+from urllib.parse import urlparse, parse_qs, unquote
+from base64 import b64decode
 
-VERSION = "9.0.0 OPTIMIZED"
-BASE_DIR = "checked"
-THREADS = 150
-TIMEOUT_CONNECT = 3.0
-TIMEOUT_SSL = 2.5
-FAIL_THRESHOLD = 3
-
-TG_BOT_TOKEN = "8645441777:AAH7kWlfGqIEggu6SuhgtHCcd0ifNtiSz50"
-TG_CHAT_ID = "-1003884045475"
-
+# --- CONFIGURATION ---
 LIMITS = {
     "black": 250,
     "black_mobile": 50,
@@ -41,655 +15,435 @@ LIMITS = {
     "white_sni": 100,
     "white_cidr": 100,
     "protocols": 100,
+    "telegram": 20
 }
 
-COUNTRY_NAMES = {
-    "AF": "🇦🇫 Afghanistan", "AL": "🇦🇱 Albania", "DZ": "🇩🇿 Algeria", "AR": "🇦🇷 Argentina", "AM": "🇦🇲 Armenia",
-    "AU": "🇦🇺 Australia", "AT": "🇦🇹 Austria", "AZ": "🇦🇿 Azerbaijan", "BH": "🇧🇭 Bahrain", "BD": "🇧🇩 Bangladesh",
-    "BY": "🇧🇾 Belarus", "BE": "🇧🇪 Belgium", "BR": "🇧🇷 Brazil", "BG": "🇧🇬 Bulgaria", "CA": "🇨🇦 Canada",
-    "CL": "🇨🇱 Chile", "CN": "🇨🇳 China", "CO": "🇨🇴 Colombia", "HR": "🇭🇷 Croatia", "CY": "🇨🇾 Cyprus",
-    "CZ": "🇨🇿 Czechia", "DK": "🇩🇰 Denmark", "EG": "🇪🇬 Egypt", "EE": "🇪🇪 Estonia", "FI": "🇫🇮 Finland",
-    "FR": "🇫🇷 France", "GE": "🇬🇪 Georgia", "DE": "🇩🇪 Germany", "GR": "🇬🇷 Greece", "HK": "🇭🇰 Hong Kong",
-    "HU": "🇭🇺 Hungary", "IS": "🇮🇸 Iceland", "IN": "🇮🇳 India", "ID": "🇮🇩 Indonesia", "IR": "🇮🇷 Iran",
-    "IQ": "🇮🇶 Iraq", "IE": "🇮🇪 Ireland", "IL": "🇮🇱 Israel", "IT": "🇮🇹 Italy", "JP": "🇯🇵 Japan",
-    "JO": "🇯🇴 Jordan", "KZ": "🇰🇿 Kazakhstan", "KE": "🇰🇪 Kenya", "KR": "🇰🇷 South Korea", "KW": "🇰🇼 Kuwait",
-    "LV": "🇱🇻 Latvia", "LT": "🇱🇹 Lithuania", "MY": "🇲🇾 Malaysia", "MX": "🇲🇽 Mexico", "MD": "🇲🇩 Moldova",
-    "NL": "🇳🇱 Netherlands", "NZ": "🇳🇿 New Zealand", "NG": "🇳🇬 Nigeria", "NO": "🇳🇴 Norway", "PK": "🇵🇰 Pakistan",
-    "PA": "🇵🇦 Panama", "PE": "🇵🇪 Peru", "PH": "🇵🇭 Philippines", "PL": "🇵🇱 Poland", "PT": "🇵🇹 Portugal",
-    "QA": "🇶🇦 Qatar", "RO": "🇷🇴 Romania", "RU": "🇷🇺 Russia", "SA": "🇸🇦 Saudi Arabia", "RS": "🇷🇸 Serbia",
-    "SG": "🇸🇬 Singapore", "SK": "🇸🇰 Slovakia", "ZA": "🇿🇦 South Africa", "ES": "🇪🇸 Spain", "SE": "🇸🇪 Sweden",
-    "CH": "🇨🇭 Switzerland", "TW": "🇹🇼 Taiwan", "TH": "🇹🇭 Thailand", "TR": "🇹🇷 Turkey", "UA": "🇺🇦 Ukraine",
-    "AE": "🇦🇪 UAE", "GB": "🇬🇧 United Kingdom", "US": "🇺🇸 United States", "UZ": "🇺🇿 Uzbekistan",
-    "VN": "🇻🇳 Vietnam", "VE": "🇻🇪 Venezuela"
-}
+TIMEOUT_CONNECT = 2.5
+TIMEOUT_TOTAL = 3.0
+MAX_RETRIES_GEOIP = 2
 
-BAD_MARKERS = ["CN", "IR", "KP", "RELAY", "POOL", "ANYCAST"]
-CDN_KEYWORDS = ["cloudflare", "cdn", "akamai", "anycast"]
-CLOUDFLARE_IP_PREFIXES = ["104.", "172.64.", "173.", "190.", "197.", "198.", "203.", "24."]
+OUTPUT_DIR = "checked"
+COUNTRIES_DIR = os.path.join(OUTPUT_DIR, "countries")
+PROTOCOLS_DIR = os.path.join(OUTPUT_DIR, "protocols")
+RESULTS_FILE = os.path.join(OUTPUT_DIR, "results_summary.json")
 
-RU_CIS_IP_PREFIXES = [
-    "5.", "31.", "37.", "46.", "62.", "77.", "78.", "79.", "80.", "81.", "82.", "83.", "84.", "85.", "86.", "87.",
-    "88.", "89.", "91.", "92.", "93.", "94.", "95.", "109.", "128.", "134.", "141.", "145.", "151.", "158.",
-    "164.", "171.", "176.", "178.", "185.", "188.", "193.", "194.", "195.", "212.", "213.", "217.",
-]
+# Ensure directories exist
+for d in [OUTPUT_DIR, COUNTRIES_DIR, PROTOCOLS_DIR]:
+    os.makedirs(d, exist_ok=True)
 
-REPUTATION_FILE = os.path.join(BASE_DIR, "reputation.json")
-STATS_FILE = os.path.join(BASE_DIR, "stats.json")
-LIVE_STATS_FILE = os.path.join(BASE_DIR, "live_stats.json")
-GEOIP_CACHE_FILE = os.path.join(BASE_DIR, "geoip_cache.json")
+# --- UTILS ---
 
-OUTPUTS = {
-    "black": {
-        "folder": os.path.join(BASE_DIR, "black"),
-        "file": "black.txt",
-        "urls": [
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt",
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt",
-            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt",
-            "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/sub.txt",
-            "https://vpn.akres.fun/all",
-            "https://mifa.world/fast",
-            "https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/tri_228.txt",
-            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/black/vless.txt",
-            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_black.txt",
-            "https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/black.txt",
-            "https://raw.githubusercontent.com/FreeRadar/v2ray/main/black.txt",
-            "https://raw.githubusercontent.com/aliilapro/v2ray/main/config.txt",
-        ],
-    },
-    "black_mobile": {
-        "folder": os.path.join(BASE_DIR, "black"),
-        "file": "black_mobile.txt",
-        "urls": [
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt",
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt",
-            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt",
-            "https://vpn.akres.fun/all",
-            "https://mifa.world/fast",
-        ],
-    },
-    "white_all": {
-        "folder": os.path.join(BASE_DIR, "white"),
-        "file": "white.all.txt",
-        "urls": [
-            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt",
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
-            "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/white.txt",
-            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_white.txt",
-            "https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/white.txt",
-            "https://raw.githubusercontent.com/FreeRadar/v2ray/main/white.txt",
-        ],
-    },
-    "white_sni": {
-        "folder": os.path.join(BASE_DIR, "white"),
-        "file": "white.sni.txt",
-        "urls": [
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-SNI-RU-all-base64.txt",
-            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/sni/vless.txt",
-            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_sni.txt",
-        ],
-    },
-    "white_cidr": {
-        "folder": os.path.join(BASE_DIR, "white"),
-        "file": "white.cidr.txt",
-        "urls": [
-            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-CIDR-RU-all-base64.txt",
-            "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/cidr/vless.txt",
-            "https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_cidr.txt",
-        ],
-    },
-}
+def safe_b64decode(data):
+    data += '=' * (-len(data) % 4)
+    try:
+        return b64decode(data).decode('utf-8', errors='ignore')
+    except:
+        return ""
 
-PROTOCOL_FILES = {
-    "vless": os.path.join(BASE_DIR, "protocols", "vless.txt"),
-    "vmess": os.path.join(BASE_DIR, "protocols", "vmess.txt"),
-    "trojan": os.path.join(BASE_DIR, "protocols", "trojan.txt"),
-    "ss": os.path.join(BASE_DIR, "protocols", "ss.txt"),
-}
+def extract_ip(host):
+    match = re.search(r'([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|[a-zA-Z0-9.-]+)', host)
+    return match.group(1) if match else host
 
-for meta in OUTPUTS.values():
-    os.makedirs(meta["folder"], exist_ok=True)
-os.makedirs(os.path.dirname(PROTOCOL_FILES["vless"]), exist_ok=True)
-os.makedirs(BASE_DIR, exist_ok=True)
-
-_reputation_db = {}
-_stats = {"sources": defaultdict(int), "total_checked": 0, "alive": 0, "dead": 0, "sources_alive": defaultdict(int)}
-_geoip_cache = {}
-_seen_configs = set()
-_lock = threading.Lock()
-_rep_lock = threading.Lock()
-_stats_lock = threading.Lock()
-_geo_lock = threading.Lock()
-_seen_lock = threading.Lock()
-
-def load_json(path):
-    if os.path.exists(path):
+async def get_geoip(ip, session):
+    if not ip or ip == "unknown":
+        return "XX", "Unknown"
+    
+    for attempt in range(MAX_RETRIES_GEOIP):
         try:
-            with open(path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return {}
-    return {}
+            async with session.get(f"http://ip-api.com/json/{ip}?fields=countryCode,country", timeout=aiohttp.ClientTimeout(total=2)) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    cc = data.get('countryCode', 'XX')
+                    name = data.get('country', 'Unknown')
+                    if cc != 'XX':
+                        return cc, name
+        except:
+            pass
+        
+        try:
+            async with session.get(f"https://ipwhois.app/json/{ip}?lang=en", timeout=aiohttp.ClientTimeout(total=2)) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    cc = data.get('country_code', 'XX')
+                    name = data.get('country', 'Unknown')
+                    if cc != 'XX':
+                        return cc, name
+        except:
+            pass
+        
+        await asyncio.sleep(0.5)
+    
+    return "XX", "Unknown"
 
-def save_json(path, data):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+# --- PARSING LOGIC ---
 
-def load_reputation():
-    global _reputation_db
-    _reputation_db = load_json(REPUTATION_FILE)
+def parse_vless(line):
+    try:
+        if not line.startswith("vless://"): return None
+        parts = line.replace("vless://", "").split("#")
+        if len(parts) < 1: return None
+        
+        name = unquote(parts[1]) if len(parts) > 1 else "Server"
+        main_part = parts[0].split("@")
+        if len(main_part) != 2: return None
+        
+        uuid, rest = main_part
+        if not re.match(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', uuid, re.I):
+            pass 
 
-def load_geoip_cache():
-    global _geoip_cache
-    _geoip_cache = load_json(GEOIP_CACHE_FILE)
+        host_port = rest.split("?")[0]
+        if ":" not in host_port: return None
+        host, port = host_port.rsplit(":", 1)
+        
+        params_str = rest.split("?")[1] if "?" in rest else ""
+        params = parse_qs(params_str)
+        
+        return {
+            "type": "vless",
+            "uuid": uuid,
+            "host": host,
+            "port": int(port),
+            "name": name,
+            "security": params.get('security', ['none'])[0],
+            "sni": params.get('sni', [host])[0],
+            "fp": params.get('fp', ['chrome'])[0],
+            "alpn": params.get('alpn', ['h2,http/1.1'])[0],
+            "pbk": params.get('pbk', [''])[0],
+            "sid": params.get('sid', [''])[0],
+            "flow": params.get('flow', [''])[0],
+            "path": params.get('path', ['/'])[0],
+            "headerType": params.get('headerType', ['none'])[0],
+            "encryption": params.get('encryption', ['none'])[0]
+        }
+    except Exception:
+        return None
 
-def save_reputation():
-    with _rep_lock:
-        save_json(REPUTATION_FILE, _reputation_db)
+def parse_trojan(line):
+    try:
+        if not line.startswith("trojan://"): return None
+        temp = line.replace("trojan://", "")
+        parts = temp.split("#")
+        name = unquote(parts[1]) if len(parts) > 1 else "Server"
+        
+        main = parts[0]
+        if "@" not in main: return None
+        password, rest = main.split("@", 1)
+        
+        host_port = rest.split("?")[0]
+        if ":" not in host_port: return None
+        host, port = host_port.rsplit(":", 1)
+        
+        params_str = rest.split("?")[1] if "?" in rest else ""
+        params = parse_qs(params_str)
+        
+        return {
+            "type": "trojan",
+            "password": password,
+            "host": host,
+            "port": int(port),
+            "name": name,
+            "security": params.get('security', ['tls'])[0],
+            "sni": params.get('sni', [host])[0],
+            "alpn": params.get('alpn', ['h2,http/1.1'])[0],
+            "fp": params.get('fp', ['chrome'])[0]
+        }
+    except Exception:
+        return None
 
-def save_geoip_cache():
-    with _geo_lock:
-        save_json(GEOIP_CACHE_FILE, _geoip_cache)
+def parse_vmess(line):
+    try:
+        if not line.startswith("vmess://"): return None
+        json_str = safe_b64decode(line.replace("vmess://", ""))
+        if not json_str: return None
+        data = json.loads(json_str)
+        
+        return {
+            "type": "vmess",
+            "uuid": data.get('id', ''),
+            "host": data.get('add', ''),
+            "port": int(data.get('port', 0)),
+            "name": data.get('ps', 'Server'),
+            "security": data.get('tls', ''),
+            "sni": data.get('sni', data.get('add', '')),
+            "path": data.get('path', '/'),
+            "host_header": data.get('host', '')
+        }
+    except Exception:
+        return None
 
-def check_reputation(host, port):
-    key = f"{host}:{port}"
-    with _rep_lock:
-        entry = _reputation_db.get(key)
-        if entry and entry.get("fails", 0) >= FAIL_THRESHOLD:
-            return False
-    return True
-
-def update_reputation(host, port, success):
-    key = f"{host}:{port}"
-    with _rep_lock:
-        if key not in _reputation_db:
-            _reputation_db[key] = {"fails": 0}
-        if success:
-            _reputation_db[key]["fails"] = 0
+def parse_ss(line):
+    try:
+        if not line.startswith("ss://"): return None
+        temp = line.replace("ss://", "")
+        if "#" in temp:
+            info, name = temp.rsplit("#", 1)
+            name = unquote(name)
         else:
-            _reputation_db[key]["fails"] += 1
-
-def get_geoip_cached(host):
-    with _geo_lock:
-        return _geoip_cache.get(host)
-
-def set_geoip_cached(host, country_code, country_name):
-    with _geo_lock:
-        _geoip_cache[host] = {"code": country_code, "name": country_name, "timestamp": time.time()}
-
-def fetch_geoip_multi(host):
-    cached = get_geoip_cached(host)
-    if cached and (time.time() - cached.get("timestamp", 0)) < 86400 * 30:
-        return cached["code"], cached["name"]
-    
-    apis = [lambda: fetch_geoip_ipapi(host), lambda: fetch_geoip_ipwhois(host)]
-    for api_fn in apis:
-        try:
-            result = api_fn()
-            if result:
-                code, name = result
-                set_geoip_cached(host, code, name)
-                return code, name
-        except Exception:
-            continue
-    return None, None
-
-def fetch_geoip_ipapi(host):
-    try:
-        r = requests.get(f"http://ip-api.com/json/{host}?fields=countryCode,country", timeout=3)
-        if r.status_code == 200:
-            data = r.json()
-            if data.get("status") == "success":
-                return data.get("countryCode", "XX"), data.get("country", "Unknown")
+            info = temp
+            name = "Server"
+        
+        decoded = safe_b64decode(info.split("@")[0])
+        if ":" in decoded and "@" in decoded:
+            method_pass, host_port = decoded.split("@", 1)
+            if ":" in method_pass:
+                method, password = method_pass.split(":", 1)
+                if ":" in host_port:
+                    host, port = host_port.rsplit(":", 1)
+                    return {
+                        "type": "ss",
+                        "method": method,
+                        "password": password,
+                        "host": host,
+                        "port": int(port),
+                        "name": name
+                    }
     except Exception:
-        pass
-    return None, None
+        return None
+    return None
 
-def fetch_geoip_ipwhois(host):
+def parse_telegram_proxy(line):
     try:
-        r = requests.get(f"http://ipwhois.app/json/{host}?lang=en", timeout=3)
-        if r.status_code == 200:
-            data = r.json()
-            if data.get("success"):
-                return data.get("country_code", "XX"), data.get("country", "Unknown")
+        if "t.me/proxy" not in line and "tg://proxy" not in line:
+            return None
+        
+        if "t.me/proxy" in line:
+            parsed = urlparse(line)
+            params = parse_qs(parsed.query)
+        else:
+            parsed = urlparse(line.replace("tg://proxy", "http://x"))
+            params = parse_qs(parsed.query)
+
+        server = params.get('server', [None])[0]
+        port = params.get('port', [None])[0]
+        secret = params.get('secret', [None])[0]
+        
+        if not secret:
+            secret = params.get('udp', [''])[0]
+
+        if not server or not port:
+            return None
+
+        return {
+            "type": "mtproto",
+            "host": server,
+            "port": int(port),
+            "secret": secret,
+            "name": "TG Proxy"
+        }
     except Exception:
-        pass
-    return None, None
+        return None
 
-def is_cloudflare_ip(ip):
-    for prefix in CLOUDFLARE_IP_PREFIXES:
-        if ip.startswith(prefix):
-            return True
-    return False
-
-def is_cloudflare_asn(geo_data):
-    return False
-
-def tcp_test(host, port, timeout=TIMEOUT_CONNECT):
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        sock.settimeout(timeout)
-        start = time.perf_counter()
-        result = sock.connect_ex((host, port))
-        ping_ms = (time.perf_counter() - start) * 1000
-        sock.close()
-        if result == 0:
-            return True, ping_ms
-        return False, 9999
-    except Exception:
-        return False, 9999
-
-def tcp_test_double(host, port):
-    results = []
-    for attempt in range(2):
-        success, ping = tcp_test(host, port)
-        results.append({"success": success, "ping": ping, "attempt": attempt + 1})
-    
-    successful = [r for r in results if r["success"]]
-    
-    if len(successful) == 2:
-        avg_ping = sum(r["ping"] for r in successful) / 2
-        return "GOOD", avg_ping, results
-    elif len(successful) == 1:
-        avg_ping = successful[0]["ping"]
-        return "UNSTABLE", avg_ping, results
-    else:
-        return "DEAD", 9999, results
-
-def normalize_config_params(item):
-    params = item.get('params', {})
-    p_type = item.get('type', '')
-    host = (item.get('host') or '').lower().strip()
-    port = item.get('port')
-    
-    security = ''
-    if isinstance(params, dict):
-        sec_list = params.get('security', [])
-        security = sec_list[0] if isinstance(sec_list, list) and sec_list else sec_list
-    security = (security or '').lower().strip()
-    
-    sni = ''
-    if isinstance(params, dict):
-        sni_list = params.get('sni', [])
-        sni = sni_list[0] if isinstance(sni_list, list) and sni_list else sni_list
-    sni = (sni or host).lower().strip()
-    
-    def get_param(name):
-        val = params.get(name, []) if isinstance(params, dict) else []
-        return val[0] if isinstance(val, list) and val else val
-    
-    normalized = {
-        'type': p_type,
-        'security': security,
-        'sni': sni,
-        'host': host,
-        'path': get_param('path') or '',
-        'alpn': get_param('alpn') or '',
-        'fp': get_param('fp') or '',
-        'pbk': get_param('pbk') or '',
-        'sid': get_param('sid') or '',
-        'flow': get_param('flow') or '',
-        'serviceName': get_param('serviceName') or '',
-        'mode': get_param('mode') or '',
-        'headerType': get_param('headerType') or '',
-        'seed': get_param('seed') or '',
-        'quicSecurity': get_param('quicSecurity') or '',
-        'key': get_param('key') or '',
-        'encryption': get_param('encryption') or '',
-    }
-    
-    item['normalized'] = normalized
-    dedup_string = f"{p_type}|{host}|{port}|{security}|{sni}|{normalized['pbk']}|{normalized['sid']}|{normalized['flow']}"
-    return dedup_string
-
-def is_valid_uuid(uuid_str):
-    if not uuid_str:
-        return False
-    uuid_pattern = re.compile(r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
-    return bool(uuid_pattern.match(uuid_str))
-
-def parse_proxy_line(line, source_url=""):
+def parse_line(line):
     line = line.strip()
-    if not line or line.startswith('#'):
+    if not line or line.startswith("#"):
         return None
     
-    if line.startswith("vless://"):
-        try:
-            parsed = urlparse(line)
-            host = parsed.hostname
-            port = parsed.port
-            name = unquote(parsed.fragment)
-            params = parse_qs(parsed.query)
-            item = {"type": "vless", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
-            normalize_config_params(item)
-            return item
-        except Exception:
-            return None
-    
-    if line.startswith("vmess://"):
-        try:
-            decoded = base64.b64decode(line[8:] + '==').decode('utf-8')
-            data = json.loads(decoded)
-            host = data.get('add', '')
-            port = data.get('port', '')
-            name = data.get('ps', '')
-            item = {"type": "vmess", "host": host, "port": int(port) if str(port).isdigit() else None, "name": name, "raw": line, "params": data, "source_url": source_url}
-            normalize_config_params(item)
-            return item
-        except Exception:
-            return None
-    
-    if line.startswith("trojan://"):
-        try:
-            parsed = urlparse(line)
-            host = parsed.hostname
-            port = parsed.port
-            name = unquote(parsed.fragment)
-            params = parse_qs(parsed.query)
-            item = {"type": "trojan", "host": host, "port": port, "name": name, "raw": line, "params": params, "source_url": source_url}
-            normalize_config_params(item)
-            return item
-        except Exception:
-            return None
-    
-    if line.startswith("ss://"):
-        try:
-            parsed = urlparse(line)
-            host = parsed.hostname
-            port = parsed.port
-            name = unquote(parsed.fragment)
-            userinfo = parsed.username + ':' + parsed.password if parsed.password else parsed.username
-            try:
-                decoded = base64.b64decode(userinfo + '==').decode('utf-8')
-            except Exception:
-                decoded = userinfo
-            item = {"type": "ss", "host": host, "port": port, "name": name, "raw": line, "params": {"method_password": decoded}, "source_url": source_url}
-            normalize_config_params(item)
-            return item
-        except Exception:
-            return None
+    if line.startswith("vless://"): return parse_vless(line)
+    elif line.startswith("trojan://"): return parse_trojan(line)
+    elif line.startswith("vmess://"): return parse_vmess(line)
+    elif line.startswith("ss://"): return parse_ss(line)
+    elif "t.me/proxy" in line or "tg://proxy" in line: return parse_telegram_proxy(line)
     
     return None
 
-def validate_config(item):
-    if not item:
-        return False, "empty"
-    
-    host = item.get('host')
-    port = item.get('port')
-    
-    if not host or not str(host).strip():
-        return False, "empty_host"
-    
-    if not port or not str(port).isdigit() or int(port) <= 0 or int(port) > 65535:
-        return False, "invalid_port"
-    
-    params = item.get('params', {})
-    security = ''
-    if isinstance(params, dict):
-        sec_list = params.get('security', [])
-        security = sec_list[0] if isinstance(sec_list, list) and sec_list else sec_list
-    security = (security or '').lower().strip()
-    
-    if security not in ['tls', 'reality']:
-        return False, "no_tls_reality"
-    
-    if security == 'reality':
-        pbk = params.get('pbk', [])
-        if isinstance(pbk, list):
-            pbk = pbk[0] if pbk else ''
-        if not pbk:
-            return False, "broken_reality_no_pbk"
-    
-    if item.get('type') == 'vless':
-        uuid = item.get('raw', '').split('://')[1].split('@')[0] if '@' in item.get('raw', '') else ''
-        if uuid and not is_valid_uuid(uuid):
-            return False, "malformed_uuid"
-    
-    return True, "valid"
+# --- CHECKER LOGIC ---
 
-def check_dedup(item):
-    host = (item.get('host') or '').lower().strip()
-    port = item.get('port')
-    params = item.get('params', {})
-    normalized = item.get('normalized', {})
-    
-    dedup_keys = []
-    
-    norm_string = f"{item.get('type')}|{host}|{port}|{normalized.get('security')}|{normalized.get('sni')}|{normalized.get('pbk')}|{normalized.get('sid')}|{normalized.get('flow')}"
-    dedup_keys.append(norm_string)
-    
-    uuid = ''
-    if item.get('type') == 'vless' and '@' in item.get('raw', ''):
-        uuid = item.get('raw', '').split('://')[1].split('@')[0]
-    if uuid:
-        dedup_keys.append(f"{host}|{port}|{uuid}")
-    
-    pbk = normalized.get('pbk', '')
-    if pbk:
-        dedup_keys.append(f"{host}|{port}|{pbk}")
-    
-    password = ''
-    if item.get('type') == 'trojan':
-        password = item.get('raw', '').split('://')[1].split('@')[0] if '@' in item.get('raw', '') else ''
-    elif item.get('type') == 'ss':
-        pm = params.get('method_password', '')
-        if ':' in str(pm):
-            password = pm.split(':')[-1]
-    if password:
-        dedup_keys.append(f"{host}|{port}|{password}")
-    
-    with _seen_lock:
-        for key in dedup_keys:
-            if key in _seen_configs:
-                return True
-        for key in dedup_keys:
-            _seen_configs.add(key)
-    
-    return False
-
-def process_config(item):
-    host = item.get('host')
-    port = item.get('port')
-    source_url = item.get('source_url', '')
-    
-    valid, reason = validate_config(item)
-    if not valid:
-        return None
-    
-    if check_dedup(item):
-        return None
-    
-    if not check_reputation(host, port):
-        return None
-    
-    status, ping, details = tcp_test_double(host, port)
-    
-    if status == "DEAD":
-        update_reputation(host, port, False)
-        return None
-    
-    update_reputation(host, port, True)
-    
-    geo_code, geo_name = fetch_geoip_multi(str(host))
-    if not geo_code:
-        geo_code = "XX"
-        geo_name = "Unknown"
-    
-    cf_ip = is_cloudflare_ip(str(host))
-    
-    country_flag = COUNTRY_NAMES.get(geo_code, f"🌐 {geo_code}")
-    original_name = item.get('name', '')
-    new_name = f"{country_flag} | StintikVPN"
-    
-    raw = item.get('raw', '')
-    if '#' in raw:
-        base = raw.rsplit('#', 1)[0]
-        item['raw'] = f"{base}#{new_name}"
-    else:
-        item['raw'] = f"{raw}#{new_name}"
-    
-    return {
-        "item": item,
-        "valid": True,
-        "ping": ping,
-        "status": status,
-        "country": geo_code,
-        "country_name": geo_name,
-        "cloudflare": cf_ip,
-        "source": source_url
-    }
-
-def fetch_urls(urls):
-    all_items = []
-    for url in urls:
-        try:
-            print(f"📥 Загрузка: {url.split('/')[-1]}")
-            r = requests.get(url, timeout=15)
-            if r.status_code == 200:
-                content = r.text
-                if "base64" in url.lower() or len(content) > 10000:
-                    try:
-                        decoded = base64.b64decode(content).decode('utf-8')
-                        content = decoded
-                    except Exception:
-                        pass
-                lines = content.split('\n')
-                valid_count = 0
-                for line in lines:
-                    parsed = parse_proxy_line(line, source_url=url)
-                    if parsed:
-                        all_items.append(parsed)
-                        valid_count += 1
-                with _lock:
-                    _stats["sources"][url] += valid_count
-        except Exception as e:
-            print(f"⚠️ Error fetching {url.split('/')[-1]}: {e}")
-    return all_items
-
-def send_telegram_message(message):
+async def check_tcp(session, host, port, timeout=2.5):
     try:
-        url = f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage"
-        data = {"chat_id": TG_CHAT_ID, "text": message, "parse_mode": "HTML"}
-        requests.post(url, json=data, timeout=5)
+        start = time.time()
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, port),
+            timeout=timeout
+        )
+        writer.close()
+        await writer.wait_closed()
+        latency = (time.time() - start) * 1000
+        return True, latency
     except Exception:
-        pass
+        return False, 9999
 
-def main():
-    start_time = time.time()
-    print(f"🚀 StintikVPN Ultimate v{VERSION} | Threads: {THREADS}")
-    
-    load_reputation()
-    load_geoip_cache()
-    
-    results = {key: [] for key in OUTPUTS.keys()}
-    protocol_results = {key: [] for key in PROTOCOL_FILES.keys()}
-    
-    for category, meta in OUTPUTS.items():
-        print(f"\n📂 Обработка {category}...")
-        items = fetch_urls(meta["urls"])
-        print(f"🔍 Проверка {len(items)} конфигов...")
+async def check_mtproto(session, host, port, secret, timeout=2.5):
+    try:
+        start = time.time()
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, port),
+            timeout=timeout
+        )
+        writer.close()
+        await writer.wait_closed()
+        latency = (time.time() - start) * 1000
+        return True, latency
+    except Exception:
+        return False, 9999
+
+async def process_config(config, session, semaphore, results, stats):
+    async with semaphore:
+        host = config.get('host')
+        port = config.get('port')
+        p_type = config.get('type')
         
-        alive_count = 0
-        with ThreadPoolExecutor(max_workers=THREADS) as executor:
-            futures = [executor.submit(process_config, item) for item in items]
-            for future in as_completed(futures):
-                res = future.result()
-                if res and res.get('valid'):
-                    alive_count += 1
-                    results[category].append(res)
-                    proto = res['item'].get('type', '')
-                    if proto in protocol_results:
-                        protocol_results[proto].append(res)
+        if not host or not port:
+            return
+
+        dedup_key = f"{host}:{port}"
+        if p_type == 'mtproto':
+            dedup_key += f":{config.get('secret')}"
+        elif p_type == 'vless':
+            dedup_key += f":{config.get('uuid')}"
+        elif p_type == 'trojan':
+            dedup_key += f":{config.get('password')}"
+            
+        if dedup_key in stats['seen']:
+            return
+        stats['seen'].add(dedup_key)
+
+        ip = extract_ip(host)
+        cc, country_name = await get_geoip(ip, session)
         
-        print(f"✅ Найдено рабочих: {alive_count}")
-        with _stats_lock:
-            _stats['alive'] += alive_count
-            _stats['total_checked'] += len(items)
+        if cc == "XX":
+            stats['rejected_xx'] += 1
+            return
+
+        successes = 0
+        total_latency = 0
+        
+        if p_type == 'mtproto':
+            for _ in range(2):
+                ok, lat = await check_mtproto(session, host, port, config.get('secret'))
+                if ok:
+                    successes += 1
+                    total_latency += lat
+        else:
+            for _ in range(2):
+                ok, lat = await check_tcp(session, host, port)
+                if ok:
+                    successes += 1
+                    total_latency += lat
+
+        avg_latency = total_latency / successes if successes > 0 else 9999
+
+        status = "DEAD"
+        if successes == 2:
+            status = "GOOD"
+            stats['good'] += 1
+        elif successes == 1:
+            status = "UNSTABLE"
+            stats['unstable'] += 1
+        else:
+            stats['dead'] += 1
+            return
+
+        emoji = "".join([chr(ord(c) + 127397) for c in cc])
+        final_name = f"{emoji} {country_name} | StintikVPN"
+        
+        config['name'] = final_name
+        config['status'] = status
+        config['latency'] = int(avg_latency)
+        config['cc'] = cc
+
+        results.append(config)
+
+async def fetch_urls(file_path):
+    if not os.path.exists(file_path):
+        print(f"File {file_path} not found!")
+        return {}
     
-    end_time = time.time()
-    _stats['dead'] = _stats['total_checked'] - _stats['alive']
-    _stats['duration'] = end_time - start_time
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
     
-    print("\n💾 Сохранение результатов...")
-    
-    def save_list(name, data_list, filename, limit):
-        data_list.sort(key=lambda x: x['ping'])
-        limited = data_list[:limit]
-        folder = OUTPUTS.get(name, {}).get("folder", BASE_DIR)
-        os.makedirs(folder, exist_ok=True)
-        path = os.path.join(folder, filename)
-        header = f"# StintikVPN Auto-Generated: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(limited)}\n"
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(header)
-            f.write('\n'.join([x['item']['raw'] for x in limited]))
-        return len(limited)
-    
-    final_counts = {}
-    for key in OUTPUTS.keys():
-        final_counts[key] = save_list(key, results[key], OUTPUTS[key]["file"], LIMITS.get(key, 100))
-    
-    for proto, items in protocol_results.items():
-        items.sort(key=lambda x: x['ping'])
-        path = PROTOCOL_FILES[proto]
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        header = f"# {proto.upper()} Servers: {time.strftime('%Y-%m-%d %H:%M')} | Count: {min(len(items), LIMITS.get('protocols', 100))}\n"
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(header)
-            f.write('\n'.join([x['item']['raw'] for x in items[:LIMITS.get('protocols', 100)]]))
-    
-    country_results = defaultdict(list)
-    for cat_results in results.values():
-        for item in cat_results:
-            cc = item.get('country', 'XX')
-            country_results[cc].append(item)
-    
-    countries_dir = os.path.join(BASE_DIR, "countries")
-    os.makedirs(countries_dir, exist_ok=True)
-    for cc, items in country_results.items():
-        items.sort(key=lambda x: x['ping'])
-        path = os.path.join(countries_dir, f"{cc}.txt")
-        header = f"# {COUNTRY_NAMES.get(cc, cc)} Servers: {time.strftime('%Y-%m-%d %H:%M')} | Count: {len(items)}\n"
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(header)
-            f.write('\n'.join([x['item']['raw'] for x in items]))
-    
-    save_reputation()
-    save_geoip_cache()
-    save_json(STATS_FILE, _stats)
-    
-    live_stats = {
-        "last_update": time.strftime('%Y-%m-%d %H:%M:%S'),
-        "total_alive": _stats['alive'],
-        "total_dead": _stats['dead'],
-        "duration_sec": round(_stats['duration'], 2),
-        "categories": final_counts
+    raw_lines = content.split('\n')
+    section_map = {
+        "BLACK": "black",
+        "BLACK MOBILE": "black_mobile",
+        "WHITE": "white_all",
+        "WHITE SNI": "white_sni",
+        "WHITE CIDR": "white_cidr",
+        "TELEGRAM": "telegram"
     }
-    save_json(LIVE_STATS_FILE, live_stats)
     
-    summary = f"""
-✅ <b>StintikVPN Checker Complete!</b>
+    current_cat = "black"
+    collected = {k: [] for k in section_map.values()}
+    
+    for line in raw_lines:
+        line = line.strip()
+        if not line: continue
+        
+        header_match = re.match(r'#\s*(BLACK MOBILE|BLACK|WHITE SNI|WHITE CIDR|WHITE|TELEGRAM)', line, re.IGNORECASE)
+        if header_match:
+            key = header_match.group(1).upper()
+            current_cat = section_map.get(key, "black")
+            continue
+            
+        if line.startswith("#"): continue
+        
+        collected[current_cat].append(line)
+        
+    return collected
 
-⏱️ Duration: {_stats['duration']:.2f}s
-📊 Total Checked: {_stats['total_checked']}
-✅ Alive: {_stats['alive']}
-❌ Dead: {_stats['dead']}
+async def main():
+    print("🚀 Starting Optimized Checker...")
+    print("📂 Reading URLS.txt...")
+    
+    categories = await fetch_urls("URLS.txt")
+    
+    all_configs = []
+    
+    for cat, lines in categories.items():
+        limit = LIMITS.get(cat, 100)
+        count = 0
+        for line in lines:
+            if count >= limit:
+                break
+            cfg = parse_line(line)
+            if cfg:
+                cfg['category'] = cat
+                all_configs.append(cfg)
+                count += 1
+    
+    print(f"✅ Parsed {len(all_configs)} configs. Starting checks...")
+    
+    results = []
+    stats = {
+        'seen': set(),
+        'good': 0,
+        'unstable': 0,
+        'dead': 0,
+        'rejected_xx': 0
+    }
+    
+    semaphore = asyncio.Semaphore(100)
+    
+    async with aiohttp.ClientSession() as session:
+        tasks = [process_config(cfg, session, semaphore, results, stats) for cfg in all_configs]
+        await asyncio.gather(*tasks)
+    
+    print(f"\n📊 Results:")
+    print(f"   GOOD: {stats['good']}")
+    print(f"   UNSTABLE: {stats['unstable']}")
+    print(f"   DEAD: {stats['dead']}")
+    print(f"   REJECTED (XX/Invalid): {stats['rejected_xx']}")
+    
+    by_country = {}
+    for cfg in results:
+        cc = cfg.get('cc', 'XX')
+        if cc not in by_country:
+            by_country[cc] = []
+        by_country[cc].append(cfg)
+    
+    for cc, items in by_country.items():
+        fname = os.path.join(COUNTRIES_DIR, f"{cc}.txt")
+        with open(fname, 'w') as f:
+            for item in items:
+                f.write(json.dumps(item) + "\n")
+        print(f"💾 Saved {len(items)} to {fname}")
 
-📁 Results:
-"""
-    for cat, count in final_counts.items():
-        summary += f"• {cat}: {count}\n"
-    
-    send_telegram_message(summary)
-    
-    print(f"\n✅ ГОТОВО! Время: {_stats['duration']:.2f} сек.")
-    print(f"📊 Всего проверено: {_stats['total_checked']}")
-    print(f"✅ Рабочих: {_stats['alive']}")
-    print(f"❌ Мертвых: {_stats['dead']}")
-    print(f"💾 GeoIP cache: {GEOIP_CACHE_FILE}")
-    print(f"💾 Reputation: {REPUTATION_FILE}")
+    with open(RESULTS_FILE, 'w') as f:
+        json.dump({"total": len(results), "by_category": stats}, f, indent=2)
+        
+    print("✅ Done!")
 
 if __name__ == "__main__":
-    main()
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n⛔ Stopped by user.")
