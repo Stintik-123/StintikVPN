@@ -1,17 +1,11 @@
 # ==================== BLACK LIST SOURCES ====================
 # Черные списки VPN конфигов
-https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_SS+All_RUS_base64.txt
-https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/BLACK_VLESS_RUS_base64.txt
-https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/black.txt
-https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/sub.txt
+
 https://vpn.akres.fun/all
 https://mifa.world/fast
-https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/tri_228.txt
-https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/black/vless.txt
-https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_black.txt
-https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/black.txt
-https://raw.githubusercontent.com/FreeRadar/v2ray/main/black.txt
-https://raw.githubusercontent.com/aliilapro/v2ray/main/config.txt
+https://gitverse.ru/api/repos/Niyakwi/Kfg/raw/branch/master/new_file
+https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
+https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/wl_228.txt
 
 # ==================== BLACK MOBILE SOURCES ====================
 # Мобильная версия черного списка (50 серверов)
@@ -23,12 +17,9 @@ https://mifa.world/fast
 
 # ==================== WHITE LIST SOURCES ====================
 # Белые списки VPN конфигов (100 серверов каждый тип)
-https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt
-https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt
-https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/main/white.txt
-https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked/RU_Best/ru_white.txt
-https://raw.githubusercontent.com/Vakhloev/vpn_configs/main/white.txt
-https://raw.githubusercontent.com/FreeRadar/v2ray/main/white.txt
+https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
+https://raw.githubusercontent.com/nzea243/ikoV31tud_vpn/refs/heads/main/pc_228.txt
+https://raw.githubusercontent.com/redmi9cnfc/TV/main/NoriVPN.txt
 
 # ==================== WHITE SNI SOURCES ====================
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Base64/WHITE-SNI-RU-all-base64.txt
@@ -42,6 +33,35 @@ https://raw.githubusercontent.com/Mihuil121/vpn-checker-backend-fox/main/checked
 
 # ==================== TELEGRAM PROXY SOURCES ====================
 # Прокси для Telegram
-https://raw.githubusercontent.com/TelegramProxy/proxy-list/main/proxies.txt
-https://raw.githubusercontent.com/mtproto-proxy-list/free-proxies/main/list.txt
-https://raw.githubusercontent.com/kort0881/tg-proxy-list/main/proxies.txt
+https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
+https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
+tg://proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c
+tg://proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d
+tg://proxy?server=de4.kael.fuckrkn.net&port=443&secret=ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275
+https://t.me/proxy?server=91.224.75.242&port=2083&secret=ee018852e3ccd792819792849767f5882a636f666665652e73616d6172617765622e74656368
+https://t.me/proxy?server=51.250.45.241&port=443&secret=eed478a6353f1f735934c878caa62c720a706574726f766963682e7275
+https://t.me/proxy?server=core2quad.myrka.digital&port=775&secret=ee1111222e7f5904f3322ded8772202ea268322e6d79726b612e6469676974616c
+https://t.me/proxy?server=kisa.biletk.ru&port=444&secret=ee888144876666144844228333222212226d75727a696b2e6d79726b612e6469676974616c
+https://t.me/proxy?server=s.safevpnbot.com&port=443&secret=eed778a58b596c70917591a137306adaa76164732e78352e7275
+https://t.me/proxy?server=prx-1-velora.getvelora.space&port=443&secret=eee8a13cbfd00919e3d686b0c8e99939d8636c6f7564666c6172652e636f6d
+https://t.me/proxy?server=rek.baboon.digital&port=8444&secret=ee3ee55d93a141fb9be6d6ce9a03b18133636c6f7564666c6172652e636f6d
+https://t.me/proxy?server=95.181.213.248&port=443&secret=ee8a2802995839c6ce8b8f7b0c3bfe44c67777772e617669746f2e7275
+https://t.me/proxy?server=r-finland.kimt.space&port=443&secret=ee33a6dcb429c2952d80e01bcbae16912f6164732e78352e7275
+https://t.me/proxy?server=51.250.40.141&port=8443&secret=dd3d99e77539da1c5139da072b37dc3014
+https://t.me/proxy?server=78.111.85.174&port=443&secret=dfa86acd1f2b42d0e3c679f21f62bcd1
+https://t.me/proxy?server=80.78.27.247&port=2083&secret=ee205738a0b6c75cc1b5fd234edbff2f63636f666665652e73616d6172617765622e74656368
+https://t.me/proxy?server=95.163.210.212&port=443&secret=264776c3fb4f0d83e5c85cd3f582505a
+https://t.me/proxy?server=proxy.realslotsvpn.com&port=8443&secret=ee249ff03ce9d855dcbadbbd17e7fba3a879616e6465782e7275
+https://t.me/proxy?server=45.86.159.143&port=8443&secret=ee308d8bb6e9b0736beaccf2df55c7f8d56164732e78352e7275
+https://t.me/proxy?server=158.160.188.98&port=8443&secret=dd73675b09ac6690ff559bffa7b39a94c8
+https://t.me/proxy?server=84.201.168.161&port=8443&secret=ddf7d43a5e2ca0a8fa4cec27829869cb6b
+tg://proxy?server=51.250.40.141&port=8443&secret=dd3d99e77539da1c5139da072b37dc3014
+https://t.me/proxy?server=tg-eu.belka.network&port=443&secret=107cb7c1a3e23228d9e45226a2ac0785
+https://t.me/proxy?server=tg.black-service.ru&port=443&secret=fcdf767c1c351043643c10f5c3623a0f
+https://t.me/proxy?server=max.ru.rightarion.ru&port=443&secret=eedcaae509a2455bbfc6165f1708fd5c586d61782e7275
+https://t.me/proxy?server=proxy.monalisgame.com&port=443&secret=bd5d182c66f93eced64e53dcb5c17003
+https://t.me/proxy?server=95.163.211.72&port=8443&secret=dd973e178b06e6b204a3f6d8044dda69c7
+https://t.me/proxy?server=185.247.185.88&port=2443&secret=dddcc9ed672f03a80ff8ef0b52fd229e41
+https://t.me/proxy?server=89.208.197.239&port=443&secret=dde8653d2faf392a302d829d79537abbe7
+https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368
+https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368
