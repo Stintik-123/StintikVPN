@@ -1,2 +1,0 @@
-# 🇭🇺 Hungary Servers: 2026-05-27 04:56 | Count: 1
-vless://28833d89-79d5-4612-aef4-86ee354e9fe7@hu03.kubservice.icu:443?security=reality&encryption=none&echfq=none&pbk=z-TKWOWgZLfzQ-wNdwXQqVwaUgCmbchM2Xtrk1NGynU&headerType=none&fp=chrome&spx=%2F&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=hu03.kubservice.icu#🇭🇺 Hungary | StintikVPN

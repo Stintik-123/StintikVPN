@@ -1,2 +1,0 @@
-{"type": "mtproto", "host": "80.78.27.247", "port": 2083, "secret": "ee205738a0b6c75cc1b5fd234edbff2f63636f666665652e73616d6172617765622e74656368", "name": "\ud83c\uddf8\ud83c\uddea Sweden | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 154, "cc": "SE"}
-{"type": "mtproto", "host": "89.169.32.31", "port": 2083, "secret": "eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368", "name": "\ud83c\uddf8\ud83c\uddea Sweden | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 175, "cc": "SE"}

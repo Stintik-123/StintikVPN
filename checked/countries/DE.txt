@@ -1,2 +1,0 @@
-{"type": "mtproto", "host": "45.86.159.143", "port": 8443, "secret": "ee308d8bb6e9b0736beaccf2df55c7f8d56164732e78352e7275", "name": "\ud83c\udde9\ud83c\uddea Germany | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 132, "cc": "DE"}
-{"type": "mtproto", "host": "de4.kael.fuckrkn.net", "port": 443, "secret": "ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275", "name": "\ud83c\udde9\ud83c\uddea Germany | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 331, "cc": "DE"}

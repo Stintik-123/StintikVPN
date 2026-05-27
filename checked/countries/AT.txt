@@ -1,1 +1,0 @@
-{"type": "mtproto", "host": "95.163.176.204", "port": 2083, "secret": "ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368", "name": "\ud83c\udde6\ud83c\uddf9 Austria | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 155, "cc": "AT"}

@@ -1,2 +1,0 @@
-{"type": "mtproto", "host": "r-finland.kimt.space", "port": 443, "secret": "ee33a6dcb429c2952d80e01bcbae16912f6164732e78352e7275", "name": "\ud83c\uddeb\ud83c\uddf7 France | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 200, "cc": "FR"}
-{"type": "mtproto", "host": "rek.baboon.digital", "port": 8444, "secret": "ee3ee55d93a141fb9be6d6ce9a03b18133636c6f7564666c6172652e636f6d", "name": "\ud83c\uddeb\ud83c\uddf7 France | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 276, "cc": "FR"}

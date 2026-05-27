@@ -1,1 +1,0 @@
-{"type": "mtproto", "host": "prx-1-velora.getvelora.space", "port": 443, "secret": "eee8a13cbfd00919e3d686b0c8e99939d8636c6f7564666c6172652e636f6d", "name": "\ud83c\uddec\ud83c\udde7 United Kingdom | StintikVPN", "category": "telegram", "status": "GOOD", "latency": 528, "cc": "GB"}
