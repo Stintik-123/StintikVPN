@@ -3,298 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>StintikVPN – готовые рабочие подписки</title>
+    <title>StintikVPN — готовые рабочие подписки</title>
+    <!-- Tailwind CSS с Romarchive CDN (устойчив к блокировкам) -->
+    <script src="https://cows.info.gf/games/Brendan%20Javascript/T/Tailwind%20CSS%20v3.4.17%20(Unknown).js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            background: #0a0c10;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
-            color: #eef2ff;
-            line-height: 1.5;
-            padding: 20px;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0a0f1c, #03050b);
+            min-height: 100vh;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .glass {
+            background: rgba(18, 25, 40, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 180, 70, 0.2);
         }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
+        .glass-card {
+            background: rgba(12, 18, 28, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 180, 70, 0.15);
+            transition: all 0.2s ease;
         }
-        .logo {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #ffb347);
-            background-clip: text;
+        .glass-card:hover {
+            border-color: rgba(255, 180, 70, 0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,180,70,0.2);
+            transform: translateY(-2px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #FFD166, #FF9F1C, #F25F5C);
+            background-size: 200% auto;
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
-            letter-spacing: -0.02em;
+            animation: shine 3s linear infinite;
         }
-        .subhead {
-            color: #9aa4b2;
-            margin-top: 8px;
-            font-size: 0.9rem;
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
-        .steps {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 40px;
-            background: #141a24;
-            border-radius: 24px;
-            padding: 24px;
-            border: 1px solid #2a3342;
+        .copy-btn-custom:active {
+            transform: scale(0.96);
         }
-        .step {
-            flex: 1;
-            text-align: center;
-        }
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: #ffb347;
-            color: #0a0c10;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-            margin: 0 auto 12px;
-        }
-        .step h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        .step p {
-            color: #acb8cc;
-            font-size: 0.85rem;
-        }
-        .links-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        .link-card {
-            background: #141a24;
-            border-radius: 16px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            border: 1px solid #2a3342;
-            transition: 0.2s;
-        }
-        .link-card:hover {
-            border-color: #ffb347;
-        }
-        .link-info {
-            flex: 1;
-        }
-        .link-name {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 4px;
-        }
-        .link-desc {
-            font-size: 0.75rem;
-            color: #8a9bb5;
-        }
-        .copy-btn {
-            background: #2a3440;
-            border: none;
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-            font-weight: 500;
-        }
-        .copy-btn:hover {
-            background: #ffb347;
-            color: #0a0c10;
-        }
-        .clients {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 40px;
-            justify-content: center;
-        }
-        .client-btn {
-            background: #1f2a36;
-            padding: 12px 24px;
-            border-radius: 40px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 500;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .client-btn:hover {
-            background: #ffb347;
-            color: #0a0c10;
-        }
-        .faq {
-            background: #141a24;
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 40px;
-            border: 1px solid #2a3342;
-        }
-        .faq h3 {
-            margin-bottom: 16px;
-        }
-        .faq-item {
-            margin-bottom: 20px;
-        }
-        .faq-question {
-            font-weight: 700;
-            color: #ffb347;
-            margin-bottom: 6px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 0.75rem;
-            color: #5f6c82;
-            border-top: 1px solid #2a3342;
-            padding-top: 24px;
-            margin-top: 24px;
-        }
-        .badge {
-            display: inline-block;
-            background: #2a3440;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            color: #ffb347;
-            margin-right: 8px;
-        }
-        @media (max-width: 700px) {
-            .steps { flex-direction: column; }
-            .link-card { flex-direction: column; align-items: stretch; }
-            .copy-btn { width: 100%; text-align: center; }
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="header">
-        <div class="logo">StintikVPN</div>
-        <div class="subhead">готовые рабочие подписки для обхода блокировок</div>
+<body class="text-gray-200">
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <div class="text-center mb-12 md:mb-16">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight gradient-text mb-3">
+                StintikVPN
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Готовые рабочие подписки для обхода блокировок — обновляются ежедневно</p>
+        </div>
+
+        <!-- 3 шага -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center text-black font-bold text-xl mx-auto mb-4 shadow-lg">1</div>
+                <h3 class="text-xl font-bold mb-2">Скопируйте ссылку</h3>
+                <p class="text-gray-300 text-sm">Нажмите «Скопировать» рядом с нужным списком</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center text-black font-bold text-xl mx-auto mb-4 shadow-lg">2</div>
+                <h3 class="text-xl font-bold mb-2">Вставьте в клиент</h3>
+                <p class="text-gray-300 text-sm">Добавьте ссылку как новую подписку (Hiddify, v2rayN и др.)</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center text-black font-bold text-xl mx-auto mb-4 shadow-lg">3</div>
+                <h3 class="text-xl font-bold mb-2">Подключитесь</h3>
+                <p class="text-gray-300 text-sm">Обновите список, выберите сервер и включите VPN</p>
+            </div>
+        </div>
+
+        <!-- Подписки -->
+        <div class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i class="fas fa-link text-amber-400 text-2xl"></i>
+                <h2 class="text-2xl md:text-3xl font-bold">Готовые подписки</h2>
+                <span class="text-xs bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full">9 наборов</span>
+            </div>
+            <div class="space-y-3" id="linksContainer"></div>
+        </div>
+
+        <!-- Рекомендуемые клиенты -->
+        <div class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><i class="fas fa-download text-amber-400"></i> Рекомендуемые VPN-клиенты</h2>
+            <div class="flex flex-wrap gap-3 justify-center sm:justify-start">
+                <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="glass-card rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-amber-500/10 transition"><i class="fab fa-windows"></i> Hiddify (Win/Linux)</a>
+                <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="glass-card rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-amber-500/10 transition"><i class="fab fa-windows"></i> v2rayN (Windows)</a>
+                <a href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" class="glass-card rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-amber-500/10 transition"><i class="fab fa-android"></i> Incy (Android)</a>
+                <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" class="glass-card rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-amber-500/10 transition"><i class="fas fa-cat"></i> NekoBox (Android/TV)</a>
+                <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="glass-card rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-amber-500/10 transition"><i class="fab fa-apple"></i> Streisand (iOS/macOS)</a>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2"><i class="fas fa-question-circle text-amber-400"></i> Часто задаваемые вопросы</h2>
+            <div class="space-y-5">
+                <div class="glass-card rounded-xl p-5">
+                    <h3 class="text-lg font-bold text-amber-300 mb-2">Что такое SNI? Зачем white.sni.txt?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">SNI (Server Name Indication) — имя сервера, которое клиент передаёт при подключении. DPI-системы проверяют SNI и блокируют подозрительные. Конфиги с валидным SNI/Reality маскируются под обычный сайт (например, yandex.ru) и проходят блокировку. Файл <code class="bg-black/30 px-1 rounded">white.sni.txt</code> — отфильтрованные конфиги с точно рабочим SNI.</p>
+                </div>
+                <div class="glass-card rounded-xl p-5">
+                    <h3 class="text-lg font-bold text-amber-300 mb-2">Что такое CIDR и зачем white.cidr.txt?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">CIDR — способ записи подсетей (например, 192.168.0.0/16). Некоторые провайдеры блокируют целые диапазоны, а не отдельные IP. Конфиги с CIDR-масками помогают обходить такие блокировки.</p>
+                </div>
+                <div class="glass-card rounded-xl p-5">
+                    <h3 class="text-lg font-bold text-amber-300 mb-2">Почему не работает подписка?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Попробуйте обновить список в клиенте (кнопка «Обновить подписку»). Смените протокол (VLESS → Trojan) или клиент (Hiddify → NekoBox).</p>
+                </div>
+                <div class="glass-card rounded-xl p-5">
+                    <h3 class="text-lg font-bold text-amber-300 mb-2">Как часто обновляются конфиги?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Скрипт запускается каждый день. Все ссылки ведут на самые свежие версии.</p>
+                </div>
+                <div class="glass-card rounded-xl p-5">
+                    <h3 class="text-lg font-bold text-amber-300 mb-2">Какой клиент проще всего для новичка?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Hiddify — самый простой интерфейс и автопоиск лучшего сервера. На iOS — Streisand.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center pt-8 border-t border-white/10 text-gray-500 text-sm">
+            <p>StintikVPN — сделано людьми для людей · <a href="https://github.com/Stintik-123/StintikVPN" class="text-amber-400 hover:underline" target="_blank">GitHub</a></p>
+            <p class="mt-2">
+                <a href="https://t.me/StintikVPN" class="text-amber-400 hover:underline" target="_blank"><i class="fab fa-telegram"></i> Telegram-канал</a> 
+                | <a href="https://t.me/Keb04w" class="text-amber-400 hover:underline" target="_blank"><i class="fas fa-headset"></i> Поддержка</a>
+            </p>
+        </div>
     </div>
 
-    <div class="steps">
-        <div class="step">
-            <div class="step-num">1</div>
-            <h3>Скопируйте ссылку</h3>
-            <p>Нажмите «Скопировать» рядом с нужным списком</p>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <h3>Вставьте в клиент</h3>
-            <p>Добавьте ссылку как новую подписку (Hiddify, v2rayN, NekoBox и др.)</p>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <h3>Подключитесь</h3>
-            <p>Обновите список, выберите сервер и включите VPN</p>
-        </div>
-    </div>
+    <script>
+        const subscriptions = [
+            { name: "⚫ Чёрный список", desc: "Основной список, ~300 серверов. Лучший баланс скорости и стабильности.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black/black.txt" },
+            { name: "📱 Black Mobile", desc: "50 лучших серверов без Anycast. Идеально для мобильных устройств.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/black_mobile.txt" },
+            { name: "⚪ Белый список (все рабочие)", desc: "~150 полностью рабочих конфигов.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt" },
+            { name: "🔍 Белый список (SNI)", desc: "Конфиги с валидным SNI/Reality, лучше маскируются.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.sni.txt" },
+            { name: "🌐 Белый список (CIDR)", desc: "Конфиги с CIDR-масками, полезны при блокировках целых подсетей.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt" },
+            { name: "⚡ VLESS (Reality)", desc: "Лучший для обхода блокировок, современный и хорошо маскируется.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vless.txt" },
+            { name: "🔒 VMess", desc: "Надёжный, проверенный временем.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vmess.txt" },
+            { name: "🛡️ Trojan", desc: "Хорошая маскировка, часто работает там, где VLESS не проходит.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/trojan.txt" },
+            { name: "🚀 Shadowsocks", desc: "Лёгкий и быстрый, подойдёт, если блокировки не очень жёсткие.", url: "https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/ss.txt" }
+        ];
 
-    <h2 style="margin-bottom: 16px;">📦 Готовые подписки</h2>
-    <div class="links-grid">
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/black/black.txt">
-            <div class="link-info"><div class="link-name">⚫ Чёрный список</div><div class="link-desc">Основной список, ~300 серверов. Лучший баланс скорости и стабильности.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/black_mobile.txt">
-            <div class="link-info"><div class="link-name">📱 Black Mobile</div><div class="link-desc">50 лучших серверов без Anycast. Идеально для мобильных устройств.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.all.txt">
-            <div class="link-info"><div class="link-name">⚪ Белый список (все рабочие)</div><div class="link-desc">~150 полностью рабочих конфигов.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.sni.txt">
-            <div class="link-info"><div class="link-name">🔍 Белый список (SNI)</div><div class="link-desc">Конфиги с валидным SNI/Reality, лучше маскируются.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/white/white.cidr.txt">
-            <div class="link-info"><div class="link-name">🌐 Белый список (CIDR)</div><div class="link-desc">Конфиги с CIDR-масками, полезны при блокировках целых подсетей.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vless.txt">
-            <div class="link-info"><div class="link-name">⚡ VLESS (Reality)</div><div class="link-desc">Лучший для обхода блокировок, современный и хорошо маскируется.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/vmess.txt">
-            <div class="link-info"><div class="link-name">🔒 VMess</div><div class="link-desc">Надёжный, проверенный временем.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/trojan.txt">
-            <div class="link-info"><div class="link-name">🛡️ Trojan</div><div class="link-desc">Хорошая маскировка, часто работает там, где VLESS не проходит.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-        <div class="link-card" data-url="https://raw.githubusercontent.com/Stintik-123/StintikVPN-/main/checked/protocols/ss.txt">
-            <div class="link-info"><div class="link-name">🚀 Shadowsocks</div><div class="link-desc">Лёгкий и быстрый, подойдёт, если блокировки не очень жёсткие.</div></div>
-            <button class="copy-btn">Скопировать</button>
-        </div>
-    </div>
-
-    <h2 style="margin-bottom: 16px;">📱 Рекомендуемые VPN-клиенты</h2>
-    <div class="clients">
-        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="client-btn">✨ Hiddify (Win/Linux)</a>
-        <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="client-btn">🪟 v2rayN (Windows)</a>
-        <a href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" class="client-btn">📱 Incy (Android)</a>
-        <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" class="client-btn">🐱 NekoBox (Android/TV)</a>
-        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="client-btn">🍎 Streisand (iOS/macOS)</a>
-    </div>
-
-    <div class="faq">
-        <h3>❓ Часто задаваемые вопросы</h3>
-        <div class="faq-item"><div class="faq-question">Что такое SNI? Почему в белых списках есть отдельный файл white.sni.txt?</div>SNI (Server Name Indication) – это имя сервера, которое ваш клиент передаёт при подключении. DPI-системы провайдера проверяют SNI и блокируют подозрительные. Конфиги с валидным SNI/Reality маскируются под обычный сайт (например, «yandex.ru») и проходят блокировку. Файл white.sni.txt – это отфильтрованные конфиги, у которых SNI точно рабочий.</div>
-        <div class="faq-item"><div class="faq-question">Что такое CIDR и зачем файл white.cidr.txt?</div>CIDR (Classless Inter-Domain Routing) – способ записи подсетей (например, 192.168.0.0/16). Некоторые провайдеры блокируют не отдельные IP, а целые диапазоны. Конфиги с CIDR-масками могут обходить такие блокировки. Файл white.cidr.txt – это конфиги, которые лучше подходят для ситуаций, когда ваш IP попадает под массовую блокировку.</div>
-        <div class="faq-item"><div class="faq-question">Почему не работает подписка?</div>Попробуйте обновить список в клиенте (кнопка «Обновить подписку»). Если не помогло – попробуйте сменить протокол (например, с VLESS на Trojan) или страну в папке checked/countries/. Иногда помогает смена клиента (например, с Hiddify на NekoBox).</div>
-        <div class="faq-item"><div class="faq-question">Как часто обновляются конфиги?</div>Скрипт запускается каждый день. Все ссылки ведут на самые свежие версии.</div>
-        <div class="faq-item"><div class="faq-question">Какой клиент проще всего для новичка?</div>Hiddify – самый простой интерфейс и автопоиск лучшего сервера. Для Windows и Android подходит одинаково хорошо. На iOS – Streisand.</div>
-    </div>
-
-    <div class="footer">
-        <p>StintikVPN – сделано людьми для людей · <a href="https://github.com/Stintik-123/StintikVPN" style="color:#ffb347;">GitHub</a></p>
-        <p>📢 <a href="https://t.me/StintikVPN" style="color:#ffb347;">Telegram-канал</a> | ✉️ <a href="https://t.me/Keb04w" style="color:#ffb347;">Поддержка</a></p>
-    </div>
-</div>
-
-<script>
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', async function() {
-            const url = this.closest('.link-card').getAttribute('data-url');
-            if (!url) return;
-            try {
-                await navigator.clipboard.writeText(url);
-                const original = this.innerText;
-                this.innerText = '✓ Скопировано!';
-                this.classList.add('copied');
-                setTimeout(() => {
-                    this.innerText = original;
-                    this.classList.remove('copied');
-                }, 1500);
-            } catch (err) {
-                alert('Не удалось скопировать, скопируйте вручную');
-            }
-        });
-    });
-</script>
+        const container = document.getElementById('linksContainer');
+        if (container) {
+            subscriptions.forEach(sub => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3 transition-all';
+                card.innerHTML = `
+                    <div class="flex-1 min-w-[180px]">
+                        <div class="font-bold text-base sm:text-lg flex items-center gap-2">${sub.name}</div>
+                        <div class="text-gray-400 text-xs sm:text-sm mt-1">${sub.desc}</div>
+                    </div>
+                    <button class="copy-btn copy-btn-custom bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-black font-semibold py-2 px-5 rounded-full text-sm transition-all flex items-center gap-2 border border-amber-500/30">
+                        <i class="far fa-copy"></i> Скопировать
+                    </button>
+                `;
+                const btn = card.querySelector('.copy-btn');
+                btn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(sub.url);
+                        const originalHTML = btn.innerHTML;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                        btn.classList.add('bg-amber-500', 'text-black', 'border-amber-400');
+                        setTimeout(() => {
+                            btn.innerHTML = originalHTML;
+                            btn.classList.remove('bg-amber-500', 'text-black', 'border-amber-400');
+                        }, 1500);
+                    } catch (err) {
+                        alert('Не удалось скопировать, скопируйте вручную: ' + sub.url);
+                    }
+                });
+                container.appendChild(card);
+            });
+        }
+    </script>
 </body>
 </html>
