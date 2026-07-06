@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru" id="htmlRoot">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="StintikVPN — подборка рабочих VPN-ссылок для обхода блокировок в России. Копируй ссылку, вставляй в клиент, пользуйся интернетом.">
 <title>StintikVPN — подборка рабочих VPN-подписок</title>
 
-<!-- Open Graph / Telegram / соцсети превью -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="StintikVPN — подборка рабочих VPN-подписок">
 <meta property="og:description" content="Готовые VPN-ссылки для обхода блокировок в России. Скопировал → вставил → подключился.">
@@ -14,208 +13,20 @@
 <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="StintikVPN — подборка рабочих VPN-подписок">
-<meta name="twitter:description" content="Готовые VPN-ссылки для обхода блокировок в России.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
 
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0D0B09">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
+<link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-
-<style>
-  :root{
-    --bg: #0D0B09; --bg-soft: #17130E; --card: #1D1712; --card-hover: #251C13;
-    --border: rgba(255,122,26,.16); --border-strong: rgba(255,138,61,.55);
-    --orange: #FF6B1A; --orange-bright: #FF8A3D; --amber: #FFC24B;
-    --text: #F4EEE4; --text-dim: #A79C88; --text-dimmer: #6E6555;
-    --green: #3ED598; --red: #FF6B6B; --radius: 18px;
-    --mono: 'JetBrains Mono', monospace; --display: 'Space Grotesk', sans-serif; --body: 'IBM Plex Sans', sans-serif;
-  }
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior: auto; }
-    *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-  }
-  body{ margin:0; background: var(--bg); color: var(--text); font-family: var(--body); line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden; position:relative; }
-  #bgCanvas{ position:fixed; inset:0; z-index:-1; opacity:.55; }
-  #preloader{ position:fixed; inset:0; z-index:999; background: var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; transition: opacity .4s ease; }
-  #preloader.hidden{ opacity:0; pointer-events:none; }
-  #preloader img{ width:64px; height:64px; border-radius:18px; object-fit:cover; animation: preloaderPulse 2.2s ease-in-out infinite; }
-  @keyframes preloaderPulse{ 0%,100%{ transform: scale(1); opacity:.85; } 50%{ transform: scale(1.08); opacity:1; } }
-  .preloader-bar{ width:140px; height:3px; background: rgba(255,255,255,.08); border-radius:100px; overflow:hidden; }
-  .preloader-bar span{ display:block; width:40%; height:100%; background: linear-gradient(90deg, var(--orange), var(--amber)); border-radius:100px; animation: preloaderSlide 1.8s ease-in-out infinite; }
-  @keyframes preloaderSlide{ 0%{ transform: translateX(-100%); } 100%{ transform: translateX(350%); } }
-  @media (prefers-reduced-motion: reduce){
-    #preloader{ transition: none; }
-    #preloader img, .preloader-bar span{ animation: none; }
-  }
-  a{ color:inherit; } h1,h2,h3{ font-family: var(--display); margin:0; letter-spacing:-0.01em; }
-  img{ max-width:100%; display:block; }
-  :focus-visible{ outline: 2px solid var(--orange-bright); outline-offset:3px; border-radius:4px; }
-  .wrap{ max-width:1080px; margin:0 auto; padding:0 20px; }
-
-  .nav{ position:sticky; top:0; z-index:60; background: rgba(13,11,9,.85); backdrop-filter: blur(14px); border-bottom:1px solid var(--border); }
-  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:12px 20px; max-width:1080px; margin:0 auto; gap:16px; }
-  .brand{ display:flex; align-items:center; gap:10px; font-family: var(--display); font-weight:700; font-size:1.2rem; }
-  .brand img{ width:34px; height:34px; border-radius:10px; object-fit:cover; border:1px solid var(--border-strong); }
-  .nav-links{ display:flex; gap:22px; font-size:.88rem; color: var(--text-dim); }
-  .nav-links a{ text-decoration:none; transition: color .15s; }
-  .nav-links a:hover{ color: var(--orange-bright); }
-  .nav-right{ display:flex; align-items:center; gap:10px; }
-  .lang-toggle{ display:flex; background: var(--card); border:1px solid var(--border); border-radius:100px; padding:3px; }
-  .lang-btn{ font-family: var(--mono); font-size:.72rem; padding:5px 11px; border-radius:100px; background:none; border:none; color: var(--text-dim); cursor:pointer; }
-  .lang-btn.active{ background: var(--orange); color:#160D04; font-weight:600; }
-  .gh-btn{ display:flex; align-items:center; gap:6px; font-size:.8rem; padding:8px 14px; border-radius:100px; border:1px solid var(--border); text-decoration:none; transition: border-color .15s; }
-  .gh-btn:hover{ border-color: var(--border-strong); }
-  @media (max-width:780px){ .nav-links{ display:none; } }
-  @media (max-width:400px){ .gh-label{ display:none; } .gh-btn{ padding:8px 11px; } .brand{ font-size:1.05rem; } }
-
-  .hero{ padding:68px 0 36px; text-align:center; }
-  .hero-logo{ width:128px; height:128px; border-radius:28px; margin:0 auto 24px; border:2px solid var(--border-strong); box-shadow:0 0 50px rgba(255,107,26,.35); object-fit:cover; }
-  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family: var(--mono); font-size:.76rem; text-transform:uppercase; letter-spacing:.07em; color: var(--orange-bright); background: rgba(255,107,26,.1); border:1px solid var(--border); padding:7px 16px; border-radius:100px; margin-bottom:22px; }
-  .pulse-dot{ width:7px; height:7px; border-radius:50%; background: var(--green); box-shadow:0 0 8px var(--green); animation: pulseDot 2s ease-in-out infinite; }
-  @keyframes pulseDot{ 0%,100%{opacity:.4;} 50%{opacity:1;} }
-  .hero h1{ font-size: clamp(2.3rem, 6.5vw, 4.3rem); font-weight:700; line-height:1.05; letter-spacing:-.03em;
-    background: linear-gradient(100deg, var(--amber), var(--orange), var(--orange-bright), var(--amber)); background-size:250% auto;
-    -webkit-background-clip:text; background-clip:text; color:transparent; animation: shine 6s linear infinite; }
-  @keyframes shine{ to{ background-position:250% center; } }
-  .hero p{ color: var(--text-dim); font-size: clamp(1rem,2vw,1.15rem); max-width:56ch; margin:20px auto 0; }
-  .hero-made{ font-family: var(--mono); font-weight:500; font-size:.95rem; color: var(--text-dim); margin-top:14px; letter-spacing:.02em; }
-  .hero p b{ color: var(--orange-bright); font-weight:600; }
-  .hero-ctas{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; justify-content:center; }
-  .btn{ font-weight:600; font-size:.95rem; padding:14px 28px; border-radius:100px; border:1px solid transparent; cursor:pointer; display:inline-flex; align-items:center; gap:8px; text-decoration:none; transition: transform .15s, box-shadow .2s; }
-  .btn:active{ transform: scale(.96); }
-  .btn-primary{ background: linear-gradient(135deg, var(--orange), var(--amber)); color:#160D04; box-shadow:0 8px 26px rgba(255,107,26,.28); }
-  .btn-primary:hover{ box-shadow:0 10px 34px rgba(255,107,26,.45); transform: translateY(-2px); }
-  .btn-ghost{ background: rgba(255,255,255,.03); border-color: var(--border); }
-  .btn-ghost:hover{ border-color: var(--border-strong); background: rgba(255,107,26,.08); transform: translateY(-2px); }
-  .trust-row{ display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:center; margin-top:38px; font-size:.85rem; color: var(--text-dim); }
-  .trust-item{ display:flex; align-items:center; gap:7px; }
-  .trust-item .check{ color: var(--green); }
-
-  section{ padding:54px 0; border-top:1px solid var(--border); }
-  .section-head{ margin-bottom:30px; }
-  .section-head .tag{ font-family: var(--mono); font-size:.75rem; color: var(--orange-bright); letter-spacing:.06em; text-transform:uppercase; }
-  .section-head h2{ font-size: clamp(1.5rem,3vw,2.1rem); margin-top:10px; }
-  .section-head p{ color: var(--text-dim); margin-top:9px; max-width:64ch; }
-  .section-head.center{ text-align:center; }
-  .section-head.center p{ margin-left:auto; margin-right:auto; }
-
-  .stats-row{ display:flex; gap:14px; flex-wrap:wrap; }
-  .stat{ flex:1; min-width:130px; background: var(--card); border:1px solid var(--border); border-radius:16px; padding:16px 18px; transition: all .2s; }
-  .stat:hover{ border-color: var(--border-strong); transform: translateY(-3px); }
-  .stat b{ display:block; font-family: var(--mono); font-size:1.35rem; color: var(--orange-bright); }
-  .stat span{ color: var(--text-dim); font-size:.78rem; }
-
-  .steps{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
-  @media (max-width:760px){ .steps{ grid-template-columns:1fr; } }
-  .step{ background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding:26px; transition: all .25s; }
-  .step:hover{ transform: translateY(-6px); border-color: var(--border-strong); box-shadow:0 20px 40px rgba(0,0,0,.35); }
-  .step-num{ width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-family: var(--mono); font-weight:700; font-size:1.2rem; background: linear-gradient(135deg, var(--orange), var(--amber)); color:#160D04; margin-bottom:18px; }
-  .step h3{ font-size:1.05rem; margin-bottom:8px; } .step p{ color: var(--text-dim); font-size:.9rem; margin:0; }
-
-  .helper{ background: linear-gradient(160deg, var(--bg-soft), var(--card)); border:1px solid var(--border); border-radius:22px; padding:30px; }
-  .helper-q{ font-weight:600; margin-bottom:18px; font-size:1.02rem; }
-  .helper-opts{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  @media (max-width:640px){ .helper-opts{ grid-template-columns:1fr; } }
-  .helper-opt{ text-align:left; background: var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; cursor:pointer; color: var(--text); font-family: var(--body); transition: all .2s; }
-  .helper-opt:hover{ border-color: var(--orange); background: var(--card-hover); transform: translateY(-3px); }
-  .helper-opt b{ display:block; margin-bottom:6px; color: var(--orange-bright); font-size:.9rem; }
-  .helper-opt span{ color: var(--text-dim); font-size:.86rem; }
-
-  .proto-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:14px; }
-  .proto-card{ background: var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; transition: all .2s; }
-  .proto-card:hover{ border-color: var(--border-strong); transform: translateY(-4px); }
-  .proto-card h3{ font-size:1rem; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
-  .proto-card p{ color: var(--text-dim); font-size:.86rem; margin:0; }
-  .guide-links{ display:flex; flex-direction:column; gap:6px; margin-top:12px; }
-  .guide-links a{ font-size:.85rem; font-weight:600; color: var(--orange-bright); text-decoration:none; }
-  .guide-links a:hover{ text-decoration:underline; }
-
-  .tabs{ display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap; }
-  .tab{ font-family: var(--mono); font-size:.8rem; padding:9px 18px; border-radius:100px; background: rgba(255,255,255,.02); border:1px solid var(--border); color: var(--text-dim); cursor:pointer; transition: all .15s; }
-  .tab.active{ background: linear-gradient(135deg, var(--orange), var(--amber)); border-color:transparent; color:#160D04; font-weight:600; }
-  .tab:hover:not(.active){ border-color: var(--border-strong); color: var(--text); }
-
-  .sub-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:16px; }
-  .sub-card{ background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding:22px; display:flex; flex-direction:column; gap:14px; transition: all .25s; }
-  .sub-card:hover{ transform: translateY(-6px); border-color: var(--border-strong); box-shadow:0 20px 44px rgba(0,0,0,.4); }
-  .sub-card.highlight{ border-color: var(--orange); box-shadow:0 0 0 3px rgba(255,107,26,.22); animation: pulseOnce 1.6s ease-out 2; }
-  @keyframes pulseOnce{ 0%{ box-shadow:0 0 0 0 rgba(255,107,26,.5);} 100%{ box-shadow:0 0 0 14px rgba(255,107,26,0);} }
-  .sub-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-  .sub-name{ font-weight:700; font-size:1.02rem; font-family: var(--display); }
-  .sub-count{ font-family: var(--mono); font-size:.7rem; color: var(--text-dimmer); background: rgba(255,255,255,.05); padding:3px 10px; border-radius:100px; white-space:nowrap; }
-  .sub-desc{ color: var(--text-dim); font-size:.87rem; flex:1; }
-  .sub-src{ font-family: var(--mono); font-size:.7rem; color: var(--text-dimmer); word-break:break-all; }
-  .sub-actions-row{ display:flex; gap:8px; }
-  .copy-btn{ position:relative; overflow:hidden; font-weight:600; font-size:.86rem; padding:11px 16px; border-radius:12px; background: rgba(255,107,26,.14); border:1px solid var(--border-strong); color: var(--orange-bright); cursor:pointer; transition: all .15s; display:flex; align-items:center; justify-content:center; gap:7px; flex:1; }
-  .copy-btn:hover{ background: linear-gradient(135deg, var(--orange), var(--amber)); color:#160D04; }
-  .copy-btn.copied{ background: var(--green); border-color: var(--green); color:#0A2318; }
-  .report-btn{ font-size:.86rem; padding:11px 14px; border-radius:12px; background: transparent; border:1px solid var(--border); color: var(--text-dim); cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; transition: all .15s; }
-  .report-btn:hover{ border-color: var(--border-strong); color: var(--red); }
-
-  .client-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(155px,1fr)); gap:14px; }
-  .client-card{ background: var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; transition: all .2s; position:relative; }
-  .client-card.recommended{ border-color: var(--orange); background: linear-gradient(160deg, rgba(255,107,26,.12), var(--card)); }
-  .client-tag{ position:absolute; top:-9px; right:14px; font-family: var(--mono); font-size:.6rem; color:#160D04; background: var(--orange-bright); padding:3px 9px; border-radius:100px; text-transform:uppercase; }
-  .client-device{ font-weight:700; font-size:.94rem; margin-bottom:10px; }
-  .client-apps{ display:flex; flex-direction:column; gap:6px; }
-  .client-apps a{ font-size:.85rem; text-decoration:none; color: var(--orange-bright); }
-  .client-apps a:hover{ text-decoration:underline; }
-
-  .check-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:14px; }
-  .check-card{ background: var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; transition: all .2s; }
-  .check-card:hover{ border-color: var(--border-strong); transform: translateY(-4px); }
-  .check-card h3{ font-size:1rem; margin-bottom:8px; }
-  .check-card p{ color: var(--text-dim); font-size:.86rem; margin:0 0 12px; }
-  .check-card a{ font-size:.86rem; font-weight:600; color: var(--orange-bright); text-decoration:none; }
-  .check-card a:hover{ text-decoration:underline; }
-
-  .mirror-grid{ display:flex; gap:12px; flex-wrap:wrap; }
-  .mirror-card{ background: var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 20px; text-decoration:none; color: var(--text); font-size:.9rem; transition: all .2s; display:flex; align-items:center; gap:8px; }
-  .mirror-card:hover{ border-color: var(--border-strong); transform: translateY(-3px); }
-
-  .tg-wrap details{ background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding: 4px 22px; }
-  .tg-wrap summary{ cursor:pointer; list-style:none; padding:16px 0; font-weight:600; display:flex; align-items:center; gap:10px; }
-  .tg-wrap summary::-webkit-details-marker{ display:none; }
-  .tg-warn{ background: rgba(255,183,39,.08); border:1px solid rgba(255,183,39,.3); color:#FFC98A; border-radius:12px; padding:14px 16px; font-size:.86rem; margin-bottom:16px; }
-  .tg-item{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 0; border-top:1px dashed var(--border); font-family: var(--mono); font-size:.82rem; flex-wrap:wrap; }
-  .tg-item:first-of-type{ border-top:none; }
-
-  .faq-item{ border-bottom:1px solid var(--border); }
-  .faq-item summary{ cursor:pointer; list-style:none; padding:18px 4px; display:flex; justify-content:space-between; align-items:center; gap:16px; font-weight:600; font-size:.98rem; }
-  .faq-item summary::-webkit-details-marker{ display:none; }
-  .faq-item summary::after{ content:'+'; font-family: var(--mono); color: var(--orange-bright); font-size:1.35rem; transition: transform .2s; flex-shrink:0; }
-  .faq-item[open] summary::after{ transform: rotate(45deg); }
-  .faq-item p{ color: var(--text-dim); padding:0 4px 18px; margin:0; font-size:.9rem; max-width:68ch; }
-
-  .warn-box{ background: rgba(255,107,107,.08); border:1px solid rgba(255,107,107,.4); border-radius:18px; padding:26px; }
-  .warn-box h2{ color:#FFB3B3; font-size:1.2rem; display:flex; gap:10px; align-items:center; }
-  .warn-box p{ color: var(--text-dim); font-size:.92rem; margin-top:12px; max-width:70ch; }
-
-  .support-box{ display:flex; align-items:center; justify-content:space-between; gap:20px; background: linear-gradient(120deg, rgba(255,107,26,.14), rgba(255,194,75,.06)); border:1px solid var(--border-strong); border-radius:20px; padding:28px 32px; flex-wrap:wrap; }
-  .support-box p{ color: var(--text-dim); margin:6px 0 0; max-width:50ch; }
-
-  footer{ padding:44px 0 60px; text-align:center; color: var(--text-dimmer); font-size:.85rem; }
-  .footer-brand{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:6px; }
-  .footer-brand img{ width:26px; height:26px; border-radius:8px; object-fit:cover; }
-  footer a{ color: var(--orange-bright); text-decoration:none; }
-  footer a:hover{ text-decoration:underline; }
-  .footer-links{ display:flex; gap:20px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
-  .disclaimer{ max-width:60ch; margin:20px auto 0; font-size:.78rem; color: var(--text-dimmer); }
-
-  ::-webkit-scrollbar{ width:10px; } ::-webkit-scrollbar-track{ background: var(--bg); }
-  ::-webkit-scrollbar-thumb{ background: var(--card); border-radius:10px; border:2px solid var(--bg); }
-  ::-webkit-scrollbar-thumb:hover{ background: var(--border-strong); }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
 <div id="preloader">
   <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="">
   <div class="preloader-bar"><span></span></div>
@@ -226,12 +37,221 @@
   <div class="nav-inner">
     <div class="brand"><img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="StintikVPN"> StintikVPN</div>
     <div class="nav-links">
-      <a href="#subs" data-i18n="nav.subs">Подписки</a>
-      <a href="#guides" data-i18n="nav.guides">Гайды</a>
-      <a href="#clients" data-i18n="nav.clients">Клиенты</a>
-      <a href="#faq" data-i18n="nav.faq">Вопросы</a>
+      <a href="#subs">Подписки</a>
+      <a href="#guides">Гайды</a>
+      <a href="#clients">Клиенты</a>
+      <a href="#faq">Вопросы</a>
     </div>
     <div class="nav-right">
-      <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="ru">RU</button>
-        <button class="lang-bt
+      <a class="nav-icon" href="https://t.me/StintikVPN" target="_blank" rel="noopener" aria-label="Telegram-канал" title="Telegram-канал">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.036 15.803l-.396 5.556c.567 0 .812-.244 1.108-.537l2.66-2.544 5.513 4.014c1.01.557 1.73.264 1.98-.936L23.99 3.68c.34-1.514-.547-2.107-1.53-1.73L1.11 9.86c-1.47.573-1.45 1.396-.25 1.77l5.46 1.705L18.996 6.44c.6-.394 1.15-.176.7.218L9.036 15.803z"/></svg>
+      </a>
+      <a class="nav-icon" href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" aria-label="GitHub-репозиторий" title="GitHub-репозиторий">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.2.66.79.55C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="main">
+
+  <section class="hero" style="border:none;">
+    <img class="hero-logo" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="StintikVPN logo">
+    <h1>Интернет свобода ближе чем кажется</h1>
+    <div class="hero-made">Сделано людьми для людей</div>
+    <div class="hero-ctas">
+      <a href="#helper" class="btn btn-primary">Подобрать подписку</a>
+      <a href="#subs" class="btn btn-ghost">Все списки →</a>
+    </div>
+  </section>
+
+  <section style="padding-top:40px;">
+    <div class="stats-row">
+      <div class="stat"><b>10</b><span>ссылок в подборке</span></div>
+      <div class="stat"><b>4</b><span>протокола</span></div>
+      <div class="stat"><b id="statStars">—</b><span>звёзд на GitHub</span></div>
+      <div class="stat"><b>3</b><span>зеркала проекта</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head center">
+      <div class="tag">Как это работает</div>
+      <h2>Три шага до свободного интернета</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Скопируйте ссылку</h3><p>Нажмите «Скопировать» рядом с подходящим списком ниже.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Вставьте в клиент</h3><p>В приложении выберите «Добавить подписку» и вставьте ссылку из буфера обмена.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Нажмите «Пинг» и подключитесь</h3><p>Выберите живой сервер по пингу и включите VPN.</p></div>
+    </div>
+  </section>
+
+  <section id="helper">
+    <div class="section-head">
+      <div class="tag">Не знаете, что выбрать?</div>
+      <h2>Ответьте на один вопрос</h2>
+      <p>Чёрные и белые списки решают разные проблемы. Выберите похожий вариант — подсветим нужную подписку.</p>
+    </div>
+    <div class="helper">
+      <div class="helper-q">Как вы обычно выходите в интернет?</div>
+      <div class="helper-opts">
+        <button class="helper-opt" data-target="black-main">
+          <b>Обычный Wi-Fi, кабель или 4G</b>
+          <span>Сайты просто блокируются напрямую — подойдёт чёрный список.</span>
+        </button>
+        <button class="helper-opt" data-target="white-main">
+          <b>Мобильный интернет с «белыми списками» РКН</b>
+          <span>Оператор блокирует вообще всё, кроме разрешённого — нужен белый список.</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="tag">Протоколы</div>
+      <h2>Что лучше и для чего</h2>
+    </div>
+    <div class="proto-grid" id="protoGrid"></div>
+  </section>
+
+  <section id="subs">
+    <div class="section-head">
+      <div class="tag">Готовые подписки</div>
+      <h2>Выберите список</h2>
+      <p>Это не наши серверы — мы собрали ссылки из разных открытых источников. Если ссылка перестала работать, попробуйте запасной вариант.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-filter="all">Все</button>
+      <button class="tab" data-filter="black">Чёрные списки</button>
+      <button class="tab" data-filter="white">Белые списки</button>
+      <button class="tab" data-filter="protocol">По протоколу</button>
+      <button class="tab" id="copyAllBtn" style="margin-left:auto;">⧉ Скопировать все видимые</button>
+    </div>
+    <div class="sub-grid" id="subGrid"></div>
+  </section>
+
+  <section id="guides">
+    <div class="section-head">
+      <div class="tag">Не только VPN</div>
+      <h2>Обход блокировок без VPN</h2>
+      <p>Эти программы не шифруют трафик как VPN — они обманывают именно систему блокировки (DPI) конкретных сайтов и мессенджеров, обычно быстрее и без просадки скорости. Нажмите на название, чтобы открыть гайд.</p>
+    </div>
+    <div class="guide-grid" id="guideGrid"></div>
+  </section>
+
+  <section id="tgproxy">
+    <div class="section-head">
+      <div class="tag">Дополнительно</div>
+      <h2>Telegram-прокси</h2>
+      <p>MTProto-прокси для самого Telegram (не для остального интернета).</p>
+    </div>
+    <div class="tg-wrap">
+      <details>
+        <summary>Показать список</summary>
+        <div id="tgList"></div>
+      </details>
+    </div>
+  </section>
+
+  <section id="checkyourself">
+    <div class="section-head">
+      <div class="tag">Важно проверить самому</div>
+      <h2>Проверьте своё подключение</h2>
+      <p>Мы не проверяем эти серверы на безопасность — но вы можете проверить сами, за 30 секунд, после подключения.</p>
+    </div>
+    <div class="check-grid">
+      <div class="check-card">
+        <h3>Не подменяют ли IP</h3>
+        <p>Проверьте, что ваш видимый IP и страна действительно изменились после подключения.</p>
+        <a href="https://ipleak.net" target="_blank" rel="noopener">ipleak.net →</a>
+      </div>
+      <div class="check-card">
+        <h3>Нет ли утечки DNS</h3>
+        <p>DNS-утечка означает, что провайдер всё равно видит, какие сайты вы открываете.</p>
+        <a href="https://www.dnsleaktest.com" target="_blank" rel="noopener">dnsleaktest.com →</a>
+      </div>
+      <div class="check-card">
+        <h3>Насколько просело соединение</h3>
+        <p>VPN почти всегда немного замедляет интернет — проверьте, насколько именно.</p>
+        <a href="https://www.speedtest.net" target="_blank" rel="noopener">speedtest.net →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="section-head">
+      <div class="tag">Клиенты</div>
+      <h2>Куда вставлять подписку</h2>
+      <p>Мы подсветили вариант под вашу систему — но подойдёт любой клиент из списка.</p>
+    </div>
+    <div class="client-grid" id="clientGrid"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="tag">На случай блокировки GitHub</div>
+      <h2>Зеркала проекта</h2>
+    </div>
+    <div class="mirror-grid">
+      <a class="mirror-card" href="https://gitlab.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitLab</a>
+      <a class="mirror-card" href="https://gitverse.ru/Stintik-123/StintikHub" target="_blank" rel="noopener">GitVerse</a>
+      <a class="mirror-card" href="https://codeberg.org/Stintik-123/StintikVPN" target="_blank" rel="noopener">Codeberg</a>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-head">
+      <div class="tag">Вопросы</div>
+      <h2>Частые вопросы</h2>
+    </div>
+    <div id="faqList"></div>
+  </section>
+
+  <section>
+    <div class="warn-box">
+      <h2>⚠️ Важное предупреждение</h2>
+      <p>Все конфиги и прокси на этой странице собраны из открытых источников. Мы не создаём и не проверяем эти серверы — нет проверки на встроенные вредоносные ключи, трекеры или что-либо ещё. Работоспособность не гарантируется.</p>
+      <p>Не передавайте через эти подключения пароли, коды из банковских СМС и данные карт. Использование в противоправных целях запрещено — ответственность за ваши действия лежит на вас.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="support-box">
+      <div>
+        <h2>Поддержать проект</h2>
+        <p>Поддержка и развитие StintikVPN отнимает время и силы. Бесплатно помочь можно одним способом — поставить звезду на репозиторий.</p>
+      </div>
+      <a class="btn btn-primary" href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">★ Поставить звезду</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand"><img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt=""> StintikVPN</div>
+    <p>Сделано людьми для людей</p>
+    <div class="footer-links">
+      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">Telegram-канал</a>
+      <a href="https://t.me/Keb04w" target="_blank" rel="noopener">Поддержка</a>
+    </div>
+    <p class="disclaimer">Конфигурации собраны из открытых источников и не проверяются на 100% безопасность. Не передавайте через них конфиденциальные данные без дополнительного шифрования.</p>
+    <p class="disclaimer" style="margin-top:8px;">Страница обновлена: 5 июля 2026</p>
+  </footer>
+
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Наверх" title="Наверх">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // Подстраховка: если script.js не загрузился (404, кэш, ошибка сети),
+  // прелоадер всё равно исчезнет через 5 секунд, а не будет висеть вечно.
+  setTimeout(function(){
+    var p = document.getElementById("preloader");
+    if (p && p.parentNode) p.parentNode.removeChild(p);
+  }, 5000);
+</script>
+<script src="script.js"></script>
+</body>
+</html>
+
