@@ -12,18 +12,16 @@
       var wait = Math.max(0, MIN_VISIBLE - (Date.now() - startedAt));
       setTimeout(function(){
         el.classList.add("hidden");
-        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 400);
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 500);
       }, wait);
     }
     window.addEventListener("load", hide);
-    setTimeout(hide, 3000);
+    setTimeout(hide, 3500);
   })();
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('service-worker.js').catch(function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
+      navigator.serviceWorker.register('service-worker.js').catch(function(err) {});
     });
   }
 
@@ -288,10 +286,10 @@
   var protoGrid = document.getElementById("protoGrid");
   if (protoGrid) {
     [
-      { name:"VLESS", note:"Лучший по скорости и маскировке, но в последнее время РКН активно блокирует — надёжность упала." },
-      { name:"Trojan", note:"Хорошая маскировка под обычный TLS-трафик." },
-      { name:"VMess", note:"Самый надёжный протокол из всех." },
-      { name:"Shadowsocks", note:"Максимальная скорость, рекомендуется для онлайн-игр." }
+      { name:"VLESS", note:"Лучший по скорости и маскировке, но РКН блокирует активнее." },
+      { name:"Trojan", note:"Хорошая маскировка под TLS." },
+      { name:"VMess", note:"Самый надёжный." },
+      { name:"Shadowsocks", note:"Максимальная скорость, для игр." }
     ].forEach(function(p){
       var d = document.createElement("div");
       d.className = "proto-card";
@@ -301,15 +299,15 @@
   }
 
   var guides = [
-    { name:"Zapret", note:"Обходит блокировку по содержимому пакетов (DPI) — то, чем режут YouTube и Discord. Не шифрует трафик, просто обманывает проверку.", steps:[ "Скачайте сборку со страницы релизов (ссылка ниже)", "Распакуйте архив в папку без кириллицы в пути", "Запустите general.bat — включает обход для YouTube, Discord и Cloudflare", "Не закрывайте открывшееся окно (можно свернуть)", "Если не помогло — попробуйте другую стратегию из архива или добавьте папку в исключения антивируса" ], links:[ {label:"Windows-сборка (Flowseal)", url:"https://github.com/Flowseal/zapret-discord-youtube"}, {label:"Оригинал (Linux / роутеры, bol-van)", url:"https://github.com/bol-van/zapret"} ] },
-    { name:"ByeDPI", note:"Похож на Zapret, но проще в настройке. На Android есть версия без root — включил и пользуешься.", steps:[ "Windows/Linux: скачайте релиз, запустите — поднимет локальный SOCKS5-прокси на 127.0.0.1:1080", "Пропишите этот адрес как прокси в браузере или системных настройках сети", "Android: установите APK, откройте приложение и нажмите Start — дальше работает как обычный локальный VPN" ], links:[ {label:"Windows / Linux", url:"https://github.com/hufrea/byedpi"}, {label:"Android (без root)", url:"https://github.com/dovecoteescapee/ByeDPIAndroid"} ] },
-    { name:"tgwsproxy", note:"Локальный прокси именно для Telegram — ускоряет загрузку фото/видео и звонки, если тормозит только Telegram, а не весь интернет.", steps:[ "Скачайте сборку для своей ОС со страницы релизов", "Запустите — при первом старте откроется окно с инструкцией для Telegram Desktop", "Приложение свернётся в трей: через «Открыть в Telegram» прокси настроится автоматически", "На Android — установите APK и включите прокси, приложение само подскажет как подключить его в настройках Telegram" ], links:[ {label:"Windows / macOS / Linux (Flowseal)", url:"https://github.com/Flowseal/tg-ws-proxy"}, {label:"Android", url:"https://github.com/amurcanov/tg-ws-proxy-android"} ] }
+    { name:"Zapret", note:"Обходит DPI. Не шифрует трафик.", steps:["Скачайте сборку","Распакуйте архив","Запустите general.bat","Не закрывайте окно","Попробуйте другую стратегию"], links:[ {label:"Windows-сборка", url:"https://github.com/Flowseal/zapret-discord-youtube"}, {label:"Оригинал", url:"https://github.com/bol-van/zapret"} ] },
+    { name:"ByeDPI", note:"Проще Zapret, Android без root.", steps:["Windows/Linux: запустите – SOCKS5 на 127.0.0.1:1080","Пропишите прокси в браузере","Android: установите APK, нажмите Start"], links:[ {label:"Windows / Linux", url:"https://github.com/hufrea/byedpi"}, {label:"Android", url:"https://github.com/dovecoteescapee/ByeDPIAndroid"} ] },
+    { name:"tgwsproxy", note:"Прокси для Telegram.", steps:["Скачайте сборку","Запустите – инструкция для Desktop","Свернётся в трей","Android: APK и автонастройка"], links:[ {label:"Windows / macOS / Linux", url:"https://github.com/Flowseal/tg-ws-proxy"}, {label:"Android", url:"https://github.com/amurcanov/tg-ws-proxy-android"} ] }
   ];
   var guideGrid = document.getElementById("guideGrid");
   if (guideGrid) guides.forEach(function(g){
     var d = document.createElement("details");
     d.className = "guide-card";
-    d.innerHTML = "<summary>" + g.name + " <span class='hint'>показать гайд</span></summary><div class='guide-body'><p>" + g.note + "</p><ol>" + g.steps.map(function(s){ return "<li>" + s + "</li>"; }).join("") + "</ol><div class='guide-links'>" + g.links.map(function(l){ return "<a href='" + l.url + "' target='_blank' rel='noopener'>" + l.label + " →</a>"; }).join("") + "</div></div>";
+    d.innerHTML = "<summary>" + g.name + " <span class='hint'>показать</span></summary><div class='guide-body'><p>" + g.note + "</p><ol>" + g.steps.map(function(s){ return "<li>" + s + "</li>"; }).join("") + "</ol><div class='guide-links'>" + g.links.map(function(l){ return "<a href='" + l.url + "' target='_blank' rel='noopener'>" + l.label + " →</a>"; }).join("") + "</div></div>";
     guideGrid.appendChild(d);
   });
 
@@ -344,4 +342,199 @@
     var card = document.createElement("div");
     card.className = "client-card" + (recommended ? " recommended" : "");
     var appsHtml = g.apps.map(function(a){ return "<a href='" + a.url + "' target='_blank' rel='noopener'>" + a.name + "</a>"; }).join("");
-    card.innerHTML = (recommended ? '<span class="client-tag">Для вас</span>' : "") + '<div class="client-device">' + g.device + '</div><div
+    card.innerHTML = (recommended ? '<span class="client-tag">Для вас</span>' : "") + '<div class="client-device">' + g.device + '</div><div class="client-apps">' + appsHtml + '</div>';
+    clientGrid.appendChild(card);
+  });
+
+  var faq = [
+    { q:"Подписка не работает или очень медленно.", a:"Обновите подписку в клиенте (кнопка «Обновить»). Попробуйте сменить протокол (VLESS → Trojan) или сервер. Иногда помогает перезапуск клиента или смена Wi-Fi/мобильного интернета." },
+    { q:"Как часто обновляются конфиги?", a:"Это подборка из чужих источников — обновляется вручную, по мере появления новых рабочих ссылок, а не по расписанию." },
+    { q:"Когда нужно использовать белые списки?", a:"Только когда ваш мобильный оператор (МТС, Билайн, Tele2 и др.) включил «белые списки» РКН — и обычные сайты перестали открываться." },
+    { q:"Какой клиент лучше всего для новичка?", a:"Hiddify — самый удобный и понятный, для Windows и Android. На iOS — Streisand." },
+    { q:"Что делать, если Telegram-прокси не подключается?", a:"Прокси часто умирают даже свежие — попробуйте следующий из списка или используйте обычную VPN-подписку выше вместо прокси." },
+    { q:"Можно ли использовать одну подписку на нескольких устройствах?", a:"Да, большинство подписок поддерживают одновременное подключение с нескольких устройств — но это зависит от конкретного сервера." },
+    { q:"Безопасно ли пользоваться этими конфигами?", a:"Конфиги из открытых источников и не проверяются нами на безопасность. Не передавайте через них банковские данные и важные пароли. Используйте на свой страх и риск." }
+  ];
+  var faqList = document.getElementById("faqList");
+  if (faqList) faq.forEach(function(item, i){
+    var d = document.createElement("details");
+    d.className = "faq-item"; if (i === 0) d.open = true;
+    d.innerHTML = "<summary>" + item.q + "</summary><p>" + item.a + "</p>";
+    faqList.appendChild(d);
+  });
+
+  var contributors = [
+    { name:"Stintik", role:"Основатель", link:"https://github.com/Stintik-123" },
+    { name:"Анонимный помощник", role:"Тестировщик", link:"#" },
+    { name:"Keb04w", role:"Поддержка", link:"https://t.me/Keb04w" },
+    { name:"Сообщество GitHub", role:"Звёзды и идеи", link:"https://github.com/Stintik-123/StintikVPN" }
+  ];
+  var thanksGrid = document.getElementById("thanksGrid");
+  if (thanksGrid) {
+    contributors.forEach(function(c){
+      var card = document.createElement("div");
+      card.className = "thanks-card";
+      card.innerHTML = "<strong>" + c.name + "</strong><span>" + c.role + "</span>";
+      if (c.link && c.link !== "#") {
+        card.style.cursor = "pointer";
+        card.addEventListener("click", function(){ window.open(c.link, "_blank"); });
+      }
+      thanksGrid.appendChild(card);
+    });
+  }
+
+  var starsEl = document.getElementById("statStars");
+  var currentStars = null;
+  function animateNumber(el, from, to){
+    var start = null; var duration = 700;
+    function step(ts){
+      if (!start) start = ts;
+      var progress = Math.min(1, (ts - start) / duration);
+      el.textContent = Math.round(from + (to - from) * progress);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function refreshStars(){
+    if (!starsEl) return;
+    fetch("https://api.github.com/repos/Stintik-123/StintikVPN").then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
+      if (data && typeof data.stargazers_count === "number") {
+        var to = data.stargazers_count;
+        animateNumber(starsEl, currentStars === null ? to : currentStars, to);
+        currentStars = to;
+      } else if (currentStars === null) starsEl.textContent = "…";
+    }).catch(function(){ if (currentStars === null) starsEl.textContent = "…"; });
+  }
+  refreshStars();
+  setInterval(refreshStars, 60000);
+
+  var backBtn = document.getElementById("backToTop");
+  if (backBtn) {
+    window.addEventListener("scroll", function(){ backBtn.classList.toggle("visible", window.scrollY > 600); });
+    backBtn.addEventListener("click", function(){ window.scrollTo({ top:0, behavior:"smooth" }); });
+  }
+
+  (function(){
+    var links = document.querySelectorAll(".nav-links a[href^='#']");
+    if (!links.length || !window.IntersectionObserver) return;
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove("active"); });
+        var match = document.querySelector(".nav-links a[href='#" + entry.target.id + "']");
+        if (match) match.classList.add("active");
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute("href")); if (s) observer.observe(s); });
+  })();
+
+  var appearObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add("appear");
+        appearObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.sub-card, .client-card, .proto-card, .guide-card, .check-card').forEach(function(el){ appearObserver.observe(el); });
+
+  (function(){
+    var navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+    var btn = document.createElement('button');
+    btn.className = 'nav-icon hamburger';
+    btn.innerHTML = '☰';
+    btn.setAttribute('aria-label', 'Меню');
+    btn.addEventListener('click', function(){ navLinks.classList.toggle('open'); });
+    var navRight = document.querySelector('.nav-right');
+    if (navRight) navRight.prepend(btn);
+  })();
+
+  (function(){
+    var footer = document.querySelector('.footer-links');
+    if (!footer) return;
+    var shareBtn = document.createElement('a');
+    shareBtn.href = '#';
+    shareBtn.textContent = '📤 Поделиться';
+    shareBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      if (navigator.share) navigator.share({ title: 'StintikVPN', text: 'Подборка рабочих VPN-подписок', url: window.location.href });
+      else showToast('Скопируйте адрес сайта и отправьте другу');
+    });
+    footer.appendChild(shareBtn);
+  })();
+
+  (function bg(){
+    var canvas = document.getElementById("bgCanvas");
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var w, h, nodes = [];
+    var NODE_COUNT = 46;
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = Math.max(window.innerHeight, document.body.scrollHeight);
+    }
+    function initNodes(){
+      nodes = [];
+      for (var i=0;i<NODE_COUNT;i++) nodes.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25 });
+    }
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      for (var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        if (!reduced){ n.x += n.vx; n.y += n.vy; }
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+        for (var j=i+1;j<nodes.length;j++){
+          var m = nodes[j], dx = n.x-m.x, dy = n.y-m.y, dist = Math.sqrt(dx*dx+dy*dy);
+          if (dist < 160){
+            ctx.strokeStyle = "rgba(255,138,61," + (0.15 * (1 - dist/160)) + ")";
+            ctx.lineWidth = 0.7;
+            ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    window.addEventListener("resize", function(){ resize(); initNodes(); });
+    resize(); initNodes();
+    requestAnimationFrame(step);
+  })();
+
+  (function(){
+    var statsRow = document.querySelector('.stats-row');
+    if (!statsRow) return;
+    var totalSubs = subscriptions.length;
+    var subStat = document.getElementById('statSubs');
+    if (!subStat) {
+      var d = document.createElement('div');
+      d.className = 'stat';
+      d.innerHTML = '<b id="statSubs">'+totalSubs+'</b><span>Подписок</span>';
+      statsRow.appendChild(d);
+    } else subStat.textContent = totalSubs;
+    var ratingSum = Object.values(ratings).reduce(function(s,r){ return s + (r.likes||0) + (r.dislikes||0); }, 0);
+    var ratStat = document.getElementById('statRatings');
+    if (!ratStat) {
+      var d2 = document.createElement('div');
+      d2.className = 'stat';
+      d2.innerHTML = '<b id="statRatings">'+ratingSum+'</b><span>Оценок</span>';
+      statsRow.appendChild(d2);
+    } else ratStat.textContent = ratingSum;
+  })();
+
+  (function(){
+    var navRight = document.querySelector('.nav-right');
+    if (navRight) {
+      var themeBtnEl = document.createElement('button');
+      themeBtnEl.className = 'nav-icon theme-toggle';
+      themeBtnEl.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+      themeBtnEl.setAttribute('aria-label', 'Переключить тему');
+      themeBtnEl.addEventListener('click', toggleTheme);
+      navRight.appendChild(themeBtnEl);
+      themeBtn = themeBtnEl;
+    }
+  })();
+
+  renderSubs("all");
+})();
