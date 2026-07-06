@@ -1,6 +1,25 @@
 (function(){
   "use strict";
 
+  /* ---------- прелоадер: запускается первым, независимо от остального кода ---------- */
+  (function preloader(){
+    var el = document.getElementById("preloader");
+    if (!el) return;
+    var hidden = false;
+    var startedAt = Date.now();
+    var MIN_VISIBLE = 1600;
+    function hide(){
+      if (hidden) return; hidden = true;
+      var wait = Math.max(0, MIN_VISIBLE - (Date.now() - startedAt));
+      setTimeout(function(){
+        el.classList.add("hidden");
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 450);
+      }, wait);
+    }
+    window.addEventListener("load", hide);
+    setTimeout(hide, 4000);
+  })();
+
   var subscriptions = [
     { id:"black-main", cat:"black", count:"",
       name:"🏴 Чёрный список (основной)",
@@ -173,6 +192,7 @@
   /* ---------- подписки ---------- */
   var subGrid = document.getElementById("subGrid");
   function renderSubs(filter){
+    if (!subGrid) return;
     subGrid.innerHTML = "";
     subscriptions.forEach(function(sub){
       if (filter !== "all" && sub.cat !== filter) return;
@@ -208,15 +228,18 @@
   });
 
   var copyAllBtn = document.getElementById("copyAllBtn");
-  copyAllBtn.addEventListener("click", function(){
-    var activeFilter = document.querySelector(".tab.active[data-filter]").getAttribute("data-filter");
-    var visible = subscriptions.filter(function(s){ return activeFilter === "all" || s.cat === activeFilter; });
-    var text = visible.map(function(s){ return s.name + ": " + s.url; }).join("\n");
-    copyText(text).then(function(){
-      copyAllBtn.textContent = "✓ Скопировано";
-      setTimeout(function(){ copyAllBtn.textContent = "⧉ Скопировать все видимые"; }, 1800);
-    }).catch(function(){ showToast("Не удалось скопировать список"); });
-  });
+  if (copyAllBtn){
+    copyAllBtn.addEventListener("click", function(){
+      var activeTab = document.querySelector(".tab.active[data-filter]");
+      var activeFilter = activeTab ? activeTab.getAttribute("data-filter") : "all";
+      var visible = subscriptions.filter(function(s){ return activeFilter === "all" || s.cat === activeFilter; });
+      var text = visible.map(function(s){ return s.name + ": " + s.url; }).join("\n");
+      copyText(text).then(function(){
+        copyAllBtn.textContent = "✓ Скопировано";
+        setTimeout(function(){ copyAllBtn.textContent = "⧉ Скопировать все видимые"; }, 1800);
+      }).catch(function(){ showToast("Не удалось скопировать список"); });
+    });
+  }
 
   document.querySelectorAll(".helper-opt").forEach(function(btn){
     btn.addEventListener("click", function(){
@@ -236,7 +259,7 @@
 
   /* ---------- протоколы ---------- */
   var protoGrid = document.getElementById("protoGrid");
-  protocols.forEach(function(p){
+  if (protoGrid) protocols.forEach(function(p){
     var d = document.createElement("div");
     d.className = "proto-card";
     d.innerHTML = "<h3>" + p.name + "</h3><p>" + p.note + "</p>";
@@ -245,7 +268,7 @@
 
   /* ---------- гайды (скрыты, открываются по клику) ---------- */
   var guideGrid = document.getElementById("guideGrid");
-  guides.forEach(function(g){
+  if (guideGrid) guides.forEach(function(g){
     var d = document.createElement("details");
     d.className = "guide-card";
     var stepsHtml = g.steps.map(function(s){ return "<li>" + s + "</li>"; }).join("");
@@ -258,7 +281,7 @@
 
   /* ---------- telegram-прокси ---------- */
   var tgList = document.getElementById("tgList");
-  tgProxies.forEach(function(p){
+  if (tgList) tgProxies.forEach(function(p){
     var row = document.createElement("div");
     row.className = "tg-item";
     row.innerHTML = "<span>" + p.label + " — " + p.addr + "</span><a href='" + p.url + "' target='_blank' rel='noopener' style='color:var(--orange-bright);'>Подключиться</a>";
@@ -267,7 +290,7 @@
 
   /* ---------- клиенты ---------- */
   var clientGrid = document.getElementById("clientGrid");
-  clientGroups.forEach(function(g){
+  if (clientGrid) clientGroups.forEach(function(g){
     var recommended = g.match.indexOf(userOS) !== -1;
     var card = document.createElement("div");
     card.className = "client-card" + (recommended ? " recommended" : "");
@@ -279,7 +302,7 @@
 
   /* ---------- faq ---------- */
   var faqList = document.getElementById("faqList");
-  faq.forEach(function(item, i){
+  if (faqList) faq.forEach(function(item, i){
     var d = document.createElement("details");
     d.className = "faq-item"; if (i === 0) d.open = true;
     d.innerHTML = "<summary>" + item.q + "</summary><p>" + item.a + "</p>";
@@ -300,6 +323,7 @@
     requestAnimationFrame(step);
   }
   function refreshStars(){
+    if (!starsEl) return;
     fetch("https://api.github.com/repos/Stintik-123/StintikVPN").then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
       if (data && typeof data.stargazers_count === "number"){
         var to = data.stargazers_count;
@@ -310,25 +334,6 @@
   }
   refreshStars();
   setInterval(refreshStars, 60000);
-
-  /* ---------- прелоадер ---------- */
-  (function preloader(){
-    var el = document.getElementById("preloader");
-    if (!el) return;
-    var hidden = false;
-    var startedAt = Date.now();
-    var MIN_VISIBLE = 1600;
-    function hide(){
-      if (hidden) return; hidden = true;
-      var wait = Math.max(0, MIN_VISIBLE - (Date.now() - startedAt));
-      setTimeout(function(){
-        el.classList.add("hidden");
-        setTimeout(function(){ el.remove(); }, 450);
-      }, wait);
-    }
-    window.addEventListener("load", hide);
-    setTimeout(hide, 4000);
-  })();
 
   /* ---------- кнопка "наверх" ---------- */
   (function backToTop(){
@@ -391,12 +396,4 @@
           var dx = n.x-m.x, dy = n.y-m.y;
           var dist = Math.sqrt(dx*dx+dy*dy);
           if (dist < 160){
-            ctx.strokeStyle = "rgba(255,138,61," + (0.12*(1-dist/160)) + ")";
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
-          }
-        }
-      }
-      for (var k=0;k<nodes.length;k++){
-        ctx.fillStyle = "rgba(255,107,26,.55)";
-        ctx.beginPath(); 
+            ctx.strokeStyle = "r
