@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="StintikVPN — подборка рабочих VPN-ссылок для обхода блокировок в России. Копируй ссылку, вставляй в клиент, пользуйся интернетом.">
 <title>StintikVPN — подборка рабочих VPN-подписок</title>
-
 <meta property="og:type" content="website">
 <meta property="og:title" content="StintikVPN — подборка рабочих VPN-подписок">
 <meta property="og:description" content="Готовые VPN-ссылки для обхода блокировок в России. Скопировал → вставил → подключился.">
@@ -14,12 +13,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="StintikVPN — подборка рабочих VPN-подписок">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0D0B09">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
 <link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -209,6 +206,15 @@
   </section>
 
   <section>
+    <div class="section-head">
+      <div class="tag">Благодарности</div>
+      <h2>Спасибо за поддержку</h2>
+      <p>Люди, которые помогли проекту советом, кодом или добрым словом.</p>
+    </div>
+    <div id="thanksGrid" class="thanks-grid"></div>
+  </section>
+
+  <section>
     <div class="warn-box">
       <h2>⚠️ Важное предупреждение</h2>
       <p>Все конфиги и прокси на этой странице собраны из открытых источников. Мы не создаём и не проверяем эти серверы — нет проверки на встроенные вредоносные ключи, трекеры или что-либо ещё. Работоспособность не гарантируется.</p>
@@ -244,8 +250,6 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-  // Подстраховка: если script.js не загрузился (404, кэш, ошибка сети),
-  // прелоадер всё равно исчезнет через 5 секунд, а не будет висеть вечно.
   setTimeout(function(){
     var p = document.getElementById("preloader");
     if (p && p.parentNode) p.parentNode.removeChild(p);
@@ -253,5 +257,5 @@
 </script>
 <script src="script.js"></script>
 </body>
-</html>
+        </html>
 
