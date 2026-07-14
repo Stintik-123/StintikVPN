@@ -1,36 +1,29 @@
-const CACHE_NAME = 'stintikvpn-v2';
-const urlsToCache = [
-  '/StintikVPN/',
-  '/StintikVPN/index.html',
-  '/StintikVPN/style.css',
-  '/StintikVPN/script.js',
-  '/StintikVPN/manifest.json',
-  'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
-  'https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg'
+var CACHE_NAME = 'stintikvpn-v1';
+var urlsToCache = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/script.js',
+  '/manifest.json'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
   );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
-});
-
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.filter(name => name !== CACHE_NAME).map(name => caches.delete(name))
-      );
-    })
+    caches.match(event.request)
+      .then(function(response) {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
   );
 });
