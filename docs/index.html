@@ -1,201 +1,165 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="StintikVPN — подборка рабочих VPN-ссылок для обхода блокировок в России. Копируй ссылку, вставляй в клиент, пользуйся интернетом.">
-<title>StintikVPN — подборка рабочих VPN-подписок</title>
-<meta property="og:type" content="website">
-<meta property="og:title" content="StintikVPN — подборка рабочих VPN-подписок">
-<meta property="og:description" content="Готовые VPN-ссылки для обхода блокировок в России. Скопировал → вставил → подключился.">
-<meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-<meta property="og:url" content="https://stintik-123.github.io/StintikVPN/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="StintikVPN — подборка рабочих VPN-подписок">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0D0B09">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-<link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Бесплатные и рабочие VPN-подписки, обход блокировок РКН, инструкции по настройке.">
+  <meta name="theme-color" content="#ff8a3d">
+  <title>StintikVPN — Рабочие подписки и обход блокировок</title>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Перейти к содержимому</a>
-<div id="preloader">
-  <div class="preloader-logo-wrap">
-    <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="">
-    <div class="preloader-ring"></div>
+  <div id="preloader">
+    <div class="loader-spinner"></div>
+    <p>Загружаем рабочие конфиги...</p>
   </div>
-</div>
-<canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="brand"><img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="StintikVPN"> StintikVPN</div>
-    <div class="nav-links">
-      <a href="#subs">Подписки</a>
-      <a href="#guides">Гайды</a>
-      <a href="#clients">Клиенты</a>
-      <a href="#faq">Вопросы</a>
+  <canvas id="bgCanvas"></canvas>
+  <div id="toast" class="toast"></div>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="hero-logo">🛡️ StintikVPN</span>
     </div>
     <div class="nav-right">
-      <a class="nav-icon" href="https://t.me/StintikVPN" target="_blank" rel="noopener" aria-label="Telegram-канал" title="Telegram-канал">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M9.036 15.803l-.396 5.556c.567 0 .812-.244 1.108-.537l2.66-2.544 5.513 4.014c1.01.557 1.73.264 1.98-.936L23.99 3.68c.34-1.514-.547-2.107-1.53-1.73L1.11 9.86c-1.47.573-1.45 1.396-.25 1.77l5.46 1.705L18.996 6.44c.6-.394 1.15-.176.7.218L9.036 15.803z"/></svg>
-      </a>
-      <a class="nav-icon" href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" aria-label="GitHub-репозиторий" title="GitHub-репозиторий">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.2.66.79.55C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
-      </a>
+      <div class="nav-links">
+        <a href="#helper">Подбор</a>
+        <a href="#subscriptions">Подписки</a>
+        <a href="#clients">Клиенты</a>
+        <a href="#guides">Инструкции</a>
+        <a href="#faq">FAQ</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="wrap" id="main">
-
-  <section class="hero" style="border:none;">
-    <img class="hero-logo" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="StintikVPN logo">
-    <h1>Интернет свобода ближе чем кажется</h1>
-    <div class="hero-made">Сделано людьми для людей</div>
-    <div class="hero-ctas">
-      <a href="#helper" class="btn btn-primary">Подобрать подписку</a>
-      <a href="#subs" class="btn btn-ghost">Все списки →</a>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Свободный интернет <span class="highlight">без ограничений</span></h1>
+      <p>Актуальная подборка VPN-подписок, прокси и инструментов для обхода блокировок. Бесплатно, без регистрации и лишних вопросов.</p>
+      <div class="hero-ctas">
+        <a href="#helper" class="btn btn-primary">Подобрать подписку</a>
+        <a href="#guides" class="btn btn-ghost">Как настроить?</a>
+      </div>
     </div>
-  </section>
+  </header>
 
-  <section style="padding-top:40px;">
+  <section class="stats-section">
     <div class="stats-row">
-      <div class="stat"><b>10</b><span>ссылок в подборке</span></div>
-      <div class="stat"><b>4</b><span>протокола</span></div>
-      <div class="stat"><b id="statStars">—</b><span>звёзд на GitHub</span></div>
-      <div class="stat"><b>3</b><span>зеркала проекта</span></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-head center">
-      <div class="tag">Как это работает</div>
-      <h2>Три шага до свободного интернета</h2>
-    </div>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><h3>Скопируйте ссылку</h3><p>Нажмите «Скопировать» рядом с подходящим списком ниже.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Вставьте в клиент</h3><p>В приложении выберите «Добавить подписку» и вставьте ссылку из буфера обмена.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Нажмите «Пинг» и подключитесь</h3><p>Выберите живой сервер по пингу и включите VPN.</p></div>
+      <div class="stat"><b id="statSubs">0</b><span>Подписок</span></div>
+      <div class="stat"><b id="statStars">—</b><span>Звёзд на GitHub</span></div>
+      <div class="stat"><b id="statRatings">0</b><span>Оценок сообщества</span></div>
     </div>
   </section>
 
   <section id="helper">
     <div class="section-head">
-      <div class="tag">Не знаете, что выбрать?</div>
-      <h2>Ответьте на один вопрос</h2>
-      <p>Чёрные и белые списки решают разные проблемы. Выберите похожий вариант — подсветим нужную подписку.</p>
+      <div class="tag">Подбор подписки</div>
+      <h2>Какой у вас интернет?</h2>
+      <p>Выберите ваш тип подключения — мы подскажем, какие подписки подойдут именно вам.</p>
     </div>
     <div class="helper">
       <div class="helper-q">Как вы обычно выходите в интернет?</div>
       <div class="helper-opts">
         <button class="helper-opt" data-target="black-main">
-          <b>Обычный Wi-Fi, кабель или 4G</b>
-          <span>Сайты просто блокируются напрямую — подойдёт чёрный список.</span>
+          <b>🏠 Домашний интернет (Wi-Fi, кабель, 4G)</b>
+          <span>Обычный интернет без белых списков РКН. Сайты блокируются напрямую — подойдут чёрные списки.</span>
         </button>
         <button class="helper-opt" data-target="white-main">
-          <b>Мобильный интернет с «белыми списками» РКН</b>
-          <span>Оператор блокирует вообще всё, кроме разрешённого — нужен белый список.</span>
+          <b>📱 Мобильный интернет с белыми списками РКН</b>
+          <span>Оператор блокирует всё, кроме разрешённых сайтов. Нужны белые списки — они работают наоборот.</span>
         </button>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="subscriptions">
     <div class="section-head">
-      <div class="tag">Протоколы</div>
-      <h2>Что лучше и для чего</h2>
+      <div class="tag">Каталог</div>
+      <h2>Рабочие подписки</h2>
+      <p>Нажмите на кнопку, чтобы скопировать ссылку, и вставьте её в ваш VPN-клиент.</p>
     </div>
-    <div class="proto-grid" id="protoGrid"></div>
+    
+    <!-- НОВОЕ: Поиск -->
+    <div class="search-container">
+      <input type="text" id="searchSubs" class="search-input" placeholder="🔍 Поиск по названию, протоколу или описанию...">
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-filter="all">Все подписки</button>
+      <button class="tab" data-filter="black">🏠 Домашний интернет</button>
+      <button class="tab" data-filter="white">📱 Мобильный интернет</button>
+      <button class="tab" data-filter="protocol">⚙️ Протоколы</button>
+    </div>
+
+    <div class="sub-actions">
+      <button id="copyAllBtn" class="btn btn-ghost">⧉ Скопировать все видимые</button>
+    </div>
+
+    <div id="subGrid" class="sub-grid"></div>
   </section>
 
-  <section id="subs">
+  <section id="protocols">
     <div class="section-head">
-      <div class="tag">Готовые подписки</div>
-      <h2>Выберите список</h2>
-      <p>Это не наши серверы — мы собрали ссылки из разных открытых источников. Если ссылка перестала работать, попробуйте запасной вариант.</p>
+      <div class="tag">Технологии</div>
+      <h2>Какой протокол выбрать?</h2>
+      <p>Краткая шпаргалка по современным протоколам обхода блокировок.</p>
     </div>
-    <div class="tabs" role="tablist">
-      <button class="tab active" data-filter="all">Все</button>
-      <button class="tab" data-filter="black">Чёрные списки</button>
-      <button class="tab" data-filter="white">Белые списки</button>
-      <button class="tab" data-filter="protocol">По протоколу</button>
-      <button class="tab" id="copyAllBtn" style="margin-left:auto;">⧉ Скопировать все видимые</button>
-    </div>
-    <div class="sub-grid" id="subGrid"></div>
-  </section>
-
-  <section id="guides">
-    <div class="section-head">
-      <div class="tag">Не только VPN</div>
-      <h2>Обход блокировок без VPN</h2>
-      <p>Эти программы не шифруют трафик как VPN — они обманывают именно систему блокировки (DPI) конкретных сайтов и мессенджеров, обычно быстрее и без просадки скорости. Нажмите на название, чтобы открыть гайд.</p>
-    </div>
-    <div class="guide-grid" id="guideGrid"></div>
-  </section>
-
-  <section id="tgproxy">
-    <div class="section-head">
-      <div class="tag">Дополнительно</div>
-      <h2>Telegram-прокси</h2>
-      <p>MTProto-прокси для самого Telegram (не для остального интернета).</p>
-    </div>
-    <div class="tg-wrap">
-      <details>
-        <summary>Показать список</summary>
-        <div id="tgList"></div>
-      </details>
-    </div>
-  </section>
-
-  <section id="checkyourself">
-    <div class="section-head">
-      <div class="tag">Важно проверить самому</div>
-      <h2>Проверьте своё подключение</h2>
-      <p>Мы не проверяем эти серверы на безопасность — но вы можете проверить сами, за 30 секунд, после подключения.</p>
-    </div>
-    <div class="check-grid">
-      <div class="check-card">
-        <h3>Не подменяют ли IP</h3>
-        <p>Проверьте, что ваш видимый IP и страна действительно изменились после подключения.</p>
-        <a href="https://ipleak.net" target="_blank" rel="noopener">ipleak.net →</a>
-      </div>
-      <div class="check-card">
-        <h3>Нет ли утечки DNS</h3>
-        <p>DNS-утечка означает, что провайдер всё равно видит, какие сайты вы открываете.</p>
-        <a href="https://www.dnsleaktest.com" target="_blank" rel="noopener">dnsleaktest.com →</a>
-      </div>
-      <div class="check-card">
-        <h3>Насколько просело соединение</h3>
-        <p>VPN почти всегда немного замедляет интернет — проверьте, насколько именно.</p>
-        <a href="https://www.speedtest.net" target="_blank" rel="noopener">speedtest.net →</a>
-      </div>
-    </div>
+    <div id="protoGrid" class="proto-grid"></div>
   </section>
 
   <section id="clients">
     <div class="section-head">
-      <div class="tag">Клиенты</div>
-      <h2>Куда вставлять подписку</h2>
-      <p>Мы подсветили вариант под вашу систему — но подойдёт любой клиент из списка.</p>
+      <div class="tag">Приложения</div>
+      <h2>Куда вставить ссылку?</h2>
+      <p>Рекомендуемые приложения. Система автоматически подсветит подходящие для вашего устройства.</p>
     </div>
-    <div class="client-grid" id="clientGrid"></div>
+    <div id="clientGrid" class="client-grid"></div>
   </section>
 
-  <section>
+  <section id="guides">
     <div class="section-head">
-      <div class="tag">На случай блокировки GitHub</div>
-      <h2>Зеркала проекта</h2>
+      <div class="tag">Инструкции</div>
+      <h2>Альтернативные способы</h2>
+      <p>Если VPN не работает, попробуйте эти проверенные инструменты для обхода DPI.</p>
     </div>
-    <div class="mirror-grid">
-      <a class="mirror-card" href="https://gitlab.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitLab</a>
-      <a class="mirror-card" href="https://gitverse.ru/Stintik-123/StintikHub" target="_blank" rel="noopener">GitVerse</a>
-      <a class="mirror-card" href="https://codeberg.org/Stintik-123/StintikVPN" target="_blank" rel="noopener">Codeberg</a>
+    <div id="guideGrid" class="guide-grid"></div>
+  </section>
+
+  <section id="tg-proxies">
+    <div class="section-head">
+      <div class="tag">Telegram</div>
+      <h2>Прокси для Telegram</h2>
+      <p>Если мессенджер не подключается, нажмите на ссылку, чтобы добавить прокси в один клик.</p>
+    </div>
+    <div id="tgList" class="tg-list"></div>
+  </section>
+
+  <section id="check">
+    <div class="section-head">
+      <div class="tag">Важно проверить самому</div>
+      <h2>Проверьте, что VPN работает правильно</h2>
+      <p>После подключения к VPN убедитесь, что всё настроено верно. Это займёт меньше минуты.</p>
+    </div>
+    <div class="check-grid">
+      <div class="check-card">
+        <h3>🌍 Изменился ли IP-адрес</h3>
+        <p>Убедитесь, что ваш реальный IP скрыт, а страна подключения изменилась.</p>
+        <a href="https://ipleak.net" target="_blank" rel="noopener" class="btn btn-ghost">Проверить IP →</a>
+      </div>
+      <div class="check-card">
+        <h3>🔒 Нет ли утечки DNS</h3>
+        <p>Иногда провайдер всё равно видит, какие сайты вы открываете, даже через VPN.</p>
+        <a href="https://www.dnsleaktest.com" target="_blank" rel="noopener" class="btn btn-ghost">Проверить DNS →</a>
+      </div>
+      <div class="check-card">
+        <h3>⚡ Не упала ли скорость</h3>
+        <p>VPN всегда немного замедляет соединение. Проверьте, насколько сильно.</p>
+        <a href="https://www.speedtest.net" target="_blank" rel="noopener" class="btn btn-ghost">Измерить скорость →</a>
+      </div>
     </div>
   </section>
 
@@ -204,53 +168,28 @@
       <div class="tag">Вопросы</div>
       <h2>Частые вопросы</h2>
     </div>
-    <div id="faqList"></div>
+    <div id="faqList" class="faq-list"></div>
   </section>
 
-  <section>
+  <section id="thanks">
     <div class="section-head">
-      <div class="tag">Благодарности</div>
-      <h2>Спасибо за поддержку</h2>
-      <p>Люди, которые помогли проекту советом, кодом или добрым словом.</p>
+      <div class="tag">Сообщество</div>
+      <h2>Спасибо, что делаете проект лучше</h2>
     </div>
     <div id="thanksGrid" class="thanks-grid"></div>
   </section>
 
-  <section>
-    <div class="warn-box">
-      <h2>⚠️ Важное предупреждение</h2>
-      <p>Все конфиги и прокси на этой странице собраны из открытых источников. Мы не создаём и не проверяем эти серверы — нет проверки на встроенные вредоносные ключи, трекеры или что-либо ещё. Работоспособность не гарантируется.</p>
-      <p>Не передавайте через эти подключения пароли, коды из банковских СМС и данные карт. Использование в противоправных целях запрещено — ответственность за ваши действия лежит на вас.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="support-box">
-      <div>
-        <h2>Поддержать проект</h2>
-        <p>Поддержка и развитие StintikVPN отнимает время и силы. Бесплатно помочь можно одним способом — поставить звезду на репозиторий.</p>
-      </div>
-      <a class="btn btn-primary" href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">★ Поставить звезду</a>
-    </div>
-  </section>
-
   <footer>
-    <div class="footer-brand"><img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt=""> StintikVPN</div>
-    <p>Сделано людьми для людей</p>
-    <div class="footer-links">
-      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">Telegram-канал</a>
-      <a href="https://t.me/Keb04w" target="_blank" rel="noopener">Поддержка</a>
+    <div class="footer-content">
+      <p>StintikVPN &copy; 2026. Проект с открытым исходным кодом.</p>
+      <div class="footer-links">
+        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://t.me/Keb04w" target="_blank" rel="noopener">Поддержка</a>
+      </div>
     </div>
-    <p class="disclaimer">Конфигурации собраны из открытых источников и не проверяются на 100% безопасность. Не передавайте через них конфиденциальные данные без дополнительного шифрования.</p>
-    <p class="disclaimer" style="margin-top:8px;">Страница обновлена: 5 июля 2026</p>
   </footer>
 
-</div>
-
-<button class="back-to-top" id="backToTop" aria-label="Наверх" title="Наверх">↑</button>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="script.js?v=2"></script>
+  <button id="backToTop" class="back-to-top" aria-label="Наверх">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>
