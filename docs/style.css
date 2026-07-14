@@ -1400,3 +1400,450 @@ footer {
   }
   .sub-card { opacity: 1; transform: none; }
 }
+/* === STATS SECTION === */
+.stats-section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 32px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+}
+
+.stat {
+  text-align: center;
+  padding: 28px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: var(--transition);
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.stat b {
+  display: block;
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.stat span {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* === SUB HEADER BADGES === */
+.sub-header-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* === HEALTH BADGE === */
+.health-badge {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.health-badge:hover {
+  transform: scale(1.05);
+}
+
+.health-badge.checking {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+}
+
+.health-badge.fast {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.health-badge.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--warning);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+.health-badge.slow {
+  background: rgba(255, 138, 61, 0.2);
+  color: var(--accent);
+  box-shadow: 0 0 15px rgba(255, 138, 61, 0.3);
+}
+
+.health-badge.offline {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--error);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+/* === POPULARITY BADGE === */
+.popularity-badge {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 0 15px var(--accent-glow);
+  white-space: nowrap;
+}
+
+/* === RATING ROW === */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.rating-likes,
+.rating-dislikes {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* === RATING MODAL === */
+.rating-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  padding: 24px;
+}
+
+.rating-modal {
+  background: var(--bg-card-solid);
+  border: 2px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.rating-modal p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.rating-modal h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 28px;
+  color: var(--text-primary);
+}
+
+.rating-actions {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 0;
+  justify-content: center;
+}
+
+.rating-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 28px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.rating-close-btn:hover {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+/* === SUB ACTIONS === */
+.sub-actions {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* === CLIENT GRID === */
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.client-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.client-card.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.client-card:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.client-card.recommended {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--bg-card), rgba(255, 138, 61, 0.08));
+  box-shadow: var(--shadow-glow);
+}
+
+.rec-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: white;
+  padding: 6px 16px;
+  border-radius: var(--radius-xl);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.client-card h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.client-apps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.client-apps a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.client-apps a:hover {
+  color: var(--accent-light);
+}
+
+/* === CHECK GRID === */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.check-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  transition: var(--transition);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.check-card:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+}
+
+.check-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.check-card p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.check-card .btn {
+  width: 100%;
+}
+
+/* === TELEGRAM WIDGET === */
+.telegram-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  z-index: 999;
+}
+
+.telegram-btn {
+  background: linear-gradient(135deg, #0088cc, #00aaff);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 136, 204, 0.4);
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.telegram-btn.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.telegram-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 136, 204, 0.5);
+}
+
+.telegram-icon {
+  font-size: 20px;
+}
+
+.telegram-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 24px;
+}
+
+.telegram-modal-content {
+  background: var(--bg-card-solid);
+  border: 2px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.telegram-modal-content h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.telegram-modal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.telegram-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 28px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.telegram-close:hover {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+/* === АДАПТИВНОСТЬ ДЛЯ НОВЫХ БЛОКОВ === */
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .stat b {
+    font-size: 36px;
+  }
+  .rating-actions {
+    flex-direction: column;
+  }
+  .telegram-widget {
+    bottom: 24px;
+    right: 24px;
+  }
+  .sub-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+}
