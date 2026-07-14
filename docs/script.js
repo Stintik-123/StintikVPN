@@ -1,13 +1,13 @@
 (function(){
   "use strict";
 
-  // === ПРЕЛОАДЕР — ускорен ===
+  // === ПРЕЛОАДЕР ===
   (function(){
     var el = document.getElementById("preloader");
     if (!el) return;
     var hidden = false;
     var startedAt = Date.now();
-    var MIN_VISIBLE = 300; // было 800
+    var MIN_VISIBLE = 300;
     function hide(){
       if (hidden) return; hidden = true;
       var wait = Math.max(0, MIN_VISIBLE - (Date.now() - startedAt));
@@ -17,15 +17,16 @@
       }, wait);
     }
     window.addEventListener("load", hide);
-    setTimeout(hide, 1200); // было 3500
+    setTimeout(hide, 1200);
   })();
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('service-worker.js').catch(function(err) {});
+      navigator.serviceWorker.register('service-worker.js').catch(function(){});
     });
   }
 
+  // === ТЕМА ===
   var themeBtn = null;
   function initTheme() {
     if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
@@ -37,115 +38,13 @@
     }
   }
   initTheme();
-
   function toggleTheme() {
     document.body.classList.toggle('light-theme');
     localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
     if (themeBtn) themeBtn.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
   }
 
-  // Easter egg
-  (function(){
-    var clicks = 0;
-    var logo = document.querySelector('.hero-logo');
-    if (!logo) return;
-    logo.style.cursor = 'pointer';
-    logo.setAttribute('title', 'Кликни 5 раз 😉');
-    logo.addEventListener('click', function(){
-      clicks++;
-      if (clicks >= 5) {
-        clicks = 0;
-        document.body.classList.add('easter-egg');
-        showToast('🎉 Свобода активирована! Наслаждайтесь интернетом.');
-        setTimeout(function(){ document.body.classList.remove('easter-egg'); }, 4000);
-      }
-    });
-  })();
-
-  // Onboarding tip
-  (function(){
-    if (localStorage.getItem('onboardingDone')) return;
-    var btn = document.querySelector('.hero-ctas .btn-primary');
-    if (!btn) return;
-    var tip = document.createElement('div');
-    tip.className = 'onboarding-tip';
-    tip.textContent = '👋 Нажмите сюда, чтобы быстро подобрать VPN!';
-    btn.parentNode.style.position = 'relative';
-    btn.parentNode.appendChild(tip);
-    setTimeout(function(){ tip.classList.add('show'); }, 800);
-    btn.addEventListener('click', function(){
-      tip.classList.remove('show');
-      localStorage.setItem('onboardingDone', '1');
-      setTimeout(function(){ if (tip.parentNode) tip.parentNode.removeChild(tip); }, 400);
-    });
-  })();
-
-  var ratings = JSON.parse(localStorage.getItem('subRatings') || '{}');
-  function saveRating(id, type) {
-    if (!ratings[id]) ratings[id] = { likes: 0, dislikes: 0 };
-    ratings[id][type]++;
-    localStorage.setItem('subRatings', JSON.stringify(ratings));
-    updateAllRatingDisplays();
-  }
-  function updateAllRatingDisplays() {
-    document.querySelectorAll('.sub-card').forEach(function(card) {
-      var id = card.getAttribute('data-subid');
-      if (!id || !ratings[id]) return;
-      card.querySelector('.rating-likes').textContent = ratings[id].likes || 0;
-      card.querySelector('.rating-dislikes').textContent = ratings[id].dislikes || 0;
-    });
-  }
-
-  function showRatingModal(subId, subName) {
-    var existing = document.querySelector('.rating-modal-overlay');
-    if (existing) existing.remove();
-    var overlay = document.createElement('div');
-    overlay.className = 'rating-modal-overlay';
-    overlay.innerHTML = `
-      <div class="rating-modal">
-        <p>Этот конфиг работает?</p>
-        <h3>${subName}</h3>
-        <div class="rating-actions">
-          <button class="btn btn-primary like-btn">👍 Полезный</button>
-          <button class="btn btn-ghost dislike-btn">👎 Не работает</button>
-        </div>
-        <button class="rating-close-btn">✕</button>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-    overlay.querySelector('.like-btn').addEventListener('click', function() {
-      saveRating(subId, 'likes');
-      overlay.remove();
-      showToast('Спасибо за оценку! 👍');
-    });
-    overlay.querySelector('.dislike-btn').addEventListener('click', function() {
-      saveRating(subId, 'dislikes');
-      overlay.remove();
-      showToast('Жаль, что не работает. Попробуйте другой протокол.');
-    });
-    overlay.querySelector('.rating-close-btn').addEventListener('click', function() { overlay.remove(); });
-    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
-  }
-
-  function showQRModal(url, name) {
-    var existing = document.querySelector('.qr-modal-overlay');
-    if (existing) existing.remove();
-    var overlay = document.createElement('div');
-    overlay.className = 'qr-modal-overlay';
-    var qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
-    overlay.innerHTML = `
-      <div class="qr-modal">
-        <h4>QR-код подписки</h4>
-        <p>${name}</p>
-        <img src="${qrSrc}" alt="QR">
-        <button class="rating-close-btn">✕</button>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-    overlay.querySelector('.rating-close-btn').addEventListener('click', function() { overlay.remove(); });
-    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
-  }
-
+  // === ОПРЕДЕЛЕНИЕ ОС ===
   function detectOS(){
     var ua = navigator.userAgent || "";
     if (/android/i.test(ua)) return "android";
@@ -156,6 +55,7 @@
   }
   var userOS = detectOS();
 
+  // === УТИЛИТЫ ===
   var toastEl = document.getElementById("toast");
   var toastTimer = null;
   function showToast(message){
@@ -178,74 +78,214 @@
     });
   }
 
-  function shareSubscription(name, url) {
-    if (navigator.share) {
-      navigator.share({ title: name, text: `VPN подписка: ${name}`, url: url }).catch(function(){});
-    } else {
-      copyText(`${name}: ${url}`).then(function(){ showToast('Ссылка скопирована – отправьте другу'); });
+  // === ГЛОБАЛЬНЫЕ ОЦЕНКИ (CounterAPI) ===
+  // Используем бесплатный API без ключей. Формат: stintikvpn/{id}-{type}
+  var globalRatings = {}; 
+  
+  async function fetchRating(id, type) {
+    try {
+      var res = await fetch(`https://api.counterapi.dev/v1/stintikvpn/${id}-${type}/get`);
+      var data = await res.json();
+      return data.count || 0;
+    } catch(e) {
+      return globalRatings[id]?.[type] || 0; // Fallback
     }
   }
 
-  function openInClient(url) {
-    var v2rayUrl = `v2ray://import/subscription?url=${encodeURIComponent(url)}`;
-    window.location.href = v2rayUrl;
-    setTimeout(function(){ showToast('Если клиент не открылся, скопируйте ссылку вручную'); }, 2000);
+  async function incrementRating(id, type) {
+    try {
+      await fetch(`https://api.counterapi.dev/v1/stintikvpn/${id}-${type}/up`);
+      if (!globalRatings[id]) globalRatings[id] = { likes: 0, dislikes: 0 };
+      globalRatings[id][type]++;
+      updateRatingDisplay(id);
+    } catch(e) {
+      console.warn("Не удалось сохранить оценку глобально", e);
+      showToast("Оценка сохранена локально (ошибка сети)");
+    }
   }
 
+  function updateRatingDisplay(id) {
+    var card = document.getElementById("card-" + id);
+    if (!card || !globalRatings[id]) return;
+    var likesEl = card.querySelector(".rating-likes");
+    var dislikesEl = card.querySelector(".rating-dislikes");
+    if (likesEl) likesEl.textContent = globalRatings[id].likes;
+    if (dislikesEl) dislikesEl.textContent = globalRatings[id].dislikes;
+  }
+
+  async function loadAllRatings() {
+    var total = 0;
+    for (var sub of subscriptions) {
+      var likes = await fetchRating(sub.id, "like");
+      var dislikes = await fetchRating(sub.id, "dislike");
+      globalRatings[sub.id] = { likes: likes, dislikes: dislikes };
+      total += likes + dislikes;
+    }
+    var ratStat = document.getElementById('statRatings');
+    if (ratStat) ratStat.textContent = total;
+    // Перерисовываем, чтобы показать цифры
+    var activeTab = document.querySelector(".tab.active");
+    var filter = activeTab ? activeTab.getAttribute("data-filter") : "all";
+    renderSubs(filter);
+  }
+
+  // === МОДАЛЬНЫЕ ОКНА ===
+  function showRatingModal(subId, subName) {
+    var existing = document.querySelector('.rating-modal-overlay');
+    if (existing) existing.remove();
+    var overlay = document.createElement('div');
+    overlay.className = 'rating-modal-overlay';
+    overlay.innerHTML = `
+      <div class="rating-modal">
+        <p>Этот конфиг работает?</p>
+        <h3>${subName}</h3>
+        <div class="rating-actions">
+          <button class="btn btn-primary like-btn">👍 Полезный</button>
+          <button class="btn btn-ghost dislike-btn">👎 Не работает</button>
+        </div>
+        <button class="rating-close-btn">✕</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    overlay.querySelector('.like-btn').addEventListener('click', function() {
+      incrementRating(subId, 'like');
+      overlay.remove();
+      showToast('Спасибо! Оценка учтена глобально 👍');
+    });
+    overlay.querySelector('.dislike-btn').addEventListener('click', function() {
+      incrementRating(subId, 'dislike');
+      overlay.remove();
+      showToast('Жаль. Мы учтём это 👎');
+    });
+    overlay.querySelector('.rating-close-btn').addEventListener('click', function() { overlay.remove(); });
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+  }
+
+  function showCopyOptions(url, name, id) {
+    var existing = document.querySelector('.rating-modal-overlay');
+    if (existing) existing.remove();
+    var overlay = document.createElement('div');
+    overlay.className = 'rating-modal-overlay';
+    var v2rayUrl = `v2rayng://install-config?url=${encodeURIComponent(url)}`; // Универсальный формат
+    overlay.innerHTML = `
+      <div class="rating-modal">
+        <p>Как скопировать "${name}"?</p>
+        <div class="rating-actions" style="flex-direction:column; gap:10px;">
+          <button class="btn btn-primary copy-plain-btn">⧉ Обычная ссылка (для вставки)</button>
+          <button class="btn btn-ghost copy-v2ray-btn">📱 Ссылка v2ray:// (для авто-импорта)</button>
+        </div>
+        <button class="rating-close-btn">✕</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    overlay.querySelector('.copy-plain-btn').addEventListener('click', function() {
+      copyText(url).then(function(){
+        overlay.remove();
+        showToast('Ссылка скопирована!');
+        showRatingModal(id, name);
+      });
+    });
+    overlay.querySelector('.copy-v2ray-btn').addEventListener('click', function() {
+      copyText(v2rayUrl).then(function(){
+        overlay.remove();
+        showToast('v2ray ссылка скопирована!');
+        showRatingModal(id, name);
+      });
+    });
+    overlay.querySelector('.rating-close-btn').addEventListener('click', function() { overlay.remove(); });
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+  }
+
+  // === ДАННЫЕ ===
   var subscriptions = [
-    { id:"black-main", cat:"black", count:"", name:"🏴 Чёрный список (основной)", desc:"Основной чёрный список для обычного интернета.", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt" },
-    { id:"black-backup", cat:"black", count:"", name:"🏴 Чёрный список (запасной)", desc:"Запасной вариант.", url:"https://vpn.akres.fun/all" },
-    { id:"black-mobile", cat:"black", count:"20", name:"👑 Black Mobile", desc:"20 лучших серверов для телефонов.", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt" },
-    { id:"white-main", cat:"white", count:"", name:"🏳️ Белый список (основной)", desc:"Для жёстких блокировок.", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt" },
-    { id:"white-cidr", cat:"white", count:"", name:"🌐 Белый список (CIDR)", desc:"Фильтрует по IP-диапазонам.", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" },
-    { id:"white-sni", cat:"white", count:"", name:"🔍 Белый список (SNI)", desc:"Фильтрует по именам сайтов.", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" },
-    { id:"proto-vless", cat:"protocol", count:"", name:"⚡ VLESS + Reality", desc:"Лучший по скорости, но РКН активно блокирует.", url:"https://mifa.world/vless" },
-    { id:"proto-vmess", cat:"protocol", count:"", name:"🔒 VMess", desc:"Самый надёжный протокол.", url:"https://mifa.world/vmess" },
-    { id:"proto-trojan", cat:"protocol", count:"", name:"🛡️ Trojan", desc:"Хорошая маскировка.", url:"https://mifa.world/trojan" },
-    { id:"proto-ss", cat:"protocol", count:"", name:"🚀 Shadowsocks", desc:"Максимальная скорость.", url:"https://mifa.world/ss" }
+    { id:"black-main", cat:"black", count:"", name:"🏴 Чёрный список (основной)", desc:"Основной чёрный список для обычного интернета.", updated:"12.07.2026", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt" },
+    { id:"black-backup", cat:"black", count:"", name:"🏴 Чёрный список (запасной)", desc:"Запасной вариант.", updated:"10.07.2026", url:"https://vpn.akres.fun/all" },
+    { id:"black-mobile", cat:"black", count:"20", name:"👑 Black Mobile", desc:"20 лучших серверов для телефонов.", updated:"14.07.2026", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt" },
+    { id:"white-main", cat:"white", count:"", name:"🏳️ Белый список (основной)", desc:"Для жёстких блокировок.", updated:"13.07.2026", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt" },
+    { id:"white-cidr", cat:"white", count:"", name:"🌐 Белый список (CIDR)", desc:"Фильтрует по IP-диапазонам.", updated:"11.07.2026", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" },
+    { id:"white-sni", cat:"white", count:"", name:"🔍 Белый список (SNI)", desc:"Фильтрует по именам сайтов.", updated:"11.07.2026", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" },
+    { id:"proto-vless", cat:"protocol", count:"", name:"⚡ VLESS + Reality", desc:"Лучший по скорости, но РКН активно блокирует.", updated:"14.07.2026", url:"https://mifa.world/vless" },
+    { id:"proto-vmess", cat:"protocol", count:"", name:"🔒 VMess", desc:"Самый надёжный протокол.", updated:"14.07.2026", url:"https://mifa.world/vmess" },
+    { id:"proto-trojan", cat:"protocol", count:"", name:"🛡️ Trojan", desc:"Хорошая маскировка.", updated:"14.07.2026", url:"https://mifa.world/trojan" },
+    { id:"proto-ss", cat:"protocol", count:"", name:"🚀 Shadowsocks", desc:"Максимальная скорость.", updated:"14.07.2026", url:"https://mifa.world/ss" }
   ];
 
+  // === РЕНДЕРИНГ ПОДПИСОК ===
   var subGrid = document.getElementById("subGrid");
-  function renderSubs(filter){
+  var searchInput = document.getElementById("searchSubs");
+  var currentFilter = "all";
+
+  function renderSubs(filter) {
+    currentFilter = filter;
     if (!subGrid) return;
     subGrid.innerHTML = "";
+    var query = searchInput ? searchInput.value.toLowerCase() : "";
+
     subscriptions.forEach(function(sub){
       if (filter !== "all" && sub.cat !== filter) return;
+      if (query && !sub.name.toLowerCase().includes(query) && !sub.desc.toLowerCase().includes(query)) return;
+
       var card = document.createElement("div");
       card.className = "sub-card";
       card.setAttribute("data-subid", sub.id);
       card.id = "card-" + sub.id;
-      var rating = ratings[sub.id] || { likes: 0, dislikes: 0 };
+      
+      var rating = globalRatings[sub.id] || { likes: 0, dislikes: 0 };
       var reportUrl = "https://t.me/Keb04w?text=" + encodeURIComponent("Не работает: " + sub.name);
+      
       card.innerHTML = `
-        <h3>${sub.name}</h3>
-        ${sub.count ? `<span class="sub-count">${sub.count}</span>` : ''}
+        <div class="sub-header">
+          <h3>${sub.name}</h3>
+          ${sub.count ? `<span class="sub-count">${sub.count}</span>` : ''}
+        </div>
         <p>${sub.desc}</p>
+        <div class="sub-updated">📅 Обновлено: ${sub.updated}</div>
         <code>${sub.url}</code>
         <div class="sub-actions-row">
-          <button class="btn btn-ghost copy-btn">⧉ Скопировать</button>
-          <button class="btn btn-ghost qr-btn">📲</button>
-          <button class="btn btn-ghost client-btn">📱</button>
+          <button class="btn btn-ghost copy-btn">⧉ Копировать</button>
+          <button class="btn btn-ghost ping-btn" data-url="${sub.url}">🟡 Проверить</button>
           <button class="btn btn-ghost share-btn">↗</button>
-          <a class="btn btn-ghost" href="${reportUrl}" target="_blank" rel="noopener">⚑</a>
+          <a class="btn btn-ghost" href="${reportUrl}" target="_blank" rel="noopener">⚑ Жалоба</a>
         </div>
         <div class="rating-row">
           <span class="rating-likes">${rating.likes}</span> 👍 
           <span class="rating-dislikes">${rating.dislikes}</span> 👎
         </div>
       `;
+
       card.querySelector(".copy-btn").addEventListener("click", function(){
-        copyText(sub.url).then(function(){
-          var btn = card.querySelector(".copy-btn");
-          btn.textContent = "✓ Скопировано"; btn.classList.add("copied");
-          setTimeout(function(){ btn.textContent = "⧉ Скопировать"; btn.classList.remove("copied"); }, 1600);
-          showRatingModal(sub.id, sub.name);
-        }).catch(function(){ showToast("Не удалось скопировать"); });
+        showCopyOptions(sub.url, sub.name, sub.id);
       });
-      card.querySelector(".qr-btn").addEventListener("click", function(){ showQRModal(sub.url, sub.name); });
-      card.querySelector(".share-btn").addEventListener("click", function(){ shareSubscription(sub.name, sub.url); });
-      card.querySelector(".client-btn").addEventListener("click", function(){ openInClient(sub.url); });
+
+      card.querySelector(".ping-btn").addEventListener("click", function(){
+        var btn = this;
+        btn.textContent = "⏳ Проверка...";
+        fetch(sub.url, { method: 'HEAD', mode: 'no-cors', cache: 'no-cache' })
+          .then(function() {
+            btn.textContent = "🟢 Доступен";
+            btn.classList.add("status-ok");
+          })
+          .catch(function() {
+            btn.textContent = "🔴 Ошибка сети";
+            btn.classList.add("status-err");
+          });
+      });
+
+      card.querySelector(".share-btn").addEventListener("click", function(){
+        if (navigator.share) {
+          navigator.share({ title: sub.name, text: `VPN: ${sub.name}`, url: sub.url }).catch(function(){});
+        } else {
+          copyText(sub.url).then(function(){ showToast('Ссылка скопирована для отправки другу'); });
+        }
+      });
+
       subGrid.appendChild(card);
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", function(){
+      renderSubs(currentFilter);
     });
   }
 
@@ -256,6 +296,7 @@
     else if (filter === "white") tab.textContent = "📱 Мобильный интернет";
     else if (filter === "protocol") tab.textContent = "⚙️ Протоколы";
     else if (filter === "all") tab.textContent = "Все подписки";
+    
     tab.addEventListener("click", function(){
       tabs.forEach(function(t){ t.classList.remove("active"); });
       tab.classList.add("active");
@@ -268,7 +309,12 @@
     copyAllBtn.addEventListener("click", function(){
       var active = document.querySelector(".tab.active[data-filter]");
       var filter = active ? active.getAttribute("data-filter") : "all";
-      var visible = subscriptions.filter(function(s){ return filter === "all" || s.cat === filter; });
+      var query = searchInput ? searchInput.value.toLowerCase() : "";
+      var visible = subscriptions.filter(function(s){ 
+        if (filter !== "all" && s.cat !== filter) return false;
+        if (query && !s.name.toLowerCase().includes(query) && !s.desc.toLowerCase().includes(query)) return false;
+        return true;
+      });
       copyText(visible.map(function(s){ return s.name + ": " + s.url; }).join("\n")).then(function(){
         copyAllBtn.textContent = "✓ Скопировано";
         setTimeout(function(){ copyAllBtn.textContent = "⧉ Скопировать все видимые"; }, 1800);
@@ -276,12 +322,14 @@
     });
   }
 
+  // === ПОМОЩНИК ===
   document.querySelectorAll(".helper-opt").forEach(function(btn){
     btn.addEventListener("click", function(){
       var targetId = btn.getAttribute("data-target");
       tabs.forEach(function(t){ t.classList.remove("active"); });
       var allTab = document.querySelector('.tab[data-filter="all"]');
       if (allTab) allTab.classList.add("active");
+      if (searchInput) searchInput.value = "";
       renderSubs("all");
       requestAnimationFrame(function(){
         var el = document.getElementById("card-" + targetId);
@@ -293,13 +341,14 @@
     });
   });
 
+  // === ПРОТОКОЛЫ ===
   var protoGrid = document.getElementById("protoGrid");
   if (protoGrid) {
     [
-      { name:"VLESS", note:"Лучший по скорости и маскировке, но РКН блокирует активнее." },
-      { name:"Trojan", note:"Хорошая маскировка под TLS." },
-      { name:"VMess", note:"Самый надёжный." },
-      { name:"Shadowsocks", note:"Максимальная скорость, для игр." }
+      { name:"VLESS + Reality", note:"Лучший по скорости и маскировке, но РКН блокирует активнее." },
+      { name:"Trojan", note:"Хорошая маскировка под обычный HTTPS трафик." },
+      { name:"VMess", note:"Самый надёжный и стабильный протокол." },
+      { name:"Shadowsocks", note:"Максимальная скорость, идеально для игр." }
     ].forEach(function(p){
       var d = document.createElement("div");
       d.className = "proto-card";
@@ -308,40 +357,7 @@
     });
   }
 
-  var guides = [
-    { name:"Zapret", note:"Обходит DPI. Не шифрует трафик.", steps:["Скачайте сборку","Распакуйте архив","Запустите general.bat","Не закрывайте окно","Попробуйте другую стратегию"], links:[{label:"Windows-сборка", url:"https://github.com/Flowseal/zapret-discord-youtube"}, {label:"Оригинал", url:"https://github.com/bol-van/zapret"}] },
-    { name:"ByeDPI", note:"Проще Zapret, Android без root.", steps:["Windows/Linux: запустите – SOCKS5 на 127.0.0.1:1080","Пропишите прокси в браузере","Android: установите APK, нажмите Start"], links:[{label:"Windows / Linux", url:"https://github.com/hufrea/byedpi"}, {label:"Android", url:"https://github.com/dovecoteescapee/ByeDPIAndroid"}] },
-    { name:"tgwsproxy", note:"Прокси для Telegram.", steps:["Скачайте сборку","Запустите – инструкция для Desktop","Свернётся в трей","Android: APK и автонастройка"], links:[{label:"Windows / macOS / Linux", url:"https://github.com/Flowseal/tg-ws-proxy"}, {label:"Android", url:"https://github.com/amurcanov/tg-ws-proxy-android"}] }
-  ];
-  var guideGrid = document.getElementById("guideGrid");
-  if (guideGrid) guides.forEach(function(g){
-    var d = document.createElement("details");
-    d.className = "guide-card";
-    d.innerHTML = `<summary>${g.name} <span>показать</span></summary>
-      <p>${g.note}</p>
-      <ol>${g.steps.map(function(s){ return `<li>${s}</li>`; }).join("")}</ol>
-      <div class="guide-links">${g.links.map(function(l){ return `<a href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`; }).join("")}</div>
-    `;
-    guideGrid.appendChild(d);
-  });
-
-  var tgProxies = [
-    { label:"MTProto", addr:"proxy.vmelectronics.ru:443", url:"https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477" },
-    { label:"MTProto", addr:"coca.mtmajestic.space:853", url:"tg://proxy?server=coca.mtmajestic.space&port=853&secret=616cf892574b078aab3f73e63b8b7df4" },
-    { label:"MTProto", addr:"coca.mtmajestic.space:443", url:"tg://proxy?server=coca.mtmajestic.space&port=443&secret=dd616cf892574b078aab3f73e63b8b7df4" },
-    { label:"MTProto", addr:"185.130.114.232:443", url:"https://t.me/proxy?server=185.130.114.232&port=443&secret=eea8f35c1d7e9042b6c4d19e2fb7630a586d61782e7275" },
-    { label:"MTProto", addr:"146.185.208.118:8443", url:"https://t.me/proxy?server=146.185.208.118&port=8443&secret=7gNCstm3UgMJ5_8asG-Xia53aXBlLmNhbGxzbWVlZS54eXo" },
-    { label:"MTProto", addr:"fast.proxytg.space:8443", url:"tg://proxy?server=fast.proxytg.space&port=8443&secret=ee60a6bb02c869117fa6820902f61c82ff666173742e70726f787974672e7370616365" },
-    { label:"MTProto", addr:"redflag.yazaebalsyadelatproxy.cc:443", url:"https://t.me/proxy?server=redflag.yazaebalsyadelatproxy.cc&port=443&secret=ee69e899d89ec68e220ca177557322b27f706c617932676f2e636c6f7564" }
-  ];
-  var tgList = document.getElementById("tgList");
-  if (tgList) tgProxies.forEach(function(p){
-    var row = document.createElement("div");
-    row.className = "tg-item";
-    row.innerHTML = `<b>${p.label}</b> — <code>${p.addr}</code> <a href="${p.url}" target="_blank" rel="noopener">Подключиться</a>`;
-    tgList.appendChild(row);
-  });
-
+  // === КЛИЕНТЫ С БЕЙДЖЕМ "ВАШ ВЫБОР" ===
   var clientGroups = [
     { device:"Windows", match:["win"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"v2rayN", url:"https://github.com/2dust/v2rayN/releases"}] },
     { device:"Android", match:["android"], apps:[{name:"Incy", url:"https://play.google.com/store/apps/details?id=com.glarimy.incy"}, {name:"NekoBox", url:"https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"}] },
@@ -356,18 +372,51 @@
     var card = document.createElement("div");
     card.className = "client-card" + (recommended ? " recommended" : "");
     var appsHtml = g.apps.map(function(a){ return `<a href="${a.url}" target="_blank" rel="noopener">${a.name}</a>`; }).join("");
-    card.innerHTML = (recommended ? '<span class="rec-badge">Для вас</span>' : '') + '<h3>' + g.device + '</h3><div class="client-apps">' + appsHtml + '</div>';
+    card.innerHTML = (recommended ? '<span class="rec-badge">🏆 Ваш выбор</span>' : '') + '<h3>' + g.device + '</h3><div class="client-apps">' + appsHtml + '</div>';
     clientGrid.appendChild(card);
   });
 
+  // === ИНСТРУКЦИИ ===
+  var guides = [
+    { name:"Zapret", note:"Обходит DPI на уровне системы. Не шифрует трафик, но обходит блокировки по SNI.", steps:["Скачайте сборку","Распакуйте архив","Запустите general.bat","Не закрывайте чёрное окно","Попробуйте другую стратегию, если не работает"], links:[{label:"Windows-сборка", url:"https://github.com/Flowseal/zapret-discord-youtube"}, {label:"Оригинал", url:"https://github.com/bol-van/zapret"}] },
+    { name:"ByeDPI", note:"Проще Zapret, работает на Android без root-прав.", steps:["Windows/Linux: запустите – создаст SOCKS5 прокси на 127.0.0.1:1080","Пропишите этот прокси в настройках браузера","Android: установите APK, нажмите Start"], links:[{label:"Windows / Linux", url:"https://github.com/hufrea/byedpi"}, {label:"Android", url:"https://github.com/dovecoteescapee/ByeDPIAndroid"}] },
+    { name:"tgwsproxy", note:"Специализированный прокси только для Telegram.", steps:["Скачайте сборку","Запустите – следуйте инструкции для Desktop","Программа свернётся в трей","Android: используйте APK с автонастройкой"], links:[{label:"Windows / macOS / Linux", url:"https://github.com/Flowseal/tg-ws-proxy"}, {label:"Android", url:"https://github.com/amurcanov/tg-ws-proxy-android"}] }
+  ];
+  var guideGrid = document.getElementById("guideGrid");
+  if (guideGrid) guides.forEach(function(g){
+    var d = document.createElement("details");
+    d.className = "guide-card";
+    d.innerHTML = `<summary>${g.name} <span>показать</span></summary>
+      <p>${g.note}</p>
+      <ol>${g.steps.map(function(s){ return `<li>${s}</li>`; }).join("")}</ol>
+      <div class="guide-links">${g.links.map(function(l){ return `<a href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`; }).join("")}</div>
+    `;
+    guideGrid.appendChild(d);
+  });
+
+  // === TELEGRAM ПРОКСИ ===
+  var tgProxies = [
+    { label:"MTProto", addr:"proxy.vmelectronics.ru:443", url:"https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477" },
+    { label:"MTProto", addr:"coca.mtmajestic.space:853", url:"tg://proxy?server=coca.mtmajestic.space&port=853&secret=616cf892574b078aab3f73e63b8b7df4" },
+    { label:"MTProto", addr:"coca.mtmajestic.space:443", url:"tg://proxy?server=coca.mtmajestic.space&port=443&secret=dd616cf892574b078aab3f73e63b8b7df4" },
+    { label:"MTProto", addr:"185.130.114.232:443", url:"https://t.me/proxy?server=185.130.114.232&port=443&secret=eea8f35c1d7e9042b6c4d19e2fb7630a586d61782e7275" },
+    { label:"MTProto", addr:"fast.proxytg.space:8443", url:"tg://proxy?server=fast.proxytg.space&port=8443&secret=ee60a6bb02c869117fa6820902f61c82ff666173742e70726f787974672e7370616365" }
+  ];
+  var tgList = document.getElementById("tgList");
+  if (tgList) tgProxies.forEach(function(p){
+    var row = document.createElement("div");
+    row.className = "tg-item";
+    row.innerHTML = `<b>${p.label}</b> — <code>${p.addr}</code> <a href="${p.url}" target="_blank" rel="noopener">Подключиться</a>`;
+    tgList.appendChild(row);
+  });
+
+  // === FAQ ===
   var faq = [
     { q:"Подписка не работает или очень медленно.", a:"Обновите подписку в клиенте (кнопка «Обновить»). Попробуйте сменить протокол (VLESS → Trojan) или сервер. Иногда помогает перезапуск клиента или смена Wi-Fi/мобильного интернета." },
-    { q:"Как часто обновляются конфиги?", a:"Это подборка из чужих источников — обновляется вручную, по мере появления новых рабочих ссылок, а не по расписанию." },
+    { q:"Как часто обновляются конфиги?", a:"Это подборка из проверенных источников. Даты обновления указаны на каждой карточке. Мы стараемся актуализировать их не реже раза в неделю." },
     { q:"Когда нужно использовать белые списки?", a:"Только когда ваш мобильный оператор (МТС, Билайн, Tele2 и др.) включил «белые списки» РКН — и обычные сайты перестали открываться." },
     { q:"Какой клиент лучше всего для новичка?", a:"Hiddify — самый удобный и понятный, для Windows и Android. На iOS — Streisand." },
-    { q:"Что делать, если Telegram-прокси не подключается?", a:"Прокси часто умирают даже свежие — попробуйте следующий из списка или используйте обычную VPN-подписку выше вместо прокси." },
-    { q:"Можно ли использовать одну подписку на нескольких устройствах?", a:"Да, большинство подписок поддерживают одновременное подключение с нескольких устройств — но это зависит от конкретного сервера." },
-    { q:"Безопасно ли пользоваться этими конфигами?", a:"Конфиги из открытых источников и не проверяются нами на безопасность. Не передавайте через них банковские данные и важные пароли. Используйте на свой страх и риск." }
+    { q:"Безопасно ли пользоваться этими конфигами?", a:"Конфиги из открытых источников. Не передавайте через них банковские данные и важные пароли. Используйте на свой страх и риск." }
   ];
   var faqList = document.getElementById("faqList");
   if (faqList) faq.forEach(function(item, i){
@@ -377,9 +426,9 @@
     faqList.appendChild(d);
   });
 
+  // === БЛАГОДАРНОСТИ ===
   var contributors = [
     { name:"Stintik", role:"Основатель", link:"https://github.com/Stintik-123" },
-    { name:"Анонимный помощник", role:"Тестировщик", link:"#" },
     { name:"Keb04w", role:"Поддержка", link:"https://t.me/Keb04w" },
     { name:"Сообщество GitHub", role:"Звёзды и идеи", link:"https://github.com/Stintik-123/StintikVPN" }
   ];
@@ -397,7 +446,7 @@
     });
   }
 
-  // === ЗВЁЗДЫ GITHUB — исправлено ===
+  // === ЗВЁЗДЫ GITHUB ===
   var starsEl = document.getElementById("statStars");
   var currentStars = null;
   function animateNumber(el, from, to){
@@ -412,86 +461,36 @@
   }
   function refreshStars(){
     if (!starsEl) return;
-    
-    // Пробуем несколько источников
-    var urls = [
-      "https://api.github.com/repos/Stintik-123/StintikVPN",
-      "https://api.github.com/repos/Stintik-123/StintikVPN?nocache=" + Date.now()
-    ];
-    
-    var fetched = false;
-    
-    function tryFetch(idx) {
-      if (idx >= urls.length || fetched) {
-        // Fallback: показываем "—" если не удалось
-        if (currentStars === null) {
-          starsEl.textContent = "96"; // Значение из README на момент анализа
-        }
-        return;
-      }
-      
-      fetch(urls[idx], { 
-        headers: { 'Accept': 'application/vnd.github.v3+json' },
-        cache: 'no-cache'
-      })
-      .then(function(r){ 
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json(); 
-      })
+    fetch("https://api.github.com/repos/Stintik-123/StintikVPN", { headers: { 'Accept': 'application/vnd.github.v3+json' } })
+      .then(function(r){ return r.json(); })
       .then(function(data){
         if (data && typeof data.stargazers_count === "number") {
-          fetched = true;
           var to = data.stargazers_count;
           animateNumber(starsEl, currentStars === null ? to : currentStars, to);
           currentStars = to;
-        } else {
-          tryFetch(idx + 1);
         }
-      })
-      .catch(function(err){
-        console.warn('Stars fetch failed:', err);
-        tryFetch(idx + 1);
+      }).catch(function(){
+        if (currentStars === null) starsEl.textContent = "96";
       });
-    }
-    
-    tryFetch(0);
   }
   refreshStars();
-  setInterval(refreshStars, 120000); // Обновляем каждые 2 минуты
+  setInterval(refreshStars, 120000);
 
+  // === СТАТИСТИКА ПОДПИСОК ===
+  var statsRow = document.querySelector('.stats-row');
+  if (statsRow) {
+    var subStat = document.getElementById('statSubs');
+    if (subStat) subStat.textContent = subscriptions.length;
+  }
+
+  // === УПРАВЛЕНИЕ ИНТЕРФЕЙСОМ ===
   var backBtn = document.getElementById("backToTop");
   if (backBtn) {
     window.addEventListener("scroll", function(){ backBtn.classList.toggle("visible", window.scrollY > 600); });
     backBtn.addEventListener("click", function(){ window.scrollTo({ top:0, behavior:"smooth" }); });
   }
 
-  // Active nav link
-  (function(){
-    var links = document.querySelectorAll(".nav-links a[href^='#']");
-    if (!links.length || !window.IntersectionObserver) return;
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (!entry.isIntersecting) return;
-        links.forEach(function(a){ a.classList.remove("active"); });
-        var match = document.querySelector(".nav-links a[href='#" + entry.target.id + "']");
-        if (match) match.classList.add("active");
-      });
-    }, { rootMargin: "-40% 0px -55% 0px" });
-    links.forEach(function(a){ var s = document.querySelector(a.getAttribute("href")); if (s) observer.observe(s); });
-  })();
-
-  // Appear animation
-  var appearObserver = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        entry.target.classList.add("appear");
-        appearObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.sub-card, .client-card, .proto-card, .guide-card, .check-card').forEach(function(el){ appearObserver.observe(el); });
-
-  // Mobile menu
+  // Мобильное меню
   (function(){
     var navLinks = document.querySelector('.nav-links');
     if (!navLinks) return;
@@ -504,22 +503,18 @@
     if (navRight) navRight.prepend(btn);
   })();
 
-  // Share button in footer
-  (function(){
-    var footer = document.querySelector('.footer-links');
-    if (!footer) return;
-    var shareBtn = document.createElement('a');
-    shareBtn.href = '#';
-    shareBtn.textContent = '📤 Поделиться';
-    shareBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      if (navigator.share) navigator.share({ title: 'StintikVPN', text: 'Подборка рабочих VPN-подписок', url: window.location.href });
-      else showToast('Скопируйте адрес сайта и отправьте другу');
+  // Анимация появления
+  var appearObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add("appear");
+        appearObserver.unobserve(entry.target);
+      }
     });
-    footer.appendChild(shareBtn);
-  })();
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.sub-card, .client-card, .proto-card, .guide-card, .check-card').forEach(function(el){ appearObserver.observe(el); });
 
-  // Background canvas
+  // Фоновая анимация
   (function bg(){
     var canvas = document.getElementById("bgCanvas");
     if (!canvas) return;
@@ -572,52 +567,14 @@
     window.addEventListener("resize", function(){ resize(); initNodes(); });
   })();
 
-  // Stats
-  (function(){
-    var statsRow = document.querySelector('.stats-row');
-    if (!statsRow) return;
-    var totalSubs = subscriptions.length;
-    var subStat = document.getElementById('statSubs');
-    if (!subStat) {
-      var d = document.createElement('div');
-      d.className = 'stat';
-      d.innerHTML = '<b>'+totalSubs+'</b><span>Подписок</span>';
-      statsRow.appendChild(d);
-    } else subStat.textContent = totalSubs;
-    var ratingSum = Object.values(ratings).reduce(function(s,r){ return s + (r.likes||0) + (r.dislikes||0); }, 0);
-    var ratStat = document.getElementById('statRatings');
-    if (!ratStat) {
-      var d2 = document.createElement('div');
-      d2.className = 'stat';
-      d2.innerHTML = '<b>'+ratingSum+'</b><span>Оценок</span>';
-      statsRow.appendChild(d2);
-    } else ratStat.textContent = ratingSum;
-  })();
-
-  // Theme button (duplicate prevention)
-  (function(){
-    var navRight = document.querySelector('.nav-right');
-    if (navRight) {
-      var existingThemeBtn = navRight.querySelector('.theme-toggle');
-      if (!existingThemeBtn) {
-        var themeBtnEl = document.createElement('button');
-        themeBtnEl.className = 'nav-icon theme-toggle';
-        themeBtnEl.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
-        themeBtnEl.setAttribute('aria-label', 'Переключить тему');
-        themeBtnEl.addEventListener('click', toggleTheme);
-        navRight.appendChild(themeBtnEl);
-        themeBtn = themeBtnEl;
-      }
-    }
-  })();
-
-  // === РЕНДЕРИНГ ПОДПИСОК — обёрнут в try-catch ===
+  // === ЗАПУСК ===
   try {
-    renderSubs("all");
+    // Сначала загружаем глобальные оценки, потом рендерим
+    loadAllRatings().then(function() {
+      renderSubs("all");
+    });
   } catch(e) {
-    console.error('Failed to render subscriptions:', e);
-    if (subGrid) {
-      subGrid.innerHTML = '<p style="text-align:center;padding:20px;color:var(--red);">Ошибка загрузки подписок. Обновите страницу.</p>';
-    }
+    console.error('Failed to init:', e);
+    if (subGrid) subGrid.innerHTML = '<p style="text-align:center;padding:20px;color:var(--red);">Ошибка загрузки. Обновите страницу.</p>';
   }
 })();
