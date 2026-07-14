@@ -3,193 +3,303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Бесплатные и рабочие VPN-подписки, обход блокировок РКН, инструкции по настройке.">
+  <meta name="description" content="Бесплатные и рабочие VPN-подписки для обхода блокировок РКН. Актуальные конфиги VLESS, VMess, Trojan, Shadowsocks.">
+  <meta name="keywords" content="VPN, обход блокировок, РКН, VLESS, VMess, Trojan, Shadowsocks, бесплатные подписки">
+  <meta name="author" content="StintikVPN">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/">
+  <meta property="og:title" content="StintikVPN — Рабочие подписки и обход блокировок">
+  <meta property="og:description" content="Бесплатные и рабочие VPN-подписки для обхода блокировок РКН">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="StintikVPN — Рабочие подписки и обход блокировок">
+  <meta property="twitter:description" content="Бесплатные и рабочие VPN-подписки для обхода блокировок РКН">
+  
   <meta name="theme-color" content="#ff8a3d">
   <title>StintikVPN — Рабочие подписки и обход блокировок</title>
   
-  <!-- PWA Manifest -->
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="script.js" as="script">
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "StintikVPN",
+    "description": "Бесплатные и рабочие VPN-подписки для обхода блокировок РКН",
+    "url": "https://stintik-123.github.io/StintikVPN/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+    "author": { "@type": "Person", "name": "Stintik" }
+  }
+  </script>
 </head>
 <body>
-  <div id="preloader">
+  <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+
+  <div id="preloader" role="status" aria-label="Загрузка">
     <div class="loader-spinner"></div>
     <p>Загружаем рабочие конфиги...</p>
   </div>
 
-  <canvas id="bgCanvas"></canvas>
-  <div id="toast" class="toast"></div>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Основная навигация">
     <div class="nav-brand">
-      <span class="hero-logo">🛡️ StintikVPN</span>
+      <span class="hero-logo" role="img" aria-label="StintikVPN">🛡️ StintikVPN</span>
     </div>
     <div class="nav-right">
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
         <a href="#helper">Подбор</a>
         <a href="#subscriptions">Подписки</a>
+        <a href="#protocol-calculator">Калькулятор</a>
         <a href="#clients">Клиенты</a>
         <a href="#guides">Инструкции</a>
         <a href="#faq">FAQ</a>
       </div>
+      <button class="nav-icon theme-toggle" aria-label="Переключить тему" title="Переключить тему">🌙</button>
     </div>
   </nav>
 
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Свободный интернет <span class="highlight">без ограничений</span></h1>
-      <p>Актуальная подборка VPN-подписок, прокси и инструментов для обхода блокировок. Бесплатно, без регистрации и лишних вопросов.</p>
-      <div class="hero-ctas">
-        <a href="#helper" class="btn btn-primary">Подобрать подписку</a>
-        <a href="#guides" class="btn btn-ghost">Как настроить?</a>
+  <main id="main-content">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Свободный интернет <span class="highlight">без ограничений</span></h1>
+        <p>Актуальная подборка VPN-подписок, прокси и инструментов для обхода блокировок. Бесплатно, без регистрации и лишних вопросов.</p>
+        <div class="hero-ctas">
+          <a href="#helper" class="btn btn-primary">Подобрать подписку</a>
+          <a href="#protocol-calculator" class="btn btn-ghost">Умный подбор протокола</a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <section class="stats-section">
-    <div class="stats-row">
-      <div class="stat"><b id="statSubs">0</b><span>Подписок</span></div>
-      <div class="stat"><b id="statStars">—</b><span>Звёзд на GitHub</span></div>
-      <div class="stat"><b id="statRatings">0</b><span>Оценок сообщества</span></div>
-    </div>
-  </section>
-
-  <section id="helper">
-    <div class="section-head">
-      <div class="tag">Подбор подписки</div>
-      <h2>Какой у вас интернет?</h2>
-      <p>Выберите ваш тип подключения — мы подскажем, какие подписки подойдут именно вам.</p>
-    </div>
-    <div class="helper">
-      <div class="helper-q">Как вы обычно выходите в интернет?</div>
-      <div class="helper-opts">
-        <button class="helper-opt" data-target="black-main">
-          <b>🏠 Домашний интернет (Wi-Fi, кабель, 4G)</b>
-          <span>Обычный интернет без белых списков РКН. Сайты блокируются напрямую — подойдут чёрные списки.</span>
-        </button>
-        <button class="helper-opt" data-target="white-main">
-          <b>📱 Мобильный интернет с белыми списками РКН</b>
-          <span>Оператор блокирует всё, кроме разрешённых сайтов. Нужны белые списки — они работают наоборот.</span>
-        </button>
+    <!-- Service Status -->
+    <section class="status-section" aria-label="Статус сервисов">
+      <div class="status-container">
+        <h3>🟢 Статус сервисов в реальном времени</h3>
+        <div class="status-grid" id="statusGrid"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="subscriptions">
-    <div class="section-head">
-      <div class="tag">Каталог</div>
-      <h2>Рабочие подписки</h2>
-      <p>Нажмите на кнопку, чтобы скопировать ссылку, и вставьте её в ваш VPN-клиент.</p>
-    </div>
-    
-    <!-- НОВОЕ: Поиск -->
-    <div class="search-container">
-      <input type="text" id="searchSubs" class="search-input" placeholder="🔍 Поиск по названию, протоколу или описанию...">
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" data-filter="all">Все подписки</button>
-      <button class="tab" data-filter="black">🏠 Домашний интернет</button>
-      <button class="tab" data-filter="white">📱 Мобильный интернет</button>
-      <button class="tab" data-filter="protocol">⚙️ Протоколы</button>
-    </div>
-
-    <div class="sub-actions">
-      <button id="copyAllBtn" class="btn btn-ghost">⧉ Скопировать все видимые</button>
-    </div>
-
-    <div id="subGrid" class="sub-grid"></div>
-  </section>
-
-  <section id="protocols">
-    <div class="section-head">
-      <div class="tag">Технологии</div>
-      <h2>Какой протокол выбрать?</h2>
-      <p>Краткая шпаргалка по современным протоколам обхода блокировок.</p>
-    </div>
-    <div id="protoGrid" class="proto-grid"></div>
-  </section>
-
-  <section id="clients">
-    <div class="section-head">
-      <div class="tag">Приложения</div>
-      <h2>Куда вставить ссылку?</h2>
-      <p>Рекомендуемые приложения. Система автоматически подсветит подходящие для вашего устройства.</p>
-    </div>
-    <div id="clientGrid" class="client-grid"></div>
-  </section>
-
-  <section id="guides">
-    <div class="section-head">
-      <div class="tag">Инструкции</div>
-      <h2>Альтернативные способы</h2>
-      <p>Если VPN не работает, попробуйте эти проверенные инструменты для обхода DPI.</p>
-    </div>
-    <div id="guideGrid" class="guide-grid"></div>
-  </section>
-
-  <section id="tg-proxies">
-    <div class="section-head">
-      <div class="tag">Telegram</div>
-      <h2>Прокси для Telegram</h2>
-      <p>Если мессенджер не подключается, нажмите на ссылку, чтобы добавить прокси в один клик.</p>
-    </div>
-    <div id="tgList" class="tg-list"></div>
-  </section>
-
-  <section id="check">
-    <div class="section-head">
-      <div class="tag">Важно проверить самому</div>
-      <h2>Проверьте, что VPN работает правильно</h2>
-      <p>После подключения к VPN убедитесь, что всё настроено верно. Это займёт меньше минуты.</p>
-    </div>
-    <div class="check-grid">
-      <div class="check-card">
-        <h3>🌍 Изменился ли IP-адрес</h3>
-        <p>Убедитесь, что ваш реальный IP скрыт, а страна подключения изменилась.</p>
-        <a href="https://ipleak.net" target="_blank" rel="noopener" class="btn btn-ghost">Проверить IP →</a>
+    <!-- Stats -->
+    <section class="stats-section" aria-label="Статистика проекта">
+      <div class="stats-row">
+        <div class="stat"><b id="statSubs">0</b><span>Подписок</span></div>
+        <div class="stat"><b id="statStars">—</b><span>Звёзд на GitHub</span></div>
+        <div class="stat"><b id="statRatings">0</b><span>Оценок сообщества</span></div>
+        <div class="stat"><b id="statCopies">0</b><span>Копирований</span></div>
       </div>
-      <div class="check-card">
-        <h3>🔒 Нет ли утечки DNS</h3>
-        <p>Иногда провайдер всё равно видит, какие сайты вы открываете, даже через VPN.</p>
-        <a href="https://www.dnsleaktest.com" target="_blank" rel="noopener" class="btn btn-ghost">Проверить DNS →</a>
+    </section>
+
+    <!-- Helper -->
+    <section id="helper" aria-labelledby="helper-title">
+      <div class="section-head">
+        <div class="tag">Подбор подписки</div>
+        <h2 id="helper-title">Какой у вас интернет?</h2>
+        <p>Выберите ваш тип подключения — мы подскажем, какие подписки подойдут именно вам.</p>
       </div>
-      <div class="check-card">
-        <h3>⚡ Не упала ли скорость</h3>
-        <p>VPN всегда немного замедляет соединение. Проверьте, насколько сильно.</p>
-        <a href="https://www.speedtest.net" target="_blank" rel="noopener" class="btn btn-ghost">Измерить скорость →</a>
+      <div class="helper">
+        <div class="helper-q">Как вы обычно выходите в интернет?</div>
+        <div class="helper-opts" role="radiogroup">
+          <button class="helper-opt" data-target="black-main" role="radio" tabindex="0">
+            <b>🏠 Домашний интернет (Wi-Fi, кабель, 4G)</b>
+            <span>Обычный интернет без белых списков РКН. Сайты блокируются напрямую — подойдут чёрные списки.</span>
+          </button>
+          <button class="helper-opt" data-target="white-main" role="radio" tabindex="0">
+            <b>📱 Мобильный интернет с белыми списками РКН</b>
+            <span>Оператор блокирует всё, кроме разрешённых сайтов. Нужны белые списки — они работают наоборот.</span>
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="faq">
-    <div class="section-head">
-      <div class="tag">Вопросы</div>
-      <h2>Частые вопросы</h2>
-    </div>
-    <div id="faqList" class="faq-list"></div>
-  </section>
+    <!-- Protocol Calculator -->
+    <section id="protocol-calculator" aria-labelledby="calc-title">
+      <div class="section-head">
+        <div class="tag">Умный подбор</div>
+        <h2 id="calc-title">Какой протокол выбрать?</h2>
+        <p>Ответьте на два вопроса — мы подберём идеальный протокол для ваших задач.</p>
+      </div>
+      <div class="calculator">
+        <div class="calc-step" id="calcStep1">
+          <h3>Шаг 1. Для чего вам VPN?</h3>
+          <div class="calc-options">
+            <button class="calc-opt" data-task="streaming">🎬 Стриминг (YouTube, Netflix)</button>
+            <button class="calc-opt" data-task="gaming">🎮 Игры (низкий пинг)</button>
+            <button class="calc-opt" data-task="messaging">💬 Мессенджеры (Telegram)</button>
+            <button class="calc-opt" data-task="browsing">🌐 Обычный серфинг</button>
+            <button class="calc-opt" data-task="privacy">🔒 Максимальная приватность</button>
+          </div>
+        </div>
+        <div class="calc-step" id="calcStep2" style="display:none;">
+          <h3>Шаг 2. Какая скорость нужна?</h3>
+          <div class="calc-options">
+            <button class="calc-opt" data-speed="high">⚡ Максимальная (4K, загрузка файлов)</button>
+            <button class="calc-opt" data-speed="medium">🚀 Средняя (HD видео, соцсети)</button>
+            <button class="calc-opt" data-speed="low">📱 Базовая (текст, мессенджеры)</button>
+          </div>
+        </div>
+        <div id="calcResult" class="calc-result" style="display:none;">
+          <h3>🎯 Рекомендуем:</h3>
+          <div class="calc-recommendation" id="calcRec"></div>
+          <button class="btn btn-ghost" id="calcReset">Пройти заново</button>
+        </div>
+      </div>
+    </section>
 
-  <section id="thanks">
-    <div class="section-head">
-      <div class="tag">Сообщество</div>
-      <h2>Спасибо, что делаете проект лучше</h2>
-    </div>
-    <div id="thanksGrid" class="thanks-grid"></div>
-  </section>
+    <!-- Subscriptions -->
+    <section id="subscriptions" aria-labelledby="subs-title">
+      <div class="section-head">
+        <div class="tag">Каталог</div>
+        <h2 id="subs-title">Рабочие подписки</h2>
+        <p>Нажмите на кнопку, чтобы скопировать ссылку, и вставьте её в ваш VPN-клиент.</p>
+      </div>
+      <div class="search-container">
+        <input type="search" id="searchSubs" class="search-input" placeholder="🔍 Поиск по названию, протоколу или описанию..." aria-label="Поиск подписок" autocomplete="off">
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-filter="all" role="tab" tabindex="0">Все подписки</button>
+        <button class="tab" data-filter="black" role="tab" tabindex="0">🏠 Домашний</button>
+        <button class="tab" data-filter="white" role="tab" tabindex="0">📱 Мобильный</button>
+        <button class="tab" data-filter="protocol" role="tab" tabindex="0">⚙️ Протоколы</button>
+      </div>
+      <div class="sub-actions">
+        <button id="copyAllBtn" class="btn btn-ghost">⧉ Скопировать все видимые</button>
+      </div>
+      <div id="skeletonGrid" class="sub-grid">
+        <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+        <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+      </div>
+      <div id="subGrid" class="sub-grid" style="display:none;" role="list"></div>
+    </section>
 
-  <footer>
+    <!-- Protocols -->
+    <section id="protocols" aria-labelledby="proto-title">
+      <div class="section-head">
+        <div class="tag">Технологии</div>
+        <h2 id="proto-title">Шпаргалка по протоколам</h2>
+        <p>Краткое описание современных протоколов обхода блокировок.</p>
+      </div>
+      <div id="protoGrid" class="proto-grid" role="list"></div>
+    </section>
+
+    <!-- Clients -->
+    <section id="clients" aria-labelledby="clients-title">
+      <div class="section-head">
+        <div class="tag">Приложения</div>
+        <h2 id="clients-title">Куда вставить ссылку?</h2>
+        <p>Рекомендуемые приложения. Подходящие для вашего устройства подсвечены.</p>
+      </div>
+      <div id="clientGrid" class="client-grid" role="list"></div>
+    </section>
+
+    <!-- Guides -->
+    <section id="guides" aria-labelledby="guides-title">
+      <div class="section-head">
+        <div class="tag">Инструкции</div>
+        <h2 id="guides-title">Альтернативные способы</h2>
+        <p>Если VPN не работает, попробуйте эти инструменты для обхода DPI.</p>
+      </div>
+      <div id="guideGrid" class="guide-grid" role="list"></div>
+    </section>
+
+    <!-- Telegram proxies -->
+    <section id="tg-proxies" aria-labelledby="tg-title">
+      <div class="section-head">
+        <div class="tag">Telegram</div>
+        <h2 id="tg-title">Прокси для Telegram</h2>
+        <p>Нажмите на ссылку, чтобы добавить прокси в один клик.</p>
+      </div>
+      <div id="tgList" class="tg-list" role="list"></div>
+    </section>
+
+    <!-- Check connection -->
+    <section id="check" aria-labelledby="check-title">
+      <div class="section-head">
+        <div class="tag">Проверка</div>
+        <h2 id="check-title">Проверьте, что VPN работает правильно</h2>
+        <p>После подключения убедитесь, что всё настроено верно.</p>
+      </div>
+      <div class="check-grid">
+        <div class="check-card">
+          <h3>🌍 Изменился ли IP-адрес</h3>
+          <p>Убедитесь, что ваш реальный IP скрыт, а страна подключения изменилась.</p>
+          <a href="https://ipleak.net" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Проверить IP →</a>
+        </div>
+        <div class="check-card">
+          <h3>🔒 Нет ли утечки DNS</h3>
+          <p>Иногда провайдер всё равно видит, какие сайты вы открываете.</p>
+          <a href="https://www.dnsleaktest.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Проверить DNS →</a>
+        </div>
+        <div class="check-card">
+          <h3>⚡ Не упала ли скорость</h3>
+          <p>VPN всегда немного замедляет соединение. Проверьте, насколько.</p>
+          <a href="https://www.speedtest.net" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Измерить скорость →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <div class="tag">Вопросы</div>
+        <h2 id="faq-title">Частые вопросы</h2>
+      </div>
+      <div id="faqList" class="faq-list"></div>
+    </section>
+
+    <!-- Thanks -->
+    <section id="thanks" aria-labelledby="thanks-title">
+      <div class="section-head">
+        <div class="tag">Сообщество</div>
+        <h2 id="thanks-title">Спасибо, что делаете проект лучше</h2>
+      </div>
+      <div id="thanksGrid" class="thanks-grid"></div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
     <div class="footer-content">
-      <p>StintikVPN &copy; 2026. Проект с открытым исходным кодом.</p>
+      <p>StintikVPN &copy; 2025. Проект с открытым исходным кодом.</p>
       <div class="footer-links">
-        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://t.me/Keb04w" target="_blank" rel="noopener">Поддержка</a>
+        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://t.me/Keb04w" target="_blank" rel="noopener noreferrer">Поддержка</a>
       </div>
     </div>
   </footer>
 
-  <button id="backToTop" class="back-to-top" aria-label="Наверх">↑</button>
+  <button id="backToTop" class="back-to-top" aria-label="Наверх" title="Наверх">↑</button>
+
+  <!-- Telegram Widget -->
+  <div id="telegramWidget" class="telegram-widget">
+    <button id="telegramBtn" class="telegram-btn" aria-label="Подписаться на уведомления">
+      <span class="telegram-icon">📢</span>
+      <span>Обновления в Telegram</span>
+    </button>
+  </div>
+  <div id="telegramModal" class="telegram-modal" style="display:none;">
+    <div class="telegram-modal-content">
+      <button class="telegram-close">&times;</button>
+      <h3>📢 Получайте уведомления</h3>
+      <p>Подпишитесь на наш Telegram-канал, чтобы первыми узнавать о новых рабочих конфигах.</p>
+      <a href="https://t.me/Keb04w" target="_blank" rel="noopener" class="btn btn-primary">Открыть Telegram</a>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
