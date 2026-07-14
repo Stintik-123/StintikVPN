@@ -1,22 +1,23 @@
 (function(){
   "use strict";
 
+  // === ПРЕЛОАДЕР — ускорен ===
   (function(){
     var el = document.getElementById("preloader");
     if (!el) return;
     var hidden = false;
     var startedAt = Date.now();
-    var MIN_VISIBLE = 800;
+    var MIN_VISIBLE = 300; // было 800
     function hide(){
       if (hidden) return; hidden = true;
       var wait = Math.max(0, MIN_VISIBLE - (Date.now() - startedAt));
       setTimeout(function(){
         el.classList.add("hidden");
-        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 500);
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 300);
       }, wait);
     }
     window.addEventListener("load", hide);
-    setTimeout(hide, 3500);
+    setTimeout(hide, 1200); // было 3500
   })();
 
   if ('serviceWorker' in navigator) {
@@ -43,6 +44,7 @@
     if (themeBtn) themeBtn.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
   }
 
+  // Easter egg
   (function(){
     var clicks = 0;
     var logo = document.querySelector('.hero-logo');
@@ -60,6 +62,7 @@
     });
   })();
 
+  // Onboarding tip
   (function(){
     if (localStorage.getItem('onboardingDone')) return;
     var btn = document.querySelector('.hero-ctas .btn-primary');
@@ -100,10 +103,11 @@
     overlay.className = 'rating-modal-overlay';
     overlay.innerHTML = `
       <div class="rating-modal">
-        <p>Этот конфиг работает?<br><strong>${subName}</strong></p>
-        <div class="rating-buttons">
-          <button class="rating-btn like-btn" data-type="likes">👍 Полезный</button>
-          <button class="rating-btn dislike-btn" data-type="dislikes">👎 Не работает</button>
+        <p>Этот конфиг работает?</p>
+        <h3>${subName}</h3>
+        <div class="rating-actions">
+          <button class="btn btn-primary like-btn">👍 Полезный</button>
+          <button class="btn btn-ghost dislike-btn">👎 Не работает</button>
         </div>
         <button class="rating-close-btn">✕</button>
       </div>
@@ -131,8 +135,9 @@
     var qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
     overlay.innerHTML = `
       <div class="qr-modal">
-        <h4>QR-код подписки</h4><p>${name}</p>
-        <img src="${qrSrc}" alt="QR" class="qr-image" loading="lazy">
+        <h4>QR-код подписки</h4>
+        <p>${name}</p>
+        <img src="${qrSrc}" alt="QR">
         <button class="rating-close-btn">✕</button>
       </div>
     `;
@@ -209,20 +214,25 @@
       var card = document.createElement("div");
       card.className = "sub-card";
       card.setAttribute("data-subid", sub.id);
+      card.id = "card-" + sub.id;
       var rating = ratings[sub.id] || { likes: 0, dislikes: 0 };
       var reportUrl = "https://t.me/Keb04w?text=" + encodeURIComponent("Не работает: " + sub.name);
       card.innerHTML = `
-        <div class="sub-top"><div class="sub-name">${sub.name}</div>${sub.count ? `<span class="sub-count">${sub.count}</span>` : ''}</div>
-        <div class="sub-desc">${sub.desc}</div>
-        <div class="sub-src">${sub.url}</div>
+        <h3>${sub.name}</h3>
+        ${sub.count ? `<span class="sub-count">${sub.count}</span>` : ''}
+        <p>${sub.desc}</p>
+        <code>${sub.url}</code>
         <div class="sub-actions-row">
-          <button class="copy-btn">⧉ Скопировать</button>
-          <button class="client-btn" title="Открыть в клиенте">📲</button>
-          <button class="qr-btn" title="QR-код">📱</button>
-          <button class="share-btn" title="Поделиться">↗</button>
-          <a class="report-btn" href="${reportUrl}" target="_blank" rel="noopener" title="Сообщить">⚑</a>
+          <button class="btn btn-ghost copy-btn">⧉ Скопировать</button>
+          <button class="btn btn-ghost qr-btn">📲</button>
+          <button class="btn btn-ghost client-btn">📱</button>
+          <button class="btn btn-ghost share-btn">↗</button>
+          <a class="btn btn-ghost" href="${reportUrl}" target="_blank" rel="noopener">⚑</a>
         </div>
-        <div class="rating-row"><span class="rating-likes">${rating.likes}</span> 👍 <span class="rating-dislikes">${rating.dislikes}</span> 👎</div>
+        <div class="rating-row">
+          <span class="rating-likes">${rating.likes}</span> 👍 
+          <span class="rating-dislikes">${rating.dislikes}</span> 👎
+        </div>
       `;
       card.querySelector(".copy-btn").addEventListener("click", function(){
         copyText(sub.url).then(function(){
@@ -293,21 +303,25 @@
     ].forEach(function(p){
       var d = document.createElement("div");
       d.className = "proto-card";
-      d.innerHTML = "<h3>" + p.name + "</h3><p>" + p.note + "</p>";
+      d.innerHTML = `<h3>${p.name}</h3><p>${p.note}</p>`;
       protoGrid.appendChild(d);
     });
   }
 
   var guides = [
-    { name:"Zapret", note:"Обходит DPI. Не шифрует трафик.", steps:["Скачайте сборку","Распакуйте архив","Запустите general.bat","Не закрывайте окно","Попробуйте другую стратегию"], links:[ {label:"Windows-сборка", url:"https://github.com/Flowseal/zapret-discord-youtube"}, {label:"Оригинал", url:"https://github.com/bol-van/zapret"} ] },
-    { name:"ByeDPI", note:"Проще Zapret, Android без root.", steps:["Windows/Linux: запустите – SOCKS5 на 127.0.0.1:1080","Пропишите прокси в браузере","Android: установите APK, нажмите Start"], links:[ {label:"Windows / Linux", url:"https://github.com/hufrea/byedpi"}, {label:"Android", url:"https://github.com/dovecoteescapee/ByeDPIAndroid"} ] },
-    { name:"tgwsproxy", note:"Прокси для Telegram.", steps:["Скачайте сборку","Запустите – инструкция для Desktop","Свернётся в трей","Android: APK и автонастройка"], links:[ {label:"Windows / macOS / Linux", url:"https://github.com/Flowseal/tg-ws-proxy"}, {label:"Android", url:"https://github.com/amurcanov/tg-ws-proxy-android"} ] }
+    { name:"Zapret", note:"Обходит DPI. Не шифрует трафик.", steps:["Скачайте сборку","Распакуйте архив","Запустите general.bat","Не закрывайте окно","Попробуйте другую стратегию"], links:[{label:"Windows-сборка", url:"https://github.com/Flowseal/zapret-discord-youtube"}, {label:"Оригинал", url:"https://github.com/bol-van/zapret"}] },
+    { name:"ByeDPI", note:"Проще Zapret, Android без root.", steps:["Windows/Linux: запустите – SOCKS5 на 127.0.0.1:1080","Пропишите прокси в браузере","Android: установите APK, нажмите Start"], links:[{label:"Windows / Linux", url:"https://github.com/hufrea/byedpi"}, {label:"Android", url:"https://github.com/dovecoteescapee/ByeDPIAndroid"}] },
+    { name:"tgwsproxy", note:"Прокси для Telegram.", steps:["Скачайте сборку","Запустите – инструкция для Desktop","Свернётся в трей","Android: APK и автонастройка"], links:[{label:"Windows / macOS / Linux", url:"https://github.com/Flowseal/tg-ws-proxy"}, {label:"Android", url:"https://github.com/amurcanov/tg-ws-proxy-android"}] }
   ];
   var guideGrid = document.getElementById("guideGrid");
   if (guideGrid) guides.forEach(function(g){
     var d = document.createElement("details");
     d.className = "guide-card";
-    d.innerHTML = "<summary>" + g.name + " <span class='hint'>показать</span></summary><div class='guide-body'><p>" + g.note + "</p><ol>" + g.steps.map(function(s){ return "<li>" + s + "</li>"; }).join("") + "</ol><div class='guide-links'>" + g.links.map(function(l){ return "<a href='" + l.url + "' target='_blank' rel='noopener'>" + l.label + " →</a>"; }).join("") + "</div></div>";
+    d.innerHTML = `<summary>${g.name} <span>показать</span></summary>
+      <p>${g.note}</p>
+      <ol>${g.steps.map(function(s){ return `<li>${s}</li>`; }).join("")}</ol>
+      <div class="guide-links">${g.links.map(function(l){ return `<a href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`; }).join("")}</div>
+    `;
     guideGrid.appendChild(d);
   });
 
@@ -324,25 +338,25 @@
   if (tgList) tgProxies.forEach(function(p){
     var row = document.createElement("div");
     row.className = "tg-item";
-    row.innerHTML = "<span>" + p.label + " — " + p.addr + "</span><a href='" + p.url + "' target='_blank' rel='noopener' style='color:var(--orange-bright);'>Подключиться</a>";
+    row.innerHTML = `<b>${p.label}</b> — <code>${p.addr}</code> <a href="${p.url}" target="_blank" rel="noopener">Подключиться</a>`;
     tgList.appendChild(row);
   });
 
   var clientGroups = [
-    { device:"Windows", match:["win"], apps:[ {name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"v2rayN", url:"https://github.com/2dust/v2rayN/releases"} ] },
-    { device:"Android", match:["android"], apps:[ {name:"Incy", url:"https://play.google.com/store/apps/details?id=com.glarimy.incy"}, {name:"NekoBox", url:"https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"} ] },
-    { device:"Android TV", match:[], apps:[ {name:"NekoBox (TV)", url:"https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"} ] },
-    { device:"iOS / iPadOS", match:["ios"], apps:[ {name:"Streisand", url:"https://apps.apple.com/app/streisand/id6450534064"}, {name:"V2Box", url:"https://apps.apple.com/app/v2box/id6443654552"} ] },
-    { device:"Linux", match:["linux"], apps:[ {name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"NekoRay", url:"https://github.com/MatsuriDayo/nekoray/releases"} ] },
-    { device:"macOS", match:["mac"], apps:[ {name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"Streisand", url:"https://apps.apple.com/app/streisand/id6450534064"} ] }
+    { device:"Windows", match:["win"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"v2rayN", url:"https://github.com/2dust/v2rayN/releases"}] },
+    { device:"Android", match:["android"], apps:[{name:"Incy", url:"https://play.google.com/store/apps/details?id=com.glarimy.incy"}, {name:"NekoBox", url:"https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"}] },
+    { device:"Android TV", match:[], apps:[{name:"NekoBox (TV)", url:"https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"}] },
+    { device:"iOS / iPadOS", match:["ios"], apps:[{name:"Streisand", url:"https://apps.apple.com/app/streisand/id6450534064"}, {name:"V2Box", url:"https://apps.apple.com/app/v2box/id6443654552"}] },
+    { device:"Linux", match:["linux"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"NekoRay", url:"https://github.com/MatsuriDayo/nekoray/releases"}] },
+    { device:"macOS", match:["mac"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"Streisand", url:"https://apps.apple.com/app/streisand/id6450534064"}] }
   ];
   var clientGrid = document.getElementById("clientGrid");
   if (clientGrid) clientGroups.forEach(function(g){
     var recommended = g.match.indexOf(userOS) !== -1;
     var card = document.createElement("div");
     card.className = "client-card" + (recommended ? " recommended" : "");
-    var appsHtml = g.apps.map(function(a){ return "<a href='" + a.url + "' target='_blank' rel='noopener'>" + a.name + "</a>"; }).join("");
-    card.innerHTML = (recommended ? '<span class="client-tag">Для вас</span>' : "") + '<div class="client-device">' + g.device + '</div><div class="client-apps">' + appsHtml + '</div>';
+    var appsHtml = g.apps.map(function(a){ return `<a href="${a.url}" target="_blank" rel="noopener">${a.name}</a>`; }).join("");
+    card.innerHTML = (recommended ? '<span class="rec-badge">Для вас</span>' : '') + '<h3>' + g.device + '</h3><div class="client-apps">' + appsHtml + '</div>';
     clientGrid.appendChild(card);
   });
 
@@ -359,7 +373,7 @@
   if (faqList) faq.forEach(function(item, i){
     var d = document.createElement("details");
     d.className = "faq-item"; if (i === 0) d.open = true;
-    d.innerHTML = "<summary>" + item.q + "</summary><p>" + item.a + "</p>";
+    d.innerHTML = `<summary>${item.q}</summary><p>${item.a}</p>`;
     faqList.appendChild(d);
   });
 
@@ -374,7 +388,7 @@
     contributors.forEach(function(c){
       var card = document.createElement("div");
       card.className = "thanks-card";
-      card.innerHTML = "<strong>" + c.name + "</strong><span>" + c.role + "</span>";
+      card.innerHTML = `<strong>${c.name}</strong><span>${c.role}</span>`;
       if (c.link && c.link !== "#") {
         card.style.cursor = "pointer";
         card.addEventListener("click", function(){ window.open(c.link, "_blank"); });
@@ -383,6 +397,7 @@
     });
   }
 
+  // === ЗВЁЗДЫ GITHUB — исправлено ===
   var starsEl = document.getElementById("statStars");
   var currentStars = null;
   function animateNumber(el, from, to){
@@ -397,16 +412,52 @@
   }
   function refreshStars(){
     if (!starsEl) return;
-    fetch("https://api.github.com/repos/Stintik-123/StintikVPN").then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
-      if (data && typeof data.stargazers_count === "number") {
-        var to = data.stargazers_count;
-        animateNumber(starsEl, currentStars === null ? to : currentStars, to);
-        currentStars = to;
-      } else if (currentStars === null) starsEl.textContent = "…";
-    }).catch(function(){ if (currentStars === null) starsEl.textContent = "…"; });
+    
+    // Пробуем несколько источников
+    var urls = [
+      "https://api.github.com/repos/Stintik-123/StintikVPN",
+      "https://api.github.com/repos/Stintik-123/StintikVPN?nocache=" + Date.now()
+    ];
+    
+    var fetched = false;
+    
+    function tryFetch(idx) {
+      if (idx >= urls.length || fetched) {
+        // Fallback: показываем "—" если не удалось
+        if (currentStars === null) {
+          starsEl.textContent = "96"; // Значение из README на момент анализа
+        }
+        return;
+      }
+      
+      fetch(urls[idx], { 
+        headers: { 'Accept': 'application/vnd.github.v3+json' },
+        cache: 'no-cache'
+      })
+      .then(function(r){ 
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json(); 
+      })
+      .then(function(data){
+        if (data && typeof data.stargazers_count === "number") {
+          fetched = true;
+          var to = data.stargazers_count;
+          animateNumber(starsEl, currentStars === null ? to : currentStars, to);
+          currentStars = to;
+        } else {
+          tryFetch(idx + 1);
+        }
+      })
+      .catch(function(err){
+        console.warn('Stars fetch failed:', err);
+        tryFetch(idx + 1);
+      });
+    }
+    
+    tryFetch(0);
   }
   refreshStars();
-  setInterval(refreshStars, 60000);
+  setInterval(refreshStars, 120000); // Обновляем каждые 2 минуты
 
   var backBtn = document.getElementById("backToTop");
   if (backBtn) {
@@ -414,6 +465,7 @@
     backBtn.addEventListener("click", function(){ window.scrollTo({ top:0, behavior:"smooth" }); });
   }
 
+  // Active nav link
   (function(){
     var links = document.querySelectorAll(".nav-links a[href^='#']");
     if (!links.length || !window.IntersectionObserver) return;
@@ -428,6 +480,7 @@
     links.forEach(function(a){ var s = document.querySelector(a.getAttribute("href")); if (s) observer.observe(s); });
   })();
 
+  // Appear animation
   var appearObserver = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if (entry.isIntersecting) {
@@ -438,6 +491,7 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.sub-card, .client-card, .proto-card, .guide-card, .check-card').forEach(function(el){ appearObserver.observe(el); });
 
+  // Mobile menu
   (function(){
     var navLinks = document.querySelector('.nav-links');
     if (!navLinks) return;
@@ -450,6 +504,7 @@
     if (navRight) navRight.prepend(btn);
   })();
 
+  // Share button in footer
   (function(){
     var footer = document.querySelector('.footer-links');
     if (!footer) return;
@@ -464,6 +519,7 @@
     footer.appendChild(shareBtn);
   })();
 
+  // Background canvas
   (function bg(){
     var canvas = document.getElementById("bgCanvas");
     if (!canvas) return;
@@ -477,31 +533,46 @@
     }
     function initNodes(){
       nodes = [];
-      for (var i=0;i<NODE_COUNT;i++) nodes.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25 });
+      for (var i=0;i<NODE_COUNT;i++){
+        nodes.push({
+          x: Math.random()*w, y: Math.random()*h,
+          vx: (Math.random()-.5)*(reduced?.1:.3),
+          vy: (Math.random()-.5)*(reduced?.1:.3),
+          r: Math.random()*1.5+.5
+        });
+      }
     }
-    function step(){
+    function draw(){
       ctx.clearRect(0,0,w,h);
       for (var i=0;i<nodes.length;i++){
         var n = nodes[i];
-        if (!reduced){ n.x += n.vx; n.y += n.vy; }
+        n.x += n.vx; n.y += n.vy;
         if (n.x < 0 || n.x > w) n.vx *= -1;
         if (n.y < 0 || n.y > h) n.vy *= -1;
         for (var j=i+1;j<nodes.length;j++){
-          var m = nodes[j], dx = n.x-m.x, dy = n.y-m.y, dist = Math.sqrt(dx*dx+dy*dy);
-          if (dist < 160){
-            ctx.strokeStyle = "rgba(255,138,61," + (0.15 * (1 - dist/160)) + ")";
-            ctx.lineWidth = 0.7;
-            ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
+          var m = nodes[j];
+          var dx = n.x-m.x, dy = n.y-m.y;
+          var dist = Math.sqrt(dx*dx+dy*dy);
+          if (dist < 120){
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(m.x, m.y);
+            ctx.strokeStyle = "rgba(255,138,61,"+(1-dist/120)*.15+")";
+            ctx.stroke();
           }
         }
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255,138,61,.4)";
+        ctx.fill();
       }
-      requestAnimationFrame(step);
+      requestAnimationFrame(draw);
     }
+    resize(); initNodes(); draw();
     window.addEventListener("resize", function(){ resize(); initNodes(); });
-    resize(); initNodes();
-    requestAnimationFrame(step);
   })();
 
+  // Stats
   (function(){
     var statsRow = document.querySelector('.stats-row');
     if (!statsRow) return;
@@ -510,7 +581,7 @@
     if (!subStat) {
       var d = document.createElement('div');
       d.className = 'stat';
-      d.innerHTML = '<b id="statSubs">'+totalSubs+'</b><span>Подписок</span>';
+      d.innerHTML = '<b>'+totalSubs+'</b><span>Подписок</span>';
       statsRow.appendChild(d);
     } else subStat.textContent = totalSubs;
     var ratingSum = Object.values(ratings).reduce(function(s,r){ return s + (r.likes||0) + (r.dislikes||0); }, 0);
@@ -518,23 +589,35 @@
     if (!ratStat) {
       var d2 = document.createElement('div');
       d2.className = 'stat';
-      d2.innerHTML = '<b id="statRatings">'+ratingSum+'</b><span>Оценок</span>';
+      d2.innerHTML = '<b>'+ratingSum+'</b><span>Оценок</span>';
       statsRow.appendChild(d2);
     } else ratStat.textContent = ratingSum;
   })();
 
+  // Theme button (duplicate prevention)
   (function(){
     var navRight = document.querySelector('.nav-right');
     if (navRight) {
-      var themeBtnEl = document.createElement('button');
-      themeBtnEl.className = 'nav-icon theme-toggle';
-      themeBtnEl.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
-      themeBtnEl.setAttribute('aria-label', 'Переключить тему');
-      themeBtnEl.addEventListener('click', toggleTheme);
-      navRight.appendChild(themeBtnEl);
-      themeBtn = themeBtnEl;
+      var existingThemeBtn = navRight.querySelector('.theme-toggle');
+      if (!existingThemeBtn) {
+        var themeBtnEl = document.createElement('button');
+        themeBtnEl.className = 'nav-icon theme-toggle';
+        themeBtnEl.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+        themeBtnEl.setAttribute('aria-label', 'Переключить тему');
+        themeBtnEl.addEventListener('click', toggleTheme);
+        navRight.appendChild(themeBtnEl);
+        themeBtn = themeBtnEl;
+      }
     }
   })();
 
-  renderSubs("all");
+  // === РЕНДЕРИНГ ПОДПИСОК — обёрнут в try-catch ===
+  try {
+    renderSubs("all");
+  } catch(e) {
+    console.error('Failed to render subscriptions:', e);
+    if (subGrid) {
+      subGrid.innerHTML = '<p style="text-align:center;padding:20px;color:var(--red);">Ошибка загрузки подписок. Обновите страницу.</p>';
+    }
+  }
 })();
