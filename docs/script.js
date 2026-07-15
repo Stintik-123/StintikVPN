@@ -54,21 +54,40 @@
   });
 
   // === ПРЕЛОАДЕР ===
-  (function(){
-    const el = document.getElementById("preloader");
-    if (!el) return;
-    let hidden = false, startedAt = Date.now(), MIN_VISIBLE = 1000; // Минимум 1 сек
-    function hide(){
-      if (hidden) return; hidden = true;
-      const wait = Math.max(0, MIN_VISIBLE - (Date.now() - startedAt));
-      setTimeout(() => {
-        el.classList.add("hidden");
-        setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 500);
-      }, wait);
-    }
-    window.addEventListener("load", hide);
-    setTimeout(hide, 2000);
-  })();
+// === ПРЕЛОАДЕР ===
+(function(){
+  const el = document.getElementById("preloader");
+  if (!el) return;
+  
+  let hidden = false;
+  
+  function hide() {
+    if (hidden) return;
+    hidden = true;
+    
+    el.classList.add("hidden");
+    
+    setTimeout(() => {
+      if (el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    }, 600);
+  }
+  
+  // Гарантированное скрытие через 1.5 секунды
+  const forceHideTimeout = setTimeout(hide, 1500);
+  
+  // Или при полной загрузке страницы
+  window.addEventListener("load", () => {
+    clearTimeout(forceHideTimeout);
+    setTimeout(hide, 300);
+  });
+  
+  // Защита от ошибок - если что-то пошло не так
+  window.addEventListener("error", () => {
+    hide();
+  });
+})();
 
   // === ТЕМА ===
   const themeBtn = document.querySelector('.theme-toggle');
