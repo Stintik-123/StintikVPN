@@ -1,4 +1,0 @@
-requests
-websocket-client
-aiohttp
-aiofiles
