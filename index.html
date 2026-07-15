@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StintikVPN - Интернет свобода ближе, чем кажется</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div id="preloader" class="preloader">
+        <div class="radar">
+            <div class="pulse pulse-1"></div>
+            <div class="pulse pulse-2"></div>
+            <div class="pulse pulse-3"></div>
+        </div>
+        <p>Загрузка...</p>
+    </div>
+
+    <!-- Контейнер основного контента -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Навигация -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="nav-left">
+                        <a href="#" class="logo">StintikVPN</a>
+                    </div>
+                    <div class="nav-right">
+                        <button id="theme-toggle" class="btn-icon" title="Переключить тему">🌙</button>
+                        <button id="contrast-toggle" class="btn-icon" title="Высокий контраст">👁️</button>
+                        <select id="language-select" class="language-select">
+                            <option value="ru">🇷🇺 РУ</option>
+                            <option value="en">🇬🇧 EN</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-background"></div>
+            <div class="container hero-content">
+                <div class="hero-avatar">
+                    <img src="https://avatars.githubusercontent.com/u/287226517?v=4" alt="Stintik" class="avatar">
+                </div>
+                <h1 class="hero-title" data-ru="Интернет свобода ближе, чем кажется" data-en="Internet freedom is closer than you think">Интернет свобода ближе, чем кажется</h1>
+                <p class="hero-subtitle" data-ru="Обойди блокировки и пользуйся интернетом свободно" data-en="Bypass blocks and use the internet freely">Обойди блокировки и пользуйся интернетом свободно</p>
+            </div>
+        </section>
+
+        <!-- Monitor Svobody (Новости блокировок) -->
+        <section class="monitor-svobody">
+            <div class="container">
+                <h2 class="section-title" data-ru="📊 Монитор Свободы" data-en="📊 Freedom Monitor">📊 Монитор Свободы</h2>
+                <div class="news-grid">
+                    <a href="https://habr.com" target="_blank" class="news-card glass-effect">
+                        <h3 data-ru="Новая блокировка VPN" data-en="New VPN Block">Новая блокировка VPN</h3>
+                        <p data-ru="Роскомнадзор начал блокировать новые IP адреса провайдеров VPN" data-en="Roskomnadzor began blocking new VPN provider IP addresses">Роскомнадзор начал блокировать новые IP адреса провайдеров VPN</p>
+                        <span class="read-more">→</span>
+                    </a>
+                    <a href="https://habr.com" target="_blank" class="news-card glass-effect">
+                        <h3 data-ru="Обход блокировок DNS" data-en="DNS Block Bypass">Обход блокировок DNS</h3>
+                        <p data-ru="Новый метод позволяет обойти фильтрацию DNS на уровне провайдера" data-en="New method allows bypassing DNS filtering at the provider level">Новый метод позволяет обойти фильтрацию DNS на уровне провайдера</p>
+                        <span class="read-more">→</span>
+                    </a>
+                    <a href="https://habr.com" target="_blank" class="news-card glass-effect">
+                        <h3 data-ru="ByeDPI работает!" data-en="ByeDPI Works!">ByeDPI работает!</h3>
+                        <p data-ru="Пользователи подтвердили работу ByeDPI в последнее время" data-en="Users confirmed ByeDPI operation recently">Пользователи подтвердили работу ByeDPI в последнее время</p>
+                        <span class="read-more">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Статистика -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card glass-effect">
+                        <div class="stat-number" id="stars-count">99</div>
+                        <div class="stat-label" data-ru="Звезд" data-en="Stars">Звезд</div>
+                    </div>
+                    <div class="stat-card glass-effect">
+                        <div class="stat-number" id="subscribers-count">1000+</div>
+                        <div class="stat-label" data-ru="Подписчиков" data-en="Subscribers">Подписчиков</div>
+                    </div>
+                    <div class="stat-card glass-effect">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label" data-ru="Свободы" data-en="Freedom">Свободы</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Проверка IP/DNS/Speed -->
+        <section class="checks">
+            <div class="container">
+                <h2 class="section-title" data-ru="🔍 Проверка Соединения" data-en="🔍 Connection Check">🔍 Проверка Соединения</h2>
+                <div class="checks-grid">
+                    <a href="https://2ip.ru" target="_blank" class="check-card glass-effect">
+                        <h3>🌐</h3>
+                        <p data-ru="Проверить IP" data-en="Check IP">Проверить IP</p>
+                    </a>
+                    <a href="https://dns.google" target="_blank" class="check-card glass-effect">
+                        <h3>📡</h3>
+                        <p data-ru="Проверить DNS" data-en="Check DNS">Проверить DNS</p>
+                    </a>
+                    <a href="https://speedtest.net" target="_blank" class="check-card glass-effect">
+                        <h3>⚡</h3>
+                        <p data-ru="Проверить скорость" data-en="Check Speed">Проверить скорость</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Гайды -->
+        <section class="guides">
+            <div class="container">
+                <h2 class="section-title" data-ru="📚 Гайды и Инструкции" data-en="📚 Guides and Instructions">📚 Гайды и Инструкции</h2>
+                <div class="guides-container">
+                    <div class="guide-item glass-effect">
+                        <div class="guide-header" onclick="toggleGuide(this)">
+                            <h3>🔧 Zapret</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="guide-content">
+                            <ol>
+                                <li data-ru="Скачайте архив Zapret с GitHub" data-en="Download Zapret archive from GitHub">Скачайте архив Zapret с GitHub</li>
+                                <li data-ru="Распакуйте файлы в отдельную папку" data-en="Extract files to a separate folder">Распакуйте файлы в отдельную папку</li>
+                                <li data-ru="Запустите install.sh или install.bat" data-en="Run install.sh or install.bat">Запустите install.sh или install.bat</li>
+                                <li data-ru="Включите в браузере SOCKS5 прокси: 127.0.0.1:9050" data-en="Enable SOCKS5 proxy in browser: 127.0.0.1:9050">Включите в браузере SOCKS5 прокси: 127.0.0.1:9050</li>
+                                <li data-ru="Наслаждайтесь свободным интернетом!" data-en="Enjoy free internet!">Наслаждайтесь свободным интернетом!</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="guide-item glass-effect">
+                        <div class="guide-header" onclick="toggleGuide(this)">
+                            <h3>🚀 ByeDPI</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="guide-content">
+                            <ol>
+                                <li data-ru="Загрузите ByeDPI из репозитория" data-en="Download ByeDPI from repository">Загрузите ByeDPI из репозитория</li>
+                                <li data-ru="Распакуйте архив" data-en="Extract the archive">Распакуйте архив</li>
+                                <li data-ru="Откройте командную строку в папке с ByeDPI" data-en="Open command line in ByeDPI folder">Откройте командную строку в папке с ByeDPI</li>
+                                <li data-ru="Запустите: byedpi.exe --listen 127.0.0.1:1080" data-en="Run: byedpi.exe --listen 127.0.0.1:1080">Запустите: byedpi.exe --listen 127.0.0.1:1080</li>
+                                <li data-ru="Настройте SOCKS5 прокси в приложении" data-en="Set up SOCKS5 proxy in app">Настройте SOCKS5 прокси в приложении</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="guide-item glass-effect">
+                        <div class="guide-header" onclick="toggleGuide(this)">
+                            <h3>🔐 tgwsproxy</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="guide-content">
+                            <ol>
+                                <li data-ru="Установите Python 3.8+" data-en="Install Python 3.8+">Установите Python 3.8+</li>
+                                <li data-ru="Клонируйте репозиторий: git clone https://github.com/..." data-en="Clone the repository: git clone https://github.com/...">Клонируйте репозиторий: git clone https://github.com/...</li>
+                                <li data-ru="Установите зависимости: pip install -r requirements.txt" data-en="Install dependencies: pip install -r requirements.txt">Установите зависимости: pip install -r requirements.txt</li>
+                                <li data-ru="Запустите: python3 server.py" data-en="Run: python3 server.py">Запустите: python3 server.py</li>
+                                <li data-ru="Используйте прокси ws://127.0.0.1:8000 в Telegram" data-en="Use proxy ws://127.0.0.1:8000 in Telegram">Используйте прокси ws://127.0.0.1:8000 в Telegram</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Поддержка -->
+        <section class="support">
+            <div class="container">
+                <div class="support-card glass-effect">
+                    <h2 data-ru="Нужна помощь?" data-en="Need help?">Нужна помощь?</h2>
+                    <p data-ru="Свяжись с нашей поддержкой" data-en="Contact our support">Свяжись с нашей поддержкой</p>
+                    <a href="https://t.me/Keb04w" target="_blank" class="btn-primary">@Keb04w 📞</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title" data-ru="❓ Часто Задаваемые Вопросы" data-en="❓ Frequently Asked Questions">❓ Часто Задаваемые Вопросы</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
+                            <h3 data-ru="Это законно?" data-en="Is this legal?">Это законно?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-content">
+                            <p data-ru="В большинстве стран использование VPN и обхода блокировок для приватного использования легально. Проверьте законодательство вашей страны." data-en="In most countries, using VPN and bypassing blocks for private use is legal. Check your country's laws.">В большинстве стран использование VPN и обхода блокировок для приватного использования легально. Проверьте законодательство вашей страны.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
+                            <h3 data-ru="Что такое DPI обход?" data-en="What is DPI bypass?">Что такое DPI обход?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-content">
+                            <p data-ru="DPI (Deep Packet Inspection) — технология определения типа трафика. Обход DPI позволяет маскировать VPN трафик так, чтобы его не могли обнаружить." data-en="DPI (Deep Packet Inspection) is a technology for detecting traffic types. DPI bypass allows masking VPN traffic so it cannot be detected.">DPI (Deep Packet Inspection) — технология определения типа трафика. Обход DPI позволяет маскировать VPN трафик так, чтобы его не могли обнаружить.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
+                            <h3 data-ru="Как часто нужно обновлять?" data-en="How often to update?">Как часто нужно обновлять?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-content">
+                            <p data-ru="Рекомендуется проверять обновления еженедельно. Когда блокировки ужесточаются, появляются новые методы обхода." data-en="It's recommended to check for updates weekly. As blocks become stricter, new bypass methods appear.">Рекомендуется проверять обновления еженедельно. Когда блокировки ужесточаются, появляются новые методы обхода.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
+                            <h3 data-ru="Какой метод лучше для меня?" data-en="Which method is best for me?">Какой метод лучше для меня?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-content">
+                            <p data-ru="Это зависит от вашей ОС и интернет-провайдера. Начните с ByeDPI, если не поможет — попробуйте Zapret или tgwsproxy." data-en="It depends on your OS and ISP. Start with ByeDPI, if it doesn't help - try Zapret or tgwsproxy.">Это зависит от вашей ОС и интернет-провайдера. Начните с ByeDPI, если не поможет — попробуйте Zapret или tgwsproxy.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
+                            <h3 data-ru="Безопасно ли это?" data-en="Is it safe?">Безопасно ли это?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-content">
+                            <p data-ru="Все указанные инструменты — open-source и проверены сообществом. Скачивайте только с официальных репозиториев." data-en="All listed tools are open-source and verified by the community. Download only from official repositories.">Все указанные инструменты — open-source и проверены сооб��еством. Скачивайте только с официальных репозиториев.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
+                            <h3 data-ru="Может ли это замедлить мой интернет?" data-en="Can this slow down my internet?">Может ли это замедлить мой интернет?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-content">
+                            <p data-ru="Обычно замедление минимально (5-15%). Это зависит от качества вашего подключения и нагрузки на серверы." data-en="Usually slowdown is minimal (5-15%). It depends on your connection quality and server load.">Обычно замедление минимально (5-15%). Это зависит от качества вашего подключения и нагрузки на серверы.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Спасибо (Thanks) -->
+        <section class="thanks">
+            <div class="container">
+                <h2 class="section-title" data-ru="🙏 Спасибо Нашим Творцам" data-en="🙏 Thanks to Our Creators">🙏 Спасибо Нашим Творцам</h2>
+                <div class="thanks-grid">
+                    <a href="https://github.com/Stintik-123" target="_blank" class="thanks-card glass-effect">
+                        <img src="https://avatars.githubusercontent.com/u/287226517?v=4" alt="Stintik" class="thanks-avatar">
+                        <h3>Stintik</h3>
+                        <p data-ru="Создатель" data-en="Creator">Создатель</p>
+                    </a>
+                    <a href="https://github.com/SapBotGit" target="_blank" class="thanks-card glass-effect">
+                        <img src="https://avatars.githubusercontent.com/u/1?v=4" alt="SapBotGit" class="thanks-avatar">
+                        <h3>SapBotGit</h3>
+                        <p data-ru="Помощник" data-en="Assistant">Помощник</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p data-ru="Сделано людьми для людей" data-en="Made by people for people">Сделано людьми для людей</p>
+                <a href="https://github.com/Stintik-123/StintikVPN" target="_blank">GitHub Repository →</a>
+            </div>
+        </footer>
+
+        <!-- Modal для копирования -->
+        <div id="copy-modal" class="modal">
+            <div class="modal-content glass-effect">
+                <h3 data-ru="✅ Скопировано!" data-en="✅ Copied!">✅ Скопировано!</h3>
+                <p data-ru="Спасибо что используешь наши инструменты" data-en="Thanks for using our tools">Спасибо что используешь наши инструменты</p>
+                <p data-ru="Подпишись на нас:" data-en="Subscribe to us:">Подпишись на нас:</p>
+                <a href="https://t.me/StintikVPN" target="_blank" class="btn-primary">@StintikVPN 📱</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
