@@ -1,388 +1,198 @@
-(function(){
-  "use strict";
-
+document.addEventListener('DOMContentLoaded', () => {
   // === ПРЕЛОАДЕР ===
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var p = document.getElementById('preloader');
-      if (p) { p.classList.add('hidden'); setTimeout(function(){ if(p.parentNode) p.parentNode.removeChild(p); }, 500); }
-    }, 1000);
-  });
-  setTimeout(function() {
-    var p = document.getElementById('preloader');
-    if (p) { p.classList.add('hidden'); if(p.parentNode) p.parentNode.removeChild(p); }
-  }, 3000);
-
-  // === УТИЛИТЫ ===
-  function sanitizeHTML(str) { var t = document.createElement('div'); t.textContent = str; return t.innerHTML; }
-  function debounce(func, wait) { var t; return function() { clearTimeout(t); t = setTimeout(() => func.apply(this, arguments), wait); }; }
-  const toastEl = document.getElementById("toast");
-  let toastTimer = null;
-  function showToast(msg) {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add("visible");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove("visible"), 4000);
-  }
-
-  // === ТЕМА ===
-  const themeBtn = document.querySelector('.theme-toggle');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-      themeBtn.innerHTML = document.body.classList.contains('light-theme') ? '️' : '🌙';
-    });
-  }
-
-  // === ЯЗЫК ===
-  const translations = {
-    ru: { copy_btn: "⧉ Копировать", check_btn: "🔄 Проверить", report_btn: "⚠ Пожаловаться", checking: "⏳ Проверка...", works: "✅ Работает", fails: "🔴 Не работает", copied: "✓ Скопировано" },
-    en: { copy_btn: "⧉ Copy", check_btn: "🔄 Check", report_btn: "⚠ Report", checking: " Checking...", works: "✅ Works", fails: "🔴 Fails", copied: "✓ Copied" }
-  };
-  let currentLang = localStorage.getItem('lang') || 'ru';
-  const langToggle = document.getElementById('langToggle');
-  if (langToggle) {
-    langToggle.textContent = currentLang === 'ru' ? 'EN' : 'RU';
-    langToggle.addEventListener('click', () => {
-      currentLang = currentLang === 'ru' ? 'en' : 'ru';
-      localStorage.setItem('lang', currentLang);
-      langToggle.textContent = currentLang === 'ru' ? 'EN' : 'RU';
-      renderSubs(currentFilter);
-    });
-  }
+  setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 800);
 
   // === ДАННЫЕ ===
-  const subscriptions = [
-    { id:"black-main", cat:"black", name:"🏴 Чёрный список (основной)", desc:"Для обычного интернета (домашний Wi-Fi, кабель, 4G).", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt" },
-    { id:"black-backup", cat:"black", name:"🏴 Чёрный список (запасной)", desc:"Альтернативный источник чёрных списков.", url:"https://vpn.akres.fun/all" },
-    { id:"black-mobile", cat:"black", name:"👑 Black Mobile", desc:"20 ЛУЧШИХ серверов для телефонов.", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt" },
-    { id:"white-main", cat:"white", name:"️ Белые списки (Основные)", desc:"Для жёстких блокировок.", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt" },
-    { id:"white-cidr", cat:"white", name:"🌐 Белые списки (CIDR)", desc:"Фильтрует по IP-диапазонам.", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" },
-    { id:"white-sni", cat:"white", name:"🔍 Белые списки (SNI)", desc:"Фильтрует по именам сайтов.", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" },
-    { id:"proto-vless", cat:"protocol", name:"⚡ VLESS", desc:"Лучший по скорости.", url:"https://mifa.world/vless" },
-    { id:"proto-vmess", cat:"protocol", name:"🔒 VMess", desc:"Самый надёжный.", url:"https://mifa.world/vmess" },
-    { id:"proto-trojan", cat:"protocol", name:"🛡️ Trojan", desc:"Хорошая маскировка.", url:"https://mifa.world/trojan" },
-    { id:"proto-ss", cat:"protocol", name:"🚀 Shadowsocks", desc:"Максимальная скорость.", url:"https://mifa.world/ss" }
+  const subs = [
+    { id: 'b1', cat: 'black', name: '🏴 Чёрный список (Основной)', desc: 'Для домашнего Wi-Fi и кабеля. Блокирует только запрещённые сайты.', url: 'https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt' },
+    { id: 'b2', cat: 'black', name: '🏴 Чёрный список (Запасной)', desc: 'Альтернативный источник, если основной не работает.', url: 'https://vpn.akres.fun/all' },
+    { id: 'b3', cat: 'black', name: '👑 Black Mobile', desc: '20 лучших серверов, оптимизированных специально для телефонов.', url: 'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt' },
+    { id: 'w1', cat: 'white', name: '🏳️ Белые списки (Основные)', desc: 'Для мобильных операторов с жёсткими блокировками (МТС, Билайн).', url: 'https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt' },
+    { id: 'w2', cat: 'white', name: '🌐 Белые списки (CIDR)', desc: 'Фильтрация по IP-диапазонам. Используйте, если не работает SNI.', url: 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt' },
+    { id: 'w3', cat: 'white', name: '🔍 Белые списки (SNI)', desc: 'Фильтрация по именам сайтов. Используйте, если не работает CIDR.', url: 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt' },
+    { id: 'p1', cat: 'protocol', name: ' VLESS + Reality', desc: 'Максимальная скорость. РКН активно пытается блокировать.', url: 'https://mifa.world/vless' },
+    { id: 'p2', cat: 'protocol', name: '🔒 VMess', desc: 'Самый надёжный и стабильный протокол из всех.', url: 'https://mifa.world/vmess' },
+    { id: 'p3', cat: 'protocol', name: '🛡️ Trojan', desc: 'Отличная маскировка под обычный HTTPS трафик.', url: 'https://mifa.world/trojan' },
+    { id: 'p4', cat: 'protocol', name: '🚀 Shadowsocks', desc: 'Минимальный пинг. Идеально подходит для онлайн-игр.', url: 'https://mifa.world/ss' }
   ];
 
-  // === ЛАЙКИ/ДИЗЛАЙКИ (localStorage) ===
-  let userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
-  let localRatings = JSON.parse(localStorage.getItem('localRatings') || '{}');
+  const clients = [
+    { os: 'Windows', apps: [{n:'Hiddify', u:'https://github.com/hiddify/hiddify-next/releases'}, {n:'v2rayN', u:'https://github.com/2dust/v2rayN/releases'}] },
+    { os: 'Android', apps: [{n:'Incy', u:'https://play.google.com/store/apps/details?id=com.glarimy.incy'}, {n:'NekoBox', u:'https://github.com/MatsuriDayo/NekoBoxForAndroid/releases'}] },
+    { os: 'iOS / iPadOS', apps: [{n:'Streisand', u:'https://apps.apple.com/app/streisand/id6450534064'}, {n:'V2Box', u:'https://apps.apple.com/app/v2box/id6443654552'}] },
+    { os: 'macOS', apps: [{n:'Hiddify', u:'https://github.com/hiddify/hiddify-next/releases'}, {n:'Streisand', u:'https://apps.apple.com/app/streisand/id6450534064'}] },
+    { os: 'Linux', apps: [{n:'Hiddify', u:'https://github.com/hiddify/hiddify-next/releases'}, {n:'NekoRay', u:'https://github.com/MatsuriDayo/nekoray/releases'}] }
+  ];
 
-  function getRating(id) {
-    if (!localRatings[id]) localRatings[id] = { likes: 0, dislikes: 0 };
-    return localRatings[id];
-  }
+  const guides = [
+    { icon: '🛡️', title: 'Zapret', sub: 'Для Windows и Linux', desc: 'Мощный инструмент, который обходит блокировки на уровне системы. Он не шифрует весь трафик, а только подменяет пакеты, поэтому скорость остаётся максимальной.', steps: ['Скачайте свежую сборку с GitHub (Flowseal).', 'Распакуйте архив в папку без кириллицы в пути.', 'Запустите install_service.bat от имени Администратора.', 'В чёрном окне выберите стратегию 1 или 3.', 'Не закрывайте окно, пока пользуетесь интернетом.'] },
+    { icon: '', title: 'ByeDPI', sub: 'Лёгкий и быстрый', desc: 'Простая альтернатива Zapret. Работает без установки и отлично подходит для Android без root-прав.', steps: ['Скачайте файл с GitHub и запустите его.', 'Программа создаст локальный прокси 127.0.0.1:1080.', 'Пропишите этот прокси в настройках браузера.', 'На Android: установите APK и нажмите большую кнопку Start.'] },
+    { icon: '✈️', title: 'tgwsproxy', sub: 'Только для Telegram', desc: 'Специальный инструмент для подключения Telegram через WebSocket, когда обычные прокси не работают.', steps: ['Скачайте сборку для вашей ОС с GitHub.', 'Запустите программу — она создаст ссылку.', 'Нажмите на ссылку, чтобы добавить прокси в Telegram.', 'Программа будет работать в фоне или трее.'] }
+  ];
 
-  function vote(id, type) {
-    const key = id + '-' + type;
-    if (userVotes[key]) { showToast('Ты уже голосовал!'); return; }
-    getRating(id)[type]++;
-    userVotes[key] = true;
-    localStorage.setItem('userVotes', JSON.stringify(userVotes));
-    localStorage.setItem('localRatings', JSON.stringify(localRatings));
-    updateRatingUI(id);
-    updateTotalRatings();
-    showToast(type === 'like' ? '👍 Спасибо!' : '👎 Принято');
-  }
-
-  function updateRatingUI(id) {
-    const card = document.getElementById('card-' + id);
-    if (!card) return;
-    const r = getRating(id);
-    const likeBtn = card.querySelector('.like-btn');
-    const dislikeBtn = card.querySelector('.dislike-btn');
-    likeBtn.innerHTML = '👍 <span>' + r.likes + '</span>';
-    dislikeBtn.innerHTML = ' <span>' + r.dislikes + '</span>';
-    if (userVotes[id + '-like']) { likeBtn.classList.add('voted'); likeBtn.style.borderColor = 'var(--success)'; likeBtn.style.color = 'var(--success)'; }
-    if (userVotes[id + '-dislike']) { dislikeBtn.classList.add('voted'); dislikeBtn.style.borderColor = 'var(--error)'; dislikeBtn.style.color = 'var(--error)'; }
-  }
-
-  function updateTotalRatings() {
-    let total = 0;
-    for (let id in localRatings) total += localRatings[id].likes + localRatings[id].dislikes;
-    const el = document.getElementById('statRatings');
-    if (el) el.textContent = total;
-  }
+  const faqs = [
+    { q: 'Как пользоваться подписками?', a: 'Скопируйте ссылку из каталога, откройте ваш VPN клиент (например, Hiddify), нажмите "Добавить подписку" и вставьте ссылку. Затем нажмите "Обновить" и подключитесь к серверу.' },
+    { q: 'Что делать, если ничего не работает?', a: 'Попробуйте сменить протокол (например, с VLESS на Trojan) или обновите подписку в клиенте. Если не помогло — напишите в поддержку.' },
+    { q: 'В чём разница между чёрными и белыми списками?', a: 'Чёрные списки блокируют только запрещённые сайты (подходят для домашнего интернета). Белые списки пропускают только разрешённые сайты (нужны для мобильных операторов с жёсткими блокировками).' },
+    { q: 'Какой клиент лучше для новичка?', a: 'Hiddify — самый простой и понятный для Windows и Android. Для iOS (iPhone/iPad) лучше всего подходит Streisand.' },
+    { q: 'Безопасно ли использовать эти конфиги?', a: 'Конфиги собраны из открытых источников. Мы не рекомендуем передавать через них банковские данные. Используйте на свой страх и риск.' },
+    { q: 'Как часто обновляются списки?', a: 'Создатели конфигов обновляют их ежедневно. Ссылки на сайте всегда ведут на самые свежие версии.' }
+  ];
 
   // === РЕНДЕРИНГ ===
-  const subGrid = document.getElementById("subGrid");
-  const skeletonGrid = document.getElementById("skeletonGrid");
-  const searchInput = document.getElementById("searchSubs");
-  let currentFilter = "all";
-
-  function renderSubs(filter) {
-    currentFilter = filter;
-    if (!subGrid) return;
-    subGrid.innerHTML = "";
-    const query = searchInput ? searchInput.value.toLowerCase() : "";
-    let hasResults = false;
-    const t = translations[currentLang];
-
-    subscriptions.forEach(sub => {
-      if (filter !== "all" && sub.cat !== filter) return;
-      if (query && sub.name.toLowerCase().indexOf(query) === -1 && sub.desc.toLowerCase().indexOf(query) === -1) return;
-      hasResults = true;
-      const card = document.createElement("div");
-      card.className = "sub-card appear";
-      card.id = "card-" + sub.id;
-      const r = getRating(sub.id);
-
-      card.innerHTML = `
-        <h3>${sanitizeHTML(sub.name)}</h3>
-        <div class="status-badge checking">${t.checking}</div>
-        <p>${sanitizeHTML(sub.desc)}</p>
-        <code>${sanitizeHTML(sub.url)}</code>
-        <div class="sub-actions-row">
-          <button class="btn btn-primary copy-btn" data-url="${sub.url}">${t.copy_btn}</button>
-          <button class="btn btn-ghost btn-check check-btn" data-url="${sub.url}">${t.check_btn}</button>
-          <a href="https://t.me/Keb04w?text=${encodeURIComponent('Не работает: '+sub.name)}" target="_blank" class="btn btn-ghost btn-report">${t.report_btn}</a>
-        </div>
-        <div class="rating-row">
-          <button class="rating-btn like-btn">👍 <span>${r.likes}</span></button>
-          <button class="rating-btn dislike-btn">👎 <span>${r.dislikes}</span></button>
-        </div>
-      `;
-
-      card.querySelector(".copy-btn").addEventListener("click", function() {
-        const url = this.getAttribute("data-url");
+  const renderSubs = (filter = 'all', search = '') => {
+    const grid = document.getElementById('subsGrid');
+    grid.innerHTML = '';
+    const q = search.toLowerCase();
+    subs.filter(s => (filter === 'all' || s.cat === filter) && (s.name.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q))).forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'card sub-card';
+      card.innerHTML = `<h3>${s.name}</h3><p>${s.desc}</p><code>${s.url}</code><button class="btn primary copy-btn" data-url="${s.url}"> Скопировать ссылку</button>`;
+      grid.appendChild(card);
+    });
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const url = e.target.dataset.url;
         navigator.clipboard.writeText(url).then(() => {
-          const orig = this.textContent;
-          this.textContent = t.copied;
-          showToast('Ссылка скопирована!');
-          setTimeout(() => { this.textContent = orig; }, 2000);
+          document.getElementById('copyModal').classList.add('active');
         });
       });
-
-      card.querySelector(".check-btn").addEventListener("click", function() {
-        const url = this.getAttribute("data-url");
-        const badge = card.querySelector('.status-badge');
-        badge.textContent = t.checking;
-        badge.className = "status-badge checking";
-        fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-cache' })
-          .then(() => { badge.textContent = t.works; badge.className = "status-badge works"; })
-          .catch(() => { badge.textContent = t.fails; badge.className = "status-badge fails"; });
-      });
-
-      card.querySelector(".like-btn").addEventListener("click", () => vote(sub.id, 'like'));
-      card.querySelector(".dislike-btn").addEventListener("click", () => vote(sub.id, 'dislike'));
-
-      subGrid.appendChild(card);
-      updateRatingUI(sub.id);
-
-      // Авто-проверка
-      setTimeout(() => {
-        const url = sub.url;
-        const badge = card.querySelector('.status-badge');
-        fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-cache' })
-          .then(() => { badge.textContent = t.works; badge.className = "status-badge works"; })
-          .catch(() => { badge.textContent = t.fails; badge.className = "status-badge fails"; });
-      }, Math.random() * 2000 + 500);
     });
+  };
 
-    if (!hasResults) subGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:40px;">Ничего не найдено.</p>';
-  }
+  const renderClients = () => {
+    const grid = document.getElementById('clientsGrid');
+    const ua = navigator.userAgent;
+    const isWin = /win/i.test(ua), isAndroid = /android/i.test(ua), isIOS = /iphone|ipad/i.test(ua), isMac = /mac/i.test(ua);
+    clients.forEach(c => {
+      const isRec = (c.os === 'Windows' && isWin) || (c.os === 'Android' && isAndroid) || (c.os === 'iOS / iPadOS' && isIOS) || (c.os === 'macOS' && isMac);
+      const card = document.createElement('div');
+      card.className = `card client-card ${isRec ? 'recommended' : ''}`;
+      card.style.position = 'relative';
+      card.innerHTML = `${isRec ? '<span class="rec-badge"> Ваш выбор</span>' : ''}<h3>${c.os}</h3>${c.apps.map(a => `<a href="${a.u}" target="_blank">${a.n}</a>`).join('')}`;
+      grid.appendChild(card);
+    });
+  };
 
-  function hideSkeleton() {
-    if (skeletonGrid) skeletonGrid.style.display = 'none';
-    if (subGrid) subGrid.style.display = 'grid';
-    renderSubs("all");
-  }
+  const renderGuides = () => {
+    const list = document.getElementById('guidesGrid');
+    guides.forEach(g => {
+      const item = document.createElement('details');
+      item.className = 'guide-item';
+      item.innerHTML = `<summary><span class="guide-icon">${g.icon}</span><div><h3>${g.title}</h3><small style="color:var(--text-muted)">${g.sub}</small></div></summary><div class="guide-content"><p>${g.desc}</p><ol>${g.steps.map(s => `<li>${s}</li>`).join('')}</ol></div>`;
+      list.appendChild(item);
+    });
+  };
 
-  if (searchInput) searchInput.addEventListener("input", debounce(() => renderSubs(currentFilter), 300));
+  const renderFaq = () => {
+    const list = document.getElementById('faqList');
+    faqs.forEach((f, i) => {
+      const item = document.createElement('details');
+      item.className = 'faq-item';
+      if (i === 0) item.open = true;
+      item.innerHTML = `<summary>${f.q}</summary><p>${f.a}</p>`;
+      list.appendChild(item);
+    });
+  };
 
-  document.querySelectorAll(".tab[data-filter]").forEach(tab => {
-    tab.addEventListener("click", function() {
-      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-      this.classList.add("active");
-      renderSubs(this.getAttribute("data-filter"));
+  // Инициализация
+  renderSubs();
+  renderClients();
+  renderGuides();
+  renderFaq();
+
+  // === ВЗАИМОДЕЙСТВИЯ ===
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderSubs(btn.dataset.filter, document.getElementById('searchInput').value);
     });
   });
 
-  // === КЛИЕНТЫ ===
-  function detectOS() {
-    const ua = navigator.userAgent || "";
-    if (/android/i.test(ua)) return "android";
-    if (/iphone|ipad|ipod/i.test(ua)) return "ios";
-    if (/mac/i.test(ua)) return "mac";
-    if (/win/i.test(ua)) return "win";
-    return "linux";
-  }
-  const userOS = detectOS();
-  const clientGroups = [
-    { device:"Windows", match:["win"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"v2rayN", url:"https://github.com/2dust/v2rayN/releases"}] },
-    { device:"Android", match:["android"], apps:[{name:"Incy", url:"https://play.google.com/store/apps/details?id=com.glarimy.incy"}, {name:"NekoBox", url:"https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"}] },
-    { device:"iOS / iPadOS", match:["ios"], apps:[{name:"Streisand", url:"https://apps.apple.com/app/streisand/id6450534064"}, {name:"V2Box", url:"https://apps.apple.com/app/v2box/id6443654552"}] },
-    { device:"Linux", match:["linux"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"NekoRay", url:"https://github.com/MatsuriDayo/nekoray/releases"}] },
-    { device:"macOS", match:["mac"], apps:[{name:"Hiddify", url:"https://github.com/hiddify/hiddify-next/releases"}, {name:"Streisand", url:"https://apps.apple.com/app/streisand/id6450534064"}] }
-  ];
-  const clientGrid = document.getElementById("clientGrid");
-  if (clientGrid) {
-    clientGroups.forEach(g => {
-      const recommended = g.match.indexOf(userOS) !== -1;
-      const card = document.createElement("div");
-      card.className = "client-card appear" + (recommended ? " recommended" : "");
-      const appsHtml = g.apps.map(a => '<a href="' + a.url + '" target="_blank" rel="noopener">' + a.name + '</a>').join("");
-      card.innerHTML = (recommended ? '<span class="rec-badge">🏆 Ваш выбор</span>' : '') + '<h3>' + g.device + '</h3><div class="client-apps">' + appsHtml + '</div>';
-      clientGrid.appendChild(card);
-    });
-  }
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const activeFilter = document.querySelector('.tab-btn.active').dataset.filter;
+    renderSubs(activeFilter, e.target.value);
+  });
 
-  // === FAQ ===
-  const faqData = [
-    { q: "Подписка не работает.", a: "Обновите подписку в клиенте. Попробуйте сменить протокол." },
-    { q: "Как часто обновляются конфиги?", a: "Ежедневно создателями." },
-    { q: "Какой клиент лучше?", a: "Hiddify для Windows/Android. Streisand для iOS." }
-  ];
-  const faqList = document.getElementById("faqList");
-  if (faqList) {
-    faqData.forEach((item, i) => {
-      const d = document.createElement("details");
-      d.className = "faq-item";
-      if (i === 0) d.open = true;
-      d.innerHTML = '<summary>' + item.q + '</summary><p>' + item.a + '</p>';
-      faqList.appendChild(d);
-    });
-  }
+  // Тема
+  const themeBtn = document.getElementById('themeBtn');
+  const applyTheme = () => {
+    const isLight = document.body.classList.contains('light-theme');
+    themeBtn.textContent = isLight ? '☀️' : '🌙';
+  };
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+    applyTheme();
+  });
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-theme'); }
+  applyTheme();
 
-  // === ЗВЁЗДЫ GITHUB ===
-  fetch("https://api.github.com/repos/Stintik-123/StintikVPN")
+  // Язык (заглушка с визуальным переключением)
+  const langBtn = document.getElementById('langBtn');
+  langBtn.addEventListener('click', () => {
+    const isRu = langBtn.textContent === 'RU';
+    langBtn.textContent = isRu ? 'EN' : 'RU';
+    // Здесь можно добавить полноценный перевод, пока просто меняем кнопку
+  });
+
+  // Модальное окно
+  const modal = document.getElementById('copyModal');
+  document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('active'));
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+  // Кнопка наверх
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 500);
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Звёзды GitHub
+  fetch('https://api.github.com/repos/Stintik-123/StintikVPN')
     .then(r => r.json())
-    .then(data => {
-      const el = document.getElementById("statStars");
-      if (el && data.stargazers_count) el.textContent = data.stargazers_count;
-    })
-    .catch(() => { const el = document.getElementById("statStars"); if (el) el.textContent = "—"; });
+    .then(d => { if (d.stargazers_count) document.getElementById('statStars').textContent = d.stargazers_count; })
+    .catch(() => document.getElementById('statStars').textContent = '100+');
+  document.getElementById('statSubs').textContent = subs.length;
 
-  document.getElementById('statSubs').textContent = subscriptions.length;
-  updateTotalRatings();
+  // === ПАСХАЛКИ (УПРОЩЁННЫЕ) ===
+  
+  // 1. Клик по логотипу 3 раза
+  let logoClicks = 0;
+  document.getElementById('siteLogo').addEventListener('click', (e) => {
+    e.preventDefault();
+    logoClicks++;
+    if (logoClicks === 3) {
+      logoClicks = 0;
+      document.body.style.filter = 'hue-rotate(180deg)';
+      setTimeout(() => document.body.style.filter = '', 2000);
+    }
+    setTimeout(() => logoClicks = 0, 1000);
+  });
 
-  // === UI ===
-  const backBtn = document.getElementById("backToTop");
-  if (backBtn) {
-    window.addEventListener("scroll", () => backBtn.classList.toggle("visible", window.scrollY > 600));
-    backBtn.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
-  }
+  // 2. Ввод "secret" в поиск
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    if (e.target.value.toLowerCase().includes('secret')) {
+      e.target.value = '';
+      alert(' Вы нашли секретный режим! (Шутка, но вы молодец)');
+    }
+  });
 
-  const navLinks = document.querySelector('.nav-links');
-  if (navLinks) {
-    const btn = document.createElement('button');
-    btn.className = 'nav-icon hamburger';
-    btn.innerHTML = '☰';
-    btn.addEventListener('click', () => navLinks.classList.toggle('open'));
-    const navRight = document.querySelector('.nav-right');
-    if (navRight) navRight.prepend(btn);
-  }
-
-  const appearObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add("appear"); appearObserver.unobserve(entry.target); }
-    });
-  }, { threshold: 0.1 });
-
-  setTimeout(() => {
-    hideSkeleton();
-    document.querySelectorAll('.sub-card, .client-card').forEach(el => appearObserver.observe(el));
-  }, 500);
-
-  // ============================================
-  // === ПАСХАЛКИ ===
-  // ============================================
-
-  // 1. МАТРИЦА — код Конами: ↑ ↑ ↓ ↓ ← → ← → B A
-  const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-  let konamiIndex = 0;
+  // 3. Ctrl + Shift + V
   document.addEventListener('keydown', (e) => {
-    if (e.key === konamiCode[konamiIndex]) {
-      konamiIndex++;
-      if (konamiIndex === konamiCode.length) { konamiIndex = 0; activateMatrix(); }
-    } else konamiIndex = 0;
+    if (e.ctrlKey && e.shiftKey && e.key === 'V') {
+      e.preventDefault();
+      document.querySelectorAll('.card').forEach(c => c.style.borderColor = '#00ff00');
+      setTimeout(() => document.querySelectorAll('.card').forEach(c => c.style.borderColor = ''), 3000);
+    }
   });
 
-  function activateMatrix() {
-    showToast('🎮 Матрица активирована!');
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99998;pointer-events:none;';
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    const chars = 'アイウエオカキクケコ0123456789VPN';
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-    function draw() {
-      ctx.fillStyle = 'rgba(0,0,0,0.05)';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.fillStyle = '#0F0';
-      ctx.font = fontSize + 'px monospace';
-      for (let i = 0; i < drops.length; i++) {
-        ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*fontSize, drops[i]*fontSize);
-        if (drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-    const interval = setInterval(draw, 33);
-    setTimeout(() => { clearInterval(interval); canvas.remove(); }, 5000);
-  }
-
-  // 2. ИНКОГНИТО — введи "incognito" в поиск
-  if (searchInput) {
-    let buf = '';
-    searchInput.addEventListener('input', (e) => {
-      buf += e.data || '';
-      if (buf.toLowerCase().includes('incognito')) {
-        buf = '';
-        document.body.style.filter = 'grayscale(100%) contrast(120%)';
-        showToast('️ Режим инкогнито активирован');
-        setTimeout(() => { document.body.style.filter = ''; }, 10000);
-      }
-      if (buf.length > 20) buf = buf.slice(-10);
-    });
-  }
-
-  // 3. 10 кликов по звёздам
+  // 4. Клик по звёздам (1 раз)
   const starsEl = document.getElementById('statStars');
-  let starClicks = 0;
-  if (starsEl) {
-    starsEl.style.cursor = 'pointer';
-    starsEl.addEventListener('click', () => {
-      starClicks++;
-      if (starClicks >= 10) {
-        starClicks = 0;
-        const msgs = ['🌟 Ты нашёл секрет!','⭐ Поставь звезду на GitHub!','✨ Достижение: "Настойчивый"','😄 Ладно, поставь уже звезду!'];
-        showToast(msgs[Math.floor(Math.random()*msgs.length)]);
-      }
-    });
-  }
-
-  // 4. Ночное приветствие (00:00 - 06:00)
-  const hour = new Date().getHours();
-  if (hour >= 0 && hour < 6) {
-    setTimeout(() => showToast(' Ночной серфер? VPN работает даже в 3 часа ночи!'), 3000);
-  }
-
-  // 5. Хэш #/admin
-  if (window.location.hash === '#/admin') {
-    setTimeout(() => {
-      showToast('🔓 Админ-панель... шутка! Но ты нашёл секрет!');
-      document.body.style.background = 'linear-gradient(45deg, #667eea 0%, #764ba2 100%)';
-      setTimeout(() => { document.body.style.background = ''; }, 5000);
-    }, 1000);
-  }
-
-  // 6. Быстрый набор "vpn"
-  let vpnBuf = '';
-  document.addEventListener('keypress', (e) => {
-    vpnBuf += e.key.toLowerCase();
-    if (vpnBuf.includes('vpn')) {
-      vpnBuf = '';
-      showToast('🔐 VPN - это свобода!');
-      document.querySelectorAll('.btn-primary').forEach(btn => { btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; });
-      setTimeout(() => { document.querySelectorAll('.btn-primary').forEach(btn => { btn.style.background = ''; }); }, 3000);
-    }
-    if (vpnBuf.length > 10) vpnBuf = vpnBuf.slice(-5);
+  starsEl.style.cursor = 'pointer';
+  starsEl.addEventListener('click', () => {
+    starsEl.style.transform = 'scale(1.2) rotate(10deg)';
+    setTimeout(() => starsEl.style.transform = '', 300);
   });
-
-})();
+});
