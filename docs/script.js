@@ -1,21 +1,18 @@
 (function(){
   "use strict";
 
-  // === ПРЕЛОАДЕР — РАБОЧИЙ ===
+  // === ПРЕЛОАДЕР ===
   window.addEventListener('load', function() {
     setTimeout(function() {
       var preloader = document.getElementById('preloader');
       if (preloader) {
         preloader.classList.add('hidden');
         setTimeout(function() {
-          if (preloader.parentNode) {
-            preloader.parentNode.removeChild(preloader);
-          }
+          if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
         }, 500);
       }
     }, 1000);
   });
-  
   setTimeout(function() {
     var preloader = document.getElementById('preloader');
     if (preloader) {
@@ -76,7 +73,7 @@
     themeBtn.addEventListener('click', () => {
       document.body.classList.toggle('light-theme');
       localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-      themeBtn.innerHTML = document.body.classList.contains('light-theme') ? '️' : '🌙';
+      themeBtn.innerHTML = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
     });
   }
 
@@ -96,19 +93,19 @@
 
   // === ДАННЫЕ ===
   const subscriptions = [
-    { id:"black-main", cat:"black", name:" Чёрный список (основной)", desc:"Для обычного интернета (домашний Wi-Fi, кабель, 4G).", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt" },
+    { id:"black-main", cat:"black", name:"🏴 Чёрный список (основной)", desc:"Для обычного интернета (домашний Wi-Fi, кабель, 4G).", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt" },
     { id:"black-backup", cat:"black", name:"🏴 Чёрный список (запасной)", desc:"Альтернативный источник чёрных списков.", url:"https://vpn.akres.fun/all" },
-    { id:"black-mobile", cat:"black", name:"👑 Black Mobile", desc:"20 ЛУЧШИХ серверов для телефонов.", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt" },
+    { id:"black-mobile", cat:"black", name:" Black Mobile", desc:"20 ЛУЧШИХ серверов для телефонов.", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt" },
     { id:"white-main", cat:"white", name:"🏳️ Белые списки (Основные)", desc:"Для жёстких блокировок.", url:"https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt" },
     { id:"white-cidr", cat:"white", name:"🌐 Белые списки (CIDR)", desc:"Фильтрует по IP-диапазонам.", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" },
     { id:"white-sni", cat:"white", name:"🔍 Белые списки (SNI)", desc:"Фильтрует по именам сайтов.", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" },
     { id:"proto-vless", cat:"protocol", name:"⚡ VLESS", desc:"Лучший по скорости.", url:"https://mifa.world/vless" },
-    { id:"proto-vmess", cat:"protocol", name:" VMess", desc:"Самый надёжный.", url:"https://mifa.world/vmess" },
+    { id:"proto-vmess", cat:"protocol", name:"🔒 VMess", desc:"Самый надёжный.", url:"https://mifa.world/vmess" },
     { id:"proto-trojan", cat:"protocol", name:"🛡️ Trojan", desc:"Хорошая маскировка.", url:"https://mifa.world/trojan" },
-    { id:"proto-ss", cat:"protocol", name:" Shadowsocks", desc:"Максимальная скорость.", url:"https://mifa.world/ss" }
+    { id:"proto-ss", cat:"protocol", name:"🚀 Shadowsocks", desc:"Максимальная скорость.", url:"https://mifa.world/ss" }
   ];
 
-  // === РЕНДЕРИНГ ===
+  // === РЕНДЕРИНГ ПОДПИСОК ===
   const subGrid = document.getElementById("subGrid");
   const skeletonGrid = document.getElementById("skeletonGrid");
   const searchInput = document.getElementById("searchSubs");
@@ -138,7 +135,7 @@
         <div class="sub-actions-row">
           <button class="btn btn-primary copy-btn" data-url="${sub.url}">⧉ Копировать</button>
           <button class="btn btn-ghost btn-check check-btn" data-url="${sub.url}">🔄 Проверить</button>
-          <a href="https://t.me/Keb04w?text=${encodeURIComponent('Не работает: '+sub.name)}" target="_blank" class="btn btn-ghost btn-report">⚠ Пожаловаться</a>
+          <a href="https://t.me/Keb04w?text=${encodeURIComponent('Не работает: '+sub.name)}" target="_blank" class="btn btn-ghost btn-report"> Пожаловаться</a>
         </div>
         <div class="rating-row">
           <button class="rating-btn like-btn">👍 <span class="rating-likes">0</span></button>
@@ -246,9 +243,7 @@
     .then(r => r.json())
     .then(data => {
       const starsEl = document.getElementById("statStars");
-      if (starsEl && data.stargazers_count) {
-        starsEl.textContent = data.stargazers_count;
-      }
+      if (starsEl && data.stargazers_count) starsEl.textContent = data.stargazers_count;
     })
     .catch(() => {
       const starsEl = document.getElementById("statStars");
@@ -288,5 +283,124 @@
     hideSkeleton();
     document.querySelectorAll('.sub-card, .client-card').forEach(el => appearObserver.observe(el));
   }, 500);
+
+  // ============================================
+  // === ПАСХАЛКИ ===
+  // ============================================
+
+  // 1. МАТРИЦА при коде Конами (↑ ↑ ↓ ↓ ← → ← → B A)
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIndex = 0;
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        konamiIndex = 0;
+        activateMatrix();
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  function activateMatrix() {
+    showToast(' Матрица активирована!');
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99998;pointer-events:none;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0F0';
+      ctx.font = fontSize + 'px monospace';
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    const interval = setInterval(draw, 33);
+    setTimeout(() => { clearInterval(interval); canvas.remove(); }, 5000);
+  }
+
+  // 2. РЕЖИМ ИНКОГНИТО - введи "incognito" в поиск
+  if (searchInput) {
+    let incognitoBuffer = '';
+    searchInput.addEventListener('input', (e) => {
+      incognitoBuffer += e.data || '';
+      if (incognitoBuffer.toLowerCase().includes('incognito')) {
+        incognitoBuffer = '';
+        document.body.style.filter = 'grayscale(100%) contrast(120%)';
+        showToast('🕵️ Режим инкогнито активирован');
+        setTimeout(() => { document.body.style.filter = ''; }, 10000);
+      }
+      if (incognitoBuffer.length > 20) incognitoBuffer = incognitoBuffer.slice(-10);
+    });
+  }
+
+  // 3. СЕКРЕТНОЕ СООБЩЕНИЕ при 10 кликах по звёздам GitHub
+  const starsElement = document.getElementById('statStars');
+  let starClicks = 0;
+  if (starsElement) {
+    starsElement.style.cursor = 'pointer';
+    starsElement.addEventListener('click', () => {
+      starClicks++;
+      if (starClicks >= 10) {
+        starClicks = 0;
+        const messages = [
+          '🌟 Ты нашёл секрет! GitHub звёзды - это важно!',
+          '⭐ 10 кликов! Ты точно хочешь поставить звезду?',
+          '✨ Секретное достижение: "Настойчивый пользователь"',
+          '😄 Ладно, ладно! Поставь уже звезду на GitHub!'
+        ];
+        showToast(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    });
+  }
+
+  // 4. НОЧНОЕ ПРИВЕТСТВИЕ (с 00:00 до 06:00)
+  const hour = new Date().getHours();
+  if (hour >= 0 && hour < 6) {
+    setTimeout(() => {
+      showToast('🦉 Ночной серфер? VPN работает даже в 3 часа ночи!');
+    }, 3000);
+  }
+
+  // 5. ХЭШ-СЕКРЕТ: перейди на сайт#/admin
+  if (window.location.hash === '#/admin') {
+    setTimeout(() => {
+      showToast('🔓 Админ-панель... шутка! Но ты нашёл секрет!');
+      document.body.style.background = 'linear-gradient(45deg, #667eea 0%, #764ba2 100%)';
+      setTimeout(() => { document.body.style.background = ''; }, 5000);
+    }, 1000);
+  }
+
+  // 6. БЫСТРЫЙ НАБОР "VPN" на клавиатуре
+  let vpnBuffer = '';
+  document.addEventListener('keypress', (e) => {
+    vpnBuffer += e.key.toLowerCase();
+    if (vpnBuffer.includes('vpn')) {
+      vpnBuffer = '';
+      showToast('🔐 VPN - это свобода! Ты нашёл секрет!');
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+          btn.style.background = '';
+        });
+      }, 3000);
+    }
+    if (vpnBuffer.length > 10) vpnBuffer = vpnBuffer.slice(-5);
+  });
 
 })();
