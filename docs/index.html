@@ -3,144 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="StintikVPN — Интернет свобода ближе, чем кажется.">
   <meta name="theme-color" content="#FF7A00">
   <title>StintikVPN</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Живой фон -->
   <div class="bg-orbs">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
 
-  <!-- Прелоадер -->
-  <div id="preloader">
-    <div class="spinner"></div>
-  </div>
+  <div id="preloader"><div class="spinner"></div></div>
 
-  <!-- Навигация -->
   <nav class="navbar glass">
     <div class="container nav-container">
       <a href="#" class="logo" id="siteLogo">🚀 StintikVPN</a>
-      <div class="nav-links">
-        <a href="#news">Новости</a>
-        <a href="#subs">Подписки</a>
-        <a href="#guides">Гайды</a>
-        <a href="#faq">FAQ</a>
+      <button class="icon-btn hamburger" id="menuBtn" aria-label="Меню">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#news" data-i18n="nav_news">Новости</a>
+        <a href="#subs" data-i18n="nav_subs">Подписки</a>
+        <a href="#guides" data-i18n="nav_guides">Гайды</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
       </div>
       <div class="nav-actions">
         <button class="icon-btn" id="langBtn" title="Сменить язык">RU</button>
-        <button class="icon-btn" id="themeBtn" title="Сменить тему"></button>
+        <button class="icon-btn" id="a11yBtn" title="Версия для слабовидящих">👁</button>
+        <button class="icon-btn" id="themeBtn" title="Сменить тему">🌙</button>
       </div>
     </div>
   </nav>
 
   <main>
-    <!-- Hero -->
     <section class="hero">
       <div class="container hero-content">
         <div class="hero-avatar-wrapper">
           <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="Stintik" class="hero-avatar">
         </div>
-        <h1>Интернет свобода <span class="gradient-text">ближе, чем кажется</span></h1>
-        <p>Рабочие VPN подписки, понятные гайды и актуальные новости. Всё, что нужно для свободного интернета.</p>
+        <h1 data-i18n="hero_title">Интернет свобода <span class="gradient-text">ближе, чем кажется</span></h1>
+        <p data-i18n="hero_desc">Рабочие VPN подписки, понятные гайды и актуальные новости.</p>
         <div class="hero-btns">
-          <a href="#subs" class="btn primary">📦 Перейти к подпискам</a>
+          <a href="#subs" class="btn primary" data-i18n="hero_btn1">📦 Перейти к подпискам</a>
           <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" class="btn ghost">⭐ GitHub</a>
         </div>
       </div>
     </section>
 
-    <!-- Новости -->
     <section id="news" class="section">
       <div class="container">
-        <h2 class="section-title"> Монитор Свободы</h2>
+        <h2 class="section-title" data-i18n="news_title"> Монитор Свободы</h2>
         <div class="grid news-grid">
           <a href="https://vc.ru/tag/блокировки" target="_blank" class="card news-card">
             <span class="tag">14.07.2026</span>
-            <h3>Усиление замедления YouTube</h3>
-            <p>Провайдеры внедряют новое оборудование ТСПУ. Читайте подробности и способы обхода.</p>
-            <span class="link-arrow">Читать статью →</span>
+            <h3 data-i18n="news1_title">Усиление замедления YouTube</h3>
+            <p data-i18n="news1_desc">Провайдеры внедряют новое оборудование ТСПУ. Читайте подробности и способы обхода.</p>
+            <span class="link-arrow" data-i18n="read_more">Читать статью →</span>
           </a>
           <a href="https://habr.com/ru/articles/835000/" target="_blank" class="card news-card">
             <span class="tag">10.07.2026</span>
-            <h3>Белые списки у операторов</h3>
-            <p>МТС и Билайн тестируют фильтрацию трафика. Как это влияет на пользователей?</p>
-            <span class="link-arrow">Читать статью →</span>
+            <h3 data-i18n="news2_title">Белые списки у операторов</h3>
+            <p data-i18n="news2_desc">МТС и Билайн тестируют фильтрацию трафика. Как это влияет на пользователей?</p>
+            <span class="link-arrow" data-i18n="read_more">Читать статью →</span>
           </a>
           <a href="https://tjournal.ru/internet/123456-blokirovki" target="_blank" class="card news-card">
             <span class="tag">05.07.2026</span>
-            <h3>Блокировка протоколов</h3>
-            <p>РКН начал блокировать IP адреса популярных VPN сервисов. Разбор ситуации.</p>
-            <span class="link-arrow">Читать статью →</span>
+            <h3 data-i18n="news3_title">Блокировка протоколов</h3>
+            <p data-i18n="news3_desc">РКН начал блокировать IP адреса популярных VPN сервисов. Разбор ситуации.</p>
+            <span class="link-arrow" data-i18n="read_more">Читать статью →</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Статистика -->
     <section class="section stats-section">
       <div class="container">
         <div class="stats-grid">
           <div class="stat-card glass">
             <div class="stat-num" id="statSubs">0</div>
-            <div class="stat-label">Подписок</div>
+            <div class="stat-label" data-i18n="stat_subs">Подписок</div>
           </div>
           <div class="stat-card glass">
             <div class="stat-num" id="statStars">—</div>
-            <div class="stat-label">Звёзд на GitHub</div>
+            <div class="stat-label" data-i18n="stat_stars">Звёзд на GitHub</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Подписки -->
     <section id="subs" class="section">
       <div class="container">
-        <h2 class="section-title">📦 Рабочие VPN подписки</h2>
+        <h2 class="section-title" data-i18n="subs_title">📦 Рабочие VPN подписки</h2>
         <div class="search-box">
-          <input type="text" id="searchInput" placeholder="🔍 Поиск подписки...">
+          <input type="text" id="searchInput" placeholder="🔍 Поиск подписки..." data-i18n-placeholder="search_ph">
         </div>
         <div class="tabs">
-          <button class="tab-btn active" data-filter="all">Все</button>
-          <button class="tab-btn" data-filter="black">🏴 Чёрные списки</button>
-          <button class="tab-btn" data-filter="white">️ Белые списки</button>
-          <button class="tab-btn" data-filter="protocol">️ Протоколы</button>
+          <button class="tab-btn active" data-filter="all" data-i18n="tab_all">Все</button>
+          <button class="tab-btn" data-filter="black" data-i18n="tab_black">🏴 Чёрные списки</button>
+          <button class="tab-btn" data-filter="white" data-i18n="tab_white">️ Белые списки</button>
+          <button class="tab-btn" data-filter="protocol" data-i18n="tab_proto">⚙️ Протоколы</button>
         </div>
         <div id="subsGrid" class="grid subs-grid"></div>
       </div>
     </section>
 
-    <!-- Клиенты -->
     <section id="clients" class="section">
       <div class="container">
-        <h2 class="section-title">📱 Куда вставить ссылку?</h2>
+        <h2 class="section-title" data-i18n="clients_title">📱 Куда вставить ссылку?</h2>
         <div id="clientsGrid" class="grid clients-grid"></div>
       </div>
     </section>
 
-    <!-- Гайды -->
     <section id="guides" class="section">
       <div class="container">
-        <h2 class="section-title">📖 Понятные гайды по обходу DPI</h2>
+        <h2 class="section-title" data-i18n="guides_title">📖 Понятные гайды по обходу DPI</h2>
         <div id="guidesGrid" class="guides-list"></div>
       </div>
     </section>
 
-    <!-- Проверка -->
     <section id="check" class="section">
       <div class="container">
-        <h2 class="section-title"> Проверка подключения</h2>
+        <h2 class="section-title" data-i18n="check_title">🔍 Проверка подключения</h2>
         <div class="grid check-grid">
           <a href="https://ipleak.net" target="_blank" class="card check-card">
             <h3>🌍 Проверить IP</h3>
             <p>Убедитесь, что ваш реальный IP адрес скрыт.</p>
           </a>
           <a href="https://www.dnsleaktest.com" target="_blank" class="card check-card">
-            <h3> Проверить DNS</h3>
+            <h3>🔒 Проверить DNS</h3>
             <p>Проверьте, нет ли утечек DNS запросов.</p>
           </a>
           <a href="https://www.speedtest.net" target="_blank" class="card check-card">
@@ -151,30 +140,45 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="section">
       <div class="container">
-        <h2 class="section-title">❓ Частые вопросы</h2>
+        <h2 class="section-title" data-i18n="faq_title">❓ Частые вопросы</h2>
         <div id="faqList" class="faq-list"></div>
       </div>
     </section>
 
-    <!-- Поддержка -->
     <section class="section support-section">
       <div class="container">
         <div class="support-card glass">
-          <h2>🆘 Нужна помощь?</h2>
-          <p>Если что-то не работает или есть вопросы — напишите в нашу поддержку.</p>
+          <h2 data-i18n="support_title">🆘 Нужна помощь?</h2>
+          <p data-i18n="support_desc">Если что-то не работает или есть вопросы — напишите в нашу поддержку.</p>
           <a href="https://t.me/Keb04w" target="_blank" class="btn primary">✈️ Написать в Telegram</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="thanks" class="section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="thanks_title">👥 Спасибо, что делаете проект лучше</h2>
+        <div class="thanks-grid">
+          <div class="thanks-card glass">
+            <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/1000006450.jpg" alt="Stintik" class="thanks-avatar">
+            <h3>Stintik</h3>
+            <span class="thanks-role" data-i18n="role_creator">Создатель</span>
+          </div>
+          <div class="thanks-card glass">
+            <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5.png" alt="SapBotGit" class="thanks-avatar">
+            <h3>SapBotGit</h3>
+            <span class="thanks-role" data-i18n="role_helper">Помощник</span>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Подвал -->
   <footer>
     <div class="container">
-      <p>StintikVPN © 2026. <span class="gradient-text">Сделано людьми для людей.</span></p>
+      <p>StintikVPN © 2026. <span class="gradient-text" data-i18n="footer_text">Сделано людьми для людей.</span></p>
       <div class="footer-links">
         <a href="https://github.com/Stintik-123/StintikVPN" target="_blank">GitHub</a>
         <a href="https://t.me/StintikVPN" target="_blank">Telegram</a>
@@ -182,14 +186,13 @@
     </div>
   </footer>
 
-  <!-- Модальное окно копирования -->
   <div id="copyModal" class="modal">
     <div class="modal-content glass">
-      <button class="modal-close" id="closeModal">✕</button>
-      <h3>✅ Ссылка скопирована!</h3>
-      <p>Вставьте её в ваш VPN клиент через кнопку "Добавить подписку".</p>
+      <button class="modal-close" id="closeModal"></button>
+      <h3 data-i18n="modal_title">✅ Ссылка скопирована!</h3>
+      <p data-i18n="modal_desc">Вставьте её в ваш VPN клиент через кнопку "Добавить подписку".</p>
       <div class="modal-divider"></div>
-      <p class="modal-subtext">🔔 Хотите получать новые рабочие конфиги первыми?</p>
+      <p class="modal-subtext" data-i18n="modal_subtext">🔔 Хотите получать новые рабочие конфиги первыми?</p>
       <a href="https://t.me/StintikVPN" target="_blank" class="btn primary full-width">📢 Подписаться на @StintikVPN</a>
     </div>
   </div>
