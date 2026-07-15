@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="StintikVPN - Сборник лучших VPN подписок и Telegram прокси для свободного интернета">
+    <meta name="description" content="StintikVPN - сборник лучших VPN подписок и Telegram прокси для обхода блокировок">
     <meta name="keywords" content="VPN, прокси, telegram, обход блокировок, свобода интернета">
-    <meta name="author" content="Stintik-123">
-    <title>StintikVPN - Интернет свобода ближе, чем кажется 🚀</title>
+    <title>StintikVPN - Интернет свобода ближе, чем кажется</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Прелоадер -->
     <div id="preloader" class="preloader">
         <div class="radar">
             <div class="pulse pulse-1"></div>
@@ -20,16 +18,14 @@
         <p>Загрузка...</p>
     </div>
 
-    <!-- Основной контент -->
     <div id="main-content" class="main-content hidden">
-        <!-- Навигация -->
         <nav class="navbar">
             <div class="container">
                 <div class="nav-content">
-                    <a href="#" class="logo">🔗 StintikVPN</a>
+                    <a href="#" class="logo">StintikVPN</a>
                     <div class="nav-right">
-                        <button id="theme-toggle" class="btn-icon" title="Переключить тему">🌙</button>
-                        <button id="contrast-toggle" class="btn-icon" title="Высокий контраст">👁️</button>
+                        <button id="theme-toggle" class="btn-icon">🌙</button>
+                        <button id="contrast-toggle" class="btn-icon">👁️</button>
                         <select id="language-select" class="language-select">
                             <option value="ru">РУ</option>
                             <option value="en">EN</option>
@@ -39,62 +35,47 @@
             </div>
         </nav>
 
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-background"></div>
             <div class="container hero-content">
                 <div class="hero-avatar">
                     <img src="https://avatars.githubusercontent.com/u/287226517?v=4" alt="Stintik" class="avatar">
                 </div>
-                <h1 class="hero-title" data-ru="Интернет свобода ближе, чем кажется" data-en="Internet Freedom Is Closer Than You Think">Интернет свобода ближе, чем кажется</h1>
+                <h1 class="hero-title" data-ru="Интернет свобода ближе, чем кажется" data-en="Internet Freedom Is Closer Than It Seems">Интернет свобода ближе, чем кажется</h1>
                 <p class="hero-subtitle" data-ru="Сборник лучших VPN подписок и Telegram прокси" data-en="Collection of the best VPN subscriptions and Telegram proxies">Сборник лучших VPN подписок и Telegram прокси</p>
-                <div class="hero-stats">
-                    <div class="stat-mini">
-                        <span class="stat-value" id="stars-count">99</span>
-                        <span class="stat-text" data-ru="звезд" data-en="stars">звезд</span>
-                    </div>
-                    <div class="stat-mini">
-                        <span class="stat-value">1000+</span>
-                        <span class="stat-text" data-ru="подписчиков" data-en="followers">подписчиков</span>
-                    </div>
-                    <div class="stat-mini">
-                        <span class="stat-value">50+</span>
-                        <span class="stat-text" data-ru="конфигов" data-en="configs">конфигов</span>
-                    </div>
+                <div class="hero-buttons">
+                    <a href="#subscriptions" class="btn-primary" data-ru="Перейти к подпискам" data-en="Go to subscriptions">Перейти к подпискам</a>
                 </div>
             </div>
         </section>
 
-        <!-- Быстрый старт -->
-        <section class="quick-start">
+        <section class="how-to-use">
             <div class="container">
-                <h2 class="section-title" data-ru="🚀 Быстрый старт" data-en="🚀 Quick Start">🚀 Быстрый старт</h2>
+                <h2 class="section-title" data-ru="🚀 Как пользоваться" data-en="🚀 How to Use">🚀 Как пользоваться</h2>
                 <div class="steps-grid">
                     <div class="step-card glass-effect">
-                        <div class="step-number">1</div>
-                        <h3 data-ru="Выбери подписку" data-en="Choose subscription">Выбери подписку</h3>
-                        <p data-ru="Нажми копировать на нужную ссылку" data-en="Click copy on the link you need">Нажми копировать на нужную ссылку</p>
+                        <div class="step-num">1</div>
+                        <h3 data-ru="Скопируйте ссылку" data-en="Copy link">Скопируйте ссылку</h3>
+                        <p data-ru="Выберите подписку и нажмите Копировать" data-en="Choose subscription and click Copy">Выберите подписку и нажмите Копировать</p>
                     </div>
                     <div class="step-card glass-effect">
-                        <div class="step-number">2</div>
-                        <h3 data-ru="Вставь в клиент" data-en="Paste in client">Вставь в клиент</h3>
-                        <p data-ru="Используй Hiddify, v2rayN или NekoBox" data-en="Use Hiddify, v2rayN or NekoBox">Используй Hiddify, v2rayN или NekoBox</p>
+                        <div class="step-num">2</div>
+                        <h3 data-ru="Вставьте в клиент" data-en="Paste in client">Вставьте в клиент</h3>
+                        <p data-ru="Используйте Hiddify, v2rayN или NekoBox" data-en="Use Hiddify, v2rayN or NekoBox">Используйте Hiddify, v2rayN или NekoBox</p>
                     </div>
                     <div class="step-card glass-effect">
-                        <div class="step-number">3</div>
-                        <h3 data-ru="Подключись" data-en="Connect">Подключись</h3>
-                        <p data-ru="Выбери сервер и наслаждайся" data-en="Select server and enjoy">Выбери сервер и наслаждайся</p>
+                        <div class="step-num">3</div>
+                        <h3 data-ru="Подключитесь" data-en="Connect">Подключитесь</h3>
+                        <p data-ru="Выберите сервер и наслаждайтесь" data-en="Select server and enjoy">Выберите сервер и наслаждайтесь</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Подписки -->
-        <section class="subscriptions">
+        <section class="subscriptions" id="subscriptions">
             <div class="container">
                 <h2 class="section-title" data-ru="📦 VPN Подписки" data-en="📦 VPN Subscriptions">📦 VPN Подписки</h2>
                 
-                <!-- Фильтры -->
                 <div class="filters">
                     <button class="filter-btn active" data-filter="all" data-ru="Все" data-en="All">Все</button>
                     <button class="filter-btn" data-filter="black" data-ru="🏴 Чёрные" data-en="🏴 Black">🏴 Чёрные</button>
@@ -102,323 +83,226 @@
                     <button class="filter-btn" data-filter="protocol" data-ru="🛠️ Протоколы" data-en="🛠️ Protocols">🛠️ Протоколы</button>
                 </div>
 
-                <!-- Подписки -->
                 <div class="subs-grid">
-                    <!-- Чёрные (основные) -->
                     <div class="sub-card glass-effect" data-category="black">
-                        <div class="sub-badge">🏴 Чёрный список</div>
+                        <span class="badge">🏴 Чёрный</span>
                         <h3 data-ru="Основной" data-en="Main">Основной</h3>
-                        <p class="sub-desc" data-ru="Для обычного интернета без жёстких блокировок" data-en="For regular internet without hard blocks">Для обычного интернета без жёстких блокировок</p>
-                        <div class="url-display">vpn.akres.fun/all</div>
-                        <button class="btn-copy" data-copy="https://vpn.akres.fun/all" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <p>gitverse.ru/api/repos/flaafix...</p>
+                        <button class="btn-copy" data-copy="https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt">📋 Копировать</button>
                     </div>
 
                     <div class="sub-card glass-effect" data-category="black">
-                        <div class="sub-badge">🏴 Чёрный список</div>
+                        <span class="badge">🏴 Чёрный</span>
                         <h3 data-ru="Запасной" data-en="Backup">Запасной</h3>
-                        <p class="sub-desc" data-ru="Если основной не работает" data-en="If main doesn't work">Если основной не работает</p>
-                        <div class="url-display">gitverse.ru/flaafix/AetrisVPN...</div>
-                        <button class="btn-copy" data-copy="https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <p>vpn.akres.fun/all</p>
+                        <button class="btn-copy" data-copy="https://vpn.akres.fun/all">📋 Копировать</button>
                     </div>
 
-                    <!-- Мобильные -->
                     <div class="sub-card glass-effect" data-category="black">
-                        <div class="sub-badge">📱 Мобильные</div>
-                        <h3 data-ru="Black Mobile" data-en="Black Mobile">Black Mobile</h3>
-                        <p class="sub-desc" data-ru="20 лучших серверов для телефонов" data-en="20 best servers for phones">20 лучших серверов для телефонов</p>
-                        <div class="url-display">gitverse.ru/ru-wbl/wl/KvRuVPN...</div>
-                        <button class="btn-copy" data-copy="https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <span class="badge">📱 Mobile</span>
+                        <h3>Black Mobile</h3>
+                        <p>gitverse.ru/api/repos/ru-wbl...</p>
+                        <button class="btn-copy" data-copy="https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt">📋 Копировать</button>
                     </div>
 
-                    <!-- Белые списки -->
                     <div class="sub-card glass-effect" data-category="white">
-                        <div class="sub-badge">🏳️ Белый список</div>
+                        <span class="badge">🏳️ Белый</span>
                         <h3 data-ru="Основной" data-en="Main">Основной</h3>
-                        <p class="sub-desc" data-ru="Для жёстких блокировок (белые списки РКН)" data-en="For hard blocks (RKN white lists)">Для жёстких блокировок (белые списки РКН)</p>
-                        <div class="url-display">gitverse.ru/flaafix/AetrisVPN/...</div>
-                        <button class="btn-copy" data-copy="https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <p>gitverse.ru/api/repos/flaafix...</p>
+                        <button class="btn-copy" data-copy="https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt">📋 Копировать</button>
                     </div>
 
                     <div class="sub-card glass-effect" data-category="white">
-                        <div class="sub-badge">🏳️ SNI</div>
-                        <h3 data-ru="White SNI" data-en="White SNI">White SNI</h3>
-                        <p class="sub-desc" data-ru="Фильтр по названиям сайтов" data-en="Filter by site names">Фильтр по названиям сайтов</p>
-                        <div class="url-display">raw.githubusercontent.com/igareck...</div>
-                        <button class="btn-copy" data-copy="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <span class="badge">🏳️ SNI</span>
+                        <h3>White SNI</h3>
+                        <p>raw.githubusercontent.com/igareck...</p>
+                        <button class="btn-copy" data-copy="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt">📋 Копировать</button>
                     </div>
 
                     <div class="sub-card glass-effect" data-category="white">
-                        <div class="sub-badge">🏳️ CIDR</div>
-                        <h3 data-ru="White CIDR" data-en="White CIDR">White CIDR</h3>
-                        <p class="sub-desc" data-ru="Фильтр по IP адресам" data-en="Filter by IP addresses">Фильтр по IP адресам</p>
-                        <div class="url-display">raw.githubusercontent.com/igareck...</div>
-                        <button class="btn-copy" data-copy="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
-                    </div>
-
-                    <!-- По протоколам -->
-                    <div class="sub-card glass-effect" data-category="protocol">
-                        <div class="sub-badge">🛠️ Протокол</div>
-                        <h3 data-ru="VLESS" data-en="VLESS">VLESS</h3>
-                        <p class="sub-desc" data-ru="Лучшая скорость и маскировка" data-en="Best speed and masking">Лучшая скорость и маскировка</p>
-                        <div class="url-display">mifa.world/vless</div>
-                        <button class="btn-copy" data-copy="https://mifa.world/vless" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <span class="badge">🏳️ CIDR</span>
+                        <h3>White CIDR</h3>
+                        <p>raw.githubusercontent.com/igareck...</p>
+                        <button class="btn-copy" data-copy="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt">📋 Копировать</button>
                     </div>
 
                     <div class="sub-card glass-effect" data-category="protocol">
-                        <div class="sub-badge">🛠️ Протокол</div>
-                        <h3 data-ru="VMess" data-en="VMess">VMess</h3>
-                        <p class="sub-desc" data-ru="Самый надёжный протокол" data-en="Most reliable protocol">Самый надёжный протокол</p>
-                        <div class="url-display">mifa.world/vmess</div>
-                        <button class="btn-copy" data-copy="https://mifa.world/vmess" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <span class="badge">🛠️ Protocol</span>
+                        <h3>VLESS</h3>
+                        <p>mifa.world/vless</p>
+                        <button class="btn-copy" data-copy="https://mifa.world/vless">📋 Копировать</button>
                     </div>
 
                     <div class="sub-card glass-effect" data-category="protocol">
-                        <div class="sub-badge">🛠️ Протокол</div>
-                        <h3 data-ru="Trojan" data-en="Trojan">Trojan</h3>
-                        <p class="sub-desc" data-ru="Хорошая маскировка" data-en="Good masking">Хорошая маскировка</p>
-                        <div class="url-display">mifa.world/trojan</div>
-                        <button class="btn-copy" data-copy="https://mifa.world/trojan" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <span class="badge">🛠️ Protocol</span>
+                        <h3>VMess</h3>
+                        <p>mifa.world/vmess</p>
+                        <button class="btn-copy" data-copy="https://mifa.world/vmess">📋 Копировать</button>
                     </div>
 
                     <div class="sub-card glass-effect" data-category="protocol">
-                        <div class="sub-badge">🛠️ Протокол</div>
-                        <h3 data-ru="Shadowsocks" data-en="Shadowsocks">Shadowsocks</h3>
-                        <p class="sub-desc" data-ru="Максимальная скорость" data-en="Maximum speed">Максимальная скорость</p>
-                        <div class="url-display">mifa.world/ss</div>
-                        <button class="btn-copy" data-copy="https://mifa.world/ss" data-ru="Копировать" data-en="Copy">📋 Копировать</button>
+                        <span class="badge">🛠️ Protocol</span>
+                        <h3>Trojan</h3>
+                        <p>mifa.world/trojan</p>
+                        <button class="btn-copy" data-copy="https://mifa.world/trojan">📋 Копировать</button>
+                    </div>
+
+                    <div class="sub-card glass-effect" data-category="protocol">
+                        <span class="badge">🛠️ Protocol</span>
+                        <h3>Shadowsocks</h3>
+                        <p>mifa.world/ss</p>
+                        <button class="btn-copy" data-copy="https://mifa.world/ss">📋 Копировать</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Клиенты -->
         <section class="clients">
             <div class="container">
                 <h2 class="section-title" data-ru="📱 Рекомендуемые клиенты" data-en="📱 Recommended Clients">📱 Рекомендуемые клиенты</h2>
                 <div class="clients-grid">
                     <div class="client-card glass-effect">
                         <h3>💻 Windows</h3>
-                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="client-link">Hiddify</a>
-                        <span class="client-alt">/</span>
-                        <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="client-link">v2rayN</a>
+                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a> / 
+                        <a href="https://github.com/2dust/v2rayN/releases" target="_blank">v2rayN</a>
                     </div>
                     <div class="client-card glass-effect">
                         <h3>🤖 Android</h3>
-                        <a href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" class="client-link">Incy</a>
-                        <span class="client-alt">/</span>
-                        <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" class="client-link">NekoBox</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank">Incy</a> / 
+                        <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank">NekoBox</a>
                     </div>
                     <div class="client-card glass-effect">
                         <h3>🍎 iOS</h3>
-                        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="client-link">Streisand</a>
-                        <span class="client-alt">/</span>
-                        <a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank" class="client-link">V2Box</a>
+                        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank">Streisand</a> / 
+                        <a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank">V2Box</a>
                     </div>
                     <div class="client-card glass-effect">
                         <h3>🐧 Linux</h3>
-                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="client-link">Hiddify</a>
-                        <span class="client-alt">/</span>
-                        <a href="https://github.com/MatsuriDayo/nekoray/releases" target="_blank" class="client-link">NekoRay</a>
+                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a> / 
+                        <a href="https://github.com/MatsuriDayo/nekoray/releases" target="_blank">NekoRay</a>
                     </div>
                     <div class="client-card glass-effect">
                         <h3>🍎 macOS</h3>
-                        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="client-link">Streisand</a>
-                        <span class="client-alt">/</span>
-                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="client-link">Hiddify</a>
+                        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank">Streisand</a> / 
+                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a>
                     </div>
                     <div class="client-card glass-effect">
                         <h3>📺 Android TV</h3>
-                        <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" class="client-link">NekoBox TV</a>
+                        <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank">NekoBox TV</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Telegram Прокси -->
         <section class="telegram">
             <div class="container">
-                <h2 class="section-title" data-ru="🤖 Telegram Прокси" data-en="🤖 Telegram Proxies">🤖 Telegram Прокси</h2>
-                <p class="section-subtitle" data-ru="Нажми на прокси чтобы подключиться" data-en="Click on proxy to connect">Нажми на прокси чтобы подключиться</p>
-                
+                <h2 class="section-title" data-ru="🤖 Telegram прокси" data-en="🤖 Telegram Proxies">🤖 Telegram прокси</h2>
                 <div class="telegram-grid">
-                    <a href="https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275" target="_blank" class="tg-card glass-effect">
-                        <div class="tg-type">MTProto</div>
-                        <div class="tg-server">46.243.235.29:853</div>
-                        <div class="tg-connect">Подключиться →</div>
-                    </a>
-
-                    <a href="https://t.me/proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d" target="_blank" class="tg-card glass-effect">
-                        <div class="tg-type">MTProto</div>
-                        <div class="tg-server">mtp1.sosproxy.space:443</div>
-                        <div class="tg-connect">Подключиться →</div>
-                    </a>
-
-                    <a href="https://t.me/proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c" target="_blank" class="tg-card glass-effect">
-                        <div class="tg-type">MTProto</div>
-                        <div class="tg-server">adsl.myrka.digital:443</div>
-                        <div class="tg-connect">Подключиться →</div>
-                    </a>
-
-                    <a href="https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368" target="_blank" class="tg-card glass-effect">
-                        <div class="tg-type">MTProto</div>
-                        <div class="tg-server">95.163.176.204:2083</div>
-                        <div class="tg-connect">Подключиться →</div>
-                    </a>
-
-                    <a href="https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368" target="_blank" class="tg-card glass-effect">
-                        <div class="tg-type">MTProto</div>
-                        <div class="tg-server">89.169.32.31:2083</div>
-                        <div class="tg-connect">Подключиться →</div>
-                    </a>
-
                     <a href="https://t.me/socks?server=84.201.182.112&port=1080&user=86XFhWe7j9&pass=e4GwQtyVaZ" target="_blank" class="tg-card glass-effect">
-                        <div class="tg-type">SOCKS5</div>
-                        <div class="tg-server">84.201.182.112:1080</div>
-                        <div class="tg-connect">Подключиться →</div>
+                        <span class="tg-type">SOCKS5</span>
+                        <span class="tg-server">84.201.182.112:1080</span>
+                    </a>
+                    <a href="https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275" target="_blank" class="tg-card glass-effect">
+                        <span class="tg-type">MTProto</span>
+                        <span class="tg-server">46.243.235.29:853</span>
+                    </a>
+                    <a href="https://t.me/proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d" target="_blank" class="tg-card glass-effect">
+                        <span class="tg-type">MTProto</span>
+                        <span class="tg-server">mtp1.sosproxy.space:443</span>
+                    </a>
+                    <a href="https://t.me/proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c" target="_blank" class="tg-card glass-effect">
+                        <span class="tg-type">MTProto</span>
+                        <span class="tg-server">adsl.myrka.digital:443</span>
+                    </a>
+                    <a href="https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368" target="_blank" class="tg-card glass-effect">
+                        <span class="tg-type">MTProto</span>
+                        <span class="tg-server">95.163.176.204:2083</span>
+                    </a>
+                    <a href="https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368" target="_blank" class="tg-card glass-effect">
+                        <span class="tg-type">MTProto</span>
+                        <span class="tg-server">89.169.32.31:2083</span>
                     </a>
                 </div>
-
-                <div class="tg-info glass-effect">
-                    <p data-ru="⚠️ Прокси могут перестать работать. Просто попробуй следующий из списка" data-en="⚠️ Proxies may stop working. Just try the next one">⚠️ Прокси могут перестать работать. Просто попробуй следующий из списка</p>
-                </div>
+                <p class="note" data-ru="⚠️ Прокси часто умирают. Просто попробуйте следующий" data-en="⚠️ Proxies often die. Just try the next one">⚠️ Прокси часто умирают. Просто попробуйте следующий</p>
             </div>
         </section>
 
-        <!-- FAQ -->
         <section class="faq">
             <div class="container">
-                <h2 class="section-title" data-ru="❓ Часто задаваемые вопросы" data-en="❓ FAQ">❓ Часто задаваемые вопросы</h2>
+                <h2 class="section-title" data-ru="❓ FAQ" data-en="❓ FAQ">❓ FAQ</h2>
                 <div class="faq-container">
                     <div class="faq-item">
                         <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Когда использовать чёрные/белые списки?" data-en="When to use black/white lists?">Когда использовать чёрные/белые списки?</h3>
-                            <span class="toggle-icon">+</span>
+                            <h3 data-ru="Подписка не работает" data-en="Subscription not working">Подписка не работает</h3>
+                            <span>+</span>
                         </div>
                         <div class="faq-content">
-                            <p data-ru="🏴 Чёрные — для обычного интернета (дома, кабель). 🏳️ Белые — только если мобильный оператор включил 'белые списки' РКН" data-en="🏴 Black - for regular internet (home, cable). 🏳️ White - only if mobile operator enabled 'white lists'">🏴 Чёрные — для обычного интернета (дома, кабель). 🏳️ Белые — только если мобильный оператор включил "белые списки" РКН</p>
+                            <p data-ru="Обновите, выберите другой сервер или измените протокол" data-en="Update, try another server or change protocol">Обновите, выберите другой сервер или измените протокол</p>
                         </div>
                     </div>
-
                     <div class="faq-item">
                         <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Какой клиент выбрать новичку?" data-en="Which client for beginners?">Какой клиент выбрать новичку?</h3>
-                            <span class="toggle-icon">+</span>
+                            <h3 data-ru="Какой клиент выбрать?" data-en="Which client to choose?">Какой клиент выбрать?</h3>
+                            <span>+</span>
                         </div>
                         <div class="faq-content">
-                            <p data-ru="Hiddify — самый удобный. Windows/Android — Hiddify, iOS — Streisand" data-en="Hiddify is the most convenient. Windows/Android - Hiddify, iOS - Streisand">Hiddify — самый удобный. Windows/Android — Hiddify, iOS — Streisand</p>
+                            <p data-ru="Hiddify - самый удобный. iOS - Streisand" data-en="Hiddify is easiest. iOS - Streisand">Hiddify - самый удобный. iOS - Streisand</p>
                         </div>
                     </div>
-
                     <div class="faq-item">
                         <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Подписка не работает, что делать?" data-en="Subscription not working?">Подписка не работает, что делать?</h3>
-                            <span class="toggle-icon">+</span>
+                            <h3 data-ru="Чёрные или белые списки?" data-en="Black or white lists?">Чёрные или белые списки?</h3>
+                            <span>+</span>
                         </div>
                         <div class="faq-content">
-                            <p data-ru="1. Обновить подписку (кнопка Refresh). 2. Сменить протокол (VLESS → Trojan). 3. Выбрать другой сервер. 4. Попробовать другую подписку из списка" data-en="1. Refresh subscription. 2. Change protocol (VLESS → Trojan). 3. Select another server. 4. Try different subscription">1. Обновить подписку (кнопка Refresh). 2. Сменить протокол (VLESS → Trojan). 3. Выбрать другой сервер. 4. Попробовать другую подписку из списка</p>
+                            <p data-ru="Чёрные - для обычного интернета. Белые - только если оператор включил блокировки" data-en="Black for regular internet. White only with operator blocks">Чёрные - для обычного интернета. Белые - только если оператор включил блокировки</p>
                         </div>
                     </div>
-
                     <div class="faq-item">
                         <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Насколько это безопасно?" data-en="How safe is this?">Насколько это безопасно?</h3>
-                            <span class="toggle-icon">+</span>
+                            <h3 data-ru="SNI vs CIDR?" data-en="SNI vs CIDR?">SNI vs CIDR?</h3>
+                            <span>+</span>
                         </div>
                         <div class="faq-content">
-                            <p data-ru="Конфиги из открытых источников. Не передавай через них пароли банков и платёжные данные" data-en="Configs from open sources. Don't send bank passwords through them">Конфиги из открытых источников. Не передавай через них пароли банков и платёжные данные</p>
+                            <p data-ru="SNI - фильтр по сайтам. CIDR - по IP. Если не работает одно, попробуйте другое" data-en="SNI filters by sites. CIDR by IPs. Try the other if one fails">SNI - фильтр по сайтам. CIDR - по IP. Если не работает одно, попробуйте другое</p>
                         </div>
                     </div>
-
                     <div class="faq-item">
                         <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Может ли замедлить интернет?" data-en="Will it slow down internet?">Может ли замедлить интернет?</h3>
-                            <span class="toggle-icon">+</span>
+                            <h3 data-ru="Безопасно ли?" data-en="Is it safe?">Безопасно ли?</h3>
+                            <span>+</span>
                         </div>
                         <div class="faq-content">
-                            <p data-ru="Обычно на 5-15% в зависимости от качества подключения и нагрузки на серверы" data-en="Usually 5-15% depending on connection quality and server load">Обычно на 5-15% в зависимости от качества подключения и нагрузки на серверы</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Одну подписку на несколько устройств?" data-en="One subscription for multiple devices?">Одну подписку на несколько устройств?</h3>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-content">
-                            <p data-ru="Да, большинство подписок поддерживают одновременное подключение" data-en="Yes, most subscriptions support simultaneous connections">Да, большинство подписок поддерживают одновременное подключение</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-header" onclick="toggleFAQ(this)">
-                            <h3 data-ru="Что означают SNI и CIDR?" data-en="What are SNI and CIDR?">Что означают SNI и CIDR?</h3>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-content">
-                            <p data-ru="SNI — фильтр по названиям сайтов (youtube.com). CIDR — фильтр по IP адресам. Если не работает одно, пробуй другое" data-en="SNI - filter by site names. CIDR - filter by IP addresses. If one doesn't work, try the other">SNI — фильтр по названиям сайтов (youtube.com). CIDR — фильтр по IP адресам. Если не работает одно, пробуй другое</p>
+                            <p data-ru="Из открытых источников. Не передавайте банковские данные" data-en="Public sources. Don't send bank data">Из открытых источников. Не передавайте банковские данные</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Зеркала -->
-        <section class="mirrors">
+        <section class="footer-section">
             <div class="container">
-                <h2 class="section-title" data-ru="🔗 Зеркала проекта" data-en="🔗 Project Mirrors">🔗 Зеркала проекта</h2>
-                <p class="section-subtitle" data-ru="На случай, если GitHub заблокирован" data-en="In case GitHub is blocked">На случай, если GitHub заблокирован</p>
+                <h2 class="section-title" data-ru="🔗 Зеркала" data-en="🔗 Mirrors">🔗 Зеркала</h2>
                 <div class="mirrors-grid">
-                    <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" class="mirror-card glass-effect">
-                        <span class="mirror-icon">🐙</span>
-                        <h3>GitHub</h3>
-                        <p>github.com</p>
-                    </a>
-                    <a href="https://gitlab.com/Stintik-123/StintikVPN" target="_blank" class="mirror-card glass-effect">
-                        <span class="mirror-icon">🦊</span>
-                        <h3>GitLab</h3>
-                        <p>gitlab.com</p>
-                    </a>
-                    <a href="https://gitverse.ru/Stintik-123/StintikHub" target="_blank" class="mirror-card glass-effect">
-                        <span class="mirror-icon">🌍</span>
-                        <h3>GitVerse</h3>
-                        <p>gitverse.ru</p>
-                    </a>
-                    <a href="https://codeberg.org/Stintik-123/StintikVPN" target="_blank" class="mirror-card glass-effect">
-                        <span class="mirror-icon">⚡</span>
-                        <h3>Codeberg</h3>
-                        <p>codeberg.org</p>
-                    </a>
+                    <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" class="mirror glass-effect">GitHub</a>
+                    <a href="https://gitlab.com/Stintik-123/StintikVPN" target="_blank" class="mirror glass-effect">GitLab</a>
+                    <a href="https://gitverse.ru/Stintik-123/StintikHub" target="_blank" class="mirror glass-effect">GitVerse</a>
+                    <a href="https://codeberg.org/Stintik-123/StintikVPN" target="_blank" class="mirror glass-effect">Codeberg</a>
                 </div>
             </div>
         </section>
 
-        <!-- Поддержка -->
-        <section class="support">
-            <div class="container">
-                <h2 class="section-title" data-ru="🙏 Спасибо!" data-en="🙏 Thank you!">🙏 Спасибо!</h2>
-                <div class="support-card glass-effect">
-                    <p data-ru="Если проект помог — поддержи ⭐" data-en="If the project helped - support it ⭐">Если проект помог — поддержи ⭐</p>
-                    <div class="support-links">
-                        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" class="btn-primary">⭐ Star на GitHub</a>
-                        <a href="https://t.me/Keb04w" target="_blank" class="btn-primary">💬 Поддержка</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
         <footer class="footer">
             <div class="container">
                 <p data-ru="Сделано людьми для людей" data-en="Made by people for people">Сделано людьми для людей</p>
-                <p style="font-size: 12px; opacity: 0.6; margin-top: 10px;" data-ru="Все конфиги из открытых источников" data-en="All configs from open sources">Все конфиги из открытых источников</p>
+                <a href="https://t.me/Keb04w" target="_blank" data-ru="Поддержка" data-en="Support">Поддержка</a>
             </div>
         </footer>
 
-        <!-- Modal -->
         <div id="copy-modal" class="modal">
             <div class="modal-content glass-effect">
                 <h3>✅ <span data-ru="Скопировано!" data-en="Copied!">Скопировано!</span></h3>
-                <p data-ru="Вставь в свой VPN клиент" data-en="Paste it in your VPN client">Вставь в свой VPN клиент</p>
+                <p data-ru="Вставьте в свой VPN клиент" data-en="Paste in your VPN client">Вставьте в свой VPN клиент</p>
             </div>
         </div>
     </div>
