@@ -1,6 +1,6 @@
 # 🚀 StintikVPN — Интернет свобода ближе чем кажется
 
-<img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/refs/heads/main/Image.png" alt="StintikVPN Freedom" width="100%">
+<img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN Freedom" width="100%">
   
 <div align="center">
 
@@ -82,7 +82,7 @@ https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/con
 ### 🏴 Чёрный список (запасной)
 https://vpn.akres.fun/all
 
-### 👑 Black Mobile (20 ЛУЧШИХ серверов специально для телефонов) 
+### 👑 Black Mobile (ЛУЧШИЕ сервера специально для телефонов) 
 https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
 
 ### 🏳️ Белые списки (Основные)
