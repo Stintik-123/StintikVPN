@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StintikVPN — Бесплатные VPN подписки</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#logoGrad)"/>
+                <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white" opacity="0.9"/>
+                <circle cx="16" cy="16" r="3" fill="#1a1a1a"/>
+                <defs>
+                    <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                        <stop offset="0%" stop-color="#ff6b00"/>
+                        <stop offset="100%" stop-color="#ff3d00"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>StintikVPN</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#subscriptions">Подписки</a></li>
+            <li><a href="#clients">Клиенты</a></li>
+            <li><a href="#protocols">Протоколы</a></li>
+            <li><a href="#telegram">Telegram</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-gh" title="GitHub репозиторий">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Бесплатно навсегда</span>
+            </div>
+            <h1>Интернет без<br><span class="gradient-text">границ и блокировок</span></h1>
+            <p class="hero-desc">StintikVPN — сборник лучших бесплатных VPN-подписок. Копируй ссылку, вставляй в клиент и пользуйся. Без настройки, без регистрации, без ограничений.</p>
+            <div class="hero-buttons">
+                <a href="#subscriptions" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    Получить подписку
+                </a>
+                <a href="#clients" class="btn-secondary">Как настроить</a>
+            </div>
+            <div class="hero-stats">
+                <div class="h-stat">
+                    <span class="h-stat-num" id="serverCount">0</span>
+                    <span class="h-stat-label">Серверов доступно</span>
+                </div>
+                <div class="h-stat">
+                    <span class="h-stat-num" id="protocolCount">4</span>
+                    <span class="h-stat-label">Протокола</span>
+                </div>
+                <div class="h-stat">
+                    <span class="h-stat-num">0₽</span>
+                    <span class="h-stat-label">Стоимость</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="globe-container">
+                <div class="globe">
+                    <div class="globe-ring"></div>
+                    <div class="globe-ring"></div>
+                    <div class="globe-ring"></div>
+                    <div class="globe-core"></div>
+                </div>
+                <div class="orbit-dot" style="--delay:0s;--duration:8s;"></div>
+                <div class="orbit-dot" style="--delay:2s;--duration:10s;"></div>
+                <div class="orbit-dot" style="--delay:4s;--duration:12s;"></div>
+                <div class="orbit-dot" style="--delay:1s;--duration:9s;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <span class="status-indicator online"></span>
+            <span>Подписки обновлены: <span id="lastUpdate">—</span></span>
+        </div>
+        <div class="status-item">
+            <span class="status-indicator checking"></span>
+            <span>Проверка доступности...</span>
+        </div>
+        <div class="status-item">
+            <span>🔄</span>
+            <span>Автообновление каждые 30 мин</span>
+        </div>
+    </div>
+
+    <!-- Subscriptions Section -->
+    <section class="subscriptions" id="subscriptions">
+        <div class="section-header">
+            <h2>Готовые подписки</h2>
+            <p>Выберите тип списка и скопируйте ссылку в один клик</p>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="black">Чёрные списки</button>
+            <button class="filter-btn" data-filter="white">Белые списки</button>
+            <button class="filter-btn" data-filter="protocol">По протоколам</button>
+            <button class="filter-btn" data-filter="proxy">Telegram прокси</button>
+        </div>
+
+        <div class="subs-grid" id="subsGrid">
+            <!-- Generated by JS -->
+        </div>
+    </section>
+
+    <!-- Protocols Comparison -->
+    <section class="protocols" id="protocols">
+        <div class="section-header">
+            <h2>Сравнение протоколов</h2>
+            <p>Выберите оптимальный протокол под свои задачи</p>
+        </div>
+        <div class="protocols-grid">
+            <div class="protocol-card" data-protocol="vless">
+                <div class="protocol-header">
+                    <div class="protocol-icon">⚡</div>
+                    <div class="protocol-badges">
+                        <span class="badge speed">Скорость</span>
+                        <span class="badge mask">Маскировка</span>
+                    </div>
+                </div>
+                <h3>VLESS</h3>
+                <p>Лучший по скорости и маскировке. Но в последнее время РКН активно блокирует, надёжность снизилась.</p>
+                <div class="protocol-meter">
+                    <div class="meter-row">
+                        <span>Скорость</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:95%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Надёжность</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:50%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Маскировка</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:90%"></div></div>
+                    </div>
+                </div>
+                <button class="btn-copy-protocol" data-url="https://mifa.world/vless">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Копировать VLESS
+                </button>
+            </div>
+
+            <div class="protocol-card recommended" data-protocol="vmess">
+                <div class="protocol-header">
+                    <div class="protocol-icon">🛡️</div>
+                    <div class="protocol-badges">
+                        <span class="badge reliable">Надёжность</span>
+                        <span class="badge rec">Рекомендуем</span>
+                    </div>
+                </div>
+                <h3>VMess</h3>
+                <p>Самый надёжный протокол из всех. Работает стабильно даже при усилении блокировок. Лучший выбор для ежедневного использования.</p>
+                <div class="protocol-meter">
+                    <div class="meter-row">
+                        <span>Скорость</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:80%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Надёжность</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:95%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Маскировка</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:75%"></div></div>
+                    </div>
+                </div>
+                <button class="btn-copy-protocol" data-url="https://mifa.world/vmess">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Копировать VMess
+                </button>
+            </div>
+
+            <div class="protocol-card" data-protocol="trojan">
+                <div class="protocol-header">
+                    <div class="protocol-icon">🎭</div>
+                    <div class="protocol-badges">
+                        <span class="badge mask">Маскировка</span>
+                    </div>
+                </div>
+                <h3>Trojan</h3>
+                <p>Хорошая маскировка под обычный HTTPS-трафик. Сбалансированный выбор между скоростью и стабильностью.</p>
+                <div class="protocol-meter">
+                    <div class="meter-row">
+                        <span>Скорость</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:85%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Надёжность</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:70%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Маскировка</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:85%"></div></div>
+                    </div>
+                </div>
+                <button class="btn-copy-protocol" data-url="https://mifa.world/trojan">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Копировать Trojan
+                </button>
+            </div>
+
+            <div class="protocol-card" data-protocol="ss">
+                <div class="protocol-header">
+                    <div class="protocol-icon">🎮</div>
+                    <div class="protocol-badges">
+                        <span class="badge speed">Макс. скорость</span>
+                        <span class="badge game">Для игр</span>
+                    </div>
+                </div>
+                <h3>Shadowsocks</h3>
+                <p>Максимальная скорость с минимальной задержкой. Идеален для онлайн-игр и стриминга. Простой и лёгкий протокол.</p>
+                <div class="protocol-meter">
+                    <div class="meter-row">
+                        <span>Скорость</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:100%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Надёжность</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:60%"></div></div>
+                    </div>
+                    <div class="meter-row">
+                        <span>Маскировка</span>
+                        <div class="meter-bar"><div class="meter-fill" style="width:55%"></div></div>
+                    </div>
+                </div>
+                <button class="btn-copy-protocol" data-url="https://mifa.world/ss">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Копировать SS
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- VPN Clients Section -->
+    <section class="clients" id="clients">
+        <div class="section-header">
+            <h2>Рекомендуемые клиенты</h2>
+            <p>Выберите приложение под свою платформу</p>
+        </div>
+        <div class="clients-grid" id="clientsGrid">
+            <!-- Generated by JS -->
+        </div>
+    </section>
+
+    <!-- Setup Guide -->
+    <section class="setup-guide">
+        <div class="section-header">
+            <h2>Как настроить за 3 шага</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-icon">📋</div>
+                <h3>Скопируйте ссылку</h3>
+                <p>Выберите подписку выше и нажмите кнопку «Копировать». Ссылка сохранится в буфер обмена.</p>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-icon">📲</div>
+                <h3>Вставьте в клиент</h3>
+                <p>Откройте VPN-клиент, нажмите «Добавить подписку» или «Импорт из буфера обмена».</p>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-icon">🚀</div>
+                <h3>Подключитесь</h3>
+                <p>Нажмите «Пинг» для проверки серверов, выберите живой и нажмите «Подключить».</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Telegram Section -->
+    <section class="telegram-section" id="telegram">
+        <div class="tg-content">
+            <div class="tg-info">
+                <div class="tg-badge">@StintikVPN</div>
+                <h2>Telegram-канал проекта</h2>
+                <p>Подпишитесь, чтобы получать актуальные новости о блокировках, обновлениях подписок и новых зеркалах.</p>
+                <ul class="tg-features">
+                    <li><span>🔔</span> Мгновенные уведомления о блокировках</li>
+                    <li><span>📡</span> Новые прокси и зеркала</li>
+                    <li><span>💬</span> Поддержка сообщества</li>
+                    <li><span>⭐</span> Анонсы обновлений</li>
+                </ul>
+                <a href="https://t.me/StintikVPN" target="_blank" rel="noopener" class="btn-tg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Подписаться на канал
+                </a>
+            </div>
+            <div class="tg-visual">
+                <div class="tg-phone">
+                    <div class="tg-phone-screen">
+                        <div class="tg-header">
+                            <div class="tg-avatar">S</div>
+                            <div class="tg-chat-info">
+                                <div class="tg-chat-name">StintikVPN</div>
+                                <div class="tg-chat-status">онлайн</div>
+                            </div>
+                        </div>
+                        <div class="tg-messages">
+                            <div class="tg-msg">
+                                <div class="tg-msg-text">🚨 Обновление: добавлены новые сервера в Нидерландах</div>
+                                <div class="tg-msg-time">14:32</div>
+                            </div>
+                            <div class="tg-msg">
+                                <div class="tg-msg-text">📡 Новый MTProto прокси: <code>mtp1.sosproxy.space</code></div>
+                                <div class="tg-msg-time">14:35</div>
+                            </div>
+                            <div class="tg-msg">
+                                <div class="tg-msg-text">✅ Белые списки обновлены. Проверьте подписку в клиенте.</div>
+                                <div class="tg-msg-time">14:40</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mirrors Section -->
+    <section class="mirrors">
+        <div class="section-header">
+            <h2>Зеркала проекта</h2>
+            <p>Если GitHub недоступен, используйте альтернативные площадки</p>
+        </div>
+        <div class="mirrors-grid">
+            <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="mirror-card primary">
+                <div class="mirror-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                </div>
+                <div class="mirror-info">
+                    <h4>GitHub</h4>
+                    <p>Основной репозиторий</p>
+                </div>
+                <span class="mirror-arrow">→</span>
+            </a>
+            <a href="https://gitlab.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="mirror-card">
+                <div class="mirror-icon" style="color:#fc6d26;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l3.18-9.79H8.82L12 21.35zM3.18 11.56L12 21.35l-4.41-13.6H3.18zM3.18 11.56h4.41L6.38 3.95c-.15-.46-.8-.46-.95 0l-2.25 7.61zM20.82 11.56L12 21.35l4.41-13.6h4.41zM20.82 11.56h-4.41l2.25-7.61
