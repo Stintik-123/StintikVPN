@@ -9,7 +9,6 @@ function copyLink(btn, url) {
       btn.innerHTML = original;
     }, 2000);
   }).catch(() => {
-    // fallback
     const ta = document.createElement('textarea');
     ta.value = url;
     document.body.appendChild(ta);
@@ -23,7 +22,7 @@ function copyLink(btn, url) {
 function showToast() {
   const toast = document.getElementById('toast');
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2500);
+  setTimeout(() => toast.classList.remove('show'), 2200);
 }
 
 function toggleFaq(btn) {
@@ -33,13 +32,28 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-// Smooth scroll for anchor links
+function setFilter(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === cat);
+  });
+  document.querySelectorAll('.sub-item').forEach(item => {
+    if (cat === 'all') {
+      item.classList.remove('hidden');
+    } else {
+      const cats = (item.dataset.cat || '').split(' ');
+      item.classList.toggle('hidden', !cats.includes(cat));
+    }
+  });
+  const list = document.getElementById('subs');
+  if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
