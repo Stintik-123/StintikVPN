@@ -1,59 +1,45 @@
-function copyLink(btn, url) {
+function cp(btn, url) {
   navigator.clipboard.writeText(url).then(() => {
-    const original = btn.innerHTML;
-    btn.classList.add('copied');
+    const o = btn.innerHTML;
+    btn.classList.add('ok');
     btn.innerHTML = '✓ Скопировано';
-    showToast();
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = original;
-    }, 2000);
+    toast();
+    setTimeout(() => { btn.classList.remove('ok'); btn.innerHTML = o; }, 2000);
   }).catch(() => {
-    const ta = document.createElement('textarea');
-    ta.value = url;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    showToast();
+    const t = document.createElement('textarea');
+    t.value = url; document.body.appendChild(t); t.select();
+    document.execCommand('copy'); document.body.removeChild(t); toast();
   });
 }
-
-function showToast() {
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2200);
+function toast() {
+  const el = document.getElementById('toast');
+  el.classList.add('on');
+  setTimeout(() => el.classList.remove('on'), 2200);
 }
-
-function toggleFaq(btn) {
+function faq(btn) {
   const item = btn.parentElement;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.fq').forEach(x => x.classList.remove('open'));
+  if (!open) item.classList.add('open');
 }
-
-function setFilter(cat) {
-  document.querySelectorAll('.filter-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.filter === cat);
-  });
-  document.querySelectorAll('.sub-item').forEach(item => {
-    if (cat === 'all') {
-      item.classList.remove('hidden');
-    } else {
-      const cats = (item.dataset.cat || '').split(' ');
-      item.classList.toggle('hidden', !cats.includes(cat));
+function filt(cat) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.toggle('on', b.dataset.f === cat));
+  document.querySelectorAll('.row').forEach(r => {
+    if (cat === 'all') r.classList.remove('hide');
+    else {
+      const c = (r.dataset.c || '').split(' ');
+      r.classList.toggle('hide', !c.includes(cat));
     }
   });
-  const list = document.getElementById('subs');
-  if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const s = document.getElementById('subs');
+  if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href === '#') return;
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const h = a.getAttribute('href');
+    if (h === '#') return;
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const t = document.querySelector(h);
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
