@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StintikVPN — Интернет свобода ближе чем кажется</title>
-  <meta name="description" content="Сборник лучших бесплатных VPN-подписок. Скопируй ссылку, вставь в клиент и пользуйся." />
+  <meta name="description" content="Бесплатные VPN-подписки: скопируй ссылку, вставь в клиент и пользуйся. Чёрные и белые списки, Telegram-прокси." />
   <meta name="theme-color" content="#060608" />
+  <meta property="og:title" content="StintikVPN — бесплатные VPN-подписки" />
+  <meta property="og:description" content="Скопируй ссылку, вставь в клиент — и готово. Без настройки и оплаты." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,12 +21,15 @@
       StintikVPN
     </a>
     <div class="nav-links">
-      <a href="#features">Подписки</a>
+      <a href="#steps">Как начать</a>
+      <a href="#subs">Подписки</a>
       <a href="#clients">Клиенты</a>
       <a href="#proxies">Прокси</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+    <div class="nav-right">
+      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta star">⭐ Star</a>
+    </div>
   </div>
 </nav>
 
@@ -30,10 +37,49 @@
   <div class="container">
     <div class="hero-label">Бесплатные VPN-подписки</div>
     <h1>Интернет свобода<br><span class="grad">ближе чем кажется</span></h1>
-    <p class="hero-desc">Скопируй ссылку, вставь в клиент — и готово. Без настройки, без оплаты, без лишнего.</p>
+    <p class="hero-desc">Скопируй ссылку, вставь в клиент — и готово. Без настройки, без оплаты.</p>
     <div class="hero-actions">
-      <a href="#subs" class="btn btn-primary">Выбрать подписку</a>
+      <button class="btn btn-primary" id="hero-copy" onclick="cpBest()">Скопировать лучшую подписку</button>
       <a href="#clients" class="btn btn-secondary">Скачать клиент</a>
+    </div>
+    <p class="hero-meta">Подписки обновляются ежедневно · прокси: 27.05.2026</p>
+  </div>
+</section>
+
+<section class="smart">
+  <div class="container">
+    <div class="smart-card" id="smart">
+      <div class="smart-icon" id="smart-icon">📱</div>
+      <div class="smart-body">
+        <h3 id="smart-title">Определяем устройство…</h3>
+        <p id="smart-desc">Подберём клиент и подписку под тебя</p>
+      </div>
+      <div class="smart-actions">
+        <button class="btn btn-sm btn-copy" id="smart-copy" onclick="cpBest()">Скопировать подписку</button>
+        <a class="btn btn-sm btn-secondary" id="smart-client" href="#clients">Клиент</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="steps">
+  <div class="container">
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">Шаг 1</div>
+        <h3>Скачай клиент</h3>
+        <p>Hiddify, Streisand или NekoBox — под твоё устройство ниже</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Шаг 2</div>
+        <h3>Скопируй подписку</h3>
+        <p>Одна кнопка — ссылка уже в буфере обмена</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Шаг 3</div>
+        <h3>Вставь и подключись</h3>
+        <p>В клиенте: «Добавить подписку» → пинг → выбрать сервер</p>
+      </div>
     </div>
   </div>
 </section>
@@ -45,28 +91,28 @@
         <div class="feature-glow"></div>
         <div class="feature-icon">🏴</div>
         <h3>Чёрные списки</h3>
-        <p>Для домашнего Wi-Fi, кабеля и обычного 4G без жёстких блокировок</p>
+        <p>Домашний Wi‑Fi, кабель, обычный 4G без жёстких блокировок</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('black')">Смотреть →</button>
       </div>
       <div class="feature">
         <div class="feature-glow"></div>
         <div class="feature-icon">🏳️</div>
         <h3>Белые списки</h3>
-        <p>Для жёстких блокировок РКН на мобильном интернете (МТС, Билайн, Tele2)</p>
+        <p>Жёсткие блокировки РКН на мобильном (МТС, Билайн, Tele2)</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('white')">Смотреть →</button>
       </div>
       <div class="feature">
         <div class="feature-glow"></div>
         <div class="feature-icon">📱</div>
         <h3>Для телефонов</h3>
-        <p>Лучшие сервера специально для мобильных — Black Mobile</p>
+        <p>Лучшие сервера для мобильных — Black Mobile</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('mobile')">Смотреть →</button>
       </div>
       <div class="feature">
         <div class="feature-glow"></div>
         <div class="feature-icon">⚡</div>
         <h3>По протоколам</h3>
-        <p>VLESS, VMess, Trojan, Shadowsocks — под любую задачу</p>
+        <p>VLESS, VMess, Trojan, Shadowsocks — под задачу</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('proto')">Смотреть →</button>
       </div>
     </div>
@@ -97,6 +143,11 @@
       <button class="filter" data-f="proto" onclick="filt('proto')">Протоколы</button>
     </div>
     <div class="sub-list">
+      <div class="sub featured" data-c="mobile black">
+        <span class="sub-tag tag-best">Лучшее</span>
+        <div class="sub-body"><h4>Black Mobile</h4><span>Лучшие сервера специально для телефонов</span></div>
+        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Скопировать</button></div>
+      </div>
       <div class="sub" data-c="black">
         <span class="sub-tag tag-black">Чёрный</span>
         <div class="sub-body"><h4>Чёрный список (основной)</h4><span>Основная подписка для обычного интернета</span></div>
@@ -106,11 +157,6 @@
         <span class="sub-tag tag-black">Чёрный</span>
         <div class="sub-body"><h4>Чёрный список (запасной)</h4><span>Резерв, если основная недоступна</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://vpn.akres.fun/all')">Скопировать</button></div>
-      </div>
-      <div class="sub" data-c="mobile black">
-        <span class="sub-tag tag-best">Лучшее</span>
-        <div class="sub-body"><h4>Black Mobile</h4><span>Лучшие сервера специально для телефонов</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="white">
         <span class="sub-tag tag-white">Белый</span>
@@ -158,27 +204,27 @@
       <p>Выбери под своё устройство</p>
     </div>
     <div class="clients-grid">
-      <a class="client" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
+      <a class="client" data-os="windows" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
         <div class="client-icon">💻</div>
         <div><h4>Windows</h4><span>Hiddify / v2rayN</span></div>
       </a>
-      <a class="client" href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" rel="noopener">
+      <a class="client" data-os="android" href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" rel="noopener">
         <div class="client-icon">📱</div>
         <div><h4>Android</h4><span>Incy / NekoBox</span></div>
       </a>
-      <a class="client" href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener">
+      <a class="client" data-os="android" href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener">
         <div class="client-icon">📺</div>
         <div><h4>Android TV</h4><span>NekoBox</span></div>
       </a>
-      <a class="client" href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">
+      <a class="client" data-os="ios" href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">
         <div class="client-icon">🍎</div>
         <div><h4>iOS / iPadOS</h4><span>Streisand / V2Box</span></div>
       </a>
-      <a class="client" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
+      <a class="client" data-os="linux" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
         <div class="client-icon">🐧</div>
         <div><h4>Linux</h4><span>Hiddify / NekoRay</span></div>
       </a>
-      <a class="client" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
+      <a class="client" data-os="mac" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
         <div class="client-icon">🖥️</div>
         <div><h4>macOS</h4><span>Hiddify / Streisand</span></div>
       </a>
@@ -259,7 +305,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Как часто обновляются конфиги?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Ежедневно их создателями. Ссылки всегда актуальные.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Ежедневно их создателями. Ссылки на сайте всегда актуальные.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Когда нужны белые списки?<span class="faq-icon">+</span></button>
@@ -297,7 +343,7 @@
   </div>
 </section>
 
-<section class="section" style="padding-top:16px;padding-bottom:48px">
+<section class="section" style="padding-top:12px;padding-bottom:44px">
   <div class="container">
     <div class="section-head">
       <h2>Зеркала</h2>
@@ -316,7 +362,7 @@
   <div class="container footer-inner">
     <div class="footer-text">StintikVPN — сделано людьми для людей</div>
     <div class="footer-links">
-      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">⭐ GitHub</a>
       <a href="https://github.com/Stintik-123/StintikVPN/blob/main/README.md" target="_blank" rel="noopener">README</a>
     </div>
   </div>
