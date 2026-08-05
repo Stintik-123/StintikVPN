@@ -548,3 +548,80 @@ body {
 @media (max-width: 480px) {
   .container { padding: 0 16px; }
 }
+
+/* === UI / Responsiveness improvements (appended) === */
+
+/* Nav: single GitHub CTA styling */
+.nav-ctas { display: inline-flex; gap: 8px; align-items: center; }
+.nav-ctas .nav-cta { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; font-size: 0.78rem; text-decoration: none; line-height: 1; }
+.nav-ctas .nav-cta-gh {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  font-weight: 600;
+}
+.nav-ctas .nav-cta-gh:hover { border-color: var(--border-h); transform: translateY(-1px); transition: .12s; }
+
+/* Icon sizing & spacing */
+.nav-ctas svg { width: 16px; height: 16px; display: block; }
+
+/* Ensure nav CTAs remain visible when nav-links hidden on small screens */
+@media (max-width: 768px) {
+  .nav-ctas { margin-left: auto; }
+}
+
+/* WARP button: icon + text spacing */
+.warp-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 12px; background: var(--tg); color: #fff; box-shadow: 0 6px 24px rgba(42,171,238,0.18); font-weight:600; }
+.warp-btn svg { flex-shrink: 0; }
+
+/* Large-screen layout improvements */
+@media (min-width: 1000px) {
+  .container { max-width: 1200px; }
+  .hero-grid { grid-template-columns: 1fr 480px; gap: 56px; align-items: center; }
+  .features-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tools-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sub-list, .proxy-list { gap: 12px; }
+  .proxy-left { min-width: 220px; }
+  .hero { padding: 72px 0 64px; }
+}
+
+/* Medium (tablet) adjustments */
+@media (min-width: 720px) and (max-width: 999px) {
+  .hero-grid { grid-template-columns: 1fr 360px; gap: 32px; }
+  .features-grid, .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .container { max-width: 960px; }
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .nav-links { display: none; } /* keep current behavior */
+  .nav-ctas { gap: 6px; }
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-visual { order: -1; display: flex; justify-content: center; }
+  .features-grid, .tools-grid { grid-template-columns: 1fr; }
+  .sub { flex-direction: column; align-items: stretch; }
+  .sub-actions { width: 100%; display: flex; gap: 8px; }
+  .sub-actions .btn { flex: 1; }
+  .proxy { flex-direction: column; align-items: flex-start; }
+  .warp-btn { width: 100%; justify-content: center; }
+}
+
+/* Prevent horizontal overflow for long monospace addresses */
+.proxy-addr { overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
+
+/* Table spacing on large screens */
+@media (min-width: 1000px) {
+  .cli-table th, .cli-table td { padding: 14px 18px; }
+}
+
+/* Modal sizing on large screens */
+@media (min-width: 900px) { .modal-card { max-width: 520px; padding: 32px; } }
+
+/* Accessibility: visible focus for CTA */
+.nav-ctas .nav-cta-gh:focus { outline: 3px solid rgba(255,255,255,0.06); outline-offset: 2px; border-radius: 8px; }
+
+/* Minor polish: slightly lift feature cards on hover on large screens */
+@media (hover: hover) {
+  .feature:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+}
