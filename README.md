@@ -52,7 +52,7 @@
 
 По два проверенных варианта на платформу.
 
-| Устройство | Клиент 1 | Клиент 2 |
+| Устройство | Вариант 1 | Вариант 2 |
 |:-----------|:---------|:---------|
 | **Windows** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [v2rayN](https://github.com/2dust/v2rayN/releases) |
 | **Android** | [Hiddify](https://play.google.com/store/apps/details?id=app.hiddify.com) | [v2rayNG](https://github.com/2dust/v2rayNG/releases) |
@@ -61,16 +61,14 @@
 | **Linux** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [NekoRay](https://github.com/MatsuriDayo/nekoray/releases) |
 | **Android TV** | [NekoBox](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) | [Hiddify](https://github.com/hiddify/hiddify-next/releases) |
 
-> **Новичкам:** Windows / Android / macOS / Linux → **Hiddify**. iPhone → **Streisand**.
-
 ---
 
 ## 🏴‍☠️ Чёрные и белые списки
 
-| Тип | Когда |
+| Тип | Когда использовать |
 |:----|:------|
 | **Чёрные** | Обычный интернет: домашний Wi‑Fi, кабель, 4G без жёстких блокировок |
-| **Белые** | Оператор включил «белые списки» РКН (часто МТС, Билайн, Tele2) |
+| **Белые** | Оператор включил «белые списки» РКН |
 
 ---
 
@@ -79,7 +77,7 @@
 - **SNI** — фильтр по именам сайтов (`youtube.com`)
 - **CIDR** — фильтр по IP-диапазонам (`173.194.0.0/16`)
 
-Не работает SNI → бери CIDR. Не работает CIDR → бери SNI.
+Не работает SNI → бери CIDR. Не работает CIDR → бери SNI. 
 
 ---
 
@@ -87,10 +85,10 @@
 
 | Протокол | Суть |
 |:---------|:-----|
-| **VLESS** | Скорость и маскировка (иногда режут) |
+| **VLESS** | Скорость и маскировка (Сейчас активно блокируется РКН) |
 | **Trojan** | Маскировка под HTTPS |
-| **VMess** | Надёжный «рабочий лошадка» |
-| **Shadowsocks** | Скорость, удобно для игр |
+| **VMess** | Самый надёжный |
+| **Shadowsocks** | Самый быстрый, лучший для игр |
 
 ---
 
@@ -161,7 +159,7 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 
 ## 🧅 Tor-мосты
 
-Мосты из [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia) (автообновление).
+Для любителей пользоваться браузером Tor есть вариант проверенный временем, всеми любимые Tor-мосты, тут только лучшие 
 
 | Список | Ссылка |
 |:-------|:-------|
@@ -171,25 +169,50 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 | obfs4 | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_OBFS4.txt |
 | WebTunnel | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_WEBTUNNEL.txt |
 
+Инструкуия как начать:
+
 Скачай [Tor Browser](https://www.torproject.org/download/) → Настройки → Мосты → вставь строки из списка.
 
 ---
 
-## 🛡️ Обход DPI
+## 🛡️ Обход без VPN (ByeDPI, zapret, tgwsproxy)
 
-Когда VPN не нужен, а режут YouTube / Discord / сайты на уровне провайдера.
+Иногда блокировки можно обойти и без VPN с помощью средств обходящих DPI блокировку
 
-| Инструмент | Для кого | Ссылка |
+| Инструмент | Для чего | Ссылка |
 |:-----------|:---------|:-------|
-| **zapret** | Windows, Linux, роутеры | [bol-van/zapret](https://github.com/bol-van/zapret) |
-| **ByeDPI / ByeByeDPI** | Android (и ядро для других ОС) | [ByeByeDPI](https://github.com/romanvht/ByeByeDPI) · [byedpi](https://github.com/hufrea/byedpi) |
-| **TG WS Proxy** | Telegram Desktop (локальный прокси через WebSocket) | [Flowseal/tg-ws-proxy](https://github.com/Flowseal/tg-ws-proxy) |
+| **zapret** | Ютуб, Дискорд | [bol-van/zapret](https://github.com/bol-van/zapret) |
+| **ByeByeDPI** | Ютуб, на некоторых устройствах ещё и дискорд| [ByeByeDPI](https://github.com/romanvht/ByeByeDPI) · [byedpi](https://github.com/hufrea/byedpi) |
+| **TG WS Proxy** | Локальный прокси для телеграмма, также есть версия на Android скину ниже| [Flowseal/tg-ws-proxy](https://github.com/Flowseal/tg-ws-proxy) |
 
-Кратко:
-- **zapret** — ставишь локально, трафик не уходит на чужой сервер.
-- **ByeByeDPI** — то же идея на Android, удобное приложение.
-- **TG WS Proxy** — если тормозит или не грузится именно Telegram Desktop.
+Инструкции по установке:
 
+## Zapret-discord-youtube
+1. Заходим на страницу репозитория и скачиваем zapret-discord-youtube с раздела Releases, на телефонах он в самом низу репозитория, на ПК он справа
+
+2. Заходим в папку и находим файл service, нажимаем и выбираем вариант Run Tests, после выбираем все bat-файлы, после ждём и после теста всех батников выдаст лучший рабочий на этом устройстве
+
+3. Нажимаем на него, он откроется в фоне и Дискорд с ютубом заработают
+
+4. Если захотите установить его в автозапуск опять зайдите в файл service и выберите вариант Install Service после чего выберите нужный bat файл и... Готово 
+
+## ByeByeDpi 
+
+1. Скачиваем apk файл прямо с репозитория
+
+2. Нажимаем на него и устанавливаем приложение, запускаем его после нажимаем подбор и нажимаем начать запуск
+
+3. После теста нажимаем на тот у которого больше всего совпадений (Для примера 8/50 это плохо, 48/50 это хорошо) и нажимаем применить
+
+4. Выходим в главное меню, нажимаем большую кнопку включения и пользуемся
+
+## TGWSPROXY 
+
+1. Устанавливаем программу с репозитория
+
+2. Запускаем tgwsproxy.exe
+
+3. Следуем инструкции 
 ---
 
 ## 🔗 Зеркала
@@ -205,7 +228,7 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 <details>
 <summary><strong>Подписка не работает / очень медленно</strong></summary>
 
-Обнови подписку в клиенте. Смени сервер или протокол. Перезапусти клиент или смени сеть (Wi‑Fi ↔ мобильный).
+Обновите подписку в клиенте. Смените сервер или протокол. Перезапустите клиент или смените сеть (Wi‑Fi ↔ мобильный).
 </details>
 
 <details>
@@ -221,34 +244,22 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 </details>
 
 <details>
-<summary><strong>Какой клиент для новичка?</strong></summary>
-
-**Hiddify** — Windows, Android, macOS, Linux. **Streisand** — iPhone.
-</details>
-
-<details>
 <summary><strong>Прокси Telegram не подключается</strong></summary>
 
-Прокси часто отваливаются. Попробуй следующий из списка.
-</details>
-
-<details>
-<summary><strong>Можно на нескольких устройствах?</strong></summary>
-
-Да, у большинства подписок — да (зависит от сервера).
+Прокси часто отваливаются. Попробуйте следующий из списка
 </details>
 
 <details>
 <summary><strong>Это безопасно?</strong></summary>
 
-Конфиги из открытых источников. Не гоняй через них банк и важные аккаунты.
+Конфиги взяты из открытых источников и могут быть не безопасны, крайне не советую заходить через них в банки или важные аккаунты
 </details>
 
 ---
 
 ## ⚠️ Предупреждение
 
-Конфиги из открытых источников. Работоспособность **не гарантируется**.  
+Конфиги из открытых источников Работоспособность **не гарантируется**.  
 Запрещено использовать в противоправных целях. Автор не несёт ответственности за ваши действия.
 
 ---
