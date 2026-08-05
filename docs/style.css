@@ -568,3 +568,15 @@ body {
   .proxy .sub-actions { width: 100%; display: flex; gap: 8px; }
   .proxy .sub-actions .btn { flex: 1; }
 }
+
+/* Делаем кнопку Telegram в модальном окне голубой */
+.modal-card .btn-primary {
+  background: var(--tg) !important; /* Голубой цвет Telegram (#2AABEE) */
+  box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3) !important; /* Голубое свечение */
+  color: #fff !important;
+}
+
+.modal-card .btn-primary:hover {
+  filter: brightness(1.1); /* Чуть светлеет при наведении */
+  transform: translateY(-1px);
+}
