@@ -527,24 +527,7 @@ body {
   opacity: 0.4;
   cursor: not-allowed;
 }
-.modal-close:not(:disabled):hover { color: var(--text); }
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .features-grid { grid-template-columns: 1fr; }
-  .tools-grid { grid-template-columns: 1fr; }
-  .hero-grid { grid-template-columns: 1fr; text-align: center; }
-  .hero-visual {
-    display: flex;
-    justify-content: center;
-    order: -1;
-  }
-  .hero-actions { justify-content: center; }
-  .sub { flex-direction: column; align-items: flex-start; }
-  .sub-actions { width: 100%; }
-  .sub-actions .btn { flex: 1; }
-  .proxy { flex-direction: column; align-items: flex-start; }
-}
+/* --- АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ (до 768px) --- */
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .features-grid { grid-template-columns: 1fr; }
@@ -558,25 +541,93 @@ body {
   }
   .hero-actions { justify-content: center; }
   
+  /* Карточки подписок на мобилке */
   .sub { flex-direction: column; align-items: stretch; gap: 10px; }
   .sub-body { min-width: 100%; }
   .sub-actions { width: 100%; display: flex; gap: 8px; }
   .sub-actions .btn { flex: 1; min-width: 0; }
   
+  /* Карточки прокси на мобилке */
   .proxy { flex-direction: column; align-items: stretch; gap: 10px; }
   .proxy-left { min-width: 100%; flex-wrap: wrap; }
   .proxy .sub-actions { width: 100%; display: flex; gap: 8px; }
   .proxy .sub-actions .btn { flex: 1; }
 }
 
-/* Делаем кнопку Telegram в модальном окне голубой */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+}
+
+/* --- КНОПКА GITHUB (СЕРЫЯ И РОВНАЯ) --- */
+.nav-ctas { 
+  display: inline-flex; 
+  gap: 8px; 
+  align-items: center; 
+}
+
+.nav-ctas .nav-cta { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 6px; 
+  padding: 6px 12px; 
+  border-radius: 8px; 
+  font-size: 0.78rem; 
+  text-decoration: none; 
+  line-height: 1; 
+}
+
+.nav-ctas .nav-cta-gh {
+  background: transparent !important; /* Убираем голубой фон */
+  color: var(--text) !important;      /* Светло-серый текст/иконка */
+  border: 1px solid var(--border-h);  /* Серая рамка */
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.nav-ctas .nav-cta-gh:hover { 
+  border-color: rgba(255,255,255,0.2); 
+  background: rgba(255,255,255,0.04) !important; 
+  transform: translateY(-1px); 
+}
+
+/* Выравнивание иконки GitHub ровно по центру */
+.nav-ctas svg { 
+  width: 16px; 
+  height: 16px; 
+  display: block; 
+  flex-shrink: 0;       
+  margin-top: 1px;      /* Опускаем иконку на 1px, чтобы встала ровно */
+  fill: currentColor;   /* Иконка берет серый цвет текста */
+}
+
+.nav-ctas .nav-cta-gh:focus { 
+  outline: 3px solid rgba(255,255,255,0.06); 
+  outline-offset: 2px; 
+  border-radius: 8px; 
+}
+
+.warp-btn { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 12px 22px; 
+}
+
+.proxy-addr { 
+  overflow-wrap: anywhere; 
+  word-break: break-word; 
+  max-width: 100%; 
+}
+
+/* --- КНОПКА TELEGRAM В МОДАЛЬНОМ ОКНЕ (ГОЛУБАЯ) --- */
 .modal-card .btn-primary {
-  background: var(--tg) !important; /* Голубой цвет Telegram (#2AABEE) */
-  box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3) !important; /* Голубое свечение */
+  background: var(--tg) !important; 
+  box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3) !important; 
   color: #fff !important;
 }
 
 .modal-card .btn-primary:hover {
-  filter: brightness(1.1); /* Чуть светлеет при наведении */
+  filter: brightness(1.1); 
   transform: translateY(-1px);
 }
