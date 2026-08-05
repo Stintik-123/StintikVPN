@@ -577,7 +577,9 @@ body {
   line-height: 1; 
 }
 
-.nav-ctas .nav-cta-gh {
+/* Перебиваем общий .nav-cta стиль с голубым фоном */
+.nav-ctas a.nav-cta-gh,
+a.nav-cta-gh {
   background: transparent !important;
   color: var(--text) !important;
   border: 1px solid var(--border-h) !important;
@@ -585,22 +587,27 @@ body {
   transition: 0.2s ease;
 }
 
-.nav-ctas .nav-cta-gh:hover { 
+.nav-ctas a.nav-cta-gh:hover,
+a.nav-cta-gh:hover { 
   border-color: rgba(255,255,255,0.2) !important;
   background: rgba(255,255,255,0.04) !important; 
   transform: translateY(-1px); 
 }
 
-/* Выравнивание иконки GitHub ровно по центру */
-.nav-ctas .nav-cta-gh svg { 
+/* Выравнивание иконки GitHub ровно по центру - убираем любые смещения */
+.nav-ctas a.nav-cta-gh svg,
+a.nav-cta-gh svg { 
   width: 16px; 
   height: 16px; 
   display: block; 
   flex-shrink: 0;       
-  fill: currentColor;   
+  fill: currentColor;
+  margin-top: 0 !important;
+  vertical-align: middle;
 }
 
-.nav-ctas .nav-cta-gh:focus { 
+.nav-ctas a.nav-cta-gh:focus,
+a.nav-cta-gh:focus { 
   outline: 3px solid rgba(255,255,255,0.06); 
   outline-offset: 2px; 
   border-radius: 8px; 
