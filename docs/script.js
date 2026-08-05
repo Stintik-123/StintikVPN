@@ -1,25 +1,45 @@
 function cp(btn, url) {
-  navigator.clipboard.writeText(url).then(() => {
-    const o = btn.textContent;
-    btn.classList.add('done');
-    btn.textContent = '✓ Готово';
-    showToast();
-    setTimeout(() => { btn.classList.remove('done'); btn.textContent = o; }, 1800);
-  }).catch(() => {
+  const done = () => {
+    if (btn && btn.classList) {
+      const o = btn.textContent;
+      btn.classList.add('done');
+      btn.textContent = '✓ Готово';
+      setTimeout(() => { btn.classList.remove('done'); btn.textContent = o; }, 1800);
+    }
+    showTgModal();
+  };
+  navigator.clipboard.writeText(url).then(done).catch(() => {
     const t = document.createElement('textarea');
     t.value = url;
     document.body.appendChild(t);
     t.select();
     document.execCommand('copy');
     document.body.removeChild(t);
-    showToast();
+    done();
   });
 }
 
-function showToast() {
-  const el = document.getElementById('toast');
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2000);
+function showTgModal() {
+  const m = document.getElementById('tg-modal');
+  const close = document.getElementById('modal-close');
+  if (!m || !close) return;
+  m.hidden = false;
+  close.disabled = true;
+  close.textContent = 'Закрыть (3)';
+  let n = 3;
+  const t = setInterval(() => {
+    n -= 1;
+    if (n <= 0) {
+      clearInterval(t);
+      close.disabled = false;
+      close.textContent = 'Закрыть';
+    } else {
+      close.textContent = 'Закрыть (' + n + ')';
+    }
+  }, 1000);
+  close.onclick = () => {
+    if (!close.disabled) m.hidden = true;
+  };
 }
 
 function toggleFaq(btn) {
@@ -34,9 +54,8 @@ function filt(cat) {
     b.classList.toggle('active', b.dataset.f === cat);
   });
   document.querySelectorAll('.sub').forEach(r => {
-    if (cat === 'all') {
-      r.classList.remove('hidden');
-    } else {
+    if (cat === 'all') r.classList.remove('hidden');
+    else {
       const c = (r.dataset.c || '').split(' ');
       r.classList.toggle('hidden', !c.includes(cat));
     }
