@@ -558,7 +558,7 @@ body {
   .container { padding: 0 16px; }
 }
 
-/* --- КНОПКА GITHUB (СЕРЫЯ И РОВНАЯ) --- */
+/* --- КНОПКА GITHUB (СЕРЫЙ И РОВНЫЙ) --- */
 .nav-ctas { 
   display: inline-flex; 
   gap: 8px; 
@@ -578,27 +578,26 @@ body {
 }
 
 .nav-ctas .nav-cta-gh {
-  background: transparent !important; /* Убираем голубой фон */
-  color: var(--text) !important;      /* Светло-серый текст/иконка */
-  border: 1px solid var(--border-h);  /* Серая рамка */
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border-h) !important;
   font-weight: 600;
   transition: 0.2s ease;
 }
 
 .nav-ctas .nav-cta-gh:hover { 
-  border-color: rgba(255,255,255,0.2); 
+  border-color: rgba(255,255,255,0.2) !important;
   background: rgba(255,255,255,0.04) !important; 
   transform: translateY(-1px); 
 }
 
 /* Выравнивание иконки GitHub ровно по центру */
-.nav-ctas svg { 
+.nav-ctas .nav-cta-gh svg { 
   width: 16px; 
   height: 16px; 
   display: block; 
   flex-shrink: 0;       
-  margin-top: 1px;      /* Опускаем иконку на 1px, чтобы встала ровно */
-  fill: currentColor;   /* Иконка берет серый цвет текста */
+  fill: currentColor;   
 }
 
 .nav-ctas .nav-cta-gh:focus { 
