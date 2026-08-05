@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StintikVPN — Интернет свобода ближе чем кажется</title>
-  <meta name="description" content="Сборник лучших бесплатных VPN-подписок. Скопируй ссылку, вставь в клиент и пользуйся." />
+  <meta name="description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI." />
   <meta name="theme-color" content="#060608" />
+  <meta property="og:title" content="StintikVPN" />
+  <meta property="og:description" content="Интернет свобода ближе чем кажется" />
+  <link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,27 +17,34 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <div class="logo-mark">⚡</div>
+      <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="" />
       StintikVPN
     </a>
     <div class="nav-links">
-      <a href="#features">Подписки</a>
+      <a href="#subs">Подписки</a>
       <a href="#clients">Клиенты</a>
+      <a href="#tools">Инструменты</a>
       <a href="#proxies">Прокси</a>
+      <a href="#warp">WARP</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+    <a href="https://t.me/StintikVPN" target="_blank" rel="noopener" class="nav-cta">Telegram</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="container">
-    <div class="hero-label">Бесплатные VPN-подписки</div>
-    <h1>Интернет свобода<br><span class="grad">ближе чем кажется</span></h1>
-    <p class="hero-desc">Скопируй ссылку, вставь в клиент — и готово. Без настройки, без оплаты, без лишнего.</p>
-    <div class="hero-actions">
-      <a href="#subs" class="btn btn-primary">Выбрать подписку</a>
-      <a href="#clients" class="btn btn-secondary">Скачать клиент</a>
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Интернет свобода<br><span class="grad">ближе чем кажется</span></h1>
+      <div class="hero-actions">
+        <a href="#subs" class="btn btn-primary">Выбрать подписку</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="ring">
+        <div class="ring-spin"></div>
+        <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="" />
+      </div>
     </div>
   </div>
 </section>
@@ -45,40 +56,30 @@
         <div class="feature-glow"></div>
         <div class="feature-icon">🏴</div>
         <h3>Чёрные списки</h3>
-        <p>Для домашнего Wi-Fi, кабеля и обычного 4G без жёстких блокировок</p>
+        <p>Домашний Wi‑Fi, кабель, обычный 4G</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('black')">Смотреть →</button>
       </div>
       <div class="feature">
         <div class="feature-glow"></div>
         <div class="feature-icon">🏳️</div>
         <h3>Белые списки</h3>
-        <p>Для жёстких блокировок РКН на мобильном интернете (МТС, Билайн, Tele2)</p>
+        <p>Жёсткие блокировки РКН на мобильном</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('white')">Смотреть →</button>
-      </div>
-      <div class="feature">
-        <div class="feature-glow"></div>
-        <div class="feature-icon">📱</div>
-        <h3>Для телефонов</h3>
-        <p>Лучшие сервера специально для мобильных — Black Mobile</p>
-        <button class="btn btn-sm btn-ghost" onclick="filt('mobile')">Смотреть →</button>
       </div>
       <div class="feature">
         <div class="feature-glow"></div>
         <div class="feature-icon">⚡</div>
         <h3>По протоколам</h3>
-        <p>VLESS, VMess, Trojan, Shadowsocks — под любую задачу</p>
+        <p>VLESS, VMess, Trojan, Shadowsocks</p>
         <button class="btn btn-sm btn-ghost" onclick="filt('proto')">Смотреть →</button>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="metrics">
-  <div class="container">
-    <div class="metrics-row">
-      <div class="metric"><div class="metric-val">10+</div><div class="metric-label">Подписок</div></div>
-      <div class="metric"><div class="metric-val">6</div><div class="metric-label">Платформ</div></div>
-      <div class="metric"><div class="metric-val">4</div><div class="metric-label">Протокола</div></div>
+      <div class="feature">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">🛠️</div>
+        <h3>Инструменты</h3>
+        <p>Speedtest, 2ip, дешифратор, Clash</p>
+        <a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -86,45 +87,44 @@
 <section class="section" id="subs">
   <div class="container">
     <div class="section-head">
-      <h2>Все подписки</h2>
-      <p>Скопируй ссылку и добавь в VPN-клиент</p>
+      <h2>Подписки</h2>
+      <p>Скопируй ссылку и добавь в клиент</p>
     </div>
     <div class="filters">
       <button class="filter active" data-f="all" onclick="filt('all')">Все</button>
       <button class="filter" data-f="black" onclick="filt('black')">Чёрные</button>
       <button class="filter" data-f="white" onclick="filt('white')">Белые</button>
-      <button class="filter" data-f="mobile" onclick="filt('mobile')">Мобильные</button>
       <button class="filter" data-f="proto" onclick="filt('proto')">Протоколы</button>
     </div>
     <div class="sub-list">
       <div class="sub" data-c="black">
         <span class="sub-tag tag-black">Чёрный</span>
-        <div class="sub-body"><h4>Чёрный список (основной)</h4><span>Основная подписка для обычного интернета</span></div>
+        <div class="sub-body"><h4>Чёрный список (основной)</h4><span>Основная подписка</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="black">
-        <span class="sub-tag tag-black">Чёрный</span>
-        <div class="sub-body"><h4>Чёрный список (запасной)</h4><span>Резерв, если основная недоступна</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://vpn.akres.fun/all')">Скопировать</button></div>
-      </div>
-      <div class="sub" data-c="mobile black">
-        <span class="sub-tag tag-best">Лучшее</span>
-        <div class="sub-body"><h4>Black Mobile</h4><span>Лучшие сервера специально для телефонов</span></div>
+        <span class="sub-tag tag-black">Mobile</span>
+        <div class="sub-body"><h4>Black Mobile</h4><span>Для телефонов — KvRuVPN</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Скопировать</button></div>
+      </div>
+      <div class="sub" data-c="black">
+        <span class="sub-tag tag-black">Чёрный</span>
+        <div class="sub-body"><h4>Чёрный список (запасной)</h4><span>Akres VPN</span></div>
+        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="white">
         <span class="sub-tag tag-white">Белый</span>
-        <div class="sub-body"><h4>Белые списки (основные)</h4><span>Для жёстких блокировок РКН</span></div>
+        <div class="sub-body"><h4>Белые списки (основные)</h4><span>Для жёстких блокировок</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="white">
         <span class="sub-tag tag-white">CIDR</span>
-        <div class="sub-body"><h4>Белые списки (CIDR)</h4><span>Фильтр по IP — если SNI не работает</span></div>
+        <div class="sub-body"><h4>Белые списки (CIDR)</h4><span>Фильтр по IP</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="white">
         <span class="sub-tag tag-white">SNI</span>
-        <div class="sub-body"><h4>Белые списки (SNI)</h4><span>Фильтр по доменам — если CIDR не работает</span></div>
+        <div class="sub-body"><h4>Белые списки (SNI)</h4><span>Фильтр по доменам</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="proto">
@@ -134,7 +134,7 @@
       </div>
       <div class="sub" data-c="proto">
         <span class="sub-tag tag-proto">VMess</span>
-        <div class="sub-body"><h4>VMess</h4><span>Самый надёжный протокол</span></div>
+        <div class="sub-body"><h4>VMess</h4><span>Надёжный протокол</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/vmess')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="proto">
@@ -143,8 +143,8 @@
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/trojan')">Скопировать</button></div>
       </div>
       <div class="sub" data-c="proto">
-        <span class="sub-tag tag-proto">Shadowsocks</span>
-        <div class="sub-body"><h4>Shadowsocks</h4><span>Максимальная скорость — для игр</span></div>
+        <span class="sub-tag tag-proto">SS</span>
+        <div class="sub-body"><h4>Shadowsocks</h4><span>Для скорости и игр</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/ss')">Скопировать</button></div>
       </div>
     </div>
@@ -155,32 +155,72 @@
   <div class="container">
     <div class="section-head">
       <h2>Клиенты</h2>
-      <p>Выбери под своё устройство</p>
+      <p>Два варианта на платформу</p>
     </div>
-    <div class="clients-grid">
-      <a class="client" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
-        <div class="client-icon">💻</div>
-        <div><h4>Windows</h4><span>Hiddify / v2rayN</span></div>
+    <div class="table-wrap">
+      <table class="cli-table">
+        <thead>
+          <tr><th>Устройство</th><th>Клиент 1</th><th>Клиент 2</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Windows</td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td>
+            <td><a href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">v2rayN</a></td>
+          </tr>
+          <tr>
+            <td>Android</td>
+            <td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank" rel="noopener">Hiddify</a></td>
+            <td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">v2rayNG</a></td>
+          </tr>
+          <tr>
+            <td>iPhone / iPad</td>
+            <td><a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">Streisand</a></td>
+            <td><a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank" rel="noopener">V2Box</a></td>
+          </tr>
+          <tr>
+            <td>macOS</td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td>
+            <td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener">Clash Verge</a></td>
+          </tr>
+          <tr>
+            <td>Linux</td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td>
+            <td><a href="https://github.com/MatsuriDayo/nekoray/releases" target="_blank" rel="noopener">NekoRay</a></td>
+          </tr>
+          <tr>
+            <td>Android TV</td>
+            <td><a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener">NekoBox</a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-head">
+      <h2>Инструменты</h2>
+      <p>Проверка сети и работа с подписками</p>
+    </div>
+    <div class="tools-grid">
+      <a class="tool" href="https://www.speedtest.net/" target="_blank" rel="noopener">
+        <h4>Speedtest</h4>
+        <span>Проверка скорости</span>
       </a>
-      <a class="client" href="https://play.google.com/store/apps/details?id=com.glarimy.incy" target="_blank" rel="noopener">
-        <div class="client-icon">📱</div>
-        <div><h4>Android</h4><span>Incy / NekoBox</span></div>
+      <a class="tool" href="https://2ip.ru/" target="_blank" rel="noopener">
+        <h4>2ip</h4>
+        <span>IP и утечки</span>
       </a>
-      <a class="client" href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener">
-        <div class="client-icon">📺</div>
-        <div><h4>Android TV</h4><span>NekoBox</span></div>
+      <a class="tool" href="https://happ.akres.fun/" target="_blank" rel="noopener">
+        <h4>Happ decoder</h4>
+        <span>Дешифратор подписок Happ</span>
       </a>
-      <a class="client" href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">
-        <div class="client-icon">🍎</div>
-        <div><h4>iOS / iPadOS</h4><span>Streisand / V2Box</span></div>
-      </a>
-      <a class="client" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
-        <div class="client-icon">🐧</div>
-        <div><h4>Linux</h4><span>Hiddify / NekoRay</span></div>
-      </a>
-      <a class="client" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">
-        <div class="client-icon">🖥️</div>
-        <div><h4>macOS</h4><span>Hiddify / Streisand</span></div>
+      <a class="tool" href="https://acl4ssr-sub.github.io/" target="_blank" rel="noopener">
+        <h4>Clash converter</h4>
+        <span>Конвертер подписок</span>
       </a>
     </div>
   </div>
@@ -190,59 +230,57 @@
   <div class="container">
     <div class="section-head">
       <h2>Telegram-прокси</h2>
-      <p>MTProto + SOCKS5 · обновлено 27.05.2026</p>
+      <p>MTProto · 05.08.2026</p>
     </div>
     <div class="proxy-list">
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">SOCKS5</span><span class="proxy-addr">84.201.182.112:1080</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">213.219.212.4:443</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/socks?server=84.201.182.112&port=1080&user=86XFhWe7j9&pass=e4GwQtyVaZ')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/socks?server=84.201.182.112&port=1080&user=86XFhWe7j9&pass=e4GwQtyVaZ" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013" target="_blank">Открыть</a>
         </div>
       </div>
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">46.243.235.29:853</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">37.139.35.8:443</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=37.139.35.8&port=443&secret=ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=37.139.35.8&port=443&secret=ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d" target="_blank">Открыть</a>
         </div>
       </div>
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">de4.kael.fuckrkn.net:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">45.12.239.10:443</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=de4.kael.fuckrkn.net&port=443&secret=ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=de4.kael.fuckrkn.net&port=443&secret=ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=45.12.239.10&port=443&secret=ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=45.12.239.10&port=443&secret=ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275" target="_blank">Открыть</a>
         </div>
       </div>
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">mtp1.sosproxy.space:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">proxy.vmelectronics.ru:443</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477" target="_blank">Открыть</a>
         </div>
       </div>
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">adsl.myrka.digital:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">146.185.242.186:443</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c" target="_blank">Открыть</a>
-        </div>
-      </div>
-      <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">95.163.176.204:2083</span></div>
-        <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368" target="_blank">Открыть</a>
-        </div>
-      </div>
-      <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">89.169.32.31:2083</span></div>
-        <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=146.185.242.186&port=443&secret=ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=146.185.242.186&port=443&secret=ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275" target="_blank">Открыть</a>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="warp">
+  <div class="container">
+    <div class="section-head">
+      <h2>WARP-конфиги</h2>
+      <p>Файлы тяжёлые для сайта — всё лежит в Telegram</p>
+    </div>
+    <a class="warp-btn" href="https://t.me/StintikWarp" target="_blank" rel="noopener">
+      Открыть в Telegram · @StintikWarp
+    </a>
   </div>
 </section>
 
@@ -250,12 +288,11 @@
   <div class="container">
     <div class="section-head">
       <h2>Частые вопросы</h2>
-      <p>Коротко и по делу</p>
     </div>
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Подписка не работает или медленно<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Обнови подписку в клиенте. Смени протокол или сервер. Иногда помогает перезапуск или смена сети.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Обнови подписку в клиенте. Смени сервер или протокол. Перезапусти клиент или смени сеть.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Как часто обновляются конфиги?<span class="faq-icon">+</span></button>
@@ -267,15 +304,15 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Какой клиент для новичка?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — Windows и Android. На iOS — <strong>Streisand</strong>.</div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — Windows, Android, macOS, Linux. <strong>Streisand</strong> — iPhone.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не работает<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Прокси часто умирают. Пробуй следующий из списка.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Прокси часто отваливаются. Попробуй следующий из списка.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Можно на нескольких устройствах?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Да, большинство подписок это поддерживают.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Да, у большинства подписок — да.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Это безопасно?<span class="faq-icon">+</span></button>
@@ -291,23 +328,8 @@
       <div class="icon">⚠️</div>
       <div>
         <h3>Важное предупреждение</h3>
-        <p>Конфиги из открытых источников. Работоспособность не гарантируется. Запрещено использовать в противоправных целях. Автор не несёт ответственности.</p>
+        <p>Конфиги из открытых источников. Работоспособность не гарантируется. Запрещено использовать в противоправных целях.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:16px;padding-bottom:48px">
-  <div class="container">
-    <div class="section-head">
-      <h2>Зеркала</h2>
-      <p>На случай блокировки GitHub</p>
-    </div>
-    <div class="mirrors-row">
-      <a class="mirror" href="https://gitlab.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitLab</a>
-      <a class="mirror" href="https://gitverse.ru/Stintik-123/StintikHub" target="_blank" rel="noopener">GitVerse</a>
-      <a class="mirror" href="https://codeberg.org/Stintik-123/StintikVPN" target="_blank" rel="noopener">Codeberg</a>
-      <a class="mirror" href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
@@ -316,13 +338,21 @@
   <div class="container footer-inner">
     <div class="footer-text">StintikVPN — сделано людьми для людей</div>
     <div class="footer-links">
+      <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">@StintikVPN</a>
       <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/Stintik-123/StintikVPN/blob/main/README.md" target="_blank" rel="noopener">README</a>
     </div>
   </div>
 </footer>
 
-<div class="toast" id="toast">✓ Скопировано</div>
+<div class="modal" id="tg-modal" hidden>
+  <div class="modal-card">
+    <p class="modal-title">Подписка скопирована</p>
+    <p class="modal-text">Подпишись на канал разработки — там обновления и новости проекта</p>
+    <a class="btn btn-primary" href="https://t.me/StintikVPN" target="_blank" rel="noopener">@StintikVPN</a>
+    <button class="modal-close" id="modal-close" disabled>Закрыть</button>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
