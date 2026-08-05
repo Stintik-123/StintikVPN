@@ -545,26 +545,26 @@ body {
   .sub-actions .btn { flex: 1; }
   .proxy { flex-direction: column; align-items: flex-start; }
 }
-@media (max-width: 480px) {
-  .container { padding: 0 16px; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    order: -1;
+  }
+  .hero-actions { justify-content: center; }
+  
+  .sub { flex-direction: column; align-items: stretch; gap: 10px; }
+  .sub-body { min-width: 100%; }
+  .sub-actions { width: 100%; display: flex; gap: 8px; }
+  .sub-actions .btn { flex: 1; min-width: 0; }
+  
+  .proxy { flex-direction: column; align-items: stretch; gap: 10px; }
+  .proxy-left { min-width: 100%; flex-wrap: wrap; }
+  .proxy .sub-actions { width: 100%; display: flex; gap: 8px; }
+  .proxy .sub-actions .btn { flex: 1; }
 }
-
-/* Keep only minimal visual changes: icons and CTA styling — no layout/responsiveness overrides */
-.nav-ctas { display: inline-flex; gap: 8px; align-items: center; }
-.nav-ctas .nav-cta { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; font-size: 0.78rem; text-decoration: none; line-height: 1; }
-.nav-ctas .nav-cta-gh {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 6px 12px;
-  font-weight: 600;
-}
-.nav-ctas .nav-cta-gh:hover { border-color: var(--border-h); transform: translateY(-1px); transition: .12s; }
-
-.nav-ctas svg { width: 16px; height: 16px; display: block; }
-
-.warp-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; }
-
-.nav-ctas .nav-cta-gh:focus { outline: 3px solid rgba(255,255,255,0.06); outline-offset: 2px; border-radius: 8px; }
-
-.proxy-addr { overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
