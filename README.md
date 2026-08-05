@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square" alt="Stars">
 </p>
 
-**StintikVPN** — сборник бесплатных VPN-подписок. Скопируй ссылку → вставь в клиент → пользуйся.
+**StintikVPN** — сборник бесплатных VPN-подписок. Скопируйте ссылку → вставьте в клиент → пользуйтесь.
 
 ---
 
@@ -30,6 +30,7 @@
 - [🛠️ Протоколы](#-протоколы)
 - [📦 VPN-подписки](#-vpn-подписки)
 - [🤖 Telegram-прокси](#-telegram-прокси)
+- [🛡️ Обход без VPN](#-обход-без-vpn)
 - [🧅 Tor-мосты](#tor-мосты)
 - [🔗 Зеркала](#-зеркала)
 - [❓ FAQ](#-faq)
@@ -40,10 +41,10 @@
 
 ## 🚀 Как пользоваться
 
-1. Скачай клиент под своё устройство (таблица ниже).
-2. Скопируй ссылку из раздела **VPN-подписки**.
-3. В клиенте: **Добавить подписку** / **Импорт из буфера**.
-4. Обнови список → **Пинг** → выбери живой сервер → подключись.
+1. Скачайте клиент под ваше устройство (см. таблицу ниже).
+2. Скопируйте ссылку из раздела **VPN‑подписки**.
+3. В клиенте выберите «Добавить подписку» или «Импорт из буфера».
+4. Обновите список → выполните Ping → выберите рабочий сервер → подключитесь.
 
 ---
 
@@ -73,10 +74,10 @@
 
 ## 📡 SNI и CIDR
 
-- **SNI** — фильтр по именам сайтов (`youtube.com`)
-- **CIDR** — фильтр по IP-диапазонам (`173.194.0.0/16`)
+- **SNI** — фильтр по именам сайтов (например: youtube.com)
+- **CIDR** — фильтр по IP‑диапазонам (например: 173.194.0.0/16)
 
-Не работает SNI → бери CIDR. Не работает CIDR → бери SNI. 
+Если SNI не работает — попробуйте CIDR. Если CIDR не работает — попробуйте SNI.
 
 ---
 
@@ -84,14 +85,14 @@
 
 | Протокол | Суть |
 |:---------|:-----|
-| **VLESS** | Скорость и маскировка (Сейчас активно блокируется РКН) |
+| **VLESS** | Скорость и маскировка (в настоящее время может блокироваться) |
 | **Trojan** | Маскировка под HTTPS |
-| **VMess** | Самый надёжный |
-| **Shadowsocks** | Самый быстрый, лучший для игр |
+| **VMess** | Надёжный и проверенный |
+| **Shadowsocks** | Быстрейший, подходит для игр |
 
 ---
 
-## 📦 VPN-подписки
+## 📦 VPN‑подписки
 
 ### 🏴 Чёрный список (основной)
 ```
@@ -123,21 +124,13 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 ```
 
-### По протоколам
-| Протокол | Ссылка |
-|:---------|:-------|
-| VLESS | https://mifa.world/vless |
-| VMess | https://mifa.world/vmess |
-| Trojan | https://mifa.world/trojan |
-| Shadowsocks | https://mifa.world/ss |
-
 ---
 
-## 🤖 Telegram-прокси
+## 🤖 Telegram‑прокси
 
 > Обновлено: **05.08.2026**
 
-Скопируй ссылку и открой в Telegram.
+Скопируйте ссылку и откройте в Telegram.
 
 1. `213.219.212.4:443`  
    https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013
@@ -156,68 +149,52 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 
 ---
 
-## 🧅 Tor-мосты
+## 🛡️ Обход без VPN (ByeDPI, zapret, tgwsproxy)
 
-Для любителей пользоваться браузером Tor есть вариант проверенный временем, всеми любимые Tor-мосты, тут только лучшие 
+Иногда блокировки можно обойти и без VPN с помощью инструментов, обходящих DPI. Ниже приведены краткие инструкции по трём популярным решениям.
 
-| Список | Ссылка |
-|:-------|:-------|
-| Топ-100 | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt |
-| Все | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt |
-| Vanilla | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_VANILLA.txt |
-| obfs4 | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_OBFS4.txt |
-| WebTunnel | https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_WEBTUNNEL.txt |
+### Zapret‑discord‑youtube (Windows)
+1. Перейдите на страницу репозитория Zapret‑discord‑youtube и скачайте релиз из раздела Releases.
+2. Распакуйте архив и запустите файл `service` (или соответствующий исполняемый файл).
+3. Выберите режим запуска «Run Tests», затем выберите все `.bat` файлы для проверки.
+4. После проверки запустите подходящий скрипт; если требуется — установите в автозапуск через опцию Install Service.
 
-Инструкуия как начать:
+> Примечание: инструкции и названия файлов в релизе могут отличаться — следуйте описанию в репозитории проекта.
 
-Скачай [Tor Browser](https://www.torproject.org/download/) → Настройки → Мосты → вставь строки из списка.
+### ByeByeDPI (Windows / Android)
+1. Скачайте apk/исполняемый файл из репозитория ByeByeDPI.
+2. Установите приложение (на Android — установите apk, на Windows — распакуйте и запустите исполняемый файл).
+3. В приложении выполните тесты (если предусмотрено), выберите профиль с наибольшим совпадением и включите обход.
+4. При необходимости настройте автозапуск.
+
+> Примечание: поведение инструмента зависит от ОС и конфигурации сети.
+
+### TG‑WS‑Proxy (локальный прокси для Telegram)
+1. Скачайте сборку из репозитория Flowseal/tg-ws-proxy.
+2. Запустите исполняемый файл `tgwsproxy.exe` или соответствующий скрипт на вашей платформе.
+3. Следуйте инструкции проекта для настройки и подключения клиента Telegram через локальный прокси.
 
 ---
 
-## 🛡️ Обход без VPN (ByeDPI, zapret, tgwsproxy)
+## 🧅 Tor‑мосты
 
-Иногда блокировки можно обойти и без VPN с помощью средств обходящих DPI блокировку
+Для использования Tor Browser:
 
-| Инструмент | Для чего | Ссылка |
-|:-----------|:---------|:-------|
-| **zapret** | Ютуб, Дискорд | [bol-van/zapret](https://github.com/bol-van/zapret) |
-| **ByeByeDPI** | Ютуб, на некоторых устройствах ещё и дискорд| [ByeByeDPI](https://github.com/romanvht/ByeByeDPI) · [byedpi](https://github.com/hufrea/byedpi) |
-| **TG WS Proxy** | Локальный прокси для телеграмма, также есть версия на Android скину ниже| [Flowseal/tg-ws-proxy](https://github.com/Flowseal/tg-ws-proxy) |
+1. Скачайте [Tor Browser](https://www.torproject.org/download/).
+2. Откройте «Настройки» → «Мосты» → вставьте строки из списка.
 
-Инструкции по установке:
+Списки мостов:
+- Топ-100: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt  
+- Все: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt  
+- Vanilla: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_VANILLA.txt  
+- obfs4: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_OBFS4.txt
 
-## Zapret-discord-youtube
-1. Заходим на страницу репозитория и скачиваем zapret-discord-youtube с раздела Releases, на телефонах он в самом низу репозитория, на ПК он справа
-
-2. Заходим в папку и находим файл service, нажимаем и выбираем вариант Run Tests, после выбираем все bat-файлы, после ждём и после теста всех батников выдаст лучший рабочий на этом устройстве
-
-3. Нажимаем на него, он откроется в фоне и Дискорд с ютубом заработают
-
-4. Если захотите установить его в автозапуск опять зайдите в файл service и выберите вариант Install Service после чего выберите нужный bat файл и... Готово 
-
-## ByeByeDpi 
-
-1. Скачиваем apk файл прямо с репозитория
-
-2. Нажимаем на него и устанавливаем приложение, запускаем его после нажимаем подбор и нажимаем начать запуск
-
-3. После теста нажимаем на тот у которого больше всего совпадений (Для примера 8/50 это плохо, 48/50 это хорошо) и нажимаем применить
-
-4. Выходим в главное меню, нажимаем большую кнопку включения и пользуемся
-
-## TGWSPROXY 
-
-1. Устанавливаем программу с репозитория
-
-2. Запускаем tgwsproxy.exe
-
-3. Следуем инструкции 
 ---
 
 ## 🔗 Зеркала
 
-- [GitLab](https://gitlab.com/Stintik-123/StintikVPN)
-- [GitVerse](https://gitverse.ru/Stintik-123/StintikHub)
+- [GitLab](https://gitlab.com/Stintik-123/StintikVPN)  
+- [GitVerse](https://gitverse.ru/Stintik-123/StintikHub)  
 - [Codeberg](https://codeberg.org/Stintik-123/StintikVPN)
 
 ---
@@ -227,45 +204,51 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 <details>
 <summary><strong>Подписка не работает / очень медленно</strong></summary>
 
-Обновите подписку в клиенте. Смените сервер или протокол. Перезапустите клиент или смените сеть (Wi‑Fi ↔ мобильный).
+Обновите подписку в клиенте. Смените сервер или протокол. Перезапустите клиент или смените сеть (Wi‑Fi ↔ мобильная сеть).
 </details>
 
 <details>
 <summary><strong>Как часто обновляются конфиги?</strong></summary>
 
-Ежедневно их создателями. Ссылки в README всегда актуальные.
+Конфиги обновляются ежедневно их авторами. Ссылки в README всегда актуальны.
 </details>
 
 <details>
 <summary><strong>Когда нужны белые списки?</strong></summary>
 
-Когда оператор включил «белые списки» РКН и обычные сайты не открываются.
+Когда оператор включает «белые списки» РКН и обычные сайты перестают открываться.
 </details>
 
 <details>
 <summary><strong>Прокси Telegram не подключается</strong></summary>
 
-Прокси часто отваливаются. Попробуйте следующий из списка
+Прокси часто отключаются. Попробуйте другой прокси из списка.
+</details>
+
+<details>
+<summary><strong>Какой клиент для новичка?</strong></summary>
+
+**Hiddify** — самый простой вариант для Windows и Android. На iOS — **Streisand**.
 </details>
 
 <details>
 <summary><strong>Это безопасно?</strong></summary>
 
-Конфиги взяты из открытых источников и могут быть не безопасны, крайне не советую заходить через них в банки или важные аккаунты
+Конфиги взяты из открытых источников и могут быть небезопасны. Не передавайте через них критичные данные (банковские аккаунты, пароли).
 </details>
 
 ---
 
 ## ⚠️ Предупреждение
 
-Конфиги из открытых источников Работоспособность **не гарантируется**.  
+Конфиги из открытых источников. Работоспособность **не гарантируется**.  
 Запрещено использовать в противоправных целях. Автор не несёт ответственности за ваши действия.
 
 ---
 
 ## 💰 Поддержать
 
-Поставь ⭐ на репозиторий — бесплатно и сильно помогает проекту.
+Поставьте ⭐ на репозиторий — бесплатно и сильно помогает проекту.
 
 Канал разработки: [@StintikVPN](https://t.me/StintikVPN)
 
