@@ -85,10 +85,10 @@
 
 | Протокол | В каком случае лучше использовать|
 |:---------|:-----|
-| **VLESS** | Хотите лучший на данный момент протокол но готовы потерпеть что иногда будет не работать так как в настоящее время активно блокируется РКН|
+| **VLESS** | Хотите лучший на данный момент протокол, но готовы потерпеть, что иногда будет не работать, так как в настоящее время активно блокируется РКН |
 | **Trojan** | Хотите средний по всем параметрам протокол |
-| **VMess** | Хотите самый надёжный протокол который легко не работает|
-| **Shadowsocks** | Хотите быстрейший протокол (Лучший для онлайн игр)|
+| **VMess** | Хотите самый надёжный протокол, который редко отваливается |
+| **Shadowsocks** | Хотите быстрейший протокол (Лучший для онлайн игр) |
 
 ---
 
@@ -96,7 +96,7 @@
 
 ### 🏴 Чёрный список (основной)
 ```
-https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
+https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all
 ```
 
 ### 👑 Black Mobile (для телефонов)
@@ -104,14 +104,9 @@ https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/con
 https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
 ```
 
-### 🏴 Чёрный список (запасной)
-```
-https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all
-```
-
 ### 🏳️ Белые списки (основные)
 ```
-https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
+https://raw.githubusercontent.com/flaafix/AetrisVPN-white-list-lite/refs/heads/main/AetrisVPN.txt
 ```
 
 ### Белые списки (CIDR)
@@ -128,24 +123,33 @@ https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main
 
 ## 🤖 Telegram‑прокси
 
-> Обновлено: **05.08.2026**
+> Обновлено: **25.08.2026**
 
-Скопируйте ссылку и откройте в Telegram.
+Скопируйте ссылку и откройте в Telegram:
 
-1. `213.219.212.4:443`  
-   https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013
+1. **path.mtproxy.pw**  
+https://t.me/proxy?server=path.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-2. `37.139.35.8:443`  
-   https://t.me/proxy?server=37.139.35.8&port=443&secret=ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d
+2. **bridge.mtproxy.pw**  
+https://t.me/proxy?server=bridge.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-3. `45.12.239.10:443`  
-   https://t.me/proxy?server=45.12.239.10&port=443&secret=ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275
+3. **entry.mtproxy.pw**  
+https://t.me/proxy?server=entry.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-4. `proxy.vmelectronics.ru:443`  
-   https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477
+4. **open.mtproxy.pw**  
+https://t.me/proxy?server=open.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-5. `146.185.242.186:443`  
-   https://t.me/proxy?server=146.185.242.186&port=443&secret=ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275
+5. **online.mtproxy.pw**  
+https://t.me/proxy?server=online.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
+
+6. **safe.mtproxy.pw**  
+https://t.me/proxy?server=safe.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
+
+7. **private.mtproxy.pw**  
+https://t.me/proxy?server=private.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
+
+8. **public.mtproxy.pw**  
+https://t.me/proxy?server=public.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
 ---
 
