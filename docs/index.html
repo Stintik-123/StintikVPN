@@ -29,9 +29,7 @@
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-ctas">
-      <!-- Единственный CTA: GitHub (заменяет Telegram) -->
       <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta nav-cta-gh" aria-label="GitHub">
-        <!-- GitHub icon -->
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 .5C5.73.5.76 5.47.76 11.74c0 4.93 3.19 9.11 7.63 10.59.56.1.76-.24.76-.54 0-.27-.01-1.17-.02-2.12-3.1.67-3.76-1.41-3.76-1.41-.5-1.28-1.22-1.62-1.22-1.62-.99-.68.08-.67.08-.67 1.09.08 1.67 1.12 1.67 1.12.98 1.67 2.57 1.19 3.2.91.1-.71.38-1.19.69-1.46-2.47-.28-5.06-1.24-5.06-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.4.11-2.92 0 0 .94-.3 3.08 1.15.89-.25 1.84-.38 2.79-.38.95 0 1.9.13 2.79.38 2.14-1.45 3.08-1.15 3.08-1.15.61 1.52.23 2.64.11 2.92.71.78 1.15 1.78 1.15 3 0 4.29-2.6 5.23-5.08 5.51.39.34.73 1.01.73 2.04 0 1.48-.01 2.67-.01 3.03 0 .3.2.65.77.54C19.05 20.85 22.24 16.67 22.24 11.74 22.24 5.47 17.27.5 12 .5z"/>
         </svg>
@@ -77,13 +75,6 @@
       </div>
       <div class="feature">
         <div class="feature-glow"></div>
-        <div class="feature-icon">⚡</div>
-        <h3>По протоколам</h3>
-        <p>VLESS, VMess, Trojan, Shadowsocks</p>
-        <button class="btn btn-sm btn-ghost" onclick="filt('proto')">Смотреть →</button>
-      </div>
-      <div class="feature">
-        <div class="feature-glow"></div>
         <div class="feature-icon">🛠️</div>
         <h3>Инструменты</h3>
         <p>Speedtest, 2ip, дешифратор happ, Clash converter</p>
@@ -94,7 +85,6 @@
 </section>
 
 <section class="section" id="subs">
-<section class="section" id="subs">
   <div class="container">
     <div class="section-head">
       <h2>Подписки</h2>
@@ -104,14 +94,13 @@
       <button class="filter active" data-f="all" onclick="filt('all')">Все</button>
       <button class="filter" data-f="black" onclick="filt('black')">Чёрные</button>
       <button class="filter" data-f="white" onclick="filt('white')">Белые</button>
-      <button class="filter" data-f="proto" onclick="filt('proto')">Протоколы</button>
     </div>
     <div class="sub-list">
       
       <div class="sub" data-c="black">
         <span class="sub-tag tag-black">Чёрный</span>
-        <div class="sub-body"><h4>Чёрный список (основной)</h4><span>Основная подписка</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt')">Скопировать</button></div>
+        <div class="sub-body"><h4>Чёрный список (основной)</h4><span>Akres VPN</span></div>
+        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all')">Скопировать</button></div>
       </div>
 
       <div class="sub" data-c="black">
@@ -120,16 +109,10 @@
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Скопировать</button></div>
       </div>
 
-      <div class="sub" data-c="black">
-        <span class="sub-tag tag-black">Чёрный</span>
-        <div class="sub-body"><h4>Чёрный список (запасной)</h4><span>Akres VPN</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all')">Скопировать</button></div>
-      </div>
-
       <div class="sub" data-c="white">
         <span class="sub-tag tag-white">Белый</span>
         <div class="sub-body"><h4>Белые списки (основные)</h4><span>Для жёстких блокировок</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt')">Скопировать</button></div>
+        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/flaafix/AetrisVPN-white-list-lite/refs/heads/main/AetrisVPN.txt')">Скопировать</button></div>
       </div>
 
       <div class="sub" data-c="white">
@@ -142,30 +125,6 @@
         <span class="sub-tag tag-white">SNI</span>
         <div class="sub-body"><h4>Белые списки (SNI)</h4><span>Фильтр по доменам</span></div>
         <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">Скопировать</button></div>
-      </div>
-
-      <div class="sub" data-c="proto">
-        <span class="sub-tag tag-proto">VLESS</span>
-        <div class="sub-body"><h4>VLESS</h4><span>Скорость и маскировка</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/vless')">Скопировать</button></div>
-      </div>
-
-      <div class="sub" data-c="proto">
-        <span class="sub-tag tag-proto">VMess</span>
-        <div class="sub-body"><h4>VMess</h4><span>Надёжный протокол</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/vmess')">Скопировать</button></div>
-      </div>
-
-      <div class="sub" data-c="proto">
-        <span class="sub-tag tag-proto">Trojan</span>
-        <div class="sub-body"><h4>Trojan</h4><span>Маскировка под HTTPS</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/trojan')">Скопировать</button></div>
-      </div>
-
-      <div class="sub" data-c="proto">
-        <span class="sub-tag tag-proto">SS</span>
-        <div class="sub-body"><h4>Shadowsocks</h4><span>Для скорости и игр</span></div>
-        <div class="sub-actions"><button class="btn btn-sm btn-copy" onclick="cp(this,'https://mifa.world/ss')">Скопировать</button></div>
       </div>
 
     </div>
@@ -251,47 +210,71 @@
   <div class="container">
     <div class="section-head">
       <h2>Telegram-прокси</h2>
-      <p>MTProto · Обновлено 05.08.2026</p>
+      <p>MTProto · Обновлено 25.08.2026</p>
     </div>
     <div class="proxy-list">
       
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">213.219.212.4:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">path.mtproxy.pw</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=path.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=path.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
         </div>
       </div>
 
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">37.139.35.8:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">bridge.mtproxy.pw</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=37.139.35.8&port=443&secret=ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=37.139.35.8&port=443&secret=ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=bridge.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=bridge.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
         </div>
       </div>
 
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">45.12.239.10:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">entry.mtproxy.pw</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=45.12.239.10&port=443&secret=ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=45.12.239.10&port=443&secret=ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=entry.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=entry.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
         </div>
       </div>
 
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">proxy.vmelectronics.ru:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">open.mtproxy.pw</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=open.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=open.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
         </div>
       </div>
 
       <div class="proxy">
-        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">146.185.242.186:443</span></div>
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">online.mtproxy.pw</span></div>
         <div class="sub-actions">
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=146.185.242.186&port=443&secret=ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275')">Скопировать</button>
-          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=146.185.242.186&port=443&secret=ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275" target="_blank">Открыть</a>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=online.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=online.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
+        </div>
+      </div>
+
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">safe.mtproxy.pw</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=safe.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=safe.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
+        </div>
+      </div>
+
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">private.mtproxy.pw</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=private.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=private.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
+        </div>
+      </div>
+
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">public.mtproxy.pw</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=public.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=public.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
         </div>
       </div>
 
@@ -306,7 +289,6 @@
       <p>Warp файлы неудобно размещать на сайте поэтому актуальные файлы будут лежать в Телеграмме</p>
     </div>
     <a class="warp-btn" href="https://t.me/StintikWarp" target="_blank" rel="noopener">
-      <!-- Telegram icon + text -->
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="margin-right:8px;">
         <path d="M21.53 3.47c-.15-.14-.35-.22-.56-.22-.07 0-.13.01-.2.02L2.6 10.03c-.44.14-.72.58-.66 1.05.06.47.44.82.9.86l3.17.35 1.18 3.8c.12.4.49.67.9.67.06 0 .12-.01.18-.03l3.02-.93 4.96 3.57c.34.25.78.25 1.12 0 .34-.26.45-.71.28-1.09L22 4.05c-.06-.18-.18-.34-.33-.45z" fill="#fff"/>
       </svg>
@@ -359,7 +341,7 @@
       <div class="icon">⚠️</div>
       <div>
         <h3>Важное предупреждение</h3>
-        <p>Конфиги из открытых источников. Работоспособность не гарантируется. Запрещено использовать в противоправных целях нарушающие законодательство РФ
+        <p>Конфиги из открытых источников. Работоспособность не гарантируется. Запрещено использовать в противоправных целях нарушающие законодательство РФ</p>
       </div>
     </div>
   </div>
