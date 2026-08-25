@@ -22,7 +22,7 @@
 - [📡 More About White Lists: SNI & CIDR](#-more-about-white-lists-sni--cidr)
 - [🛠️ Protocols – Which One Should You Use?](#️-protocols--which-one-should-you-use)
 - [📦 VPN Subscriptions](#-vpn-subscriptions)
-- [🤖 Telegram Proxies](#-telegram-proxies-mtproto--socks5)
+- [🤖 Telegram Proxies](#-telegram-proxies)
 - [🔗 StintikVPN Mirrors](#-stintikvpn-mirrors)
 - [❓ FAQ](#-faq)
 - [⚠️ Important Warning](#️-important-warning)
@@ -45,8 +45,7 @@
 | Device | Client | Download |
 |:--|:--|:--|
 | **Windows** | Hiddify / v2rayN | [Hiddify](https://github.com/hiddify/hiddify-next/releases) / [v2rayN](https://github.com/2dust/v2rayN/releases) |
-| **Android** | Incy / NekoBox | [Incy](https://play.google.com/store/apps/details?id=com.glarimy.incy) / [NekoBox](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) |
-| **Android TV** | NekoBox (TV Version) | [NekoBox](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases) |
+| **Android** | Hiddify / v2rayNG | [Hiddify](https://play.google.com/store/apps/details?id=app.hiddify.com) / [v2rayNG](https://github.com/2dust/v2rayNG/releases) |
 | **iOS / iPadOS** | Streisand / V2Box | [Streisand](https://apps.apple.com/app/streisand/id6450534064) / [V2Box](https://apps.apple.com/app/v2box/id6443654552) |
 | **Linux** | Hiddify / NekoRay | [Hiddify](https://github.com/hiddify/hiddify-next/releases) / [NekoRay](https://github.com/MatsuriDayo/nekoray/releases) |
 | **macOS** | Hiddify / Streisand | [Hiddify](https://github.com/hiddify/hiddify-next/releases) / [Streisand](https://apps.apple.com/app/streisand/id6450534064) |
@@ -83,85 +82,69 @@ If CIDR does not work — try SNI.
 ## 📦 VPN Subscriptions
 
 ### 🏴 Black List (Main)
-https://gitverse.ru/api/repos/flaafix/AetrisVPN_Black_list/raw/branch/master/configs.txt
+```
+https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all
+```
 
-### 🏴 Black List (Backup)
-https://vpn.akres.fun/all
-
-### 👑 Black Mobile (20 BEST servers specially for phones)
+### 👑 Black Mobile (for phones)
+```
 https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
+```
 
 ### 🏳️ White Lists (Main)
-https://gitverse.ru/api/repos/flaafix/AetrisVPN/raw/branch/master/AetrisVPN.txt
+```
+https://raw.githubusercontent.com/flaafix/AetrisVPN-white-list-lite/refs/heads/main/AetrisVPN.txt
+```
 
 ### 🏳️ White Lists (CIDR)
+```
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
+```
 
 ### 🏳️ White Lists (SNI)
+```
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
+```
 
 ---
 
-## 🛠️ By Protocol
+## 🤖 Telegram Proxies
 
-- **VLESS**: https://mifa.world/vless
-- **VMess**: https://mifa.world/vmess
-- **Trojan**: https://mifa.world/trojan
-- **Shadowsocks**: https://mifa.world/ss
+> Last update: **25.08.2026**
 
----
+Copy the link and open it in Telegram:
 
-## 🤖 Telegram Proxies (MTProto + SOCKS5)
+1. **path.mtproxy.pw**  
+https://t.me/proxy?server=path.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-> Last update: **27.05.2026**
+2. **bridge.mtproxy.pw**  
+https://t.me/proxy?server=bridge.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-**Copy any link below and connect directly in Telegram**
+3. **entry.mtproxy.pw**  
+https://t.me/proxy?server=entry.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-### 1. SOCKS5
-`84.201.182.112:1080`
+4. **open.mtproxy.pw**  
+https://t.me/proxy?server=open.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-- https://t.me/socks?server=84.201.182.112&port=1080&user=86XFhWe7j9&pass=e4GwQtyVaZ
+5. **online.mtproxy.pw**  
+https://t.me/proxy?server=online.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-### 2. MTProto
-`46.243.235.29:853`
+6. **safe.mtproxy.pw**  
+https://t.me/proxy?server=safe.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-- https://t.me/proxy?server=46.243.235.29&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
+7. **private.mtproxy.pw**  
+https://t.me/proxy?server=private.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
-### 3. MTProto
-`?`
-
-- https://t.me/proxy?server=de4.kael.fuckrkn.net&port=443&secret=ee1a499af9a7a18282da82e30714402e157777772e6165726f666c6f742e7275
-
-### 4. MTProto
-`mtp1.sosproxy.space:443`
-
-- https://t.me/proxy?server=mtp1.sosproxy.space&port=443&secret=ee806bfea72377dacb92438b5f330856b464726976652e676f6f676c652e636f6d
-
-### 5. MTProto
-`adsl.myrka.digital:443`
-
-- https://t.me/proxy?server=adsl.myrka.digital&port=443&secret=ee6e2443fe7f5904ff5ceded8d76f02ea268312e6d79726b612e6469676974616c
-
-### 6. MTProto
-`95.163.176.204:2083`
-
-- https://t.me/proxy?server=95.163.176.204&port=2083&secret=ee93143b0fadcd4c8a99164fd3e819987f636f666665652e73616d6172617765622e74656368
-
-### 7. MTProto
-`89.169.32.31:2083`
-
-- https://t.me/proxy?server=89.169.32.31&port=2083&secret=eea2b102b138450e1e33e7dc460ad967e8636f666665652e73616d6172617765622e74656368
+8. **public.mtproxy.pw**  
+https://t.me/proxy?server=public.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 
 ---
 
 ## 🔗 StintikVPN Mirrors
 
 - **GitLab**: https://gitlab.com/Stintik-123/StintikVPN
-
-- **GitVerse**: https://gitverse.ru/Stintik-123/StintikVPN
-
-- **Codeberg**:
-https://codeberg.org/Stintik-123/StintikVPN
+- **GitVerse**: https://gitverse.ru/Stintik-123/StintikHub
+- **Codeberg**: https://codeberg.org/Stintik-123/StintikVPN
 
 ---
 
