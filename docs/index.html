@@ -9,36 +9,188 @@
   <meta name="description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI." />
   <meta name="theme-color" content="#060608" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-  
-  <!-- SEO: Open Graph для Telegram/VK -->
   <meta property="og:title" content="StintikVPN — Интернет свобода ближе чем кажется" />
   <meta property="og:description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/" />
   <meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
   <meta property="og:locale" content="ru_RU" />
-  
-  <!-- SEO: Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="StintikVPN — Интернет свобода ближе чем кажется" />
   <meta name="twitter:description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
-  
-  <!-- Performance: Preconnect к Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Performance: Preload шрифтов -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
-  
   <link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3RpbnRpa1ZQTiIsInNob3J0X25hbWUiOiJTdGludGlrVlBOIiwiZGVzY3JpcHRpb24iOiJCZXNwbGF0bnllIFZQTi1wb2RwaXNraSwgcHJva3NpLCBUb3IgaSBvYmhvZCBEUEkiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzA2MDYwOCIsInRoZW1lX2NvbG9yIjoiIzA2MDYwOCIsImljb25zIjpbeyJzcmMiOiJodHRwczovL3Jhdy5naXRodXNlcmNvbnRlbnQuY29tL1N0aW50aWstMTIzL1N0aW50aWtWUE4vbWFpbi9pbWFnZXMvSU1HXzIwMjYwNjA5XzIyMDQxMF83NjAuanBnIiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL2pwZWcifV19" />
   <link rel="stylesheet" href="style.css" />
-  <!-- QR Code Generator CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="theme-dark">
-
-<!-- PLACEHOLDER_REST -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="" />
+      StintikVPN
+    </a>
+    <button class="nav-burger" aria-label="Меню" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="#subs" onclick="closeNav()">Подписки</a>
+      <a href="#clients" onclick="closeNav()">Клиенты</a>
+      <a href="#tools" onclick="closeNav()">Инструменты</a>
+      <a href="#proxies" onclick="closeNav()">Прокси</a>
+      <a href="#faq" onclick="closeNav()">FAQ</a>
+    </div>
+    <div class="nav-ctas">
+      <button class="nav-theme-btn" aria-label="Тема" onclick="toggleTheme()" title="Переключить тему">Theme</button>
+      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta nav-cta-gh">GitHub</a>
+    </div>
+  </div>
+</nav>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Интернет свобода<br><span class="grad">ближе чем кажется</span></h1>
+      <div class="hero-actions"><a href="#subs" class="btn btn-primary">Выбрать подписку</a></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="subs">
+  <div class="container">
+    <div class="section-head"><h2>Подписки</h2><p>Скопируй ссылку и добавь в клиент</p></div>
+    <div class="filters">
+      <button class="filter active" data-f="all" onclick="filt('all')">Все</button>
+      <button class="filter" data-f="black" onclick="filt('black')">Чёрные</button>
+      <button class="filter" data-f="white" onclick="filt('white')">Белые</button>
+    </div>
+    <div class="subs">
+      <div class="sub" data-c="black">
+        <span class="sub-tag tag-black">Чёрный</span>
+        <div class="sub-body"><h4>Чёрный список (основной)</h4><span>Akres VPN</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all')">Скопировать</button>
+        </div>
+      </div>
+      <div class="sub" data-c="black">
+        <span class="sub-tag tag-black">Mobile</span>
+        <div class="sub-body"><h4>Black Mobile</h4><span>Для телефонов — KvRuVPN</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Скопировать</button>
+        </div>
+      </div>
+      <div class="sub" data-c="white">
+        <span class="sub-tag tag-white">Белый</span>
+        <div class="sub-body"><h4>Белые списки (основные)</h4><span>Для жёстких блокировок</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt')">Скопировать</button>
+        </div>
+      </div>
+      <div class="sub" data-c="white">
+        <span class="sub-tag tag-white">CIDR</span>
+        <div class="sub-body"><h4>Белые списки (CIDR)</h4><span>По IP-диапазонам</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt')">Скопировать</button>
+        </div>
+      </div>
+      <div class="sub" data-c="white">
+        <span class="sub-tag tag-white">SNI</span>
+        <div class="sub-body"><h4>Белые списки (SNI)</h4><span>По доменам</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">Скопировать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="clients">
+  <div class="container">
+    <div class="section-head"><h2>Клиенты</h2><p>Два варианта на каждую платформу</p></div>
+    <table class="clients-table">
+      <thead><tr><th>Устройства</th><th>Вариант 1</th><th>Вариант 2</th></tr></thead>
+      <tbody>
+        <tr><td>Windows</td><td>Hiddify</td><td>v2rayN</td></tr>
+        <tr><td>Android</td><td>Hiddify</td><td>v2rayNG</td></tr>
+        <tr><td>iPhone / iPad</td><td>Streisand</td><td>V2Box</td></tr>
+        <tr><td>macOS</td><td>Hiddify</td><td>Clash Verge</td></tr>
+        <tr><td>Linux</td><td>Hiddify</td><td>NekoRay</td></tr>
+        <tr><td>Android TV</td><td>NekoBox</td><td>Hiddify</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="section" id="proxies">
+  <div class="container">
+    <div class="section-head">
+      <h2>Telegram-прокси</h2>
+      <p>MTProto · Обновлено <span id="proxy-date">11.09.2026</span></p>
+    </div>
+    <div class="proxy-list">
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">lumetra.mtproxy.zip</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275" target="_blank">Открыть</a>
+        </div>
+      </div>
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">85.192.34.18:9443</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665" target="_blank">Открыть</a>
+        </div>
+      </div>
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">proxy.tonservice.site</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000" target="_blank">Открыть</a>
+        </div>
+      </div>
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">172.65.100.45:25565</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d" target="_blank">Открыть</a>
+        </div>
+      </div>
+      <div class="proxy">
+        <div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">cluster.mtproxy.cc</span></div>
+        <div class="sub-actions">
+          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363')">QR</button>
+          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363')">Скопировать</button>
+          <a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363" target="_blank">Открыть</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head"><h2>FAQ</h2></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Подписка не работает?</button><div class="faq-a">Обнови подписку в клиенте, смени сервер или протокол.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Когда нужны белые списки?</button><div class="faq-a">Когда оператор включил белые списки РКН.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не подключается?</button><div class="faq-a">Попробуй другой прокси из списка.</div></div>
+  </div>
+</section>
+<footer class="footer"><div class="container"><p>StintikVPN — сделано людьми для людей</p><p><a href="https://github.com/Stintik-123/StintikVPN">GitHub</a> · <a href="https://t.me/StintikVPN">Telegram</a></p></div></footer>
+<div class="modal" id="qr-modal" hidden>
+  <div class="modal-box">
+    <div id="qr-container"></div>
+    <button class="qr-copy-btn" onclick="copyQR()"><span class="copy-text">Копировать ссылку</span></button>
+    <button class="modal-close" onclick="closeQR()">Закрыть</button>
+  </div>
+</div>
+<div class="toast" id="toast" hidden>✓ Скопировано</div>
+<script src="script.js"></script>
 </body>
 </html>
