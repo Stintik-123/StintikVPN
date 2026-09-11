@@ -182,12 +182,12 @@
   <div class="container">
     <div class="section-head">
       <h2>Клиенты</h2>
-      <p>Два варианта на каждую платформу</p>
+      <p>Приложения, в которые вставляются подписки. Новичку проще всего начать с Hiddify (ПК/Android) или Streisand (iPhone)</p>
     </div>
     <div class="table-wrap">
       <table class="cli-table">
         <thead>
-          <tr><th>Устройства</th><th>Вариант 1</th><th>Вариант 2</th></tr>
+          <tr><th>Платформа</th><th>Рекомендуем</th><th>Альтернатива</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -329,35 +329,44 @@
   <div class="container">
     <div class="section-head">
       <h2>Частые вопросы</h2>
+      <p>Если что-то не завелось — сначала сюда</p>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Подписка не работает или медленно<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Обнови подписку в клиенте. Смени сервер или протокол. Перезапусти клиент или устройство.</div></div>
+        <button class="faq-q" onclick="toggleFaq(this)">Чем отличаются чёрные и белые списки?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Чёрные списки — обычный режим: через VPN уходит только то, что заблокировано, остальной трафик идёт напрямую. Белые списки нужны, когда оператор включает жёсткие ограничения РКН и «обычные» подписки перестают открывать даже разрешённые сайты. В таком случае весь трафик идёт через VPN по белому списку.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Как часто обновляются конфиги?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Ежедневно их создателями. Ссылки всегда актуальные.</div></div>
+        <button class="faq-q" onclick="toggleFaq(this)">Какой клиент поставить, если я впервые?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><strong>Windows / Android / macOS / Linux</strong> — Hiddify: простой интерфейс, подписка добавляется одной ссылкой.<br><strong>iPhone / iPad</strong> — Streisand из App Store.<br>Альтернативы (v2rayN, v2rayNG, V2Box и т.д.) мощнее, но интерфейс сложнее — их имеет смысл брать, когда уже разобрался в основах.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Когда нужны белые списки?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Когда оператор включил «белые списки» РКН и обычные сайты не открываются.</div></div>
+        <button class="faq-q" onclick="toggleFaq(this)">Как добавить подписку в клиент?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Нажми «Скопировать» у нужной подписки на сайте → в клиенте найди пункт вроде «Добавить из буфера», «Import from clipboard» или «Новая подписка» → вставь ссылку. После импорта обнови подписку и выбери рабочий сервер.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Какой клиент для новичка?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — Windows, Android, macOS, Linux. <strong>Streisand</strong> — iPhone.</div></div>
+        <button class="faq-q" onclick="toggleFaq(this)">Подписка не подключается или очень медленная<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">1) Обнови подписку в клиенте (кнопка refresh / обновить).<br>2) Переключи сервер — часть нод может быть перегружена или лечь.<br>3) Смени протокол, если клиент это позволяет (например VLESS / Reality).<br>4) Перезапусти клиент или телефон/ПК.<br>5) Если не помогает совсем — попробуй другую подписку из списка (чёрную или белую).</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не работает<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Прокси часто отваливаются. Попробуй следующий из списка.</div></div>
+        <button class="faq-q" onclick="toggleFaq(this)">Когда именно нужны белые списки?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Когда у оператора включены «белые списки» РКН: не открываются даже привычные сайты, а обычные (чёрные) подписки почти не работают. В обычной ситуации достаточно чёрных списков — они быстрее и нагружают VPN меньше.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Можно на нескольких устройствах?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Да, у большинства подписок — да.</div></div>
+        <button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не подключается<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Публичные MTProto-прокси часто отваливаются. Просто возьми следующий из списка на сайте или обнови страницу позже — список периодически меняется. В Telegram: Настройки → Данные и память → Прокси.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Можно ли использовать на нескольких устройствах?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Да. Одна и та же ссылка подписки обычно работает на телефоне, ПК и планшете одновременно. Ограничения бывают только у платных сервисов — у открытых конфигов из списка такого лимита, как правило, нет.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Это безопасно?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Конфиги из открытых источников. Не гоняй через них банк и важные аккаунты.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Конфиги собраны из открытых источников. Для обхода блокировок и обычного серфинга — нормально. Для банка, госуслуг и важных аккаунтов лучше не использовать чужие ноды: трафик теоретически может проходить через чужой сервер. StintikVPN сам серверы не поднимает — это каталог публичных подписок и инструментов.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Почему подписка иногда перестаёт работать на следующий день?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Публичные ноды обновляют, отключают или блокируют. Поэтому ссылки на сайте ведут на «живые» источники, которые авторы обновляют. Если вчера работало, а сегодня нет — обнови подписку в клиенте или возьми другую из списка.</div></div>
       </div>
     </div>
   </div>
