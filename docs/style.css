@@ -23,6 +23,21 @@
   --mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
+/* Light theme */
+body.theme-light {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --surface-2: #e8e8ed;
+  --surface-3: #d8d8e0;
+  --border: rgba(0,0,0,0.08);
+  --border-h: rgba(0,0,0,0.15);
+  --text: #1a1a1e;
+  --text-2: #5a5a66;
+  --text-3: #8a8a96;
+  --accent-d: rgba(255,106,26,0.1);
+  --ok-d: rgba(34,197,94,0.1);
+}
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -50,6 +65,9 @@ body {
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
+body.theme-light .nav {
+  background: rgba(255,255,255,0.82);
+}
 .nav-inner {
   display: flex;
   align-items: center;
@@ -72,6 +90,22 @@ body {
   object-fit: cover;
   border: 1px solid rgba(255,106,26,0.35);
 }
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.nav-burger span {
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.2s;
+}
 .nav-links { display: flex; gap: 2px; }
 .nav-links a {
   color: var(--text-2);
@@ -83,6 +117,7 @@ body {
   transition: 0.15s;
 }
 .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+body.theme-light .nav-links a:hover { background: rgba(0,0,0,0.04); }
 .nav-cta {
   padding: 6px 12px;
   font-size: 0.78rem;
@@ -94,6 +129,39 @@ body {
   transition: 0.15s;
 }
 .nav-cta:hover { filter: brightness(1.08); }
+.nav-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.nav-theme-btn:hover {
+  border-color: var(--border-h);
+  background: rgba(255,255,255,0.04);
+}
+body.theme-light .nav-theme-btn:hover {
+  background: rgba(0,0,0,0.04);
+}
+.nav-theme-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.theme-icon-moon { display: none; }
+body.theme-light .theme-icon-sun { display: none; }
+body.theme-light .theme-icon-moon { display: block; }
+.nav-ctas {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
 
 .hero { padding: 56px 0 48px; }
 .hero-grid {
@@ -558,6 +626,54 @@ body {
   .container { padding: 0 16px; }
 }
 
+/* Mobile nav */
+@media (max-width: 768px) {
+  .nav-burger { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links.open {
+    max-height: 400px;
+  }
+  .nav-links a {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  body.theme-light .nav-links a:hover { background: rgba(0,0,0,0.04); }
+  .nav-ctas {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-ctas.open {
+    max-height: 200px;
+  }
+  .nav-theme-btn {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .nav-cta-text { display: none; }
+}
+
 /* --- КНОПКА GITHUB (СЕРЫЙ И РОВНЫЙ) --- */
 .nav-ctas { 
   display: inline-flex; 
@@ -636,4 +752,30 @@ a.nav-cta-gh:focus {
 .modal-card .btn-primary:hover {
   filter: brightness(1.1); 
   transform: translateY(-1px);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--surface-2);
+  border: 1px solid var(--border-h);
+  color: var(--text);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+body.theme-light .toast {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
