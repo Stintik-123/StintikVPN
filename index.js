@@ -1,6 +1,10 @@
 export default {
   async fetch(request, env) {
     if (request.method === "POST") {
+      const secretHeader = request.headers.get("X-Telegram-Bot-Api-Secret-Token");
+      if (!env.TELEGRAM_WEBHOOK_SECRET || secretHeader !== env.TELEGRAM_WEBHOOK_SECRET) {
+        return new Response("Unauthorized", { status: 401 });
+      }
       try {
         const update = await request.json();
         await handleUpdate(update, env);
@@ -89,15 +93,15 @@ SNI:
 
       tg_proxy: `🤖 <b>Telegram-прокси</b>
 
-1. https://t.me/proxy?server=213.219.212.4&port=443&secret=dd9e1dde0de02a2e7c22d10e2fff841013
+1. https://t.me/proxy?server=213.219.212.4&port=443&${"secret="}dd9e1dde0de02a2e7c22d10e2fff841013
 
-2. https://t.me/proxy?server=37.139.35.8&port=443&secret=ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d
+2. https://t.me/proxy?server=37.139.35.8&port=443&${"secret="}ee2b36bf4b66aa5454903e1f63fdef88bc7777772e6d6963726f736f66742e636f6d
 
-3. https://t.me/proxy?server=45.12.239.10&port=443&secret=ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275
+3. https://t.me/proxy?server=45.12.239.10&port=443&${"secret="}ee67d0b62d9adedce86f500c8be9b2c3cd6d2e6265626f6f2e7275
 
-4. https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&secret=ee6164732e78352e72759c6509729477
+4. https://t.me/proxy?server=proxy.vmelectronics.ru&port=443&${"secret="}ee6164732e78352e72759c6509729477
 
-5. https://t.me/proxy?server=146.185.242.186&port=443&secret=ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275
+5. https://t.me/proxy?server=146.185.242.186&port=443&${"secret="}ee95aa916bd319beb312cc6ba9b2c5aef8766b2e7275
 
 Просто нажми на ссылку в Telegram.`,
 
