@@ -2,17 +2,22 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>StintikVPN — Интернет свобода ближе чем кажется</title>
   <meta name="description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI." />
-  <meta name="theme-color" content="#060608" />
+  <meta name="theme-color" content="#060608" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta property="og:title" content="StintikVPN" />
   <meta property="og:description" content="Интернет свобода ближе чем кажется" />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" />
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3RpbnRpa1ZQTiIsInNob3J0X25hbWUiOiJTdGludGlrVlBOIiwiZGVzY3JpcHRpb24iOiJCZXNwbGF0bnllIFZQTi1wb2RwaXNraSwgcHJva3NpLCBUb3IgaSBvYmhvZCBEUEkiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzA2MDYwOCIsInRoZW1lX2NvbG9yIjoiIzA2MDYwOCIsImljb25zIjpbeyJzcmMiOiJodHRwczovL3Jhdy5naXRodXNlcmNvbnRlbnQuY29tL1N0aW50aWstMTIzL1N0aW50aWtWUE4vbWFpbi9pbWFnZXMvSU1HXzIwMjYwNjA5XzIyMDQxMF83NjAuanBnIiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL2pwZWcifV19" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="theme-dark">
 
 <nav class="nav">
   <div class="container nav-inner">
@@ -20,15 +25,22 @@
       <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="" />
       StintikVPN
     </a>
+    <button class="nav-burger" aria-label="Меню" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
-      <a href="#subs">Подписки</a>
-      <a href="#clients">Клиенты</a>
-      <a href="#tools">Инструменты</a>
-      <a href="#proxies">Прокси</a>
-      <a href="#warp">WARP</a>
-      <a href="#faq">FAQ</a>
+      <a href="#subs" onclick="closeNav()">Подписки</a>
+      <a href="#clients" onclick="closeNav()">Клиенты</a>
+      <a href="#tools" onclick="closeNav()">Инструменты</a>
+      <a href="#proxies" onclick="closeNav()">Прокси</a>
+      <a href="#warp" onclick="closeNav()">WARP</a>
+      <a href="#faq" onclick="closeNav()">FAQ</a>
     </div>
     <div class="nav-ctas">
+      <button class="nav-theme-btn" aria-label="Тема" onclick="toggleTheme()" title="Переключить тему">
+        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
       <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta nav-cta-gh" aria-label="GitHub">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 .5C5.73.5.76 5.47.76 11.74c0 4.93 3.19 9.11 7.63 10.59.56.1.76-.24.76-.54 0-.27-.01-1.17-.02-2.12-3.1.67-3.76-1.41-3.76-1.41-.5-1.28-1.22-1.62-1.22-1.62-.99-.68.08-.67.08-.67 1.09.08 1.67 1.12 1.67 1.12.98 1.67 2.57 1.19 3.2.91.1-.71.38-1.19.69-1.46-2.47-.28-5.06-1.24-5.06-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.4.11-2.92 0 0 .94-.3 3.08 1.15.89-.25 1.84-.38 2.79-.38.95 0 1.9.13 2.79.38 2.14-1.45 3.08-1.15 3.08-1.15.61 1.52.23 2.64.11 2.92.71.78 1.15 1.78 1.15 3 0 4.29-2.6 5.23-5.08 5.51.39.34.73 1.01.73 2.04 0 1.48-.01 2.67-.01 3.03 0 .3.2.65.77.54C19.05 20.85 22.24 16.67 22.24 11.74 22.24 5.47 17.27.5 12 .5z"/>
@@ -210,7 +222,7 @@
   <div class="container">
     <div class="section-head">
       <h2>Telegram-прокси</h2>
-      <p>MTProto · Обновлено 25.08.2026</p>
+      <p>MTProto · Обновлено <span id="proxy-date">25.08.2026</span></p>
     </div>
     <div class="proxy-list">
       
@@ -365,6 +377,8 @@
     <button class="modal-close" id="modal-close" disabled>Закрыть</button>
   </div>
 </div>
+
+<div class="toast" id="toast" hidden>✓ Скопировано</div>
 
 <script src="script.js"></script>
 </body>
