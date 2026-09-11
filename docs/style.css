@@ -258,6 +258,35 @@ body.theme-light .theme-icon-moon { display: block; }
   border-color: rgba(34,197,94,0.25);
 }
 
+/* QR Button */
+.btn-qr {
+  background: rgba(42,171,238,0.12);
+  color: #2AABEE;
+  border: 1px solid rgba(42,171,238,0.2);
+}
+.btn-qr:hover { background: rgba(42,171,238,0.2); }
+
+/* Copy button animation - icon swap for 1.8s */
+.btn-copy .copy-icon,
+.btn-copy .check-icon,
+.qr-copy-btn .copy-icon,
+.qr-copy-btn .check-icon {
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+.btn-copy .check-icon,
+.qr-copy-btn .check-icon {
+  display: none;
+}
+.btn-copy.done .copy-icon,
+.qr-copy-btn.done .copy-icon {
+  display: none;
+}
+.btn-copy.done .check-icon,
+.qr-copy-btn.done .check-icon {
+  display: inline-block;
+}
+
 .features { padding: 0 0 40px; }
 .features-grid {
   display: grid;
@@ -778,4 +807,38 @@ a.nav-cta-gh:focus {
 }
 body.theme-light .toast {
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+/* QR Modal styles */
+.qr-modal-card {
+  padding: 24px 20px;
+}
+.qr-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.qr-container canvas {
+  max-width: 100%;
+  height: auto;
+}
+.qr-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.qr-copy-btn svg {
+  width: 16px;
+  height: 16px;
+}
+.qr-copy-btn .check-icon {
+  color: var(--ok);
 }

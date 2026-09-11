@@ -154,3 +154,70 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 // Initialize on load
 initTheme();
 updateProxyDate();
+
+// QR Modal functions
+let currentQRUrl = '';
+
+function showQR(btn, url) {
+  currentQRUrl = url;
+  const modal = document.getElementById('qr-modal');
+  const container = document.getElementById('qr-container');
+  
+  if (!modal || !container) return;
+  
+  // Clear previous QR code
+  container.innerHTML = '';
+  
+  // Get current theme colors
+  const isLight = document.body.classList.contains('theme-light');
+  const colorDark = isLight ? '#1a1a1e' : '#ececf1';
+  const colorLight = isLight ? '#ffffff' : '#060608';
+  
+  // Generate QR code using qrcode.js CDN
+  new QRCode(container, {
+    text: url,
+    width: 200,
+    height: 200,
+    colorDark: colorDark,
+    colorLight: colorLight,
+    correctLevel: QRCode.CorrectLevel.M
+  });
+  
+  // Reset copy button state
+  const copyBtn = document.querySelector('.qr-copy-btn');
+  if (copyBtn) {
+    copyBtn.classList.remove('done');
+    copyBtn.querySelector('.copy-text').textContent = 'Копировать ссылку';
+  }
+  
+  modal.hidden = false;
+}
+
+function closeQR() {
+  const modal = document.getElementById('qr-modal');
+  if (modal) modal.hidden = true;
+  currentQRUrl = '';
+}
+
+function copyQR() {
+  if (!currentQRUrl) return;
+  
+  const copyBtn = document.querySelector('.qr-copy-btn');
+  if (!copyBtn) return;
+  
+  copyToClipboard(currentQRUrl).then(() => {
+    // Animate button with icon change for 1.8 seconds
+    copyBtn.classList.add('done');
+    copyBtn.querySelector('.copy-text').textContent = 'Скопировано';
+    
+    setTimeout(() => {
+      copyBtn.classList.remove('done');
+      copyBtn.querySelector('.copy-text').textContent = 'Копировать ссылку';
+    }, 1800);
+    
+    showToast('✓ Ссылка скопирована');
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    showToast('✗ Ошибка копирования');
+  });
+}
