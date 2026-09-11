@@ -137,6 +137,7 @@ body.theme-light .nav-links a:hover { background: rgba(0,0,0,0.04); }
   height: 36px;
   padding: 0;
   background: transparent;
+  border: none;
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text);
@@ -258,7 +259,6 @@ body.theme-light .theme-icon-moon { display: block; }
   border-color: rgba(34,197,94,0.25);
 }
 
-/* QR Button */
 .btn-qr {
   background: rgba(42,171,238,0.12);
   color: #2AABEE;
@@ -266,7 +266,6 @@ body.theme-light .theme-icon-moon { display: block; }
 }
 .btn-qr:hover { background: rgba(42,171,238,0.2); }
 
-/* Copy button animation - icon swap for 1.8s */
 .btn-copy .copy-icon,
 .btn-copy .check-icon,
 .qr-copy-btn .copy-icon,
@@ -378,15 +377,20 @@ body.theme-light .theme-icon-moon { display: block; }
 .sub.hidden { display: none; }
 .sub-tag {
   font-size: 0.62rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 3px 7px;
+  letter-spacing: 0.03em;
+  padding: 3px 8px;
   border-radius: 5px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-3);
 }
-.tag-black { background: rgba(255,255,255,0.06); color: var(--text-2); }
-.tag-white { background: #f0f0f0; color: #111; }
-.tag-proto { background: rgba(20,184,166,0.12); color: #2dd4bf; }
+.tag-black { border-color: rgba(255,255,255,0.08); color: var(--text-3); }
+.tag-white { border-color: rgba(255,255,255,0.08); color: var(--text-3); }
+body.theme-light .tag-black,
+body.theme-light .tag-white { border-color: rgba(0,0,0,0.1); color: var(--text-3); }
+.tag-proto { background: rgba(20,184,166,0.12); color: #2dd4bf; border-color: transparent; }
 .sub-body { flex: 1; min-width: 140px; }
 .sub-body h4 { font-size: 0.88rem; font-weight: 600; }
 .sub-body span { font-size: 0.74rem; color: var(--text-3); }
@@ -534,7 +538,7 @@ body.theme-light .theme-icon-moon { display: block; }
   color: var(--accent-s);
 }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-.faq-item.open .faq-a { max-height: 200px; }
+.faq-item.open .faq-a { max-height: 420px; }
 .faq-a-inner {
   padding: 0 15px 13px;
   font-size: 0.84rem;
@@ -624,12 +628,11 @@ body.theme-light .theme-icon-moon { display: block; }
   opacity: 0.4;
   cursor: not-allowed;
 }
-/* --- АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ (до 768px) --- */
+
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .features-grid { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: 1fr; }
-  
   .hero-grid { grid-template-columns: 1fr; text-align: center; }
   .hero-visual {
     display: flex;
@@ -637,14 +640,10 @@ body.theme-light .theme-icon-moon { display: block; }
     order: -1;
   }
   .hero-actions { justify-content: center; }
-  
-  /* Карточки подписок на мобилке */
   .sub { flex-direction: column; align-items: stretch; gap: 10px; }
   .sub-body { min-width: 100%; }
   .sub-actions { width: 100%; display: flex; gap: 8px; }
   .sub-actions .btn { flex: 1; min-width: 0; }
-  
-  /* Карточки прокси на мобилке */
   .proxy { flex-direction: column; align-items: stretch; gap: 10px; }
   .proxy-left { min-width: 100%; flex-wrap: wrap; }
   .proxy .sub-actions { width: 100%; display: flex; gap: 8px; }
@@ -655,7 +654,6 @@ body.theme-light .theme-icon-moon { display: block; }
   .container { padding: 0 16px; }
 }
 
-/* Mobile nav */
 @media (max-width: 768px) {
   .nav-burger { display: flex; }
   .nav-links {
@@ -672,13 +670,8 @@ body.theme-light .theme-icon-moon { display: block; }
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
-  .nav-links.open {
-    max-height: 400px;
-  }
-  .nav-links a {
-    padding: 12px 24px;
-    font-size: 0.9rem;
-  }
+  .nav-links.open { max-height: 400px; }
+  .nav-links a { padding: 12px 24px; font-size: 0.9rem; }
   body.theme-light .nav-links a:hover { background: rgba(0,0,0,0.04); }
   .nav-ctas {
     position: absolute;
@@ -693,36 +686,23 @@ body.theme-light .theme-icon-moon { display: block; }
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
-  .nav-ctas.open {
-    max-height: 200px;
-  }
-  .nav-theme-btn {
-    width: 100%;
-    margin-bottom: 8px;
-  }
+  .nav-ctas.open { max-height: 200px; }
+  .nav-theme-btn { width: 100%; margin-bottom: 8px; }
   .nav-cta-text { display: none; }
 }
 
-/* --- КНОПКА GITHUB (СЕРЫЙ И РОВНЫЙ) --- */
-.nav-ctas { 
-  display: inline-flex; 
-  gap: 8px; 
-  align-items: center; 
+.nav-ctas { display: inline-flex; gap: 8px; align-items: center; }
+.nav-ctas .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  text-decoration: none;
+  line-height: 1;
 }
-
-.nav-ctas .nav-cta { 
-  display: inline-flex; 
-  align-items: center; 
-  justify-content: center; 
-  gap: 6px; 
-  padding: 6px 12px; 
-  border-radius: 8px; 
-  font-size: 0.78rem; 
-  text-decoration: none; 
-  line-height: 1; 
-}
-
-/* Перебиваем общий .nav-cta стиль с голубым фоном */
 .nav-ctas a.nav-cta-gh,
 a.nav-cta-gh {
   background: transparent !important;
@@ -731,59 +711,51 @@ a.nav-cta-gh {
   font-weight: 600;
   transition: 0.2s ease;
 }
-
 .nav-ctas a.nav-cta-gh:hover,
-a.nav-cta-gh:hover { 
+a.nav-cta-gh:hover {
   border-color: rgba(255,255,255,0.2) !important;
-  background: rgba(255,255,255,0.04) !important; 
-  transform: translateY(-1px); 
+  background: rgba(255,255,255,0.04) !important;
+  transform: translateY(-1px);
 }
-
-/* Выравнивание иконки GitHub ровно по центру - убираем любые смещения */
 .nav-ctas a.nav-cta-gh svg,
-a.nav-cta-gh svg { 
-  width: 16px; 
-  height: 16px; 
-  display: block; 
-  flex-shrink: 0;       
+a.nav-cta-gh svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
   fill: currentColor;
   margin-top: 0 !important;
   vertical-align: middle;
 }
-
 .nav-ctas a.nav-cta-gh:focus,
-a.nav-cta-gh:focus { 
-  outline: 3px solid rgba(255,255,255,0.06); 
-  outline-offset: 2px; 
-  border-radius: 8px; 
+a.nav-cta-gh:focus {
+  outline: 3px solid rgba(255,255,255,0.06);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
-.warp-btn { 
-  display: inline-flex; 
-  align-items: center; 
-  gap: 10px; 
-  padding: 12px 22px; 
+.warp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+}
+.proxy-addr {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
-.proxy-addr { 
-  overflow-wrap: anywhere; 
-  word-break: break-word; 
-  max-width: 100%; 
-}
-
-/* --- КНОПКА TELEGRAM В МОДАЛЬНОМ ОКНЕ (ГОЛУБАЯ) --- */
 .modal-card .btn-primary {
-  background: var(--tg) !important; 
-  box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3) !important; 
+  background: var(--tg) !important;
+  box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3) !important;
   color: #fff !important;
 }
-
 .modal-card .btn-primary:hover {
-  filter: brightness(1.1); 
+  filter: brightness(1.1);
   transform: translateY(-1px);
 }
 
-/* Toast notification */
 .toast {
   position: fixed;
   bottom: 24px;
@@ -806,39 +778,5 @@ a.nav-cta-gh:focus {
   transform: translateX(-50%) translateY(0);
 }
 body.theme-light .toast {
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-}
-
-/* QR Modal styles */
-.qr-modal-card {
-  padding: 24px 20px;
-}
-.qr-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 16px 0;
-  padding: 16px;
-  background: var(--surface);
-  border-radius: 12px;
-  border: 1px solid var(--border);
-}
-.qr-container canvas {
-  max-width: 100%;
-  height: auto;
-}
-.qr-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-.qr-copy-btn svg {
-  width: 16px;
-  height: 16px;
-}
-.qr-copy-btn .check-icon {
-  color: var(--ok);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
 }
