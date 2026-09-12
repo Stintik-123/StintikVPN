@@ -1,0 +1,41 @@
+name: Mirror to GitLab / Codeberg / GitVerse
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to mirrors
+        env:
+          GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
+          GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+        run: |
+          set -e
+
+          push_mirror () {
+            name="$1"
+            url="$2"
+            if [ -z "$url" ]; then
+              echo "Skip $name (secret not set)"
+              return 0
+            fi
+            echo ">>> Pushing to $name"
+            git remote remove "$name" 2>/dev/null || true
+            git remote add "$name" "$url"
+            git push --force "$name" HEAD:main
+            echo "OK $name"
+          }
+
+          push_mirror gitlab   "$GITLAB_URL"
+          push_mirror codeberg "$CODEBERG_URL"
+          push_mirror gitverse "$GITVERSE_URL"
