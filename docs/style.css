@@ -63,7 +63,6 @@ body.theme-light .nav { background: rgba(255,255,255,0.82); }
 .nav-links { display: flex; gap: 2px; }
 .nav-links a { color: var(--text-2); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 6px 11px; border-radius: 8px; transition: 0.15s; }
 .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-body.theme-light .nav-links a:hover { background: rgba(0,0,0,0.04); }
 .nav-cta { padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: #fff; text-decoration: none; border-radius: 8px; background: var(--tg); }
 .nav-theme-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; }
 .nav-theme-btn svg { width: 18px; height: 18px; }
@@ -90,6 +89,8 @@ body.theme-light .theme-icon-moon { display: block; }
 .btn-copy { background: var(--accent-d); color: var(--accent-s); border: 1px solid rgba(255,106,26,0.2); }
 .btn-copy.done { background: var(--ok-d); color: var(--ok); border-color: rgba(34,197,94,0.25); }
 .btn-qr { background: rgba(42,171,238,0.12); color: #2AABEE; border: 1px solid rgba(42,171,238,0.2); }
+.btn-share { background: rgba(42, 171, 238, 0.1); color: #7ec8f0; border: 1px solid rgba(42, 171, 238, 0.25); }
+.btn-share:hover { background: rgba(42, 171, 238, 0.18); }
 .btn-copy .check-icon, .qr-copy-btn .check-icon { display: none; }
 .btn-copy.done .copy-icon, .qr-copy-btn.done .copy-icon { display: none; }
 .btn-copy.done .check-icon, .qr-copy-btn.done .check-icon { display: inline-block; }
@@ -120,7 +121,7 @@ body.theme-light .theme-icon-moon { display: block; }
 .sub-body { flex: 1; min-width: 140px; }
 .sub-body h4 { font-size: 0.88rem; font-weight: 600; }
 .sub-body span { font-size: 0.74rem; color: var(--text-3); }
-.sub-actions { display: flex; gap: 6px; }
+.sub-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); }
 .cli-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
 .cli-table th, .cli-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
@@ -174,7 +175,7 @@ body.theme-light .theme-icon-moon { display: block; }
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface-2); border: 1px solid var(--border-h); color: var(--text); padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; box-shadow: 0 8px 30px rgba(0,0,0,0.3); z-index: 1000; opacity: 0; transition: opacity 0.2s, transform 0.2s; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .nav-ctas a.nav-cta-gh, a.nav-cta-gh { background: transparent !important; color: var(--text) !important; border: 1px solid var(--border-h) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; font-size: 0.78rem; text-decoration: none; }
-.modal-card .btn-primary { background: var(--tg) !important; box-shadow: 0 4px 15px rgba(42,171,238,0.3) !important; color: #fff !important; }
+.modal-card .btn-primary { background: var(--tg) !important; box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3) !important; color: #fff !important; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .features-grid, .tools-grid { grid-template-columns: 1fr; }
@@ -182,8 +183,8 @@ body.theme-light .theme-icon-moon { display: block; }
   .hero-visual { display: flex; justify-content: center; order: -1; }
   .hero-actions { justify-content: center; }
   .sub, .proxy { flex-direction: column; align-items: stretch; gap: 10px; }
-  .sub-actions { width: 100%; display: flex; gap: 8px; }
-  .sub-actions .btn { flex: 1; }
+  .sub-actions { width: 100%; display: flex; gap: 8px; flex-wrap: wrap; }
+  .sub-actions .btn { flex: 1; min-width: calc(33% - 6px); }
   .nav-burger { display: flex; }
   .nav-links { position: absolute; top: 56px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
   .nav-links.open { max-height: 400px; display: flex; }
