@@ -2,15 +2,13 @@
 function updateProxyDate() {
   const dateEl = document.getElementById('proxy-date');
   if (!dateEl) return;
-  
   const now = new Date();
   const day = String(now.getDate()).padStart(2, '0');
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const year = now.getFullYear();
-  dateEl.textContent = `${day}.${month}.${year}`;
+  dateEl.textContent = day + '.' + month + '.' + year;
 }
 
-// Theme toggle
 function toggleTheme() {
   const body = document.body;
   const isLight = body.classList.contains('theme-light');
@@ -19,7 +17,6 @@ function toggleTheme() {
   localStorage.setItem('theme', isLight ? 'dark' : 'light');
 }
 
-// Init theme from localStorage or system preference
 function initTheme() {
   const saved = localStorage.getItem('theme');
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -28,12 +25,11 @@ function initTheme() {
   document.body.classList.toggle('theme-dark', !shouldUseLight);
 }
 
-// Mobile nav toggle
 function toggleNav() {
   const links = document.querySelector('.nav-links');
   const ctas = document.querySelector('.nav-ctas');
-  links.classList.toggle('open');
-  ctas.classList.toggle('open');
+  if (links) links.classList.toggle('open');
+  if (ctas) ctas.classList.toggle('open');
 }
 
 function closeNav() {
@@ -43,181 +39,211 @@ function closeNav() {
   if (ctas) ctas.classList.remove('open');
 }
 
-// Toast notification
 function showToast(message) {
   const toast = document.getElementById('toast');
   if (!toast) return;
   toast.textContent = message;
   toast.hidden = false;
-  setTimeout(() => toast.classList.add('show'), 10);
-  setTimeout(() => {
+  setTimeout(function () { toast.classList.add('show'); }, 10);
+  setTimeout(function () {
     toast.classList.remove('show');
-    setTimeout(() => toast.hidden = true, 200);
+    setTimeout(function () { toast.hidden = true; }, 200);
   }, 1800);
 }
 
-// Copy with Share API fallback and modal always shown after copy
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text).catch(function () {
+      return legacyCopy(text);
+    });
+  }
+  return legacyCopy(text);
+}
+
+function legacyCopy(text) {
+  return new Promise(function (resolve) {
+    var t = document.createElement('textarea');
+    t.value = text;
+    t.setAttribute('readonly', '');
+    t.style.position = 'fixed';
+    t.style.left = '-9999px';
+    document.body.appendChild(t);
+    t.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(t);
+    resolve();
+  });
+}
+
+// Только копирование в буфер — без системного share
 function cp(btn, url) {
-  const done = () => {
+  copyToClipboard(url).then(function () {
     if (btn && btn.classList) {
-      const o = btn.textContent;
+      var o = btn.textContent;
       btn.classList.add('done');
-      btn.textContent = '✓ Готово';
-      setTimeout(() => { btn.classList.remove('done'); btn.textContent = o; }, 1800);
+      btn.textContent = '\u2713 \u0413\u043e\u0442\u043e\u0432\u043e';
+      setTimeout(function () {
+        btn.classList.remove('done');
+        btn.textContent = o;
+      }, 1800);
     }
-    showToast('✓ Скопировано');
-    // Always show Telegram modal after copying
+    showToast('\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e');
     showTgModal();
-  };
-  
-  // Try Share API first (mobile) - but still copy to clipboard
+  });
+}
+
+// Системное меню «Поделиться» (для отдельных кнопок share)
+function shareUrl(btn, url) {
   if (navigator.share) {
-    navigator.share({ text: url }).then(() => {
-      copyToClipboard(url).then(done);
-    }).catch(() => {
-      // User cancelled share, just copy
-      copyToClipboard(url).then(done);
+    navigator.share({ text: url }).catch(function () {
+      copyToClipboard(url).then(function () {
+        showToast('\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e');
+      });
     });
     return;
   }
-  
-  copyToClipboard(url).then(done);
-}
-
-function copyToClipboard(text) {
-  return navigator.clipboard.writeText(text).catch(() => {
-    const t = document.createElement('textarea');
-    t.value = text;
-    document.body.appendChild(t);
-    t.select();
-    document.execCommand('copy');
-    document.body.removeChild(t);
-    return Promise.resolve();
+  copyToClipboard(url).then(function () {
+    if (btn && btn.classList) {
+      var o = btn.textContent;
+      btn.classList.add('done');
+      btn.textContent = '\u2713 \u0413\u043e\u0442\u043e\u0432\u043e';
+      setTimeout(function () {
+        btn.classList.remove('done');
+        btn.textContent = o;
+      }, 1800);
+    }
+    showToast('\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e');
   });
 }
 
 function showTgModal() {
-  const m = document.getElementById('tg-modal');
-  const close = document.getElementById('modal-close');
+  var m = document.getElementById('tg-modal');
+  var close = document.getElementById('modal-close');
   if (!m || !close) return;
   m.hidden = false;
   close.disabled = true;
-  close.textContent = 'Закрыть (3)';
-  let n = 3;
-  const t = setInterval(() => {
+  close.textContent = '\u0417\u0430\u043a\u0440\u044b\u0442\u044c (3)';
+  var n = 3;
+  var t = setInterval(function () {
     n -= 1;
     if (n <= 0) {
       clearInterval(t);
       close.disabled = false;
-      close.textContent = 'Закрыть';
+      close.textContent = '\u0417\u0430\u043a\u0440\u044b\u0442\u044c';
     } else {
-      close.textContent = 'Закрыть (' + n + ')';
+      close.textContent = '\u0417\u0430\u043a\u0440\u044b\u0442\u044c (' + n + ')';
     }
   }, 1000);
-  close.onclick = () => {
+  close.onclick = function () {
     if (!close.disabled) m.hidden = true;
   };
 }
 
 function toggleFaq(btn) {
-  const item = btn.parentElement;
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(x => x.classList.remove('open'));
+  var item = btn.parentElement;
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function (x) {
+    x.classList.remove('open');
+  });
   if (!open) item.classList.add('open');
 }
 
 function filt(cat) {
-  document.querySelectorAll('.filter').forEach(b => {
+  document.querySelectorAll('.filter').forEach(function (b) {
     b.classList.toggle('active', b.dataset.f === cat);
   });
-  document.querySelectorAll('.sub').forEach(r => {
+  document.querySelectorAll('.sub').forEach(function (r) {
     if (cat === 'all') r.classList.remove('hidden');
     else {
-      const c = (r.dataset.c || '').split(' ');
-      r.classList.toggle('hidden', !c.includes(cat));
+      var c = (r.dataset.c || '').split(' ');
+      r.classList.toggle('hidden', c.indexOf(cat) === -1);
     }
   });
-  const s = document.getElementById('subs');
+  var s = document.getElementById('subs');
   if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const h = a.getAttribute('href');
+document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    var h = a.getAttribute('href');
     if (!h || h === '#') return;
     e.preventDefault();
-    const t = document.querySelector(h);
+    var t = document.querySelector(h);
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
-// Initialize on load
 initTheme();
 updateProxyDate();
 
-// QR Modal functions
-let currentQRUrl = '';
+var currentQRUrl = '';
 
 function showQR(btn, url) {
   currentQRUrl = url;
-  const modal = document.getElementById('qr-modal');
-  const container = document.getElementById('qr-container');
-  
+  var modal = document.getElementById('qr-modal');
+  var container = document.getElementById('qr-container');
   if (!modal || !container) return;
-  
-  // Clear previous QR code
+
   container.innerHTML = '';
-  
-  // Get current theme colors
-  const isLight = document.body.classList.contains('theme-light');
-  const colorDark = isLight ? '#1a1a1e' : '#ececf1';
-  const colorLight = isLight ? '#ffffff' : '#060608';
-  
-  // Generate QR code using qrcode.js CDN
-  new QRCode(container, {
-    text: url,
-    width: 200,
-    height: 200,
-    colorDark: colorDark,
-    colorLight: colorLight,
-    correctLevel: QRCode.CorrectLevel.M
-  });
-  
-  // Reset copy button state
-  const copyBtn = document.querySelector('.qr-copy-btn');
+
+  if (typeof QRCode === 'undefined') {
+    container.innerHTML = '<p style="color:var(--text-2);font-size:0.85rem;padding:12px">QR-библиотека не загрузилась. Обнови страницу.</p>';
+    modal.hidden = false;
+    return;
+  }
+
+  var isLight = document.body.classList.contains('theme-light');
+  var colorDark = isLight ? '#1a1a1e' : '#ececf1';
+  var colorLight = isLight ? '#ffffff' : '#060608';
+
+  try {
+    new QRCode(container, {
+      text: url,
+      width: 200,
+      height: 200,
+      colorDark: colorDark,
+      colorLight: colorLight,
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } catch (e) {
+    container.innerHTML = '<p style="color:var(--text-2);font-size:0.85rem;padding:12px">Не удалось сгенерировать QR</p>';
+  }
+
+  var copyBtn = document.querySelector('.qr-copy-btn');
   if (copyBtn) {
     copyBtn.classList.remove('done');
-    copyBtn.querySelector('.copy-text').textContent = 'Копировать ссылку';
+    var label = copyBtn.querySelector('.copy-text');
+    if (label) label.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
+    else copyBtn.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
   }
-  
+
   modal.hidden = false;
 }
 
 function closeQR() {
-  const modal = document.getElementById('qr-modal');
+  var modal = document.getElementById('qr-modal');
   if (modal) modal.hidden = true;
   currentQRUrl = '';
 }
 
 function copyQR() {
   if (!currentQRUrl) return;
-  
-  const copyBtn = document.querySelector('.qr-copy-btn');
-  if (!copyBtn) return;
-  
-  copyToClipboard(currentQRUrl).then(() => {
-    // Animate button with icon change for 1.8 seconds
-    copyBtn.classList.add('done');
-    copyBtn.querySelector('.copy-text').textContent = 'Скопировано';
-    
-    setTimeout(() => {
-      copyBtn.classList.remove('done');
-      copyBtn.querySelector('.copy-text').textContent = 'Копировать ссылку';
-    }, 1800);
-    
-    showToast('✓ Ссылка скопирована');
-  }).catch(err => {
-    console.error('Failed to copy:', err);
-    showToast('✗ Ошибка копирования');
+  var copyBtn = document.querySelector('.qr-copy-btn');
+
+  copyToClipboard(currentQRUrl).then(function () {
+    if (copyBtn) {
+      copyBtn.classList.add('done');
+      var label = copyBtn.querySelector('.copy-text');
+      if (label) label.textContent = '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e';
+      else copyBtn.textContent = '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e';
+      setTimeout(function () {
+        copyBtn.classList.remove('done');
+        if (label) label.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
+        else copyBtn.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
+      }, 1800);
+    }
+    showToast('\u2713 \u0421\u0441\u044b\u043b\u043a\u0430 \u0441\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0430');
+  }).catch(function () {
+    showToast('\u2717 \u041e\u0448\u0438\u0431\u043a\u0430 \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f');
   });
 }
