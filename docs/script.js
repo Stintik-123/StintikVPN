@@ -92,27 +92,14 @@ function cp(btn, url) {
   });
 }
 
-// Системное меню «Поделиться» (для отдельных кнопок share)
+// Только системный share, без копирования в буфер
 function shareUrl(btn, url) {
-  if (navigator.share) {
-    navigator.share({ text: url }).catch(function () {
-      copyToClipboard(url).then(function () {
-        showToast('\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e');
-      });
-    });
+  if (!navigator.share) {
+    showToast('Поделиться недоступно на этом устройстве');
     return;
   }
-  copyToClipboard(url).then(function () {
-    if (btn && btn.classList) {
-      var o = btn.textContent;
-      btn.classList.add('done');
-      btn.textContent = '\u2713 \u0413\u043e\u0442\u043e\u0432\u043e';
-      setTimeout(function () {
-        btn.classList.remove('done');
-        btn.textContent = o;
-      }, 1800);
-    }
-    showToast('\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e');
+  navigator.share({ text: url }).catch(function () {
+    // пользователь закрыл меню — ничего не копируем
   });
 }
 
