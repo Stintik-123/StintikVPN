@@ -1,255 +1,146 @@
-# 🚀 StintikVPN — Интернет свобода ближе чем кажется
+# StintikVPN
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN" width="100%">
+  <b>RU</b> ·
+  <a href="README_EN.md">EN</a>
 </p>
 
 <p align="center">
-  <strong>🇷🇺 Русский</strong> ·
-  <a href="ReadMe_EN.md">🇬🇧 English</a> ·
-  <a href="ReadMe_CN.md">🇨🇳 中文</a> ·
-  <a href="ReadMe_IR.md">🇮🇷 فارسی</a>
-</p>
-
-<p align="center">
-  <a href="https://stintik-123.github.io/StintikVPN/"><img src="https://img.shields.io/badge/Site-GitHub%20Pages-0A0A0A?style=flat-square&logo=github" alt="Site"></a>
+  <a href="https://stintik-123.github.io/StintikVPN/"><img src="https://img.shields.io/badge/Сайт-GitHub%20Pages-111111?style=flat-square&logo=github" alt="Site"></a>
   <a href="https://t.me/StintikVPN"><img src="https://img.shields.io/badge/Telegram-@StintikVPN-26A5E4?style=flat-square&logo=telegram" alt="Telegram"></a>
   <img src="https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square" alt="Stars">
 </p>
 
-**StintikVPN** — сборник бесплатных VPN-подписок. Скопируйте ссылку → вставьте в клиент → пользуйтесь.
+**StintikVPN** — короткий список бесплатных VPN-подписок и ссылок для клиентов.  
+Не свой сервис: это агрегатор открытых источников. Работоспособность не гарантируется.
+
+**Обновлено:** 16.10.2026
 
 ---
 
-## 📑 Навигация
+## Как начать
 
-- [🚀 Как пользоваться](#-как-пользоваться)
-- [📱 VPN-клиенты](#-vpn-клиенты)
-- [🏴‍☠️ Чёрные и белые списки](#-чёрные-и-белые-списки)
-- [📡 SNI и CIDR](#-sni-и-cidr)
-- [🛠️ Протоколы](#-протоколы)
-- [📦 VPN-подписки](#-vpn-подписки)
-- [🤖 Telegram-прокси](#-telegram-прокси)
-- [🛡️ Обход без VPN](#-обход-без-vpn)
-- [🧅 Tor-мосты](#tor-мосты)
-- [🔗 Зеркала](#-зеркала)
-- [❓ FAQ](#-faq)
-- [⚠️ Предупреждение](#-предупреждение)
-- [💰 Поддержать](#-поддержать)
+1. Установите клиент (таблица ниже).
+2. Скопируйте **одну** ссылку подписки.
+3. В клиенте: «Добавить подписку» / Import from clipboard.
+4. Обновите список → Ping → выберите живой узел → подключитесь.
 
 ---
 
-## 🚀 Как пользоваться
+## Клиенты
 
-1. Скачайте клиент под ваше устройство (см. таблицу ниже).
-2. Скопируйте ссылку из раздела **VPN‑подписки**.
-3. В клиенте выберите «Добавить подписку» или «Импорт из буфера».
-4. Обновите список → выполните Ping → выберите рабочий сервер → подключитесь.
+| Платформа | Рекомендуем | Альтернатива |
+|:----------|:------------|:-------------|
+| **Windows** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [v2rayN](https://github.com/2dust/v2rayN/releases) · [Happ](https://github.com/Happ-proxy/happ-desktop/releases) |
+| **Android** | [Hiddify](https://play.google.com/store/apps/details?id=app.hiddify.com) | [Happ](https://github.com/Happ-proxy/happ-android/releases) · [v2rayNG](https://github.com/2dust/v2rayNG/releases) |
+| **iOS** | [Streisand](https://apps.apple.com/app/streisand/id6450534064) | [Happ](https://apps.apple.com/app/happ-proxy-utility/id6504287215) |
+| **macOS** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
+| **Linux** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
 
----
-
-## 📱 VPN-клиенты
-
-Два лучших варианта на каждую платформу, выбирайте что удобнее.
-
-**NekoRay и NekoBox больше не поддерживаются** — в список не включаем. Вместо них можно **Happ**.
-
-| Устройство | Вариант 1 | Вариант 2 |
-|:-----------|:---------|:---------|
-| **Windows** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [v2rayN](https://github.com/2dust/v2rayN/releases) / [Happ](https://github.com/Happ-proxy/happ-desktop/releases) |
-| **Android** | [Hiddify](https://play.google.com/store/apps/details?id=app.hiddify.com) | [Happ](https://github.com/Happ-proxy/happ-android/releases) / [v2rayNG](https://github.com/2dust/v2rayNG/releases) |
-| **iPhone / iPad** | [Streisand](https://apps.apple.com/app/streisand/id6450534064) | [Happ](https://apps.apple.com/app/happ-proxy-utility/id6504287215) / [V2Box](https://apps.apple.com/app/v2box/id6443654552) |
-| **macOS** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) / [Happ](https://github.com/Happ-proxy/happ-desktop/releases) |
-| **Linux** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [Happ](https://github.com/Happ-proxy/happ-desktop/releases) / [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
-| **Android TV** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [v2rayNG](https://github.com/2dust/v2rayNG/releases) |
+Не умеете выбирать — берите **Hiddify** (Windows / Android) или **Streisand** (iOS).
 
 ---
 
-## 🏴‍☠️ Чёрные и белые списки
+## Какой режим подписки
 
-| Тип | Когда использовать |
-|:----|:------|
-| **Чёрные** | Обычный интернет: домашний Wi‑Fi, кабель, 4G без жёстких блокировок |
-| **Белые** | Оператор включил «белые списки» РКН |
+| Режим | Когда |
+|:------|:-----|
+| **Чёрный список** | Обычный интернет, домашний Wi‑Fi, мобильный без жёстких ограничений |
+| **Белый список** | Оператор режет почти всё, кроме «разрешённого» |
 
----
-
-## 📡 SNI и CIDR
-
-**SNI** и **CIDR** — это не «фильтры», которые можно просто менять местами, а **разные способы описать**, какой трафик куда направлять в подписке:
-
-| | Что это | Пример |
-|:--|:--|:--|
-| **SNI** | Имя сайта в TLS (домен) | `youtube.com` |
-| **CIDR** | Диапазон IP-адресов | `173.194.0.0/16` |
-
-Подписки с пометкой SNI опираются в основном на **домены**, с пометкой CIDR — на **IP-сети**.
-
-Если IP из CIDR уже режется TSPU/DPI, переключение «на SNI» **само по себе не поможет** с тем же адресом. Имеет смысл сменить узел/подписку или способ обхода, а не чередовать SNI ↔ CIDR как универсальный фикс.
+SNI и CIDR — разные способы описать маршруты (домены vs IP). Если один не заводится, попробуйте другой список или другую подписку, а не «переключатель ради переключателя».
 
 ---
 
-## 🛠️ Протоколы
+## Подписки
 
-| Протокол | В каком случае лучше использовать|
-|:---------|:-----|
-| **VLESS** | Хотите лучший на данный момент протокол, но готовы потерпеть, что иногда будет не работать, так как в настоящее время активно блокируется РКН |
-| **Trojan** | Хотите средний по всем параметрам протокол |
-| **VMess** | Хотите самый надёжный протокол, который редко отваливается |
-| **Shadowsocks** | Хотите быстрейший протокол (Лучший для онлайн игр) |
+Только проверенные на момент обновления ссылки (HTTP 200).
 
----
+### Чёрный список
 
-## 📦 VPN‑подписки
-
-### 🏴 Чёрный список (основной)
 ```
-https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all
+https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt
 ```
 
-### 👑 Black Mobile (для телефонов)
 ```
 https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
 ```
 
-### 🏳️ Белые списки (основные)
+### Белый список
+
 ```
 https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt
 ```
 
-### Белые списки (CIDR)
 ```
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 ```
 
-### Белые списки (SNI)
 ```
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 ```
 
----
-
-## 🤖 Telegram‑прокси
-
-> Обновлено: **11.09.2026**
-
-Скопируйте ссылку и откройте в Telegram:
-
-1. **lumetra.mtproxy.zip**  
-https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275
-
-2. **85.192.34.18:9443**  
-https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665
-
-3. **proxy.tonservice.site**  
-https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000
-
-4. **172.65.100.45:25565**  
-https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
-5. **cluster.mtproxy.cc**  
-https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363
+Бесплатные узлы часто перегружены или отваливаются. Не работает — другая ссылка или обновите подписку в клиенте.
 
 ---
 
-## 🛡️ Обход без VPN (ByeDPI, zapret, tgwsproxy)
+## Telegram-прокси
 
-Иногда блокировки можно обойти и без VPN, ниже приведены краткие инструкции по трём популярным решениям.
+Откройте ссылку в Telegram. Если не коннектится — следующий из списка (бесплатные прокси часто блокируют).
 
-### Zapret‑discord‑youtube (Windows)
-1. Перейдите на страницу репозитория Zapret‑discord‑youtube и скачайте релиз из раздела Releases.
-2. Распакуйте архив и запустите файл service.bat
-3. Нажмите цифру 11 и выберите «Run Tests», затем выберите все .bat файлы для проверки и tcp ping 
-4. Происходит тест, после его завершения появится надпись с лучшим bat файлом, зайдите обратно в папку zapret-discord-youtube и запустите его
-
-### ByeByeDPI (Windows / Android)
-1. Скачайте apk файл из репозитория ByeByeDPI.
-2. Установите приложение после чего нажмите подбор
-3. После завершения теста выберите текст с большим количеством совпадений (для примера 5/60 плохо, 59/60 хорошо) и потом нажмите на него и нажмите применить
-4. Вернитесь на главный экран приложения и нажмите кнопку запуска
-
-### TG‑WS‑Proxy (локальный прокси для Telegram)
-1. Скачайте сборку из репозитория Flowseal/tg-ws-proxy.
-2. Запустите файл `tgwsproxy.exe` 
-3. Следуйте инструкциям внутри приложения 
+1. https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363  
+2. https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000  
+3. https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665  
 
 ---
 
-## 🧅 Tor‑мосты
+## Без VPN (обход DPI)
 
-Для использования Tor Browser:
+Иногда хватает локального обхода без туннеля:
 
-1. Скачайте [Tor Browser](https://www.torproject.org/download/).
-2. Откройте «Настройки» → «Мосты» → вставьте строки из списка.
+| Инструмент | Платформа | Репозиторий |
+|:-----------|:----------|:------------|
+| **ByeDPI** | Android / Windows | [dovecoteescape/byedpi](https://github.com/dovecoteescape/byedpi) и форки клиентов |
+| **zapret** | Windows | ищите актуальные сборки *zapret-discord-youtube* |
+| **tg-ws-proxy** | Windows | [Flowseal/tg-ws-proxy](https://github.com/Flowseal/tg-ws-proxy) |
 
-Списки мостов:
-- Топ-100: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt  
-- Все: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt  
-- Vanilla: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_VANILLA.txt  
-- obfs4: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_OBFS4.txt
+Инструкции у авторов репозиториев — здесь только указатели, без копипасты устаревших шагов.
 
 ---
 
-## 🔗 Зеркала
+## Tor
 
+1. [Tor Browser](https://www.torproject.org/download/)  
+2. Настройки → Мосты → вставить строки:
+
+- [Топ-100](https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt)  
+- [Все](https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt)  
+- [obfs4](https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/TOR-BRIDGES/TOR_BRIDGES_OBFS4.txt)  
+
+---
+
+## Зеркала
+
+- [Сайт](https://stintik-123.github.io/StintikVPN/)  
 - [GitLab](https://gitlab.com/Stintik-123/StintikVPN)  
+- [Codeberg](https://codeberg.org/Stintik-123/StintikVPN)  
 - [GitVerse](https://gitverse.ru/Stintik-123/StintikHub)  
-- [Codeberg](https://codeberg.org/Stintik-123/StintikVPN)
+
+Бэкап состояния до переработки: ветка [`backup/pre-overhaul-2026-10-16`](https://github.com/Stintik-123/StintikVPN/tree/backup/pre-overhaul-2026-10-16).
 
 ---
 
-## ❓ FAQ
+## Важно
 
-<details>
-<summary><strong>Подписка не работает / очень медленно</strong></summary>
-
-Подписки бесплатные поэтому могут не работать в моменты большого наплыва людей, попробуйте другие подписки или обновите текущую 
-</details>
-
-<details>
-<summary><strong>Как часто обновляются конфиги?</strong></summary>
-
-Конфиги обновляются ежедневно их авторами. Ссылки в README всегда актуальны.
-</details>
-
-<details>
-<summary><strong>Почему StintikVPN бесплатный??</strong></summary>
-Это агрегатор VPN других бесплатных VPN подписок и прокси, можно сказать я как создатель ничего не трачу, просто собираю в одном месте всё бесплатное из интернета 
-</details>
-
-<details>
-<summary><strong>Прокси Telegram не подключается</strong></summary>
-
-Прокси бесплатные из-за чего могут часто блокировать РКН, пытаюсь обновлять по мере возможности но если не работает то попробуйте другой прокси из списка.
-</details>
-
-<details>
-<summary><strong>Какой VPN клиент лучше всего использовать если я не разбираюсь?</strong></summary>
-
-**Hiddify** — самый простой вариант для Windows и Android. На iOS — **Streisand** или **Happ**.
-</details>
-
-<details>
-<summary><strong>Безопасно ли всё это использовать?</strong></summary>
-
-Конфиги взяты из открытых источников и могут быть не безопасны. Главное не передавайте через них важные данные (пароли и т.д) и не заходите в банки или другие важные для вас сервисы
-</details>
+- Конфиги из открытых источников. **Не для банков, паролей и важной переписки.**  
+- Не используйте в противоправных целях. Автор не несёт ответственности за ваши действия.  
+- Это не коммерческий VPN и не «анонимность из коробки».
 
 ---
 
-## ⚠️ Предупреждение
+## Поддержка
 
-Конфиги из открытых источников. Работоспособность **не гарантируется**.  
-Запрещено использовать в противоправных целях. Автор не несёт ответственности за ваши действия.
+⭐ на репозиторий помогает проекту.  
+Канал: [@StintikVPN](https://t.me/StintikVPN)
 
----
-
-## 💰 Поддержать
-
-Поставьте ⭐ на репозиторий — бесплатно и сильно помогает проекту.
-
-Канал разработки: [@StintikVPN](https://t.me/StintikVPN)
-
----
-
-<p align="center"><em>StintikVPN — сделано людьми для людей</em></p>
+<p align="center"><em>StintikVPN — собрано в одном месте, без лишнего</em></p>
