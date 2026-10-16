@@ -1,0 +1,32 @@
+name: restore-langs-once
+on:
+  push:
+    paths:
+      - '.github/workflows/restore-langs.yml'
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore language files
+        run: |
+          git fetch origin backup/pre-overhaul-2026-10-16
+          git show origin/backup/pre-overhaul-2026-10-16:ReadMe_CN.md > ReadMe_CN.md
+          git show origin/backup/pre-overhaul-2026-10-16:ReadMe_IR.md > ReadMe_IR.md
+          python3 << 'PY'
+          from pathlib import Path
+          old = 'https://gitverse.ru/api/repos/Akres/VPN/raw/branch/master/all'
+          new = 'https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt'
+          for name in ['ReadMe_CN.md', 'ReadMe_IR.md']:
+            p = Path(name)
+            p.write_text(p.read_text(encoding='utf-8').replace(old, new), encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ReadMe_CN.md ReadMe_IR.md
+          git commit -m 'restore: CN/IR readmes from backup (Akres link fixed)' || exit 0
+          git push
