@@ -1,323 +1,679 @@
-// ===== DATA =====
-const data = {
-  updated: "17.10.2026",
-  subscriptions: [
-    {
-      category: "black",
-      tag: "Чёрные",
-      title: "Чёрный список (основной)",
-      note: "V2Ray Aggregator",
-      url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt"
-    },
-    {
-      category: "black",
-      tag: "Mobile",
-      title: "Black Mobile",
-      note: "Для телефона — KvRuVPN",
-      url: "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt"
-    },
-    {
-      category: "white",
-      tag: "Белые",
-      title: "Белые списки (основные)",
-      note: "Для жестких блокировок",
-      url: "https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt"
-    },
-    {
-      category: "white",
-      tag: "CIDR",
-      title: "Белые списки (CIDR)",
-      note: "Фильтр по IP",
-      url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt"
-    },
-    {
-      category: "white",
-      tag: "SNI",
-      title: "Белые списки (SNI)",
-      note: "Фильтр по доменам",
-      url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt"
-    }
-  ],
-  proxies: [
-    {
-      addr: "lumetra.mtproxy.zip",
-      url: "https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275"
-    },
-    {
-      addr: "85.192.34.18:9443",
-      url: "https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665"
-    },
-    {
-      addr: "proxy.tonservice.site",
-      url: "https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000"
-    },
-    {
-      addr: "172.65.100.45:25565",
-      url: "https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d"
-    },
-    {
-      addr: "cluster.mtproxy.cc",
-      url: "https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363"
-    }
-  ]
-};
+/**
+ * StintikVPN - MEGA Beautiful Design
+ * All interactive functionality and visual effects
+ */
 
-// ===== INIT =====
-function init() {
-  updateProxyDate();
-  loadSubscriptions();
-  loadProxies();
-  initTheme();
-  initSmoothScroll();
-  initMobileNav();
+// ============================================
+// Theme Management
+// ============================================
+
+function getPreferredTheme() {
+  const stored = localStorage.getItem('theme');
+  if (stored) return stored;
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
-// ===== THEME =====
-function toggleTheme() {
+function applyTheme(theme) {
+  const html = document.documentElement;
   const body = document.body;
-  const isDark = body.classList.contains('dark');
-  body.classList.toggle('dark', !isDark);
-  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  
+  // Remove existing theme classes
+  html.classList.remove('theme-light', 'theme-dark');
+  body.classList.remove('theme-light', 'theme-dark');
+  
+  // Add new theme class
+  const themeClass = `theme-${theme}`;
+  html.classList.add(themeClass);
+  body.classList.add(themeClass);
+  
+  // Update data attribute
+  html.setAttribute('data-theme', theme);
+  body.setAttribute('data-theme', theme);
+  
+  // Save to localStorage
+  localStorage.setItem('theme', theme);
+  
+  // Reinitialize particles with new theme
+  initParticles();
+  
+  // Recreate floating elements
+  createFloatingElements();
 }
 
-function initTheme() {
-  const saved = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const shouldBeDark = saved === 'dark' || (saved !== 'light' && prefersDark);
-  document.body.classList.toggle('dark', shouldBeDark);
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
+  const next = current === 'light' ? 'dark' : 'light';
+  applyTheme(next);
 }
 
-// ===== NAV =====
-function toggleNav() {
-  document.querySelector('.nav-links')?.classList.toggle('open');
-}
+// ============================================
+// Particles.js Integration
+// ============================================
 
-function initMobileNav() {
-  // Close nav when clicking outside
-  document.addEventListener('click', (e) => {
-    const nav = document.querySelector('.nav-container');
-    const burger = document.querySelector('.nav-burger');
-    if (nav && burger && !nav.contains(e.target) && !burger.contains(e.target)) {
-      document.querySelector('.nav-links')?.classList.remove('open');
-    }
-  });
-}
-
-// ===== SMOOTH SCROLL =====
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const href = a.getAttribute('href');
-      if (!href || href === '#') return;
-      e.preventDefault();
-      const target = document.querySelector(href);
-      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Close mobile nav
-      document.querySelector('.nav-links')?.classList.remove('open');
+function initParticles() {
+  const isLight = document.body.classList.contains('theme-light');
+  const particleColor = isLight ? '#666666' : '#6a6a8a';
+  const lineColor = isLight ? '#cccccc' : '#3a3a5a';
+  
+  if (window.particlesJS) {
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 40,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: particleColor
+        },
+        shape: {
+          type: 'circle',
+          stroke: {
+            width: 0,
+            color: '#000000'
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 2,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: lineColor,
+          opacity: 0.1,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+          attract: {
+            enable: true,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: {
+            enable: true,
+            mode: 'grab'
+          },
+          onclick: {
+            enable: true,
+            mode: 'push'
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 140,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 8,
+            speed: 3
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 4
+          },
+          remove: {
+            particles_nb: 2
+          }
+        }
+      },
+      retina_detect: true
     });
-  });
-}
-
-// ===== PROXY DATE =====
-function updateProxyDate() {
-  const el = document.getElementById('proxy-date');
-  if (!el) return;
-  const now = new Date();
-  const day = String(now.getDate()).padStart(2, '0');
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const year = now.getFullYear();
-  el.textContent = `${day}.${month}.${year}`;
-}
-
-// ===== SUBSCRIPTIONS =====
-function loadSubscriptions() {
-  const container = document.getElementById('sub-list');
-  if (!container) return;
-
-  container.innerHTML = data.subscriptions.map(sub => `
-    <div class="sub" data-c="${sub.category}">
-      <span class="sub-tag">${sub.tag}</span>
-      <div class="sub-body">
-        <h4>${sub.title}</h4>
-        <span>${sub.note}</span>
-      </div>
-      <div class="sub-actions">
-        <button class="btn btn-secondary" onclick="showQR(this, '${sub.url}')">QR</button>
-        <button class="btn btn-secondary" onclick="cp(this, '${sub.url}')">Копировать</button>
-        <button class="btn btn-secondary" onclick="shareUrl(this, '${sub.url}')">Поделиться</button>
-      </div>
-    </div>
-  `).join('');
-
-  // Filter buttons
-  document.querySelectorAll('.filter-jump')?.forEach(btn => {
-    btn.addEventListener('click', () => filt(btn.dataset.f));
-  });
-}
-
-// ===== PROXIES =====
-function loadProxies() {
-  const container = document.getElementById('proxy-list');
-  if (!container) return;
-
-  container.innerHTML = data.proxies.map(proxy => `
-    <div class="proxy">
-      <div class="proxy-left">
-        <span class="proxy-type">MTProto</span>
-        <span class="proxy-addr">${proxy.addr}</span>
-      </div>
-      <div class="sub-actions">
-        <button class="btn btn-secondary" onclick="showQR(this, '${proxy.url}')">QR</button>
-        <button class="btn btn-secondary" onclick="cp(this, '${proxy.url}')">Копировать</button>
-        <button class="btn btn-secondary" onclick="shareUrl(this, '${proxy.url}')">Поделиться</button>
-        <a href="${proxy.url}" target="_blank" class="btn btn-secondary">Открыть</a>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ===== FILTER =====
-function filt(cat) {
-  // Update filter buttons
-  document.querySelectorAll('.filter')?.forEach(b => {
-    b.classList.toggle('active', b.dataset.f === cat);
-  });
-
-  // Filter items
-  document.querySelectorAll('.sub')?.forEach(r => {
-    if (cat === 'all') {
-      r.classList.remove('hidden');
-    } else {
-      const categories = (r.dataset.c || '').split(' ');
-      r.classList.toggle('hidden', !categories.includes(cat));
-    }
-  });
-
-  // Scroll to section
-  document.getElementById('subs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ===== COPY =====
-function copyToClipboard(text) {
-  if (navigator.clipboard?.writeText) {
-    return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
   }
-  return legacyCopy(text);
 }
 
-function legacyCopy(text) {
-  return new Promise(resolve => {
-    const t = document.createElement('textarea');
-    t.value = text;
-    t.setAttribute('readonly', '');
-    t.style.position = 'fixed';
-    t.style.left = '-9999px';
-    document.body.appendChild(t);
-    t.select();
-    try { document.execCommand('copy'); } catch (e) {}
-    document.body.removeChild(t);
-    resolve();
-  });
-}
+// ============================================
+// Floating Elements (Animated Orbs)
+// ============================================
 
-function cp(btn, url) {
-  copyToClipboard(url).then(() => {
-    if (btn?.classList) {
-      const original = btn.textContent;
-      btn.classList.add('copied');
-      btn.textContent = '✓ Скопировано';
-      setTimeout(() => {
-        btn.classList.remove('copied');
-        btn.textContent = original;
-      }, 1500);
-    }
-    showToast('Скопировано');
-  });
-}
-
-// ===== SHARE =====
-function shareUrl(btn, url) {
-  if (!navigator.share) {
-    showToast('Поделиться недоступно');
-    return;
-  }
-  navigator.share({ text: url }).catch(() => {});
-}
-
-// ===== QR =====
-var currentQRUrl = '';
-
-function showQR(btn, url) {
-  currentQRUrl = url;
-  const modal = document.getElementById('qr-modal');
-  const container = document.getElementById('qrcode');
-  if (!modal || !container) return;
-
+function createFloatingElements() {
+  const container = document.getElementById('floating-elements');
+  if (!container) return;
+  
   container.innerHTML = '';
+  
+  const isLight = document.body.classList.contains('theme-light');
+  const colors = isLight 
+    ? ['rgba(0, 212, 255, 0.1)', 'rgba(255, 42, 109, 0.1)', 'rgba(212, 0, 255, 0.1)']
+    : ['rgba(0, 212, 255, 0.15)', 'rgba(255, 42, 109, 0.15)', 'rgba(212, 0, 255, 0.15)'];
+  
+  const positions = [
+    { top: '10%', left: '5%' },
+    { top: '60%', right: '5%' },
+    { bottom: '10%', left: '20%' },
+    { top: '30%', right: '20%' }
+  ];
+  
+  positions.forEach((pos, index) => {
+    const orb = document.createElement('div');
+    orb.className = 'floating-orb';
+    orb.style.cssText = `
+      width: ${100 + index * 30}px;
+      height: ${100 + index * 30}px;
+      top: ${pos.top};
+      left: ${pos.left};
+      right: ${pos.right || 'auto'};
+      bottom: ${pos.bottom || 'auto'};
+      background: ${colors[index % colors.length]};
+      animation-delay: ${-index * 2.5}s;
+      filter: blur(${40 + index * 10}px);
+    `;
+    container.appendChild(orb);
+  });
+}
 
-  if (typeof QRCode === 'undefined') {
-    container.innerHTML = '<p>QR-библиотека не загрузилась</p>';
-    modal.hidden = false;
-    return;
-  }
+// ============================================
+// Scroll Reveal Animation
+// ============================================
 
-  const isDark = document.body.classList.contains('dark');
-  const colorDark = isDark ? '#ffffff' : '#000000';
-  const colorLight = isDark ? '#000000' : '#ffffff';
-
-  try {
-    new QRCode(container, {
-      text: url,
-      width: 200,
-      height: 200,
-      colorDark: colorDark,
-      colorLight: colorLight,
-      correctLevel: QRCode.CorrectLevel.M
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  
+  const revealOnScroll = () => {
+    reveals.forEach(reveal => {
+      const rect = reveal.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Reveal when element is 100px from bottom of viewport
+      if (rect.top < windowHeight - 100) {
+        reveal.classList.add('in');
+      }
     });
-  } catch (e) {
-    container.innerHTML = '<p>Не удалось сгенерировать QR</p>';
-  }
+  };
+  
+  // Initial check
+  revealOnScroll();
+  
+  // Check on scroll
+  window.addEventListener('scroll', revealOnScroll);
+  
+  // Check on resize
+  window.addEventListener('resize', revealOnScroll);
+}
 
-  modal.hidden = false;
+// ============================================
+// Animated Counters
+// ============================================
+
+function initAnimatedCounters() {
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const targetValue = parseInt(target.dataset.target);
+        animateCounter(target, targetValue);
+        observer.unobserve(target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  counters.forEach(counter => observer.observe(counter));
+}
+
+function animateCounter(element, target) {
+  const duration = 2000;
+  const startTime = performance.now();
+  const startValue = 0;
+  
+  function updateCounter(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function (ease-out)
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const currentValue = Math.floor(startValue + (target - startValue) * easeOut);
+    
+    element.textContent = currentValue;
+    
+    if (progress < 1) {
+      requestAnimationFrame(updateCounter);
+    }
+  }
+  
+  requestAnimationFrame(updateCounter);
+}
+
+// ============================================
+// Navigation
+// ============================================
+
+function toggleNav() {
+  const burger = document.querySelector('.nav-burger');
+  const links = document.querySelector('.nav-links');
+  
+  burger.classList.toggle('active');
+  links.classList.toggle('open');
+  
+  // Prevent body scroll when nav is open
+  if (links.classList.contains('open')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+}
+
+function closeNav() {
+  const burger = document.querySelector('.nav-burger');
+  const links = document.querySelector('.nav-links');
+  
+  burger.classList.remove('active');
+  links.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Scroll effect for nav
+function initNavScroll() {
+  const nav = document.querySelector('.nav');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+}
+
+// Smooth scroll for anchor links
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const navHeight = document.querySelector('.nav').offsetHeight;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        closeNav();
+      }
+    });
+  });
+}
+
+// ============================================
+// Subscription Filtering
+// ============================================
+
+function filt(category) {
+  const subs = document.querySelectorAll('.sub');
+  const filters = document.querySelectorAll('.filter');
+  
+  // Update active filter
+  filters.forEach(f => f.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // Filter subs
+  subs.forEach(sub => {
+    const subCategory = sub.dataset.c;
+    
+    if (category === 'all' || subCategory === category) {
+      sub.style.display = 'flex';
+      sub.classList.add('reveal');
+    } else {
+      sub.style.display = 'none';
+    }
+  });
+  
+  // Re-initialize scroll reveal for filtered items
+  setTimeout(() => {
+    initScrollReveal();
+  }, 100);
+}
+
+// ============================================
+// Clipboard & Share
+// ============================================
+
+function cp(button, text) {
+  const toast = document.getElementById('toast');
+  
+  // Modern clipboard API
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(toast);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+      fallbackCopy(button, text, toast);
+    });
+  } else {
+    // Fallback for older browsers
+    fallbackCopy(button, text, toast);
+  }
+}
+
+function fallbackCopy(button, text, toast) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  
+  try {
+    document.execCommand('copy');
+    showToast(toast);
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+  }
+  
+  document.body.removeChild(textarea);
+}
+
+function shareUrl(button, url) {
+  if (navigator.share) {
+    navigator.share({
+      title: 'StintikVPN',
+      text: 'Проверьте это VPN-подписку',
+      url: url
+    }).catch(err => {
+      console.error('Share failed:', err);
+      // Fallback to copy
+      cp(button, url);
+    });
+  } else {
+    // Fallback to copy
+    cp(button, url);
+  }
+}
+
+function showToast(toast) {
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2000);
+}
+
+// ============================================
+// QR Code Modal
+// ============================================
+
+let currentQRCode = null;
+
+function showQR(button, url) {
+  const modal = document.getElementById('qr-modal');
+  const qrContainer = document.getElementById('qrcode');
+  
+  // Clear previous QR code
+  qrContainer.innerHTML = '';
+  
+  // Create new QR code
+  currentQRCode = new QRCode(qrContainer, {
+    text: url,
+    width: 200,
+    height: 200,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  
+  // Show modal
+  modal.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeQR() {
-  document.getElementById('qr-modal')?.setAttribute('hidden', '');
-  currentQRUrl = '';
+  const modal = document.getElementById('qr-modal');
+  modal.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+  
+  if (currentQRCode) {
+    currentQRCode.clear();
+    currentQRCode = null;
+  }
 }
 
-// ===== TOAST =====
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.hidden = false;
-  setTimeout(() => toast.classList.add('show'), 10);
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.hidden = true, 200);
-  }, 1500);
+// Close modal on escape key
+function initModalKeyboard() {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeQR();
+      closeNav();
+    }
+  });
 }
 
-// ===== FAQ =====
-function toggleFaq(btn) {
-  const item = btn.parentElement;
+// Close modal on backdrop click
+function initModalBackdrop() {
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', () => {
+      closeQR();
+    });
+  });
+}
+
+// ============================================
+// FAQ/Guide Toggle
+// ============================================
+
+function toggleFaq(button) {
+  const item = button.parentElement;
   const isOpen = item.classList.contains('open');
   
-  // Close all
-  document.querySelectorAll('.faq-item')?.forEach(x => x.classList.remove('open'));
+  // Close all other items
+  document.querySelectorAll('.faq-item').forEach(otherItem => {
+    if (otherItem !== item) {
+      otherItem.classList.remove('open');
+    }
+  });
   
-  // Open current if wasn't open
-  if (!isOpen) item.classList.add('open');
+  // Toggle current item
+  if (isOpen) {
+    item.classList.remove('open');
+  } else {
+    item.classList.add('open');
+  }
 }
 
-// ===== KEYBOARD =====
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeQR();
-    document.querySelector('.nav-links')?.classList.remove('open');
+// ============================================
+// Proxy Date Update
+// ============================================
+
+function updateProxyDate() {
+  const dateElement = document.getElementById('proxy-date');
+  if (dateElement) {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    dateElement.textContent = `${day}.${month}.${year}`;
+  }
+}
+
+// ============================================
+// Keyboard Navigation
+// ============================================
+
+function initKeyboardNav() {
+  // Add visible focus styles for keyboard users
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      document.body.classList.add('keyboard-nav');
+    }
+  });
+  
+  document.addEventListener('mousedown', () => {
+    document.body.classList.remove('keyboard-nav');
+  });
+}
+
+// ============================================
+// Touch Support
+// ============================================
+
+function initTouchSupport() {
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, false);
+  
+  document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, false);
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe left - close nav if open
+        closeNav();
+      } else {
+        // Swipe right - could open nav, but we'll leave this to the burger button
+      }
+    }
+  }
+}
+
+// ============================================
+// Performance Optimizations
+// ============================================
+
+function initPerformance() {
+  // Lazy load images
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    img.setAttribute('src', img.dataset.src);
+    img.removeAttribute('data-src');
+  });
+  
+  // Reduce animations on low-end devices
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.body.classList.add('reduce-motion');
+    const style = document.createElement('style');
+    style.textContent = `
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
+// ============================================
+// Initialize Everything
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Apply theme
+  applyTheme(getPreferredTheme());
+  
+  // Initialize particles
+  initParticles();
+  
+  // Create floating elements
+  createFloatingElements();
+  
+  // Initialize scroll reveal
+  initScrollReveal();
+  
+  // Initialize animated counters
+  initAnimatedCounters();
+  
+  // Initialize navigation
+  initNavScroll();
+  initSmoothScroll();
+  
+  // Initialize modal
+  initModalKeyboard();
+  initModalBackdrop();
+  
+  // Initialize keyboard navigation
+  initKeyboardNav();
+  
+  // Initialize touch support
+  initTouchSupport();
+  
+  // Initialize performance optimizations
+  initPerformance();
+  
+  // Update proxy date
+  updateProxyDate();
+  
+  // Add loaded class to body for initial animations
+  document.body.classList.add('loaded');
+});
+
+// Handle theme changes from system preferences
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+  if (!localStorage.getItem('theme')) {
+    applyTheme(e.matches ? 'light' : 'dark');
   }
 });
 
-// ===== RUN =====
-document.addEventListener('DOMContentLoaded', init);
+// Handle window resize
+window.addEventListener('resize', () => {
+  // Recreate floating elements on resize for better responsiveness
+  if (window.innerWidth > 768) {
+    createFloatingElements();
+  }
+});
+
+// Export functions for inline event handlers
+window.toggleNav = toggleNav;
+window.closeNav = closeNav;
+window.toggleTheme = toggleTheme;
+window.filt = filt;
+window.cp = cp;
+window.shareUrl = shareUrl;
+window.showQR = showQR;
+window.closeQR = closeQR;
+window.toggleFaq = toggleFaq;
