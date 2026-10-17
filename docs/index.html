@@ -25,13 +25,13 @@
     </a>
     <button class="nav-burger" aria-label="Меню" onclick="toggleNav()"><span></span><span></span><span></span></button>
     <div class="nav-links">
-      <a href="#subs" onclick="closeNav()">Подписки</a>
-      <a href="#clients" onclick="closeNav()">Клиенты</a>
-      <a href="#tools" onclick="closeNav()">Инструменты</a>
-      <a href="#proxies" onclick="closeNav()">Прокси</a>
-      <a href="#guides" onclick="closeNav()">Гайды</a>
-      <a href="#warp" onclick="closeNav()">WARP</a>
-      <a href="#faq" onclick="closeNav()">FAQ</a>
+      <a href="#subs">Подписки</a>
+      <a href="#clients">Клиенты</a>
+      <a href="#tools">Инструменты</a>
+      <a href="#proxies">Прокси</a>
+      <a href="#guides">Гайды</a>
+      <a href="#warp">WARP</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="nav-ctas">
       <button class="nav-theme-btn" aria-label="Тема" onclick="toggleTheme()" title="Переключить тему">
@@ -60,8 +60,8 @@
 <section class="features" id="features">
   <div class="container">
     <div class="features-grid">
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏴</div><h3>Чёрные списки</h3><p>Домашний Wi‑Fi, кабель, обычный 4G</p><button class="btn btn-sm btn-ghost" onclick="filt('black')">Смотреть →</button></div>
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏳️</div><h3>Белые списки</h3><p>Белые списки РКН</p><button class="btn btn-sm btn-ghost" onclick="filt('white')">Смотреть →</button></div>
+      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏴</div><h3>Чёрные списки</h3><p>Домашний Wi‑Fi, кабель, обычный 4G</p><button class="btn btn-sm btn-ghost filter-jump" data-f="black">Смотреть →</button></div>
+      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏳️</div><h3>Белые списки</h3><p>Белые списки РКН</p><button class="btn btn-sm btn-ghost filter-jump" data-f="white">Смотреть →</button></div>
       <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🛠️</div><h3>Инструменты</h3><p>Speedtest, 2ip, дешифратор happ, Clash converter</p><a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a></div>
     </div>
   </div>
@@ -71,37 +71,11 @@
   <div class="container">
     <div class="section-head"><h2>Подписки</h2><p>Скопируй ссылку и добавь в клиент</p></div>
     <div class="filters">
-      <button class="filter active" data-f="all" onclick="filt('all')">Все</button>
-      <button class="filter" data-f="black" onclick="filt('black')">Чёрные</button>
-      <button class="filter" data-f="white" onclick="filt('white')">Белые</button>
+      <button class="filter active" data-f="all">Все</button>
+      <button class="filter" data-f="black">Чёрные</button>
+      <button class="filter" data-f="white">Белые</button>
     </div>
-    <div class="sub-list">
-      <div class="sub" data-c="black"><span class="sub-tag tag-black">Чёрный</span><div class="sub-body"><h4>Чёрный список (основной)</h4><span>V2Ray Aggregator</span></div><div class="sub-actions">
-          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt')">QR</button>
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt')">Скопировать</button>
-          <button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt')">Поделиться</button>
-        </div></div>
-      <div class="sub" data-c="black"><span class="sub-tag tag-black">Mobile</span><div class="sub-body"><h4>Black Mobile</h4><span>Для телефонов — KvRuVPN</span></div><div class="sub-actions">
-          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">QR</button>
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Скопировать</button>
-          <button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt')">Поделиться</button>
-        </div></div>
-      <div class="sub" data-c="white"><span class="sub-tag tag-white">Белый</span><div class="sub-body"><h4>Белые списки (основные)</h4><span>Для жёстких блокировок</span></div><div class="sub-actions">
-          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt')">QR</button>
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt')">Скопировать</button>
-          <button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt')">Поделиться</button>
-        </div></div>
-      <div class="sub" data-c="white"><span class="sub-tag tag-white">CIDR</span><div class="sub-body"><h4>Белые списки (CIDR)</h4><span>Фильтр по IP</span></div><div class="sub-actions">
-          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt')">QR</button>
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt')">Скопировать</button>
-          <button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt')">Поделиться</button>
-        </div></div>
-      <div class="sub" data-c="white"><span class="sub-tag tag-white">SNI</span><div class="sub-body"><h4>Белые списки (SNI)</h4><span>Фильтр по доменам</span></div><div class="sub-actions">
-          <button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">QR</button>
-          <button class="btn btn-sm btn-copy" onclick="cp(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">Скопировать</button>
-          <button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt')">Поделиться</button>
-        </div></div>
-    </div>
+    <div class="sub-list" id="sub-list"></div>
   </div>
 </section>
 
@@ -133,14 +107,8 @@
 
 <section class="section" id="proxies">
   <div class="container">
-    <div class="section-head"><h2>Telegram-прокси</h2><p>MTProto · Обновлено <span id="proxy-date">11.09.2026</span></p></div>
-    <div class="proxy-list">
-      <div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">lumetra.mtproxy.zip</span></div><div class="sub-actions"><button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275')">QR</button><button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275')">Скопировать</button><button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275')">Поделиться</button><a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275" target="_blank">Открыть</a></div></div>
-      <div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">85.192.34.18:9443</span></div><div class="sub-actions"><button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665')">QR</button><button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665')">Скопировать</button><button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665')">Поделиться</button><a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665" target="_blank">Открыть</a></div></div>
-      <div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">proxy.tonservice.site</span></div><div class="sub-actions"><button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000')">QR</button><button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000')">Скопировать</button><button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000')">Поделиться</button><a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000" target="_blank">Открыть</a></div></div>
-      <div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">172.65.100.45:25565</span></div><div class="sub-actions"><button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d')">QR</button><button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d')">Скопировать</button><button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d')">Поделиться</button><a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d" target="_blank">Открыть</a></div></div>
-      <div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span><span class="proxy-addr">cluster.mtproxy.cc</span></div><div class="sub-actions"><button class="btn btn-sm btn-qr" onclick="showQR(this, 'https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363')">QR</button><button class="btn btn-sm btn-copy" onclick="cp(this,'https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363')">Скопировать</button><button class="btn btn-sm btn-share" onclick="shareUrl(this,'https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363')">Поделиться</button><a class="btn btn-sm btn-ghost" href="https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363" target="_blank">Открыть</a></div></div>
-    </div>
+    <div class="section-head"><h2>Telegram-прокси</h2><p>MTProto · Обновлено <span id="proxy-date">17.10.2026</span></p></div>
+    <div class="proxy-list" id="proxy-list"></div>
   </div>
 </section>
 
@@ -149,7 +117,7 @@
     <div class="section-head"><h2>Гайды</h2><p>Обход без VPN (ByeDPI, zapret, tgwsproxy)</p></div>
     <div class="faq-list guide-list">
       <div class="faq-item guide-card">
-        <button class="faq-q" onclick="toggleFaq(this)"><span class="guide-title"><span class="guide-emoji">🪟</span> Zapret‑discord‑youtube (Windows)</span><span class="faq-icon">+</span></button>
+        <button class="faq-q"><span class="guide-title"><span class="guide-emoji">🪟</span> Zapret‑discord‑youtube (Windows)</span><span class="faq-icon">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
             <li>Перейдите на страницу репозитория <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener">Zapret‑discord‑youtube</a> и скачайте релиз из раздела Releases.</li>
             <li>Распакуйте архив и запустите файл service.bat</li>
@@ -158,7 +126,7 @@
           </ol></div></div>
       </div>
       <div class="faq-item guide-card">
-        <button class="faq-q" onclick="toggleFaq(this)"><span class="guide-title"><span class="guide-emoji">📱</span> ByeByeDPI (Windows / Android)</span><span class="faq-icon">+</span></button>
+        <button class="faq-q"><span class="guide-title"><span class="guide-emoji">📱</span> ByeByeDPI (Windows / Android)</span><span class="faq-icon">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
             <li>Скачайте apk файл из репозитория ByeByeDPI.</li>
             <li>Установите приложение после чего нажмите подбор</li>
@@ -167,7 +135,7 @@
           </ol></div></div>
       </div>
       <div class="faq-item guide-card">
-        <button class="faq-q" onclick="toggleFaq(this)"><span class="guide-title"><span class="guide-emoji">✈️</span> TG‑WS‑Proxy (локальный прокси для Telegram)</span><span class="faq-icon">+</span></button>
+        <button class="faq-q"><span class="guide-title"><span class="guide-emoji">✈️</span> TG‑WS‑Proxy (локальный прокси для Telegram)</span><span class="faq-icon">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
             <li>Скачайте сборку из репозитория Flowseal/tg-ws-proxy.</li>
             <li>Запустите файл tgwsproxy.exe</li>
@@ -192,12 +160,12 @@
   <div class="container">
     <div class="section-head"><h2>FAQ</h2></div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Подписка не работает / очень медленно<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Подписки бесплатные поэтому могут не работать в моменты большого наплыва людей, попробуйте другие подписки или обновите текущую</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Как часто обновляются конфиги?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги обновляются ежедневно их авторами. Ссылки в README всегда актуальны.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Почему StintikVPN бесплатный??<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Это агрегатор VPN других бесплатных VPN подписок и прокси, можно сказать я как создатель ничего не трачу, просто собираю в одном месте всё бесплатное из интернета</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не подключается<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Прокси бесплатные из-за чего могут часто блокировать РКН, пытаюсь обновлять по мере возможности но если не работает то попробуйте другой прокси из списка.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Какой VPN клиент лучше всего использовать если я не разбираюсь?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — самый простой вариант для Windows и Android. На iOS — <strong>Streisand</strong>.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Безопасно ли всё это использовать?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги взяты из открытых источников и могут быть не безопасны. Главное не передавайте через них важные данные (пароли и т.д) и не заходите в банки или другие важные для вас сервисы</div></div></div>
+      <div class="faq-item"><button class="faq-q">Подписка не работает / очень медленно<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Подписки бесплатные поэтому могут не работать в моменты большого наплыва людей, попробуйте другие подписки или обновите текущую</div></div></div>
+      <div class="faq-item"><button class="faq-q">Как часто обновляются конфиги?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги обновляются ежедневно их авторами. Ссылки в README проверяются автоматически; если одна не открывается — берите другую.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Почему StintikVPN бесплатный?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Это агрегатор VPN других бесплатных VPN подписок и прокси, можно сказать я как создатель ничего не трачу, просто собираю в одном месте всё бесплатное из интернета</div></div></div>
+      <div class="faq-item"><button class="faq-q">Прокси Telegram не подключается<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Прокси бесплатные из-за чего могут часто блокировать РКН, пытаюсь обновлять по мере возможности но если не работает то попробуйте другой прокси из списка.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Какой VPN клиент лучше всего использовать если я не разбираюсь?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — самый простой вариант для Windows и Android. На iOS — <strong>Streisand</strong>.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Безопасно ли всё это использовать?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги взяты из открытых источников и могут быть не безопасны. Главное не передавайте через них важные данные (пароли и т.д) и не заходите в банки или другие важные для вас сервисы</div></div></div>
     </div>
   </div>
 </section>

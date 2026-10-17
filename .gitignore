@@ -1,49 +1,10 @@
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
-*.class
-*.exe
-*.dll
-*.so
-*.a
-*.out
-
-# Dependencies
-node_modules/
-venv/
-.venv/
-.env
-.env.local
-.env.*
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-
-# Editors
+# OS / editors
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
 
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# Distribution / packaging
-dist/
-build/
-*.tar.gz
-*.zip
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# MyPy
-.mypy_cache/
-# PyTest
-.pytest_cache/
+# Temp
+*.log
+*.tmp
+*.swp

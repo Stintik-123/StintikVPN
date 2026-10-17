@@ -6,9 +6,9 @@
 
 <p align="center">
   <strong>🇷🇺 Русский</strong> ·
-  <a href="ReadMe_EN.md">🇬🇧 English</a> ·
-  <a href="ReadMe_CN.md">🇨🇳 中文</a> ·
-  <a href="ReadMe_IR.md">🇮🇷 فارسی</a>
+  <a href="README_EN.md">🇬🇧 English</a> ·
+  <a href="README_CN.md">🇨🇳 中文</a> ·
+  <a href="README_IR.md">🇮🇷 فارسی</a>
 </p>
 
 <p align="center">
