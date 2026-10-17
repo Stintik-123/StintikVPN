@@ -1,37 +1,35 @@
 # Contributing to StintikVPN
 
-Thanks for your interest! 🚀
-
-## How to help
-
-- ⭐ Star the repo — it's free and helps a lot.
-- 🐛 Found a dead link or a bug? [Open an issue](https://github.com/Stintik-123/StintikVPN/issues/new/choose) using the Bug template.
-- 📡 Know a good free subscription or proxy? Open an issue with the "New subscription" template.
-- 🌍 Translations and README improvements are welcome via pull requests.
-
-## Project structure
+## Структура проекта
 
 ```
-├── docs/            # GitHub Pages site (index.html, script.js, style.css, data.json)
-│   └── data.json   # single source of truth: subscriptions + TG proxies + updated date
-├── README.md       # Russian (main)
-├── README_EN.md    # English
-├── README_CN.md    # Chinese
-├── README_IR.md    # Persian
-├── LICENSE         # MIT
-└── .github/
-    ├── ISSUE_TEMPLATE/
-    └── workflows/  # mirror.yml, check-links.yml
+.
+├── docs/                  # Сайт (GitHub Pages)
+│   ├── index.html         # разметка, списки рендерятся из data.json
+│   ├── script.js          # вся логика сайта
+│   ├── data.json          # ЕДИНЫЙ ИСТОЧНИК ДАННЫХ: подписки и прокси
+│   └── style.css          # стили
+├── .github/workflows/
+│   └── check-links.yml    # CI: ежедневная проверка ссылок
+├── README.md              # русский
+├── README_EN.md           # english
+├── README_CN.md           # 中文
+├── README_IR.md           # فارسی
+├── CONTRIBUTING.md
+└── LICENSE                # MIT
 ```
 
-## Rules
+## Правила
 
-1. **Subscription links live in `docs/data.json` and in the README blocks.** If you change a link, update `docs/data.json` first, then the READMEs (all 4 languages) so they stay in sync.
-2. Don't add paid or cracked services — free and public only.
-3. Keep the site dependency-free (plain HTML/CSS/JS).
-4. One PR = one logical change. Keep diffs small and reviewable.
-5. For site changes: `docs/` only. Don't touch other files unless needed.
+1. **Сначала `docs/data.json`.** Подписки и Telegram-прокси добавляются/обновляются только там — сайт читает этот файл автоматически.
+2. **Потом README.** После изменения `data.json` синхронизируйте разделы «VPN‑подписки» и «Telegram‑прокси» (и дату) во всех четырёх README.
+3. **Не дублируйте URL в HTML.** В `docs/index.html` не должно быть хардкода ссылок на подписки/прокси — только контейнеры `#sub-list` и `#proxy-list`, которые наполняет `script.js`.
+4. **Пол `updated`** в `data.json` меняется при обновлении прокси. Не подделывайте дату в JS — она берётся из `data.json`.
+5. **Ссылки проверяются CI** (`.github/workflows/check-links.yml`) ежедневно в 06:00 UTC. Если ссылка мёртвая — CI создаст issue с меткой `dead-link`. Отреагируйте: замените ссылку или удалите её.
+6. Язык коммитов: conventional commits (`feat:`, `fix:`, `docs:`, `chore:`).
 
-## Link health
+## Проверка перед PR
 
-Subscription links are checked automatically every day by `.github/workflows/check-links.yml`. If a link dies, an issue is created automatically — that's the signal to find a replacement.
+- `docs/data.json` — валидный JSON.
+- Все URL из `data.json` открываются.
+- Сайт (`docs/`) корректно рендерится локально.
