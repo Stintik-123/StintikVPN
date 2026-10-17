@@ -1,68 +1,213 @@
-// Auto-update proxy date
-function updateProxyDate() {
-  const dateEl = document.getElementById('proxy-date');
-  if (!dateEl) return;
-  const now = new Date();
-  const day = String(now.getDate()).padStart(2, '0');
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const year = now.getFullYear();
-  dateEl.textContent = day + '.' + month + '.' + year;
+// ===== DATA =====
+const data = {
+  updated: "17.10.2026",
+  subscriptions: [
+    {
+      category: "black",
+      tag: "Чёрные",
+      title: "Чёрный список (основной)",
+      note: "V2Ray Aggregator",
+      url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt"
+    },
+    {
+      category: "black",
+      tag: "Mobile",
+      title: "Black Mobile",
+      note: "Для телефона — KvRuVPN",
+      url: "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt"
+    },
+    {
+      category: "white",
+      tag: "Белые",
+      title: "Белые списки (основные)",
+      note: "Для жестких блокировок",
+      url: "https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt"
+    },
+    {
+      category: "white",
+      tag: "CIDR",
+      title: "Белые списки (CIDR)",
+      note: "Фильтр по IP",
+      url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt"
+    },
+    {
+      category: "white",
+      tag: "SNI",
+      title: "Белые списки (SNI)",
+      note: "Фильтр по доменам",
+      url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt"
+    }
+  ],
+  proxies: [
+    {
+      addr: "lumetra.mtproxy.zip",
+      url: "https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275"
+    },
+    {
+      addr: "85.192.34.18:9443",
+      url: "https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665"
+    },
+    {
+      addr: "proxy.tonservice.site",
+      url: "https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000"
+    },
+    {
+      addr: "172.65.100.45:25565",
+      url: "https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d"
+    },
+    {
+      addr: "cluster.mtproxy.cc",
+      url: "https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363"
+    }
+  ]
+};
+
+// ===== INIT =====
+function init() {
+  updateProxyDate();
+  loadSubscriptions();
+  loadProxies();
+  initTheme();
+  initSmoothScroll();
+  initMobileNav();
 }
 
+// ===== THEME =====
 function toggleTheme() {
   const body = document.body;
-  const isLight = body.classList.contains('theme-light');
-  body.classList.toggle('theme-light', !isLight);
-  body.classList.toggle('theme-dark', isLight);
-  localStorage.setItem('theme', isLight ? 'dark' : 'light');
+  const isDark = body.classList.contains('dark');
+  body.classList.toggle('dark', !isDark);
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
 }
 
 function initTheme() {
   const saved = localStorage.getItem('theme');
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  const shouldUseLight = saved === 'light' || (saved !== 'dark' && prefersLight);
-  document.body.classList.toggle('theme-light', shouldUseLight);
-  document.body.classList.toggle('theme-dark', !shouldUseLight);
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const shouldBeDark = saved === 'dark' || (saved !== 'light' && prefersDark);
+  document.body.classList.toggle('dark', shouldBeDark);
 }
 
+// ===== NAV =====
 function toggleNav() {
-  const links = document.querySelector('.nav-links');
-  const ctas = document.querySelector('.nav-ctas');
-  if (links) links.classList.toggle('open');
-  if (ctas) ctas.classList.toggle('open');
+  document.querySelector('.nav-links')?.classList.toggle('open');
 }
 
-function closeNav() {
-  const links = document.querySelector('.nav-links');
-  const ctas = document.querySelector('.nav-ctas');
-  if (links) links.classList.remove('open');
-  if (ctas) ctas.classList.remove('open');
+function initMobileNav() {
+  // Close nav when clicking outside
+  document.addEventListener('click', (e) => {
+    const nav = document.querySelector('.nav-container');
+    const burger = document.querySelector('.nav-burger');
+    if (nav && burger && !nav.contains(e.target) && !burger.contains(e.target)) {
+      document.querySelector('.nav-links')?.classList.remove('open');
+    }
+  });
 }
 
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.hidden = false;
-  setTimeout(function () { toast.classList.add('show'); }, 10);
-  setTimeout(function () {
-    toast.classList.remove('show');
-    setTimeout(function () { toast.hidden = true; }, 200);
-  }, 1800);
-}
-
-function copyToClipboard(text) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    return navigator.clipboard.writeText(text).catch(function () {
-      return legacyCopy(text);
+// ===== SMOOTH SCROLL =====
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile nav
+      document.querySelector('.nav-links')?.classList.remove('open');
     });
+  });
+}
+
+// ===== PROXY DATE =====
+function updateProxyDate() {
+  const el = document.getElementById('proxy-date');
+  if (!el) return;
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = now.getFullYear();
+  el.textContent = `${day}.${month}.${year}`;
+}
+
+// ===== SUBSCRIPTIONS =====
+function loadSubscriptions() {
+  const container = document.getElementById('sub-list');
+  if (!container) return;
+
+  container.innerHTML = data.subscriptions.map(sub => `
+    <div class="sub" data-c="${sub.category}">
+      <span class="sub-tag">${sub.tag}</span>
+      <div class="sub-body">
+        <h4>${sub.title}</h4>
+        <span>${sub.note}</span>
+      </div>
+      <div class="sub-actions">
+        <button class="btn btn-secondary" onclick="showQR(this, '${sub.url}')">QR</button>
+        <button class="btn btn-secondary" onclick="cp(this, '${sub.url}')">Копировать</button>
+        <button class="btn btn-secondary" onclick="shareUrl(this, '${sub.url}')">Поделиться</button>
+      </div>
+    </div>
+  `).join('');
+
+  // Filter buttons
+  document.querySelectorAll('.filter-jump')?.forEach(btn => {
+    btn.addEventListener('click', () => filt(btn.dataset.f));
+  });
+}
+
+// ===== PROXIES =====
+function loadProxies() {
+  const container = document.getElementById('proxy-list');
+  if (!container) return;
+
+  container.innerHTML = data.proxies.map(proxy => `
+    <div class="proxy">
+      <div class="proxy-left">
+        <span class="proxy-type">MTProto</span>
+        <span class="proxy-addr">${proxy.addr}</span>
+      </div>
+      <div class="sub-actions">
+        <button class="btn btn-secondary" onclick="showQR(this, '${proxy.url}')">QR</button>
+        <button class="btn btn-secondary" onclick="cp(this, '${proxy.url}')">Копировать</button>
+        <button class="btn btn-secondary" onclick="shareUrl(this, '${proxy.url}')">Поделиться</button>
+        <a href="${proxy.url}" target="_blank" class="btn btn-secondary">Открыть</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== FILTER =====
+function filt(cat) {
+  // Update filter buttons
+  document.querySelectorAll('.filter')?.forEach(b => {
+    b.classList.toggle('active', b.dataset.f === cat);
+  });
+
+  // Filter items
+  document.querySelectorAll('.sub')?.forEach(r => {
+    if (cat === 'all') {
+      r.classList.remove('hidden');
+    } else {
+      const categories = (r.dataset.c || '').split(' ');
+      r.classList.toggle('hidden', !categories.includes(cat));
+    }
+  });
+
+  // Scroll to section
+  document.getElementById('subs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ===== COPY =====
+function copyToClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
   }
   return legacyCopy(text);
 }
 
 function legacyCopy(text) {
-  return new Promise(function (resolve) {
-    var t = document.createElement('textarea');
+  return new Promise(resolve => {
+    const t = document.createElement('textarea');
     t.value = text;
     t.setAttribute('readonly', '');
     t.style.position = 'fixed';
@@ -75,112 +220,50 @@ function legacyCopy(text) {
   });
 }
 
-// Копирование ссылки
 function cp(btn, url) {
-  copyToClipboard(url).then(function () {
-    if (btn && btn.classList) {
-      var o = btn.textContent;
-      btn.classList.add('done');
-      btn.textContent = '✓ Готово';
-      setTimeout(function () {
-        btn.classList.remove('done');
-        btn.textContent = o;
-      }, 1800);
+  copyToClipboard(url).then(() => {
+    if (btn?.classList) {
+      const original = btn.textContent;
+      btn.classList.add('copied');
+      btn.textContent = '✓ Скопировано';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.textContent = original;
+      }, 1500);
     }
-    showToast('✓ Скопировано');
+    showToast('Скопировано');
   });
 }
 
-// Системный share
+// ===== SHARE =====
 function shareUrl(btn, url) {
   if (!navigator.share) {
-    showToast('Поделиться недоступно на этом устройстве');
+    showToast('Поделиться недоступно');
     return;
   }
-  navigator.share({ text: url }).catch(function () {
-    // пользователь закрыл модалку
-  });
+  navigator.share({ text: url }).catch(() => {});
 }
 
-function toggleFaq(btn) {
-  var item = btn.parentElement;
-  var open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function (x) {
-    x.classList.remove('open');
-  });
-  if (!open) item.classList.add('open');
-}
-
-function filt(cat) {
-  document.querySelectorAll('.filter').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.f === cat);
-  });
-  document.querySelectorAll('.sub').forEach(function (r) {
-    if (cat === 'all') r.classList.remove('hidden');
-    else {
-      var c = (r.dataset.c || '').split(' ');
-      r.classList.toggle('hidden', c.indexOf(cat) === -1);
-    }
-  });
-  var s = document.getElementById('subs');
-  if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Scroll Reveal анимация
-function initScrollReveal() {
-  const reveals = document.querySelectorAll('.reveal');
-  
-  const revealOnScroll = () => {
-    reveals.forEach(reveal => {
-      const elementTop = reveal.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      
-      if (elementTop < windowHeight - 100) {
-        reveal.classList.add('in');
-      }
-    });
-  };
-  
-  // Проверяем при загрузке
-  revealOnScroll();
-  
-  // И при скролле
-  window.addEventListener('scroll', revealOnScroll);
-}
-
-// Плавный скролл для всех ссылок
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var h = a.getAttribute('href');
-      if (!h || h === '#') return;
-      e.preventDefault();
-      var t = document.querySelector(h);
-      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-}
-
-// QR код модалка
+// ===== QR =====
 var currentQRUrl = '';
 
 function showQR(btn, url) {
   currentQRUrl = url;
-  var modal = document.getElementById('qr-modal');
-  var container = document.getElementById('qrcode');
+  const modal = document.getElementById('qr-modal');
+  const container = document.getElementById('qrcode');
   if (!modal || !container) return;
 
   container.innerHTML = '';
 
   if (typeof QRCode === 'undefined') {
-    container.innerHTML = '<p style="color:var(--text-2);font-size:0.85rem;padding:12px">QR-библиотека не загрузилась. Обновите страницу.</p>';
+    container.innerHTML = '<p>QR-библиотека не загрузилась</p>';
     modal.hidden = false;
     return;
   }
 
-  var isLight = document.body.classList.contains('theme-light');
-  var colorDark = isLight ? '#1a1a1e' : '#ececf1';
-  var colorLight = isLight ? '#ffffff' : '#060608';
+  const isDark = document.body.classList.contains('dark');
+  const colorDark = isDark ? '#ffffff' : '#000000';
+  const colorLight = isDark ? '#000000' : '#ffffff';
 
   try {
     new QRCode(container, {
@@ -192,166 +275,49 @@ function showQR(btn, url) {
       correctLevel: QRCode.CorrectLevel.M
     });
   } catch (e) {
-    container.innerHTML = '<p style="color:var(--text-2);font-size:0.85rem;padding:12px">Не удалось сгенерировать QR</p>';
+    container.innerHTML = '<p>Не удалось сгенерировать QR</p>';
   }
 
   modal.hidden = false;
 }
 
 function closeQR() {
-  var modal = document.getElementById('qr-modal');
-  if (modal) modal.hidden = true;
+  document.getElementById('qr-modal')?.setAttribute('hidden', '');
   currentQRUrl = '';
 }
 
-// Счетчики анимация
-function animateCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const kind = counter.dataset.kind;
-        const endValue = getCounterValue(kind);
-        animateValue(counter, 0, endValue, 1000);
-        observer.unobserve(counter);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  counters.forEach(counter => observer.observe(counter));
+// ===== TOAST =====
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.hidden = false;
+  setTimeout(() => toast.classList.add('show'), 10);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.hidden = true, 200);
+  }, 1500);
 }
 
-function getCounterValue(kind) {
-  const data = {
-    subs: 5,
-    proxies: 5
-  };
-  return data[kind] || 0;
-}
-
-function animateValue(element, start, end, duration) {
-  const range = end - start;
-  const increment = range / (duration / 16);
-  let current = start;
+// ===== FAQ =====
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
   
-  const timer = setInterval(() => {
-    current += increment;
-    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
-      current = end;
-      clearInterval(timer);
-    }
-    element.textContent = Math.floor(current);
-  }, 16);
-}
-
-// Загрузка данных из JSON
-async function loadData() {
-  try {
-    const response = await fetch('data.json');
-    if (!response.ok) throw new Error('Failed to load data');
-    const data = await response.json();
-    
-    // Обновляем дату прокси
-    updateProxyDate();
-    
-    // Загружаем подписки
-    loadSubscriptions(data.subscriptions);
-    
-    // Загружаем прокси
-    loadProxies(data.proxies);
-    
-  } catch (error) {
-    console.error('Error loading data:', error);
-    // Если не удалось загрузить JSON, используем данные из HTML
-    initStaticContent();
-  }
-}
-
-function loadSubscriptions(subscriptions) {
-  const container = document.getElementById('sub-list');
-  if (!container) return;
+  // Close all
+  document.querySelectorAll('.faq-item')?.forEach(x => x.classList.remove('open'));
   
-  container.innerHTML = subscriptions.map(sub => `
-    <div class="sub" data-c="${sub.category}">
-      <span class="sub-tag tag-${sub.category}">${sub.tag}</span>
-      <div class="sub-body">
-        <h4>${sub.title}</h4>
-        <span>${sub.note}</span>
-      </div>
-      <div class="sub-actions">
-        <button class="btn btn-sm btn-qr" onclick="showQR(this, '${sub.url}')">QR</button>
-        <button class="btn btn-sm btn-copy" onclick="cp(this,'${sub.url}')">Скопировать</button>
-        <button class="btn btn-sm btn-share" onclick="shareUrl(this,'${sub.url}')">Поделиться</button>
-      </div>
-    </div>
-  `).join('');
-  
-  // Инициализируем фильтры
-  document.querySelectorAll('.filter-jump').forEach(btn => {
-    btn.addEventListener('click', () => {
-      filt(btn.dataset.f);
-    });
-  });
+  // Open current if wasn't open
+  if (!isOpen) item.classList.add('open');
 }
 
-function loadProxies(proxies) {
-  const container = document.getElementById('proxy-list');
-  if (!container) return;
-  
-  container.innerHTML = proxies.map(proxy => `
-    <div class="proxy">
-      <div class="proxy-left">
-        <span class="proxy-type">MTProto</span>
-        <span class="proxy-addr">${proxy.addr}</span>
-      </div>
-      <div class="sub-actions">
-        <button class="btn btn-sm btn-qr" onclick="showQR(this, '${proxy.url}')">QR</button>
-        <button class="btn btn-sm btn-copy" onclick="cp(this,'${proxy.url}')">Скопировать</button>
-        <button class="btn btn-sm btn-share" onclick="shareUrl(this,'${proxy.url}')">Поделиться</button>
-        <a class="btn btn-sm btn-ghost" href="${proxy.url}" target="_blank">Открыть</a>
-      </div>
-    </div>
-  `).join('');
-}
-
-function initStaticContent() {
-  // Если JSON не загрузился, используем статические данные из HTML
-  // Эта функция оставлена для обратной совместимости
-}
-
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-  initTheme();
-  initSmoothScroll();
-  initScrollReveal();
-  animateCounters();
-  loadData();
-  
-  // Закрываем навигацию при клике вне
-  document.addEventListener('click', function(e) {
-    const nav = document.querySelector('.nav');
-    const burger = document.querySelector('.nav-burger');
-    if (nav && burger && !nav.contains(e.target) && !burger.contains(e.target)) {
-      closeNav();
-    }
-  });
-});
-
-// Закрываем модалку QR при клике на backdrop
-document.addEventListener('click', function(e) {
-  const modal = document.getElementById('qr-modal');
-  const backdrop = document.querySelector('.modal-backdrop');
-  if (modal && !modal.hidden && e.target === backdrop) {
-    closeQR();
-  }
-});
-
-// Закрываем модалку QR при нажатии Escape
-document.addEventListener('keydown', function(e) {
+// ===== KEYBOARD =====
+document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeQR();
-    closeNav();
+    document.querySelector('.nav-links')?.classList.remove('open');
   }
 });
+
+// ===== RUN =====
+document.addEventListener('DOMContentLoaded', init);

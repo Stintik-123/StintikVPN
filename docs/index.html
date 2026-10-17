@@ -1,236 +1,316 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>StintikVPN — Интернет свобода ближе чем кажется</title>
-<meta name="description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI."/>
-<meta name="theme-color" content="#05060e"/>
-<meta property="og:title" content="StintikVPN — Интернет свобода ближе чем кажется"/>
-<meta property="og:description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI."/>
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://stintik-123.github.io/StintikVPN/"/>
-<meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg"/>
-<link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg"/>
-<link rel="stylesheet" href="style.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StintikVPN — Бесплатные VPN подписки и прокси</title>
+  <meta name="description" content="Свежие VPN-подписки и Telegram-прокси из открытых источников. 100% бесплатно, без регистрации.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="StintikVPN — Бесплатные VPN подписки и прокси">
+  <meta property="og:description" content="Свежие VPN-подписки и Telegram-прокси из открытых источников. 100% бесплатно, без регистрации.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg">
+  <link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body class="theme-dark">
-
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="#" class="logo">
-      <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt=""/>
-      StintikVPN
-    </a>
-    <button class="nav-burger" aria-label="Меню" onclick="toggleNav()"><span></span><span></span><span></span></button>
-    <div class="nav-links">
-      <a href="#subs" onclick="closeNav()">Подписки</a>
-      <a href="#clients" onclick="closeNav()">Клиенты</a>
-      <a href="#tools" onclick="closeNav()">Инструменты</a>
-      <a href="#proxies" onclick="closeNav()">Прокси</a>
-      <a href="#guides" onclick="closeNav()">Гайды</a>
-      <a href="#warp" onclick="closeNav()">WARP</a>
-      <a href="#faq" onclick="closeNav()">FAQ</a>
-    </div>
-    <div class="nav-ctas">
-      <button class="nav-theme-btn" aria-label="Тема" onclick="toggleTheme()" title="Переключить тему">
-        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="StintikVPN" class="logo-img">
+        StintikVPN
+      </a>
+      <div class="nav-links">
+        <a href="#subs">Подписки</a>
+        <a href="#proxies">Прокси</a>
+        <a href="#clients">Клиенты</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <button class="nav-burger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
       </button>
-      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta nav-cta-gh">GitHub</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-orb-wrap reveal">
-      <div class="hero-orb">
-        <div class="orb-ring ring-1"></div>
-        <div class="orb-ring ring-2"></div>
-        <div class="orb-ring ring-3"></div>
-        <img class="orb-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="StintikVPN"/>
+  <main class="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <h1>Бесплатные VPN подписки и прокси</h1>
+        <p class="subtitle">Свежие конфигурации из открытых источников. Скопируй ссылку — вставь в клиент — пользуйся.</p>
+        
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-value">5</span>
+            <span class="stat-label">VPN подписок</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">5</span>
+            <span class="stat-label">Telegram прокси</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">0 ₽</span>
+            <span class="stat-label">Навсегда</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions">
+          <a href="#subs" class="btn btn-primary">Получить подписку</a>
+          <a href="#faq" class="btn btn-secondary">Как это работает</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-badge reveal"><span class="dot"></span>100% бесплатно · без карты и регистрации</div>
-    <h1 class="reveal">Интернет свобода<br><span class="grad">ближе чем кажется</span></h1>
-    <p class="hero-sub reveal">Свежие VPN-подписки и Telegram-прокси из открытых источников. Скопирой ссылку — вставь в клиент — пользуйся.</p>
-    <div class="hero-actions reveal">
-      <a href="#subs" class="btn btn-primary btn-lg">Выбрать подписку</a>
-      <a href="#how" class="btn btn-ghost btn-lg">Как это работает</a>
-    </div>
-    <div class="hero-stats reveal">
-      <div class="stat"><span class="stat-num" data-count data-kind="subs">5</span><span class="stat-label">подписок</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><span class="stat-num" data-count data-kind="proxies">5</span><span class="stat-label">TG-прокси</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><span class="stat-num">0 ₽</span><span class="stat-label">навсегда</span></div>
-    </div>
-  </div>
-  <a href="#features" class="scroll-hint" aria-label="Листайте вниз"><span></span></a>
-</section>
+    </section>
 
-<!-- ============ БЕГУЩАЯ СТРОКА ============ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>V2Ray</span><i>◆</i><span>MTProto</span><i>◆</i><span>ByeDPI</span><i>◆</i><span>Hiddify</span><i>◆</i><span>Streisand</span><i>◆</i><span>WARP</span><i>◆</i><span>Xray</span><i>◆</i><span>Clash</span><i>◆</i><span>v2rayN</span><i>◆</i><span>Zapret</span><i>◆</i>
-    <span>V2Ray</span><i>◆</i><span>MTProto</span><i>◆</i><span>ByeDPI</span><i>◆</i><span>Hiddify</span><i>◆</i><span>Streisand</span><i>◆</i><span>WARP</span><i>◆</i><span>Xray</span><i>◆</i><span>Clash</span><i>◆</i><span>v2rayN</span><i>◆</i><span>Zapret</span><i>◆</i>
-  </div>
-</div>
-
-<!-- ============ КАК ЭТО РАБОТАЕТ ============ -->
-<section class="section" id="how">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">Просто</span><h2>Как это работает</h2><p>Три шага — и ты в свободном интернете</p></div>
-    <div class="steps-grid">
-      <div class="step reveal"><div class="step-num">01</div><h3>Выбери подписку</h3><p>Чёрные списки для домашнего Wi-Fi, кабеля, обычного 4G</p></div>
-      <div class="step-arrow" aria-hidden="true">→</div>
-      <div class="step reveal"><div class="step-num">02</div><h3>Вставь в клиент</h3><p>Скопируй ссылку и добавь её в Hiddify, Streisand или другой клиент</p></div>
-      <div class="step-arrow" aria-hidden="true">→</div>
-      <div class="step reveal"><div class="step-num">03</div><h3>Пользуйся</h3><p>Конфиги обновляются автоматически — подписка сама остаётся свежей</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ФИЧИ ============ -->
-<section class="features" id="features">
-  <div class="container">
-    <div class="features-grid">
-      <div class="feature reveal"><div class="feature-glow"></div><div class="feature-icon">🌐</div><h3>Чёрные списки</h3><p>Домашний Wi-Fi, кабель, обычный 4G</p><button class="btn btn-sm btn-ghost filter-jump" data-f="black">Смотреть →</button></div>
-      <div class="feature reveal"><div class="feature-glow"></div><div class="feature-icon">🌐</div><h3>Белые списки</h3><p>Белые списки РКН</p><button class="btn btn-sm btn-ghost filter-jump" data-f="white">Смотреть →</button></div>
-      <div class="feature reveal"><div class="feature-glow"></div><div class="feature-icon">🔧</div><h3>Инструменты</h3><p>Speedtest, 2ip, дешифратор happ, Clash converter</p><a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ПОДПИСКИ ============ -->
-<section class="section" id="subs">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">VPN</span><h2>Подписки</h2><p>Скопируй ссылку и добавь в клиент</p></div>
-    <div class="filters reveal">
-      <button class="filter active" data-f="all">Все</button>
-      <button class="filter" data-f="black">Чёрные</button>
-      <button class="filter" data-f="white">Белые</button>
-    </div>
-    <div class="sub-list" id="sub-list"></div>
-  </div>
-</section>
-
-<!-- ============ КЛИЕНТЫ ============ -->
-<section class="section" id="clients">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">Приложения</span><h2>Клиенты</h2><p>Новичкам проще всего начать с Hiddify (ПК/Android) или Streisand (iPhone)</p></div>
-    <div class="table-wrap reveal"><table class="cli-table"><thead><tr><th>Платформа</th><th>Рекомендуем</th><th>Альтернатива</th></tr></thead><tbody>
-      <tr><td>Windows</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">v2rayN</a></td></tr>
-      <tr><td>Android</td><td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">v2rayNG</a></td></tr>
-      <tr><td>iPhone / iPad</td><td><a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">Streisand</a></td><td><a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank" rel="noopener">V2Box</a></td></tr>
-      <tr><td>macOS</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener">Clash Verge</a></td></tr>
-      <tr><td>Linux</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener">Clash Verge</a></td></tr>
-      <tr><td>Android TV</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">v2rayNG</a></td></tr>
-    </tbody></table></div>
-  </div>
-</section>
-
-<!-- ============ ИНСТРУМЕНТЫ ============ -->
-<section class="section" id="tools">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">Сеть</span><h2>Инструменты</h2><p>Проверка сети и работа с подписками</p></div>
-    <div class="tools-grid">
-      <a class="tool reveal" href="https://www.speedtest.net/" target="_blank" rel="noopener"><h4>Speedtest</h4><span>Проверка скорости</span></a>
-      <a class="tool reveal" href="https://2ip.ru/" target="_blank" rel="noopener"><h4>2ip</h4><span>Проверка IP и утечки данных</span></a>
-      <a class="tool reveal" href="https://utils.docs.rw/cryptohapp" target="_blank" rel="noopener"><h4>Happ decoder</h4><span>Дешифратор подписок Happ</span></a>
-      <a class="tool reveal" href="https://acl4ssr-sub.github.io/" target="_blank" rel="noopener"><h4>Clash converter</h4><span>Конвертер подписок</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ПРОКСИ ============ -->
-<section class="section" id="proxies">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">Telegram</span><h2>TG-прокси</h2><p>MTProto · обновлено <span id="proxy-date">—</span></p></div>
-    <div class="proxy-list" id="proxy-list"></div>
-  </div>
-</section>
-
-<!-- ============ ГАЙДЫ ============ -->
-<section class="section" id="guides">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">Без VPN</span><h2>Гайды</h2><p>Обход блокировок (ByeDPI, zapret, tgwsproxy)</p></div>
-    <div class="faq-list guide-list">
-      <div class="faq-item guide-card reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span class="guide-title"><span class="guide-emoji">🦋</span> Zapret—discord—youtube (Windows)</span><span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
-            <li>Перейдите на страницу репозитория <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener">Zapret—discord—youtube</a> и скачайте релиз из раздела Releases.</li>
-            <li>Распакуйте архив и запустите файл service.bat</li>
-            <li>Нажмите цифру 11 и выберите «Run Tests», затем выберите в меню .bat файлы для проверки и tcp ping</li>
-            <li>Просмотрите тест, после чего завершите проверку нажатием на надпись с лучшим bat файлом, затем зайти в папку zapret-discord-youtube и запустите его</li>
-          </ol></div></div>
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="container">
+        <p><strong>Подключайся к свободному интернету</strong></p>
+        <p>Работает на всех устройствах: iPhone, Android, Windows, macOS, Linux, Android TV</p>
+        <p>Без карты и регистрации. Просто скопируй и используй.</p>
       </div>
-      <div class="faq-item guide-card reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span class="guide-title"><span class="guide-emoji">📷</span> ByeByeDPI (Windows / Android)</span><span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
-            <li>Скачайте apk файл из репозитория ByeByeDPI.</li>
-            <li>Установите приложение после чего нажмите подбор</li>
-            <li>После завершения теста выберите текст с большим количеством совпадений (для примера 5/60 плохо, 59/60 хорошо) и нажмите на него и нажмите применить</li>
-            <li>Вернитесь на главный экран приложения и нажмите кнопку запуска</li>
-          </ol></div></div>
+    </section>
+
+    <!-- SUBS -->
+    <section class="section" id="subs">
+      <div class="container">
+        <h2>VPN Подписки</h2>
+        <p>Чёрные и белые списки для обхода блокировок</p>
+        
+        <div class="filters">
+          <button class="filter active" data-f="all" onclick="filt('all')">Все</button>
+          <button class="filter" data-f="black" onclick="filt('black')">Чёрные списки</button>
+          <button class="filter" data-f="white" onclick="filt('white')">Белые списки</button>
+        </div>
+        
+        <div class="sub-list" id="sub-list">
+          <!-- Загружается из JS -->
+        </div>
       </div>
-      <div class="faq-item guide-card reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span class="guide-title"><span class="guide-emoji">✉️</span> TG—WS—Proxy (локальный прокси для Telegram)</span><span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
-            <li>Скачайте сборку из репозитория Flowseal/tg-ws-proxy.</li>
-            <li>Запустите файл tgwsproxy.exe</li>
-            <li>Следуйте инструкциям внутри приложения</li>
-          </ol></div></div>
+    </section>
+
+    <!-- PROXIES -->
+    <section class="section" id="proxies">
+      <div class="container">
+        <h2>Telegram Прокси</h2>
+        <p>MTProto прокси для Telegram. Обновляется автоматически.</p>
+        <p>Дата обновления: <span id="proxy-date">—</span></p>
+        
+        <div class="proxy-list" id="proxy-list">
+          <!-- Загружается из JS -->
+        </div>
       </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section class="section" id="clients">
+      <div class="container">
+        <h2>Клиенты</h2>
+        <p>Рекомендуемые приложения для работы с подписками</p>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Платформа</th>
+                <th>Рекомендуем</th>
+                <th>Альтернатива</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Windows</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayN/releases" target="_blank">v2rayN</a></td></tr>
+              <tr><td>Android</td><td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank">v2rayNG</a></td></tr>
+              <tr><td>iPhone / iPad</td><td><a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank">Streisand</a></td><td><a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank">V2Box</a></td></tr>
+              <tr><td>macOS</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a></td><td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank">Clash Verge</a></td></tr>
+              <tr><td>Linux</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a></td><td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank">Clash Verge</a></td></tr>
+              <tr><td>Android TV</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank">v2rayNG</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="section" id="tools">
+      <div class="container">
+        <h2>Инструменты</h2>
+        <p>Проверка сети и работа с подписками</p>
+        
+        <div class="tool-grid">
+          <a href="https://www.speedtest.net/" target="_blank" class="tool">
+            <h3>Speedtest</h3>
+            <p>Проверка скорости</p>
+          </a>
+          <a href="https://2ip.ru/" target="_blank" class="tool">
+            <h3>2ip</h3>
+            <p>Проверка IP и утечки данных</p>
+          </a>
+          <a href="https://utils.docs.rw/cryptohapp" target="_blank" class="tool">
+            <h3>Happ decoder</h3>
+            <p>Дешифратор подписок Happ</p>
+          </a>
+          <a href="https://acl4ssr-sub.github.io/" target="_blank" class="tool">
+            <h3>Clash converter</h3>
+            <p>Конвертер подписок</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDES -->
+    <section class="section" id="guides">
+      <div class="container">
+        <h2>Гайды</h2>
+        <p>Обход блокировок без VPN</p>
+        
+        <div class="guide-list">
+          <div class="guide">
+            <h3>🦋 Zapret-discord-youtube (Windows)</h3>
+            <ol>
+              <li>Перейдите на страницу репозитория <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank">Zapret—discord—youtube</a> и скачайте релиз из раздела Releases.</li>
+              <li>Распакуйте архив и запустите файл service.bat</li>
+              <li>Нажмите цифру 11 и выберите «Run Tests», затем выберите в меню .bat файлы для проверки</li>
+              <li>Просмотрите тест, после чего завершите проверку</li>
+            </ol>
+          </div>
+          
+          <div class="guide">
+            <h3>📷 ByeByeDPI (Windows / Android)</h3>
+            <ol>
+              <li>Скачайте apk файл из репозитория ByeByeDPI</li>
+              <li>Установите приложение</li>
+              <li>После завершения теста выберите текст с большим количеством совпадений</li>
+              <li>Вернитесь на главный экран и нажмите кнопку запуска</li>
+            </ol>
+          </div>
+          
+          <div class="guide">
+            <h3>✉️ TG-WS-Proxy (локальный прокси)</h3>
+            <ol>
+              <li>Скачайте сборку из репозитория Flowseal/tg-ws-proxy</li>
+              <li>Запустите файл tgwsproxy.exe</li>
+              <li>Следуйте инструкциям внутри приложения</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WARP -->
+    <section class="section" id="warp">
+      <div class="container">
+        <h2>WARP</h2>
+        <p>Cloudflare WARP — бесплатный инструмент для улучшения конфиденциальности</p>
+        
+        <div class="tool-grid">
+          <a href="https://warp.llxi.pro/" target="_blank" class="tool">
+            <h3>WARP Generator</h3>
+            <p>Сгенерировать конфиг</p>
+          </a>
+          <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" class="tool">
+            <h3>README</h3>
+            <p>Подробности в репозитории</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <h2>Частые вопросы</h2>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Подписка не работает / очень медленно
+            </button>
+            <div class="faq-a">
+              <p>Подписки бесплатные, поэтому могут иногда не работать или быть медленными. Попробуйте другой клиент или подождите обновления.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Как часто обновляются конфиги?
+            </button>
+            <div class="faq-a">
+              <p>Конфиги обновляются ежедневно автоматически.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Почему StintikVPN бесплатный?
+            </button>
+            <div class="faq-a">
+              <p>Это агрегатор VPN других сервисов. Я просто собираю их в одном месте, чтобы не тратить время на поиски.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Прокси Telegram не подключается
+            </button>
+            <div class="faq-a">
+              <p>Прокси из открытых источников могут часто меняться. Попробуйте другой прокси из списка.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Какой VPN клиент выбрать новичку?
+            </button>
+            <div class="faq-a">
+              <p><strong>Hiddify</strong> — самый простой для Windows и Android. На iOS — <strong>Streisand</strong>.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Безопасно ли всё это?
+            </button>
+            <div class="faq-a">
+              <p>Конфиги из открытых источников. Используйте на свой страх и риск.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Начнём?</h2>
+        <p>Выбери подписку и подключайся к свободному интернету</p>
+        <a href="#subs" class="btn btn-primary btn-large">Получить подписку</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>StintikVPN — сделано людьми для людей</p>
+      <p>
+        <a href="https://github.com/Stintik-123/StintikVPN" target="_blank">GitHub</a> ·
+        <a href="https://t.me/StintikVPN" target="_blank">Telegram</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal" id="qr-modal" hidden>
+    <div class="modal-overlay" onclick="closeQR()"></div>
+    <div class="modal-content">
+      <div id="qrcode"></div>
+      <button class="btn" onclick="closeQR()">Закрыть</button>
     </div>
   </div>
-</section>
 
-<!-- ============ WARP ============ -->
-<section class="section" id="warp">
-  <div class="container">
-    <div class="section-head reveal"><span class="section-kicker">Cloudflare</span><h2>WARP</h2><p>Конфиги индивидуальные — генерируй свои, не шарись чужые</p></div>
-    <div class="tools-grid">
-      <a class="tool reveal" href="https://warp.llxi.pro/" target="_blank" rel="noopener"><h4>WARP Generator</h4><span>Сгенерировать конфиг</span></a>
-      <a class="tool reveal" href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener"><h4>README</h4><span>Подробности в репозитории</span></a>
-    </div>
-  </div>
-</section>
+  <div class="toast" id="toast" hidden>Скопировано</div>
 
-<!-- ============ FAQ ============ -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-head reveal"><h2>FAQ</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Подписка не работает / очень медленно<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Подписки бесплатные потому могут иногда не работать или быть медленными. Попробуйте другой клиент или подождите пока обновятся подписки.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Как часто обновляются конфиги?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги обновляются ежедневно и их автоматически генерируют.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Почему StintikVPN бесплатный??<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Это агрегатор VPN других VPN сервисов и прокси, можно сказать я как создатель просто собрала их в одном месте, чтобы не тратить, проще говоря я не тратю ничего на это.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не подключается<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Прокси бесплатные из открытых источников могут часто меняться или быть недоступны. Попробуйте другой прокси из списка.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Какой VPN клиент выбрать если я новичок?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — самый простой вариант для Windows и Android. На iOS — <strong>Streisand</strong>.</div></div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Безопасно ли всё это?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги из открытых источников могут быть небезопасны. Пожалуйста, используйте их на свой страх и риск.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <p>StintikVPN — сделано людьми для людей</p>
-    <p><a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a> · <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">Telegram</a></p>
-  </div>
-</footer>
-
-<div class="modal" id="qr-modal" hidden>
-  <div class="modal-backdrop" onclick="closeQR()"></div>
-  <div class="modal-box">
-    <div id="qrcode"></div>
-    <button class="btn btn-sm modal-close" onclick="closeQR()">Закрыть</button>
-  </div>
-</div>
-
-<div class="toast" id="toast" hidden>✓ Скопировано</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
