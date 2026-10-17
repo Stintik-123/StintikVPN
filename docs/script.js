@@ -1,13 +1,8 @@
-// Auto-update proxy date
-function updateProxyDate() {
-  const dateEl = document.getElementById('proxy-date');
-  if (!dateEl) return;
-  const now = new Date();
-  const day = String(now.getDate()).padStart(2, '0');
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const year = now.getFullYear();
-  dateEl.textContent = day + '.' + month + '.' + year;
-}
+// StintikVPN v2 — сайт рендерится из data.json (единый источник данных)
+
+'use strict';
+
+// ---------- Тема ----------
 
 function toggleTheme() {
   const body = document.body;
@@ -25,6 +20,8 @@ function initTheme() {
   document.body.classList.toggle('theme-dark', !shouldUseLight);
 }
 
+// ---------- Навигация ----------
+
 function toggleNav() {
   const links = document.querySelector('.nav-links');
   const ctas = document.querySelector('.nav-ctas');
@@ -38,6 +35,8 @@ function closeNav() {
   if (links) links.classList.remove('open');
   if (ctas) ctas.classList.remove('open');
 }
+
+// ---------- Тост и буфер ----------
 
 function showToast(message) {
   const toast = document.getElementById('toast');
@@ -75,100 +74,34 @@ function legacyCopy(text) {
   });
 }
 
-// Только копирование в буфер — без системного share
 function cp(btn, url) {
   copyToClipboard(url).then(function () {
     if (btn && btn.classList) {
       var o = btn.textContent;
       btn.classList.add('done');
-      btn.textContent = '\u2713 \u0413\u043e\u0442\u043e\u0432\u043e';
+      btn.textContent = '✓ Готово';
       setTimeout(function () {
         btn.classList.remove('done');
         btn.textContent = o;
       }, 1800);
     }
-    showToast('\u2713 \u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e');
-    showTgModal();
+    showToast('✓ Скопировано');
   });
 }
 
-// Только системный share, без копирования в буфер
-function shareUrl(btn, url) {
+function shareUrl(url) {
   if (!navigator.share) {
     showToast('Поделиться недоступно на этом устройстве');
     return;
   }
-  navigator.share({ text: url }).catch(function () {
-    // пользователь закрыл меню — ничего не копируем
-  });
+  navigator.share({ text: url }).catch(function () {});
 }
 
-function showTgModal() {
-  var m = document.getElementById('tg-modal');
-  var close = document.getElementById('modal-close');
-  if (!m || !close) return;
-  m.hidden = false;
-  close.disabled = true;
-  close.textContent = '\u0417\u0430\u043a\u0440\u044b\u0442\u044c (3)';
-  var n = 3;
-  var t = setInterval(function () {
-    n -= 1;
-    if (n <= 0) {
-      clearInterval(t);
-      close.disabled = false;
-      close.textContent = '\u0417\u0430\u043a\u0440\u044b\u0442\u044c';
-    } else {
-      close.textContent = '\u0417\u0430\u043a\u0440\u044b\u0442\u044c (' + n + ')';
-    }
-  }, 1000);
-  close.onclick = function () {
-    if (!close.disabled) m.hidden = true;
-  };
-}
+// ---------- QR ----------
 
-function toggleFaq(btn) {
-  var item = btn.parentElement;
-  var open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function (x) {
-    x.classList.remove('open');
-  });
-  if (!open) item.classList.add('open');
-}
-
-function filt(cat) {
-  document.querySelectorAll('.filter').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.f === cat);
-  });
-  document.querySelectorAll('.sub').forEach(function (r) {
-    if (cat === 'all') r.classList.remove('hidden');
-    else {
-      var c = (r.dataset.c || '').split(' ');
-      r.classList.toggle('hidden', c.indexOf(cat) === -1);
-    }
-  });
-  var s = document.getElementById('subs');
-  if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-  a.addEventListener('click', function (e) {
-    var h = a.getAttribute('href');
-    if (!h || h === '#') return;
-    e.preventDefault();
-    var t = document.querySelector(h);
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-initTheme();
-updateProxyDate();
-
-var currentQRUrl = '';
-
-function showQR(btn, url) {
-  currentQRUrl = url;
+function showQR(url) {
   var modal = document.getElementById('qr-modal');
-  var container = document.getElementById('qr-container');
+  var container = document.getElementById('qrcode');
   if (!modal || !container) return;
 
   container.innerHTML = '';
@@ -180,28 +113,18 @@ function showQR(btn, url) {
   }
 
   var isLight = document.body.classList.contains('theme-light');
-  var colorDark = isLight ? '#1a1a1e' : '#ececf1';
-  var colorLight = isLight ? '#ffffff' : '#060608';
 
   try {
     new QRCode(container, {
       text: url,
       width: 200,
       height: 200,
-      colorDark: colorDark,
-      colorLight: colorLight,
+      colorDark: isLight ? '#1a1a1e' : '#ececf1',
+      colorLight: isLight ? '#ffffff' : '#060608',
       correctLevel: QRCode.CorrectLevel.M
     });
   } catch (e) {
     container.innerHTML = '<p style="color:var(--text-2);font-size:0.85rem;padding:12px">Не удалось сгенерировать QR</p>';
-  }
-
-  var copyBtn = document.querySelector('.qr-copy-btn');
-  if (copyBtn) {
-    copyBtn.classList.remove('done');
-    var label = copyBtn.querySelector('.copy-text');
-    if (label) label.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
-    else copyBtn.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
   }
 
   modal.hidden = false;
@@ -210,27 +133,117 @@ function showQR(btn, url) {
 function closeQR() {
   var modal = document.getElementById('qr-modal');
   if (modal) modal.hidden = true;
-  currentQRUrl = '';
 }
 
-function copyQR() {
-  if (!currentQRUrl) return;
-  var copyBtn = document.querySelector('.qr-copy-btn');
+// ---------- Фильтры и FAQ ----------
 
-  copyToClipboard(currentQRUrl).then(function () {
-    if (copyBtn) {
-      copyBtn.classList.add('done');
-      var label = copyBtn.querySelector('.copy-text');
-      if (label) label.textContent = '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e';
-      else copyBtn.textContent = '\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e';
-      setTimeout(function () {
-        copyBtn.classList.remove('done');
-        if (label) label.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
-        else copyBtn.textContent = '\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u0441\u044b\u043b\u043a\u0443';
-      }, 1800);
-    }
-    showToast('\u2713 \u0421\u0441\u044b\u043b\u043a\u0430 \u0441\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0430');
-  }).catch(function () {
-    showToast('\u2717 \u041e\u0448\u0438\u0431\u043a\u0430 \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f');
+function filt(cat) {
+  document.querySelectorAll('.filter').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.f === cat);
+  });
+  document.querySelectorAll('.sub').forEach(function (r) {
+    if (cat === 'all') r.classList.remove('hidden');
+    else r.classList.toggle('hidden', r.dataset.c !== cat);
   });
 }
+
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function (x) {
+    x.classList.remove('open');
+  });
+  if (!open) item.classList.add('open');
+}
+
+// ---------- Рендер из data.json ----------
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function renderSub(s) {
+  var url = esc(s.url);
+  var tagClass = s.category === 'black' ? 'tag-black' : 'tag-white';
+  return '<div class="sub" data-c="' + esc(s.category) + '">' +
+    '<span class="sub-tag ' + tagClass + '">' + esc(s.tag) + '</span>' +
+    '<div class="sub-body"><h4>' + esc(s.title) + '</h4><span>' + esc(s.note) + '</span></div>' +
+    '<div class="sub-actions">' +
+    '<button class="btn btn-sm btn-qr" data-action="qr" data-url="' + url + '">QR</button>' +
+    '<button class="btn btn-sm btn-copy" data-action="copy" data-url="' + url + '">Скопировать</button>' +
+    '<button class="btn btn-sm btn-share" data-action="share" data-url="' + url + '">Поделиться</button>' +
+    '</div></div>';
+}
+
+function renderProxy(p) {
+  var url = esc(p.url);
+  return '<div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span>' +
+    '<span class="proxy-addr">' + esc(p.addr) + '</span></div>' +
+    '<div class="sub-actions">' +
+    '<button class="btn btn-sm btn-qr" data-action="qr" data-url="' + url + '">QR</button>' +
+    '<button class="btn btn-sm btn-copy" data-action="copy" data-url="' + url + '">Скопировать</button>' +
+    '<button class="btn btn-sm btn-share" data-action="share" data-url="' + url + '">Поделиться</button>' +
+    '<a class="btn btn-sm btn-ghost" href="' + url + '" target="_blank" rel="noopener">Открыть</a>' +
+    '</div></div>';
+}
+
+function initData(data) {
+  var subList = document.getElementById('sub-list');
+  var proxyList = document.getElementById('proxy-list');
+  if (subList) subList.innerHTML = (data.subscriptions || []).map(renderSub).join('');
+  if (proxyList) proxyList.innerHTML = (data.proxies || []).map(renderProxy).join('');
+
+  var dateEl = document.getElementById('proxy-date');
+  if (dateEl && data.updated) dateEl.textContent = data.updated;
+}
+
+// ---------- Один делегированный обработчик кликов ----------
+
+document.addEventListener('click', function (e) {
+  var t = e.target instanceof Element ? e.target : null;
+  if (!t) return;
+
+  var actionEl = t.closest('[data-action]');
+  if (actionEl) {
+    var url = actionEl.getAttribute('data-url') || '';
+    if (actionEl.dataset.action === 'qr') showQR(url);
+    else if (actionEl.dataset.action === 'copy') cp(actionEl, url);
+    else if (actionEl.dataset.action === 'share') shareUrl(url);
+    return;
+  }
+
+  var filter = t.closest('.filter');
+  if (filter) { filt(filter.dataset.f); return; }
+
+  var jump = t.closest('.filter-jump');
+  if (jump) {
+    filt(jump.dataset.f);
+    var s = document.getElementById('subs');
+    if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
+  var faq = t.closest('.faq-q');
+  if (faq) { toggleFaq(faq); return; }
+
+  var a = t.closest('a[href^="#"]');
+  if (a) {
+    var h = a.getAttribute('href');
+    if (!h || h === '#') return;
+    e.preventDefault();
+    closeNav();
+    var target = document.querySelector(h);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+
+// ---------- Инициализация ----------
+
+initTheme();
+
+fetch('data.json')
+  .then(function (r) { return r.json(); })
+  .then(initData)
+  .catch(function () {
+    showToast('Не удалось загрузить список подписок');
+  });

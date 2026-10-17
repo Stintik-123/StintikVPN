@@ -1,0 +1,70 @@
+name: Check links
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # ежедневно в 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check subscription links
+        id: links
+        run: |
+          FAILED=""
+          while IFS= read -r url; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 -L "$url" || echo "000")
+            if [ "$code" = "000" ] || [ "$code" -ge 400 ]; then
+              echo "DEAD ($code): $url"
+              FAILED="$FAILED
+- $url (HTTP $code)"
+            else
+              echo "OK ($code): $url"
+            fi
+          done < <(jq -r '.subscriptions[].url' docs/data.json)
+          {
+            echo "failed<<EOF"
+            echo "$FAILED"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Close previous dead-link issues
+        if: steps.links.outputs.failed == ''
+        run: |
+          gh issue list --repo "$GITHUB_REPOSITORY" --label dead-link --state open --json number -q '.[].number' \
+            | xargs -r -I{} gh issue close {} --repo "$GITHUB_REPOSITORY" --reason completed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create issue for dead links
+        if: steps.links.outputs.failed != ''
+        run: |
+          BODY="Следующие подписки не отвечают:
+          \`\`\`
+          ${{ steps.links.outputs.failed }}
+          \`\`\`
+          Обновите docs/data.json и README."
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Dead subscription links detected" --body "$BODY" --label dead-link || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Telegram
+        if: steps.links.outputs.failed != ''
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN / TG_CHAT_ID не заданы — уведомление пропущено"
+            exit 0
+          fi
+          curl -s -X POST "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TG_CHAT_ID}" \
+            -d text="⚠️ StintikVPN: найдены мёртвые подписки — проверьте issue в репозитории."
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}

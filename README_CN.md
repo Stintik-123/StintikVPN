@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[🇷🇺 Русский](README.md) | [🇬🇧 English](ReadMe_EN.md) | **🇨🇳 中文** | [🇮🇷 فارسی](ReadMe_IR.md)
+[🇷🇺 Русский](README.md) | [🇬🇧 English](README_EN.md) | **🇨🇳 中文** | [🇮🇷 فارسی](README_IR.md)
 
 </div>
 

@@ -1,0 +1,62 @@
+{
+  "updated": "17.10.2026",
+  "subscriptions": [
+    {
+      "category": "black",
+      "tag": "Чёрный",
+      "title": "Чёрный список (основной)",
+      "note": "V2Ray Aggregator",
+      "url": "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt"
+    },
+    {
+      "category": "black",
+      "tag": "Mobile",
+      "title": "Black Mobile",
+      "note": "Для телефонов — KvRuVPN",
+      "url": "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt"
+    },
+    {
+      "category": "white",
+      "tag": "Белый",
+      "title": "Белые списки (основные)",
+      "note": "Для жёстких блокировок",
+      "url": "https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt"
+    },
+    {
+      "category": "white",
+      "tag": "CIDR",
+      "title": "Белые списки (CIDR)",
+      "note": "Фильтр по IP",
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt"
+    },
+    {
+      "category": "white",
+      "tag": "SNI",
+      "title": "Белые списки (SNI)",
+      "note": "Фильтр по доменам",
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt"
+    }
+  ],
+  "proxies": [
+    {
+      "addr": "lumetra.mtproxy.zip",
+      "url": "https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275"
+    },
+    {
+      "addr": "85.192.34.18:9443",
+      "url": "https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665"
+    },
+    {
+      "addr": "proxy.tonservice.site",
+      "url": "https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000"
+    },
+    {
+      "addr": "172.65.100.45:25565",
+      "url": "https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d"
+    },
+    {
+      "addr": "cluster.mtproxy.cc",
+      "url": "https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363"
+    }
+  ]
+}
