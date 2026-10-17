@@ -165,7 +165,7 @@ function esc(s) {
 function renderSub(s) {
   var url = esc(s.url);
   var tagClass = s.category === 'black' ? 'tag-black' : 'tag-white';
-  return '<div class="sub" data-c="' + esc(s.category) + '">' +
+  return '<div class="sub reveal" data-c="' + esc(s.category) + '">' +
     '<span class="sub-tag ' + tagClass + '">' + esc(s.tag) + '</span>' +
     '<div class="sub-body"><h4>' + esc(s.title) + '</h4><span>' + esc(s.note) + '</span></div>' +
     '<div class="sub-actions">' +
@@ -177,7 +177,7 @@ function renderSub(s) {
 
 function renderProxy(p) {
   var url = esc(p.url);
-  return '<div class="proxy"><div class="proxy-left"><span class="proxy-type">MTProto</span>' +
+  return '<div class="proxy reveal"><div class="proxy-left"><span class="proxy-type">MTProto</span>' +
     '<span class="proxy-addr">' + esc(p.addr) + '</span></div>' +
     '<div class="sub-actions">' +
     '<button class="btn btn-sm btn-qr" data-action="qr" data-url="' + url + '">QR</button>' +
@@ -195,6 +195,33 @@ function initData(data) {
 
   var dateEl = document.getElementById('proxy-date');
   if (dateEl && data.updated) dateEl.textContent = data.updated;
+
+  // счётчики в hero из реальных данных
+  var nums = document.querySelectorAll('.stat-num[data-count]');
+  nums.forEach(function (el) {
+    var kind = el.getAttribute('data-kind');
+    if (kind === 'subs') el.textContent = (data.subscriptions || []).length;
+    else if (kind === 'proxies') el.textContent = (data.proxies || []).length;
+  });
+}
+
+// ---------- Появление при скролле ----------
+
+function initReveal() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function (el) { io.observe(el); });
 }
 
 // ---------- Один делегированный обработчик кликов ----------
@@ -240,10 +267,14 @@ document.addEventListener('click', function (e) {
 // ---------- Инициализация ----------
 
 initTheme();
+initReveal();
 
 fetch('data.json')
   .then(function (r) { return r.json(); })
-  .then(initData)
+  .then(function (data) {
+    initData(data);
+    initReveal(); // свежесрендеренные карточки тоже получим анимацию
+  })
   .catch(function () {
     showToast('Не удалось загрузить список подписок');
   });
