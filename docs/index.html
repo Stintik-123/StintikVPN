@@ -4,27 +4,40 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>StintikVPN — Интернет свобода ближе чем кажется</title>
-<meta name="description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI."/>
+<meta name="description" content="Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок: конфиги, клиенты, Tor и DPI."/>
+<meta name="author" content="StintikVPN"/>
 <meta name="theme-color" content="#060608"/>
+<link rel="canonical" href="https://stintik-123.github.io/StintikVPN/"/>
 <meta property="og:title" content="StintikVPN — Интернет свобода ближе чем кажется"/>
-<meta property="og:description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI."/>
+<meta property="og:description" content="Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/"/>
+<meta property="og:site_name" content="StintikVPN"/>
+<meta property="og:locale" content="ru_RU"/>
 <meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="StintikVPN — Интернет свобода ближе чем кажется"/>
+<meta name="twitter:description" content="Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок."/>
 <link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"/>
 <link rel="stylesheet" href="style.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+<script src="script.js" defer></script>
 </head>
 <body class="theme-dark">
 
-<nav class="nav">
+<a class="skip-link" href="#subs">Перейти к содержимому</a>
+
+<nav class="nav" aria-label="Основная навигация">
   <div class="container nav-inner">
-    <a href="#" class="logo">
-      <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt=""/>
+    <a href="#subs" class="logo">
+      <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="" width="28" height="28"/>
       StintikVPN
     </a>
-    <button class="nav-burger" aria-label="Меню" onclick="toggleNav()"><span></span><span></span><span></span></button>
-    <div class="nav-links">
+    <button class="nav-burger" type="button" data-action="nav" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-menu">
       <a href="#subs">Подписки</a>
       <a href="#clients">Клиенты</a>
       <a href="#tools">Инструменты</a>
@@ -34,15 +47,16 @@
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-ctas">
-      <button class="nav-theme-btn" aria-label="Тема" onclick="toggleTheme()" title="Переключить тему">
-        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <button class="nav-theme-btn" type="button" data-action="theme" aria-label="Переключить тему" title="Переключить тему">
+        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta nav-cta-gh">GitHub</a>
     </div>
   </div>
 </nav>
 
+<main>
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-text">
@@ -51,7 +65,7 @@
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="ring"><div class="ring-spin"></div>
-        <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt=""/>
+        <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="" width="148" height="148" loading="eager" decoding="async"/>
       </div>
     </div>
   </div>
@@ -60,9 +74,9 @@
 <section class="features" id="features">
   <div class="container">
     <div class="features-grid">
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏴</div><h3>Чёрные списки</h3><p>Домашний Wi‑Fi, кабель, обычный 4G</p><button class="btn btn-sm btn-ghost filter-jump" data-f="black">Смотреть →</button></div>
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏳️</div><h3>Белые списки</h3><p>Белые списки РКН</p><button class="btn btn-sm btn-ghost filter-jump" data-f="white">Смотреть →</button></div>
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🛠️</div><h3>Инструменты</h3><p>Speedtest, 2ip, дешифратор happ, Clash converter</p><a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a></div>
+      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏴</div><h3>Чёрные списки</h3><p>Домашний Wi‑Fi, кабель, обычный 4G</p><button class="btn btn-sm btn-ghost filter-jump" type="button" data-f="black">Смотреть →</button></div>
+      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏳️</div><h3>Белые списки</h3><p>Белые списки РКН</p><button class="btn btn-sm btn-ghost filter-jump" type="button" data-f="white">Смотреть →</button></div>
+      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🛠️</div><h3>Инструменты</h3><p>Speedtest, 2ip, дешифратор Happ, Clash converter</p><a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a></div>
     </div>
   </div>
 </section>
@@ -70,12 +84,14 @@
 <section class="section" id="subs">
   <div class="container">
     <div class="section-head"><h2>Подписки</h2><p>Скопируй ссылку и добавь в клиент</p></div>
-    <div class="filters">
-      <button class="filter active" data-f="all">Все</button>
-      <button class="filter" data-f="black">Чёрные</button>
-      <button class="filter" data-f="white">Белые</button>
+    <div class="filters" role="group" aria-label="Фильтр подписок">
+      <button class="filter active" type="button" data-f="all" aria-pressed="true">Все</button>
+      <button class="filter" type="button" data-f="black" aria-pressed="false">Чёрные</button>
+      <button class="filter" type="button" data-f="white" aria-pressed="false">Белые</button>
     </div>
-    <div class="sub-list" id="sub-list"></div>
+    <div class="sub-list" id="sub-list">
+      <noscript><p class="list-hint">Для просмотра подписок нужен JavaScript. Их список всегда доступен в файле <a href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/docs/data.json">docs/data.json</a>.</p></noscript>
+    </div>
   </div>
 </section>
 
@@ -117,7 +133,7 @@
     <div class="section-head"><h2>Гайды</h2><p>Обход без VPN (ByeDPI, zapret, tgwsproxy)</p></div>
     <div class="faq-list guide-list">
       <div class="faq-item guide-card">
-        <button class="faq-q"><span class="guide-title"><span class="guide-emoji">🪟</span> Zapret‑discord‑youtube (Windows)</span><span class="faq-icon">+</span></button>
+        <button class="faq-q" type="button"><span class="guide-title"><span class="guide-emoji">🪟</span> Zapret‑discord‑youtube (Windows)</span><span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
             <li>Перейдите на страницу репозитория <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener">Zapret‑discord‑youtube</a> и скачайте релиз из раздела Releases.</li>
             <li>Распакуйте архив и запустите файл service.bat</li>
@@ -126,7 +142,7 @@
           </ol></div></div>
       </div>
       <div class="faq-item guide-card">
-        <button class="faq-q"><span class="guide-title"><span class="guide-emoji">📱</span> ByeByeDPI (Windows / Android)</span><span class="faq-icon">+</span></button>
+        <button class="faq-q" type="button"><span class="guide-title"><span class="guide-emoji">📱</span> ByeByeDPI (Windows / Android)</span><span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
             <li>Скачайте apk файл из репозитория ByeByeDPI.</li>
             <li>Установите приложение после чего нажмите подбор</li>
@@ -135,7 +151,7 @@
           </ol></div></div>
       </div>
       <div class="faq-item guide-card">
-        <button class="faq-q"><span class="guide-title"><span class="guide-emoji">✈️</span> TG‑WS‑Proxy (локальный прокси для Telegram)</span><span class="faq-icon">+</span></button>
+        <button class="faq-q" type="button"><span class="guide-title"><span class="guide-emoji">✈️</span> TG‑WS‑Proxy (локальный прокси для Telegram)</span><span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><ol class="guide-steps">
             <li>Скачайте сборку из репозитория Flowseal/tg-ws-proxy.</li>
             <li>Запустите файл tgwsproxy.exe</li>
@@ -160,32 +176,36 @@
   <div class="container">
     <div class="section-head"><h2>FAQ</h2></div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q">Подписка не работает / очень медленно<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Подписки бесплатные поэтому могут не работать в моменты большого наплыва людей, попробуйте другие подписки или обновите текущую</div></div></div>
-      <div class="faq-item"><button class="faq-q">Как часто обновляются конфиги?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги обновляются ежедневно их авторами. Ссылки проверяются автоматически — если одна не открывается, берите другую.</div></div></div>
-      <div class="faq-item"><button class="faq-q">Почему StintikVPN бесплатный?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Это агрегатор бесплатных VPN-подписок и прокси: создатель ничего не тратит, а просто собирает в одном месте всё бесплатное из интернета</div></div></div>
-      <div class="faq-item"><button class="faq-q">Прокси Telegram не подключается<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Прокси бесплатные, из-за чего РКН может их часто блокировать. Обновляем по мере возможности, но если не работает — попробуйте другой прокси из списка.</div></div></div>
-      <div class="faq-item"><button class="faq-q">Какой VPN клиент лучше всего использовать если я не разбираюсь?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — самый простой вариант для Windows и Android. На iOS — <strong>Streisand</strong>.</div></div></div>
-      <div class="faq-item"><button class="faq-q">Безопасно ли всё это использовать?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги взяты из открытых источников и могут быть не безопасны. Главное не передавайте через них важные данные (пароли и т.д) и не заходите в банки или другие важные для вас сервисы</div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Подписка не работает / очень медленно<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-a-inner">Подписки бесплатные, поэтому могут не работать в моменты большого наплыва людей. Попробуйте другую подписку или обновите текущую.</div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Как часто обновляются конфиги?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги обновляются ежедневно их авторами. Ссылки проверяются автоматически — если одна не открывается, берите другую.</div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Почему StintikVPN бесплатный?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-a-inner">Это агрегатор бесплатных VPN-подписок и прокси: создатель ничего не тратит, а просто собирает в одном месте всё бесплатное из интернета.</div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Прокси Telegram не подключается<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-a-inner">Прокси бесплатные, из-за чего РКН может их часто блокировать. Обновляем по мере возможности, но если не работает — попробуйте другой прокси из списка.</div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Какой VPN-клиент лучше всего использовать, если я не разбираюсь?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>Hiddify</strong> — самый простой вариант для Windows и Android. На iOS — <strong>Streisand</strong>.</div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Безопасно ли всё это использовать?<span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги взяты из открытых источников и могут быть небезопасны. Не передавайте через них важные данные (пароли и т. д.) и не заходите в банки или другие критичные сервисы.</div></div></div>
     </div>
   </div>
 </section>
+</main>
 
 <footer class="footer">
   <div class="container">
-    <p>StintikVPN — сделано людьми для людей</p>
-    <p><a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a> · <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">Telegram</a></p>
+    <p class="footer-text">StintikVPN — сделано людьми для людей</p>
+    <p class="footer-links">
+      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">Исходный код</a> ·
+      <a href="https://github.com/Stintik-123/StintikVPN/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a> ·
+      <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">Telegram</a>
+    </p>
   </div>
 </footer>
 
-<div class="modal" id="qr-modal" hidden>
-  <div class="modal-backdrop" onclick="closeQR()"></div>
+<div class="modal" id="qr-modal" hidden role="dialog" aria-modal="true" aria-label="QR-код со ссылкой">
+  <div class="modal-backdrop" data-action="close-qr"></div>
   <div class="modal-box">
-    <div id="qrcode"></div>
-    <button class="btn btn-sm modal-close" onclick="closeQR()">Закрыть</button>
+    <div id="qrcode" class="qrcode"></div>
+    <button class="btn btn-sm modal-close" type="button" data-action="close-qr">Закрыть</button>
   </div>
 </div>
 
-<div class="toast" id="toast" hidden>✓ Скопировано</div>
-<script src="script.js"></script>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>✓ Скопировано</div>
 </body>
 </html>
