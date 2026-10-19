@@ -72,7 +72,7 @@ jobs:
 
           token_of () { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://[^:/]*:([^@]*)@.*#\1#'; }
           host_of ()  { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##; s#[:/].*$##'; }
-          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#'; }
+          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#' | sed 's#\.git$##'; }
 
           # --- GitLab (свой API) ---
           gl_token="$(token_of "$GITLAB_URL")"
@@ -101,24 +101,26 @@ jobs:
               echo "$label: токен не найден — пропускаю"
               return 0
             fi
-            host="$(host_of "$url")"
             project="$(repo_of "$url")"
             body="$(jq -n --arg d "$DESCRIPTION" --arg w "$WEBSITE" --arg t "$TOPICS" \
                     '{description:$d, website:$w, topics:($t|split(","))}')"
-            code=$(curl -s -o /tmp/out -w "%{http_code}" --request PATCH \
-              --header "Authorization: token $token" \
-              --header "Content-Type: application/json" \
-              --data "$body" "https://$host/api/v1/repos/$project")
-            if [ "$code" = "200" ]; then
-              echo "$label: описание и темы обновлены"
-            else
-              echo "$label: описание не обновлено (HTTP $code) — хост $host, проект $project"
-              echo "$label: ответ: $(head -c 300 /tmp/out)"
-            fi
+            shift
+            for base in "$@"; do
+              code=$(curl -s -o /tmp/out -w "%{http_code}" --request PATCH \
+                --header "Authorization: token $token" \
+                --header "Content-Type: application/json" \
+                --data "$body" "$base/repos/$project")
+              if [ "$code" = "200" ]; then
+                echo "$label: описание и темы обновлены ($base)"
+                return 0
+              fi
+              echo "$label: $base — HTTP $code"
+            done
+            echo "$label: описание не обновлено, ответ: $(head -c 200 /tmp/out)"
           }
 
-          update_gitea_like "Codeberg" "$CODEBERG_URL"
-          update_gitea_like "GitVerse" "$GITVERSE_URL"
+          update_gitea_like "Codeberg" "$CODEBERG_URL" "https://codeberg.org/api/v1"
+          update_gitea_like "GitVerse" "$GITVERSE_URL" "https://api.gitverse.ru/api/v1" "https://gitverse.ru/api/v1"
 
       - name: Убрать с зеркал лишние ветки
         env:
@@ -128,7 +130,7 @@ jobs:
         run: |
           token_of () { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://[^:/]*:([^@]*)@.*#\1#'; }
           host_of ()  { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##; s#[:/].*$##'; }
-          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#'; }
+          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#' | sed 's#\.git$##'; }
           enc () { jq -sRr @uri; }
 
           # GitLab
@@ -151,16 +153,21 @@ jobs:
             url="$2"
             token="$(token_of "$url")"
             [ -z "$token" ] && return 0
-            host="$(host_of "$url")"
             project="$(repo_of "$url")"
-            for b in $(curl -s --header "Authorization: token $token" \
-                "https://$host/api/v1/repos/$project/branches" | jq -r '.[].name' 2>/dev/null | grep -v '^main$'); do
-              enc_name="$(printf '%s' "$b" | enc)"
-              curl -s -o /dev/null --request DELETE --header "Authorization: token $token" \
-                "https://$host/api/v1/repos/$project/branches/$enc_name"
-              echo "$label: удалена лишняя ветка $b"
+            shift
+            for base in "$@"; do
+              branches="$(curl -s --header "Authorization: token $token" \
+                "$base/repos/$project/branches" | jq -r '.[].name' 2>/dev/null | grep -v '^main$' || true)"
+              [ -z "$branches" ] && continue
+              for b in $branches; do
+                enc_name="$(printf '%s' "$b" | enc)"
+                curl -s -o /dev/null --request DELETE --header "Authorization: token $token" \
+                  "$base/repos/$project/branches/$enc_name"
+                echo "$label: удалена лишняя ветка $b"
+              done
+              return 0
             done
           }
 
-          prune_gitea_like "Codeberg" "$CODEBERG_URL"
-          prune_gitea_like "GitVerse" "$GITVERSE_URL"
+          prune_gitea_like "Codeberg" "$CODEBERG_URL" "https://codeberg.org/api/v1"
+          prune_gitea_like "GitVerse" "$GITVERSE_URL" "https://api.gitverse.ru/api/v1" "https://gitverse.ru/api/v1"
