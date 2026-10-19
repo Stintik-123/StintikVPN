@@ -1,0 +1,42 @@
+name: Ссылка не работает
+description: Подписка или Telegram-прокси не открывается / не подключается
+labels: ["dead-link"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ссылка проверяется автоматически каждое утро. Если она не работает —
+        заведите issue здесь, ссылку заменят.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Что не работает
+      options:
+        - Подписка (чёрные/белые списки)
+        - Подписка CIDR
+        - Подписка SNI
+        - Telegram-прокси (MTProto)
+        - Ссылка из README
+        - Другое
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Ссылка
+      description: Полный адрес, который не работает
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Что вы видите
+      description: Ошибка, код ответа, сообщение клиента
+      placeholder: "curl: (22) The requested URL returned error: 404"
+    validations:
+      required: true
+  - type: textarea
+    id: client
+    attributes:
+      label: Клиент и версия
+      placeholder: Hiddify 2.6.1 / Android 15

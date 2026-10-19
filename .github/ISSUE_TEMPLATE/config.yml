@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Сайт проекта
+    url: https://stintik-123.github.io/StintikVPN/
+    about: Актуальные подписки и прокси с QR-кодами
+  - name: Telegram-канал
+    url: https://t.me/StintikVPN
+    about: Новости проекта и оперативные сообщения о состоянии ссылок

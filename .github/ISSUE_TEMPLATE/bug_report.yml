@@ -1,0 +1,40 @@
+name: Ошибка на сайте или в репозитории
+description: Сайт не работает, кнопка не реагирует, верстка разъехалась
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за репорт! Пожалуйста, проверьте, не решена ли проблема уже в
+        [открытых issue](https://github.com/Stintik-123/StintikVPN/issues).
+  - type: textarea
+    id: what
+    attributes:
+      label: Что произошло
+      description: Опишите проблему своими словами
+      placeholder: Кнопка «Скопировать» не реагирует, в консоли ошибка…
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Шаги воспроизведения
+      value: |
+        1. Открываю https://stintik-123.github.io/StintikVPN/
+        2. Нажимаю …
+        3. Происходит …
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Браузер и устройство
+      placeholder: Firefox 141 / Windows 11, Android 15
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Логи из консоли браузера
+      description: Скопируйте ошибку из DevTools → Console, если она есть
+      render: text
