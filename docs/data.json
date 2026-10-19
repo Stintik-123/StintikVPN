@@ -2,6 +2,7 @@
   "updated": "17.10.2026",
   "subscriptions": [
     {
+      "id": "black-main",
       "category": "black",
       "tag": "Чёрный",
       "title": "Чёрный список (основной)",
@@ -9,6 +10,7 @@
       "url": "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt"
     },
     {
+      "id": "black-mobile",
       "category": "black",
       "tag": "Mobile",
       "title": "Black Mobile",
@@ -16,6 +18,7 @@
       "url": "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt"
     },
     {
+      "id": "white-main",
       "category": "white",
       "tag": "Белый",
       "title": "Белые списки (основные)",
@@ -23,6 +26,7 @@
       "url": "https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt"
     },
     {
+      "id": "white-cidr",
       "category": "white",
       "tag": "CIDR",
       "title": "Белые списки (CIDR)",
@@ -30,6 +34,7 @@
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt"
     },
     {
+      "id": "white-sni",
       "category": "white",
       "tag": "SNI",
       "title": "Белые списки (SNI)",
