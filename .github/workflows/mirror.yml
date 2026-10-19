@@ -88,6 +88,7 @@ jobs:
               echo "GitLab: описание и темы обновлены"
             else
               echo "GitLab: не удалось обновить описание (HTTP $gl_code)"
+              echo "GitLab: проект $gl_project, ответ: $(head -c 300 /tmp/gl.out)"
             fi
           fi
 
@@ -111,7 +112,8 @@ jobs:
             if [ "$code" = "200" ]; then
               echo "$label: описание и темы обновлены"
             else
-              echo "$label: описание не обновлено (HTTP $code) — возможно, API недоступен"
+              echo "$label: описание не обновлено (HTTP $code) — хост $host, проект $project"
+              echo "$label: ответ: $(head -c 300 /tmp/out)"
             fi
           }
 
