@@ -82,55 +82,33 @@
 
 ## 📦 VPN 订阅
 
-### 🏴 黑名单（主）
-```
-https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt
-```
+<!-- SUBS:START -->
 
-### 👑 Black Mobile（适合手机）
-```
-https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt
-```
+| 订阅 | 链接 |
+|:-------|:-----------------|
+| 黑名单（主） | `https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt` |
+| Black Mobile（手机） | `https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt` |
+| 白名单（主） | `https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt` |
+| 白名单（CIDR） | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt` |
+| 白名单（SNI） | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt` |
 
-### 🏳️ 白名单（主）
-```
-https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt
-```
-
-### 🏳️ 白名单（CIDR）
-```
-https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
-```
-
-### 🏳️ 白名单（SNI）
-```
-https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
-```
-
----
+<!-- SUBS:END -->
 
 ## 🤖 Telegram 代理
 
-> 最后更新：**11.09.2026**
+<!-- PROXIES:START -->
 
-复制下方链接即可直接在 Telegram 中打开：
+更新于: 17.10.2026
 
-1. **lumetra.mtproxy.zip**  
-https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275
+| 代理 | 链接 |
+|:-------|:-----------------|
+| lumetra.mtproxy.zip | `https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275` |
+| 85.192.34.18:9443 | `https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665` |
+| proxy.tonservice.site | `https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000` |
+| 172.65.100.45:25565 | `https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d` |
+| cluster.mtproxy.cc | `https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363` |
 
-2. **85.192.34.18:9443**  
-https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665
-
-3. **proxy.tonservice.site**  
-https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000
-
-4. **172.65.100.45:25565**  
-https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
-5. **cluster.mtproxy.cc**  
-https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363
-
----
+<!-- PROXIES:END -->
 
 ## 🔗 项目镜像
 
