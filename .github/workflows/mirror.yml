@@ -12,6 +12,11 @@ concurrency:
   group: mirror
   cancel-in-progress: true
 
+env:
+  DESCRIPTION: "Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок. Конфиги обновляются автоматически, ссылки проверяет CI."
+  WEBSITE: "https://stintik-123.github.io/StintikVPN/"
+  TOPICS: "vpn,free-vpn,vpn-configs,v2ray,xray,vmess,vless,trojan,shadowsocks,wireguard,mtproto,telegram,tor,dpi,bypass,censorship,russia"
+
 jobs:
   mirror:
     runs-on: ubuntu-latest
@@ -21,11 +26,93 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Подготовить зеркала
+        id: prepare
+        env:
+          GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
+          GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+        run: |
+          # адрес зеркала: https://пользователь:токен@хост/владелец/репозиторий.git
+          token_of () {
+            cred="$(printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^([^/@]*)@.*#\1#')"
+            case "$cred" in
+              *:*) printf '%s' "${cred#*:}" ;;
+              "")  printf '' ;;
+              *)   printf '%s' "$cred" ;;
+            esac
+          }
+          repo_of () {
+            printf '%s' "$1" \
+              | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##' \
+              | sed -E 's#\.git/?$##' \
+              | sed -E 's#/*$##' \
+              | awk -F/ '{print $(NF-1)"/"$NF}'
+          }
+          # тот же адрес, но с другим именем репозитория
+          url_with_name () {
+            printf '%s' "$1" | sed -E 's#(/[^/]+/)[^/]+(\.git)?/?$#\1'"$2"'#'
+          }
+          owner_of () { repo_of "$1" | cut -d/ -f1; }
+
+          gv_owner="$(owner_of "$GITVERSE_URL")"
+          gv_current="$(repo_of "$GITVERSE_URL")"
+          gv_canonical="$gv_owner/StintikVPN"
+          gv_token="$(token_of "$GITVERSE_URL")"
+          gv_head=(--header "Authorization: Bearer $gv_token"
+                   --header "Accept: application/vnd.gitverse.object+json;version=1"
+                   --header "Content-Type: application/json")
+
+          gv_target="$gv_current"
+          gv_created="false"
+          if [ -n "$gv_token" ] && [ "$gv_current" != "$gv_canonical" ]; then
+            code="$(curl -s -o /tmp/gv.out -w "%{http_code}" "${gv_head[@]}" \
+              "https://api.gitverse.ru/repos/$gv_canonical")"
+            if [ "$code" = "200" ]; then
+              echo "GitVerse: репозиторий $gv_canonical уже существует"
+            else
+              # сначала пробуем переименовать — так сохраняются история и ссылки
+              echo "GitVerse: переименовываю $gv_current в $gv_canonical"
+              code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request PATCH "${gv_head[@]}" \
+                --data '{"name":"StintikVPN"}' \
+                "https://api.gitverse.ru/repos/$gv_current")"
+              echo "GitVerse: переименование — HTTP $code"
+              if [ "$code" != "200" ] && [ "$code" != "201" ]; then
+                echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
+                echo "GitVerse: создаю $gv_canonical заново"
+                code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request POST "${gv_head[@]}" \
+                  --data "$(jq -n --arg n "StintikVPN" --arg d "$DESCRIPTION" \
+                           '{name:$n, description:$d, private:false, auto_init:false}')" \
+                  "https://api.gitverse.ru/user/repos")"
+                echo "GitVerse: создание — HTTP $code"
+                if [ "$code" = "200" ] || [ "$code" = "201" ]; then
+                  gv_created="true"
+                else
+                  echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
+                fi
+              fi
+            fi
+            code="$(curl -s -o /tmp/gv.out -w "%{http_code}" "${gv_head[@]}" \
+              "https://api.gitverse.ru/repos/$gv_canonical")"
+            if [ "$code" = "200" ]; then
+              gv_target="$gv_canonical"
+              echo "GitVerse: работаю с $gv_target"
+            else
+              echo "GitVerse: $gv_canonical недоступен (HTTP $code), остаюсь на $gv_current"
+            fi
+          fi
+
+          echo "gv_target=$gv_target" >> "$GITHUB_OUTPUT"
+          echo "gv_current=$gv_current" >> "$GITHUB_OUTPUT"
+          echo "gv_created=$gv_created" >> "$GITHUB_OUTPUT"
+
       - name: Рассылка по зеркалам
         env:
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
           CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
           GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+          GV_TARGET: ${{ steps.prepare.outputs.gv_target }}
         run: |
           FAILED=""
 
@@ -49,97 +136,160 @@ jobs:
             echo "OK $name"
           }
 
-          for pair in "gitlab:$GITLAB_URL" "codeberg:$CODEBERG_URL" "gitverse:$GITVERSE_URL"; do
+          for pair in "gitlab:$GITLAB_URL" "codeberg:$CODEBERG_URL"; do
             name="${pair%%:*}"
             url="${pair#*:}"
             push_mirror "$name" "$url" || FAILED="$FAILED $name"
           done
+
+          # GitVerse отправляем в канонический репозиторий
+          if [ -n "$GITVERSE_URL" ]; then
+            gv_url="$(printf '%s' "$GITVERSE_URL" | sed -E 's#(/[^/]+/)[^/]+(\.git)?/?$#\1'"${GV_TARGET##*/}"'#')"
+            push_mirror "gitverse" "$gv_url" || FAILED="$FAILED gitverse"
+          fi
 
           if [ -n "$FAILED" ]; then
             echo "Не удалось отправить в:$FAILED"
             exit 1
           fi
 
-      - name: Актуализировать описания зеркал
+      - name: Привести зеркала к единому виду
         env:
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
           GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+          GV_TARGET: ${{ steps.prepare.outputs.gv_target }}
         run: |
-          DESCRIPTION="Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок. Конфиги обновляются автоматически, ссылки проверяет CI."
-          WEBSITE="https://stintik-123.github.io/StintikVPN/"
-          TOPICS="vpn,free-vpn,vpn-configs,v2ray,xray,vmess,vless,trojan,shadowsocks,wireguard,mtproto,telegram,tor,dpi,bypass,censorship,russia"
-
-          token_of () { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://[^:/]*:([^@]*)@.*#\1#'; }
-          host_of ()  { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##; s#[:/].*$##'; }
-          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#' | sed 's#\.git$##'; }
+          token_of () {
+            cred="$(printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^([^/@]*)@.*#\1#')"
+            case "$cred" in
+              *:*) printf '%s' "${cred#*:}" ;;
+              "")  printf '' ;;
+              *)   printf '%s' "$cred" ;;
+            esac
+          }
+          repo_of () {
+            printf '%s' "$1" \
+              | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##' \
+              | sed -E 's#\.git/?$##' \
+              | sed -E 's#/*$##' \
+              | awk -F/ '{print $(NF-1)"/"$NF}'
+          }
+          json_body () {
+            jq -n --arg d "$DESCRIPTION" --arg w "$WEBSITE" --arg t "$TOPICS" \
+              '{description:$d, website:$w, topics:($t|split(","))}'
+          }
+          topics_body () { jq -n --arg t "$TOPICS" '{topics:($t|split(","))}'; }
 
           # --- GitLab (свой API) ---
-          gl_token="$(token_of "$GITLAB_URL")"
+          # отдельный токен с правом api нужен для описания и тем
+          gl_token="${GITLAB_TOKEN:-$(token_of "$GITLAB_URL")}"
           if [ -n "$gl_token" ]; then
             gl_project="$(repo_of "$GITLAB_URL")"
-            gl_code=$(curl -s -o /tmp/gl.out -w "%{http_code}" --request PUT \
-              --header "PRIVATE-TOKEN: $gl_token" \
-              --data-urlencode "description=$DESCRIPTION" \
-              --data-urlencode "topics=$TOPICS" \
-              --data-urlencode "issues_access_level=enabled" \
-              "https://gitlab.com/api/v4/projects/$(printf '%s' "$gl_project" | sed 's#/#%2F#')")
-            if [ "$gl_code" = "200" ]; then
-              echo "GitLab: описание и темы обновлены"
-            else
-              echo "GitLab: не удалось обновить описание (HTTP $gl_code)"
-              echo "GitLab: проект $gl_project, ответ: $(head -c 300 /tmp/gl.out)"
+            gl_id="$(printf '%s' "$gl_project" | sed 's#/#%2F#')"
+            gl_api="https://gitlab.com/api/v4/projects/$gl_id"
+            echo "GitLab: проект $gl_project"
+            scope="$(curl -s --header "PRIVATE-TOKEN: $gl_token" \
+              "https://gitlab.com/api/v4/personal_access_tokens/self" \
+              | jq -r '(.scopes // [.message] | if type == "array" then .[0] else . end) // "неизвестно"' 2>/dev/null || true)"
+            echo "GitLab: права токена: $scope"
+            gl_put () {
+              curl -s -o /tmp/gl.out -w "%{http_code}" --request PUT \
+                --header "PRIVATE-TOKEN: $gl_token" "$@"
+            }
+            code="$(gl_put --data-urlencode "description=$DESCRIPTION" "$gl_api")"
+            echo "GitLab: описание — HTTP $code"
+            code="$(gl_put --data-urlencode "topics=$TOPICS" "$gl_api")"
+            echo "GitLab: темы — HTTP $code"
+            code="$(gl_put --data-urlencode "issues_access_level=enabled" "$gl_api")"
+            echo "GitLab: трекер задач — HTTP $code"
+            if [ "$code" != "200" ]; then
+              echo "GitLab: ответ: $(head -c 200 /tmp/gl.out)"
+              echo "GitLab: для описания и тем нужен токен с правом api и ролью Maintainer (сейчас: $scope)"
             fi
           fi
 
-          # --- Codeberg и GitVerse (Gitea-совместимый API) ---
-          update_gitea_like () {
-            label="$1"
-            url="$2"
-            token="$(token_of "$url")"
-            if [ -z "$token" ]; then
-              echo "$label: токен не найден — пропускаю"
-              return 0
+          # --- Codeberg (Gitea) ---
+          cb_token="$(token_of "$CODEBERG_URL")"
+          if [ -n "$cb_token" ]; then
+            cb_project="$(repo_of "$CODEBERG_URL")"
+            cb_api="https://codeberg.org/api/v1/repos/$cb_project"
+            echo "Codeberg: проект $cb_project"
+            code="$(curl -s -o /tmp/cb.out -w "%{http_code}" --request PATCH \
+              --header "Authorization: token $cb_token" --header "Content-Type: application/json" \
+              --data "$(json_body)" "$cb_api")"
+            echo "Codeberg: описание и сайт — HTTP $code"
+            if [ "$code" != "200" ]; then
+              echo "Codeberg: ответ: $(head -c 200 /tmp/cb.out)"
             fi
-            project="$(repo_of "$url")"
-            body="$(jq -n --arg d "$DESCRIPTION" --arg w "$WEBSITE" --arg t "$TOPICS" \
-                    '{description:$d, website:$w, topics:($t|split(","))}')"
-            shift
-            for base in "$@"; do
-              code=$(curl -s -o /tmp/out -w "%{http_code}" --request PATCH \
-                --header "Authorization: token $token" \
-                --header "Content-Type: application/json" \
-                --data "$body" "$base/repos/$project")
-              if [ "$code" = "200" ]; then
-                echo "$label: описание и темы обновлены ($base)"
-                return 0
-              fi
-              echo "$label: $base — HTTP $code"
-            done
-            echo "$label: описание не обновлено, ответ: $(head -c 200 /tmp/out)"
-          }
+            # темы в Gitea живут отдельным адресом
+            code="$(curl -s -o /tmp/cb.out -w "%{http_code}" --request PUT \
+              --header "Authorization: token $cb_token" --header "Content-Type: application/json" \
+              --data "$(topics_body)" "$cb_api/topics")"
+            echo "Codeberg: темы — HTTP $code"
+            if [ "$code" != "200" ]; then
+              echo "Codeberg: ответ: $(head -c 200 /tmp/cb.out)"
+            fi
+          fi
 
-          update_gitea_like "Codeberg" "$CODEBERG_URL" "https://codeberg.org/api/v1"
-          update_gitea_like "GitVerse" "$GITVERSE_URL" "https://api.gitverse.ru/api/v1" "https://gitverse.ru/api/v1"
+          # --- GitVerse (Public API) ---
+          gv_token="$(token_of "$GITVERSE_URL")"
+          if [ -n "$gv_token" ]; then
+            gv_api="https://api.gitverse.ru/repos/$GV_TARGET"
+            echo "GitVerse: проект $GV_TARGET"
+            gv_head=(--header "Authorization: Bearer $gv_token"
+                     --header "Accept: application/vnd.gitverse.object+json;version=1"
+                     --header "Content-Type: application/json")
+            code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request PATCH \
+              "${gv_head[@]}" --data "$(json_body)" "$gv_api")"
+            echo "GitVerse: описание и сайт — HTTP $code"
+            if [ "$code" != "200" ]; then
+              echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
+            fi
+            code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request PUT \
+              "${gv_head[@]}" --data "$(topics_body)" "$gv_api/topics")"
+            echo "GitVerse: темы — HTTP $code"
+            if [ "$code" != "200" ]; then
+              echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
+            fi
+          fi
 
       - name: Убрать с зеркал лишние ветки
         env:
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
           GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+          GV_TARGET: ${{ steps.prepare.outputs.gv_target }}
         run: |
-          token_of () { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://[^:/]*:([^@]*)@.*#\1#'; }
-          host_of ()  { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##; s#[:/].*$##'; }
-          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#' | sed 's#\.git$##'; }
+          token_of () {
+            cred="$(printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^([^/@]*)@.*#\1#')"
+            case "$cred" in
+              *:*) printf '%s' "${cred#*:}" ;;
+              "")  printf '' ;;
+              *)   printf '%s' "$cred" ;;
+            esac
+          }
+          repo_of () {
+            printf '%s' "$1" \
+              | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##' \
+              | sed -E 's#\.git/?$##' \
+              | sed -E 's#/*$##' \
+              | awk -F/ '{print $(NF-1)"/"$NF}'
+          }
           enc () { jq -sRr @uri; }
+          # список лишних веток: мусор и пустые значения отбрасываем
+          branch_names () {
+            jq -r 'if type == "array" then .[].name else empty end' 2>/dev/null \
+              | grep -v '^main$' | grep -v '^null$' || true
+          }
 
-          # GitLab
-          gl_token="$(token_of "$GITLAB_URL")"
+          gl_token="${GITLAB_TOKEN:-$(token_of "$GITLAB_URL")}"
           if [ -n "$gl_token" ]; then
-            gl_project="$(repo_of "$GITLAB_URL")"
-            gl_id="$(printf '%s' "$gl_project" | sed 's#/#%2F#')"
+            gl_id="$(repo_of "$GITLAB_URL" | sed 's#/#%2F#')"
             for b in $(curl -s --header "PRIVATE-TOKEN: $gl_token" \
-                "https://gitlab.com/api/v4/projects/$gl_id/repository/branches" | jq -r '.[].name' | grep -v '^main$'); do
+                "https://gitlab.com/api/v4/projects/$gl_id/repository/branches" | branch_names); do
               enc_name="$(printf '%s' "$b" | enc)"
               curl -s -o /dev/null --request DELETE --header "PRIVATE-TOKEN: $gl_token" \
                 "https://gitlab.com/api/v4/projects/$gl_id/repository/branches/$enc_name"
@@ -147,27 +297,73 @@ jobs:
             done
           fi
 
-          # Codeberg и GitVerse
-          prune_gitea_like () {
-            label="$1"
-            url="$2"
-            token="$(token_of "$url")"
-            [ -z "$token" ] && return 0
-            project="$(repo_of "$url")"
-            shift
-            for base in "$@"; do
-              branches="$(curl -s --header "Authorization: token $token" \
-                "$base/repos/$project/branches" | jq -r '.[].name' 2>/dev/null | grep -v '^main$' || true)"
-              [ -z "$branches" ] && continue
-              for b in $branches; do
-                enc_name="$(printf '%s' "$b" | enc)"
-                curl -s -o /dev/null --request DELETE --header "Authorization: token $token" \
-                  "$base/repos/$project/branches/$enc_name"
-                echo "$label: удалена лишняя ветка $b"
-              done
-              return 0
+          cb_token="$(token_of "$CODEBERG_URL")"
+          if [ -n "$cb_token" ]; then
+            cb_project="$(repo_of "$CODEBERG_URL")"
+            for b in $(curl -s --header "Authorization: token $cb_token" \
+                "https://codeberg.org/api/v1/repos/$cb_project/branches" | branch_names); do
+              enc_name="$(printf '%s' "$b" | enc)"
+              curl -s -o /dev/null --request DELETE --header "Authorization: token $cb_token" \
+                "https://codeberg.org/api/v1/repos/$cb_project/branches/$enc_name"
+              echo "Codeberg: удалена лишняя ветка $b"
             done
-          }
+          fi
 
-          prune_gitea_like "Codeberg" "$CODEBERG_URL" "https://codeberg.org/api/v1"
-          prune_gitea_like "GitVerse" "$GITVERSE_URL" "https://api.gitverse.ru/api/v1" "https://gitverse.ru/api/v1"
+          gv_token="$(token_of "$GITVERSE_URL")"
+          if [ -n "$gv_token" ]; then
+            for b in $(curl -s --header "Authorization: Bearer $gv_token" \
+                --header "Accept: application/vnd.gitverse.object+json;version=1" \
+                "https://api.gitverse.ru/repos/$GV_TARGET/branches" | branch_names); do
+              enc_name="$(printf '%s' "$b" | enc)"
+              curl -s -o /dev/null --request DELETE --header "Authorization: Bearer $gv_token" \
+                --header "Accept: application/vnd.gitverse.object+json;version=1" \
+                "https://api.gitverse.ru/repos/$GV_TARGET/branches/$enc_name"
+              echo "GitVerse: удалена лишняя ветка $b"
+            done
+          fi
+
+      - name: Убрать старое зеркало GitVerse
+        env:
+          GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+          GV_TARGET: ${{ steps.prepare.outputs.gv_target }}
+          GV_CURRENT: ${{ steps.prepare.outputs.gv_current }}
+          GV_CREATED: ${{ steps.prepare.outputs.gv_created }}
+        run: |
+          token_of () {
+            cred="$(printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^([^/@]*)@.*#\1#')"
+            case "$cred" in
+              *:*) printf '%s' "${cred#*:}" ;;
+              "")  printf '' ;;
+              *)   printf '%s' "$cred" ;;
+            esac
+          }
+          gv_token="$(token_of "$GITVERSE_URL")"
+          gv_head=(--header "Authorization: Bearer $gv_token"
+                   --header "Accept: application/vnd.gitverse.object+json;version=1"
+                   --header "Content-Type: application/json")
+
+          if [ -z "$gv_token" ] || [ "$GV_TARGET" = "$GV_CURRENT" ]; then
+            echo "GitVerse: переименование не требуется"
+            exit 0
+          fi
+
+          if [ "$GV_CREATED" != "true" ]; then
+            echo "GitVerse: старое зеркало уже переименовано, удалять нечего"
+            exit 0
+          fi
+
+          # удаляем старое зеркало, только если новое живое и в нём есть ветка main
+          code="$(curl -s -o /tmp/gv.out -w "%{http_code}" "${gv_head[@]}" \
+            "https://api.gitverse.ru/repos/$GV_TARGET/branches")"
+          if [ "$code" != "200" ] || ! echo "$(cat /tmp/gv.out)" | grep -q '"name"'; then
+            echo "GitVerse: новое зеркало не готово (HTTP $code) — старое не трогаю"
+            exit 0
+          fi
+
+          echo "GitVerse: удаляю старое зеркало $GV_CURRENT"
+          code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request DELETE "${gv_head[@]}" \
+            "https://api.gitverse.ru/repos/$GV_CURRENT")"
+          echo "GitVerse: удаление $GV_CURRENT — HTTP $code"
+          if [ "$code" != "200" ] && [ "$code" != "204" ]; then
+            echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
+          fi
