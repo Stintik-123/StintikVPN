@@ -216,7 +216,7 @@
 
 - [GitLab](https://gitlab.com/Stintik-123/StintikVPN)
 - [Codeberg](https://codeberg.org/Stintik-123/StintikVPN)
-- [GitVerse](https://gitverse.ru/Stintik-123/StintikHub)
+- [GitVerse](https://gitverse.ru/Stintik-123/StintikVPN)
 
 Если GitHub недоступен — пользуйтесь зеркалами, там та же история и те же файлы.
 
