@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -59,3 +59,106 @@ jobs:
             echo "Не удалось отправить в:$FAILED"
             exit 1
           fi
+
+      - name: Актуализировать описания зеркал
+        env:
+          GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
+          GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+        run: |
+          DESCRIPTION="Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок. Конфиги обновляются автоматически, ссылки проверяет CI."
+          WEBSITE="https://stintik-123.github.io/StintikVPN/"
+          TOPICS="vpn,free-vpn,vpn-configs,v2ray,xray,vmess,vless,trojan,shadowsocks,wireguard,mtproto,telegram,tor,dpi,bypass,censorship,russia"
+
+          token_of () { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://[^:/]*:([^@]*)@.*#\1#'; }
+          host_of ()  { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##; s#[:/].*$##'; }
+          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#'; }
+
+          # --- GitLab (свой API) ---
+          gl_token="$(token_of "$GITLAB_URL")"
+          if [ -n "$gl_token" ]; then
+            gl_project="$(repo_of "$GITLAB_URL")"
+            gl_code=$(curl -s -o /tmp/gl.out -w "%{http_code}" --request PUT \
+              --header "PRIVATE-TOKEN: $gl_token" \
+              --data-urlencode "description=$DESCRIPTION" \
+              --data-urlencode "topics=$TOPICS" \
+              --data-urlencode "issues_access_level=enabled" \
+              "https://gitlab.com/api/v4/projects/$(printf '%s' "$gl_project" | sed 's#/#%2F#')")
+            if [ "$gl_code" = "200" ]; then
+              echo "GitLab: описание и темы обновлены"
+            else
+              echo "GitLab: не удалось обновить описание (HTTP $gl_code)"
+            fi
+          fi
+
+          # --- Codeberg и GitVerse (Gitea-совместимый API) ---
+          update_gitea_like () {
+            label="$1"
+            url="$2"
+            token="$(token_of "$url")"
+            if [ -z "$token" ]; then
+              echo "$label: токен не найден — пропускаю"
+              return 0
+            fi
+            host="$(host_of "$url")"
+            project="$(repo_of "$url")"
+            body="$(jq -n --arg d "$DESCRIPTION" --arg w "$WEBSITE" --arg t "$TOPICS" \
+                    '{description:$d, website:$w, topics:($t|split(","))}')"
+            code=$(curl -s -o /tmp/out -w "%{http_code}" --request PATCH \
+              --header "Authorization: token $token" \
+              --header "Content-Type: application/json" \
+              --data "$body" "https://$host/api/v1/repos/$project")
+            if [ "$code" = "200" ]; then
+              echo "$label: описание и темы обновлены"
+            else
+              echo "$label: описание не обновлено (HTTP $code) — возможно, API недоступен"
+            fi
+          }
+
+          update_gitea_like "Codeberg" "$CODEBERG_URL"
+          update_gitea_like "GitVerse" "$GITVERSE_URL"
+
+      - name: Убрать с зеркал лишние ветки
+        env:
+          GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
+          GITVERSE_URL: ${{ secrets.GITVERSE_URL }}
+        run: |
+          token_of () { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://[^:/]*:([^@]*)@.*#\1#'; }
+          host_of ()  { printf '%s' "$1" | sed -E 's#^[a-zA-Z]+://##; s#^[^@]*@##; s#[:/].*$##'; }
+          repo_of ()  { printf '%s' "$1" | sed -E 's#.*[:/]([^/]+)/([^/]+?)(\.git)?/?$#\1/\2#'; }
+          enc () { jq -sRr @uri; }
+
+          # GitLab
+          gl_token="$(token_of "$GITLAB_URL")"
+          if [ -n "$gl_token" ]; then
+            gl_project="$(repo_of "$GITLAB_URL")"
+            gl_id="$(printf '%s' "$gl_project" | sed 's#/#%2F#')"
+            for b in $(curl -s --header "PRIVATE-TOKEN: $gl_token" \
+                "https://gitlab.com/api/v4/projects/$gl_id/repository/branches" | jq -r '.[].name' | grep -v '^main$'); do
+              enc_name="$(printf '%s' "$b" | enc)"
+              curl -s -o /dev/null --request DELETE --header "PRIVATE-TOKEN: $gl_token" \
+                "https://gitlab.com/api/v4/projects/$gl_id/repository/branches/$enc_name"
+              echo "GitLab: удалена лишняя ветка $b"
+            done
+          fi
+
+          # Codeberg и GitVerse
+          prune_gitea_like () {
+            label="$1"
+            url="$2"
+            token="$(token_of "$url")"
+            [ -z "$token" ] && return 0
+            host="$(host_of "$url")"
+            project="$(repo_of "$url")"
+            for b in $(curl -s --header "Authorization: token $token" \
+                "https://$host/api/v1/repos/$project/branches" | jq -r '.[].name' 2>/dev/null | grep -v '^main$'); do
+              enc_name="$(printf '%s' "$b" | enc)"
+              curl -s -o /dev/null --request DELETE --header "Authorization: token $token" \
+                "https://$host/api/v1/repos/$project/branches/$enc_name"
+              echo "$label: удалена лишняя ветка $b"
+            done
+          }
+
+          prune_gitea_like "Codeberg" "$CODEBERG_URL"
+          prune_gitea_like "GitVerse" "$GITVERSE_URL"
