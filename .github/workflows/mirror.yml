@@ -181,32 +181,44 @@ jobs:
               '{description:$d, website:$w, topics:($t|split(","))}'
           }
           topics_body () { jq -n --arg t "$TOPICS" '{topics:($t|split(","))}'; }
+          topics_body_names () { jq -n --arg t "$TOPICS" '{names:($t|split(","))}'; }
+          topics_body_subjects () { jq -n --arg t "$TOPICS" '{subjects:($t|split(","))}'; }
 
           # --- GitLab (свой API) ---
           # отдельный токен с правом api нужен для описания и тем
           gl_token="${GITLAB_TOKEN:-$(token_of "$GITLAB_URL")}"
+          gl_alt="$(token_of "$GITLAB_URL")"
           if [ -n "$gl_token" ]; then
             gl_project="$(repo_of "$GITLAB_URL")"
             gl_id="$(printf '%s' "$gl_project" | sed 's#/#%2F#')"
             gl_api="https://gitlab.com/api/v4/projects/$gl_id"
             echo "GitLab: проект $gl_project"
-            scope="$(curl -s --header "PRIVATE-TOKEN: $gl_token" \
-              "https://gitlab.com/api/v4/personal_access_tokens/self" \
-              | jq -r '(.scopes // [.message] | if type == "array" then .[0] else . end) // "неизвестно"' 2>/dev/null || true)"
-            echo "GitLab: права токена: $scope"
+            gl_tokens="$gl_token"
+            if [ -n "$gl_alt" ] && [ "$gl_alt" != "$gl_token" ]; then
+              gl_tokens="$gl_token $gl_alt"
+            fi
             gl_put () {
               curl -s -o /tmp/gl.out -w "%{http_code}" --request PUT \
-                --header "PRIVATE-TOKEN: $gl_token" "$@"
+                --header "PRIVATE-TOKEN: $gl_try" "$@"
             }
-            code="$(gl_put --data-urlencode "description=$DESCRIPTION" "$gl_api")"
-            echo "GitLab: описание — HTTP $code"
-            code="$(gl_put --data-urlencode "topics=$TOPICS" "$gl_api")"
-            echo "GitLab: темы — HTTP $code"
-            code="$(gl_put --data-urlencode "issues_access_level=enabled" "$gl_api")"
-            echo "GitLab: трекер задач — HTTP $code"
+            for gl_try in $gl_tokens; do
+              code="$(gl_put --data-urlencode "description=$DESCRIPTION" "$gl_api")"
+              echo "GitLab: описание — HTTP $code"
+              if [ "$code" = "200" ]; then break; fi
+            done
+            for gl_try in $gl_tokens; do
+              code="$(gl_put --data-urlencode "topics=$TOPICS" "$gl_api")"
+              echo "GitLab: темы — HTTP $code"
+              if [ "$code" = "200" ]; then break; fi
+            done
+            for gl_try in $gl_tokens; do
+              code="$(gl_put --data-urlencode "issues_access_level=enabled" "$gl_api")"
+              echo "GitLab: трекер задач — HTTP $code"
+              if [ "$code" = "200" ]; then break; fi
+            done
             if [ "$code" != "200" ]; then
               echo "GitLab: ответ: $(head -c 200 /tmp/gl.out)"
-              echo "GitLab: для описания и тем нужен токен с правом api и ролью Maintainer (сейчас: $scope)"
+              echo "GitLab: для описания и тем нужен токен с правом api и ролью Maintainer"
             fi
           fi
 
@@ -247,11 +259,25 @@ jobs:
             if [ "$code" != "200" ]; then
               echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
             fi
-            code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request PUT \
-              "${gv_head[@]}" --data "$(topics_body)" "$gv_api/topics")"
-            echo "GitVerse: темы — HTTP $code"
-            if [ "$code" != "200" ]; then
+            # темы ставятся отдельным запросом, форма у GitVerse неочевидная — перебираем
+            gv_topics_ok="false"
+            for gv_base in "$gv_api" "https://gitverse.ru/api/repos/$GV_TARGET"; do
+              for gv_body in "$(topics_body_names)" "$(topics_body)" "$(topics_body_subjects)"; do
+                code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request PUT \
+                  "${gv_head[@]}" --data "$gv_body" "$gv_base/topics")"
+                echo "GitVerse: темы — HTTP $code ($gv_base)"
+                if [ "$code" = "200" ] || [ "$code" = "204" ]; then
+                  gv_topics_ok="true"
+                  break 2
+                fi
+              done
+            done
+            if [ "$gv_topics_ok" != "true" ]; then
               echo "GitVerse: ответ: $(head -c 200 /tmp/gv.out)"
+              echo "GitVerse: пробую PATCH с темами в теле"
+              code="$(curl -s -o /tmp/gv.out -w "%{http_code}" --request PATCH \
+                "${gv_head[@]}" --data "$(topics_body)" "$gv_api")"
+              echo "GitVerse: темы через PATCH — HTTP $code"
             fi
           fi
 
