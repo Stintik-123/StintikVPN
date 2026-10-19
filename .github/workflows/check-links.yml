@@ -1,62 +1,110 @@
-name: Check links
+name: Проверка ссылок
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # ежедневно в 06:00 UTC
+    - cron: "0 6 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "docs/data.json"
+      - "README.md"
+      - "README_EN.md"
+      - "README_CN.md"
+      - "README_IR.md"
+      - ".github/workflows/check-links.yml"
 
 permissions:
   issues: write
   contents: read
 
+concurrency:
+  group: check-links
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Check subscription links
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Проверить, что README синхронизирован с data.json
+        run: python3 scripts/sync_readme.py --check
+
+      - name: Собрать список ссылок
+        run: |
+          {
+            jq -r '.subscriptions[].url, .proxies[].url' docs/data.json
+            grep -rhoE 'https?://[^ )"`>|]+' README*.md \
+              | sed 's/[.,;]$//' \
+              | grep -vE '^https?://(github\.com|t\.me|stintik-123\.github\.io|img\.shields\.io|play\.google\.com|apps\.apple\.com|www\.torproject\.org|gitlab\.com|codeberg\.org|gitverse\.ru|www\.speedtest\.net|2ip\.ru)/'
+          } | grep -v '^$' | sort -u > /tmp/urls.txt
+          echo "Проверяю $(wc -l < /tmp/urls.txt) ссылок"
+
+      - name: Проверить доступность ссылок
         id: links
         run: |
-          FAILED=""
+          : > /tmp/failed.txt
           while IFS= read -r url; do
+            [ -z "$url" ] && continue
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 -L "$url" || echo "000")
             if [ "$code" = "000" ] || [ "$code" -ge 400 ]; then
-              echo "DEAD ($code): $url"
-              FAILED="$FAILED
-- $url (HTTP $code)"
+              echo "НЕ РАБОТАЕТ ($code): $url"
+              echo "- $url (HTTP $code)" >> /tmp/failed.txt
             else
               echo "OK ($code): $url"
             fi
-          done < <(jq -r '.subscriptions[].url' docs/data.json)
+          done < /tmp/urls.txt
           {
             echo "failed<<EOF"
-            echo "$FAILED"
+            cat /tmp/failed.txt
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Close previous dead-link issues
-        if: steps.links.outputs.failed == ''
-        run: |
-          gh issue list --repo "$GITHUB_REPOSITORY" --label dead-link --state open --json number -q '.[].number' \
-            | xargs -r -I{} gh issue close {} --repo "$GITHUB_REPOSITORY" --reason completed
+      - name: Обновить issue о мёртвых ссылках
+        if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create issue for dead links
-        if: steps.links.outputs.failed != ''
         run: |
-          BODY="Следующие подписки не отвечают:
-          \`\`\`
-          ${{ steps.links.outputs.failed }}
-          \`\`\`
-          Обновите docs/data.json и README."
-          gh issue create --repo "$GITHUB_REPOSITORY" --title "Dead subscription links detected" --body "$BODY" --label dead-link || true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          set -e
+          gh label create dead-link --color "d93f0b" --description "Ссылка не отвечает" 2>/dev/null || true
 
-      - name: Notify Telegram
+          FAILED=$(sed -n '/^failed<<EOF$/,/^EOF$/p' "$GITHUB_OUTPUT" | sed '1d;$d')
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --label dead-link --state open --json number -q '.[].number' || true)
+
+          if [ -z "$(echo "$FAILED" | tr -d '[:space:]')" ]; then
+            for n in $EXISTING; do
+              gh issue close "$n" --repo "$GITHUB_REPOSITORY" --reason completed || true
+            done
+            echo "Все ссылки живы"
+            exit 0
+          fi
+
+          printf -v BODY 'Некоторые ссылки из docs/data.json и README не отвечают:\n\n```\n%s\n```\n\nЗамените ссылку в docs/data.json или удалите её.\n' "$FAILED"
+
+          if [ -n "$EXISTING" ]; then
+            FIRST=$(echo "$EXISTING" | head -1)
+            gh issue comment "$FIRST" --repo "$GITHUB_REPOSITORY" --body "$BODY" || true
+            for n in $EXISTING; do
+              if [ "$n" != "$FIRST" ]; then
+                gh issue close "$n" --repo "$GITHUB_REPOSITORY" --reason not_planned || true
+              fi
+            done
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "Некоторые ссылки не отвечают" --body "$BODY" --label dead-link || true
+          fi
+
+      - name: Уведомить в Telegram
         if: steps.links.outputs.failed != ''
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_CHAT_ID" ]; then
             echo "TG_BOT_TOKEN / TG_CHAT_ID не заданы — уведомление пропущено"
@@ -64,7 +112,4 @@ jobs:
           fi
           curl -s -X POST "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TG_CHAT_ID}" \
-            -d text="⚠️ StintikVPN: найдены мёртвые подписки — проверьте issue в репозитории."
-        env:
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+            -d text="⚠️ StintikVPN: часть ссылок не отвечает — см. issue в репозитории." > /dev/null

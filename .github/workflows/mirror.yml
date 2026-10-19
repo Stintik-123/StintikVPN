@@ -1,9 +1,16 @@
-name: Mirror to GitLab / Codeberg / GitVerse
+name: Зеркала
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mirror
+  cancel-in-progress: true
 
 jobs:
   mirror:
@@ -14,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push to mirrors
+      - name: Рассылка по зеркалам
         env:
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
           CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
@@ -26,13 +33,13 @@ jobs:
             name="$1"
             url="$2"
             if [ -z "$url" ]; then
-              echo "Skip $name (secret not set)"
+              echo "Пропускаю $name — адрес не задан"
               return 0
             fi
-            echo ">>> Pushing to $name"
+            echo ">>> Отправляю в $name"
             git remote remove "$name" 2>/dev/null || true
             git remote add "$name" "$url"
-            git push --force "$name" HEAD:main
+            git push --force-with-lease --tags "$name" HEAD:main
             echo "OK $name"
           }
 
