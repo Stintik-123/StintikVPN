@@ -1,9 +1,27 @@
-# OS junk
+# Системные файлы
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Editors
+# Редакторы и IDE
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
+
+# Зависимости и виртуальные окружения
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Логи и кэш
+*.log
+.cache/
+
+# Локальные секреты
+.env
+.env.*
+!.env.example
