@@ -22,6 +22,7 @@
 </head>
 <body class="theme-dark">
 <a class="skip-link" href="#subs">Перейти к содержимому</a>
+
 <nav class="nav" aria-label="Основная навигация">
   <div class="container nav-inner">
     <a href="#subs" class="logo">
@@ -35,7 +36,6 @@
       <a href="#tools">Инструменты</a>
       <a href="#proxy">Прокси</a>
       <a href="#guides">Гайды</a>
-      <a href="#warp">WARP</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-ctas">
@@ -48,7 +48,9 @@
     </div>
   </div>
 </nav>
+
 <main>
+
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-text">
@@ -82,19 +84,63 @@
   </div>
 </section>
 
-<section class="features" id="features">
+<section class="section section-steps" id="how">
+  <div class="container">
+    <div class="section-head section-head-center">
+      <h2>Подключается <span class="grad">за две минуты</span></h2>
+      <p>Скопировал ссылку → вставил в клиент → работает. Без аккаунта и оплаты.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3>Выбери подписку</h3>
+        <p>Чёрные списки для обычной сети или белые — для жёстких блокировок. Скопируй ссылку.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3>Открой клиент</h3>
+        <p>Hiddify (ПК / Android), Streisand (iPhone) или v2rayN. Импорт из URL.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3>Подключись</h3>
+        <p>Ping → выбери живой сервер → Connect. Если одна ссылка мертва — возьми другую.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
   <div class="container">
     <div class="features-grid">
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏴</div><h3>Чёрные списки</h3><p>Домашний Wi‑Fi, кабель, обычный 4G</p><button class="btn btn-sm btn-ghost filter-jump" type="button" data-f="black">Смотреть →</button></div>
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🏳️</div><h3>Белые списки</h3><p>Белые списки РКН</p><button class="btn btn-sm btn-ghost filter-jump" type="button" data-f="white">Смотреть →</button></div>
-      <div class="feature"><div class="feature-glow"></div><div class="feature-icon">🛠️</div><h3>Инструменты</h3><p>Speedtest, 2ip, дешифратор Happ, Clash converter</p><a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a></div>
+      <div class="feature">
+        <div class="feature-icon">🏴</div>
+        <h3>Чёрные списки</h3>
+        <p>Домашний Wi‑Fi, кабель, обычный 4G</p>
+        <button class="btn btn-sm btn-ghost filter-jump" type="button" data-f="black">Смотреть →</button>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏳️</div>
+        <h3>Белые списки</h3>
+        <p>Белые списки РКН</p>
+        <button class="btn btn-sm btn-ghost filter-jump" type="button" data-f="white">Смотреть →</button>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🛠️</div>
+        <h3>Инструменты</h3>
+        <p>Speedtest, 2ip, дешифратор Happ, Clash converter</p>
+        <a class="btn btn-sm btn-ghost" href="#tools">Открыть →</a>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section" id="subs">
   <div class="container">
-    <div class="section-head"><h2>Подписки</h2><p>Скопируй ссылку и добавь в клиент</p></div>
+    <div class="section-head">
+      <h2>Подписки</h2>
+      <p>Скопируй ссылку и добавь в клиент</p>
+    </div>
     <div class="filters" role="group" aria-label="Фильтр подписок">
       <button class="filter active" type="button" data-f="all" aria-pressed="true">Все</button>
       <button class="filter" type="button" data-f="black" aria-pressed="false">Чёрные</button>
@@ -106,40 +152,57 @@
 
 <section class="section" id="clients">
   <div class="container">
-    <div class="section-head"><h2>Клиенты</h2><p>Приложения, в которые вставляются подписки. Новичку проще всего начать с Hiddify (ПК/Android) или Streisand (iPhone)</p></div>
-    <div class="table-wrap"><table class="cli-table"><thead><tr><th>Платформа</th><th>Рекомендуем</th><th>Альтернатива</th></tr></thead><tbody>
-      <tr><td>Windows</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">v2rayN</a></td></tr>
-      <tr><td>Android</td><td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">v2rayNG</a></td></tr>
-      <tr><td>iPhone / iPad</td><td><a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">Streisand</a></td><td><a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank" rel="noopener">V2Box</a></td></tr>
-      <tr><td>macOS</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener">Clash Verge</a></td></tr>
-      <tr><td>Linux</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener">Clash Verge</a></td></tr>
-      <tr><td>Android TV</td><td><a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a></td><td><a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">v2rayNG</a></td></tr>
-    </tbody></table></div>
+    <div class="section-head">
+      <h2>Клиенты</h2>
+      <p>Приложения, в которые вставляются подписки. Новичку проще всего начать с Hiddify (ПК/Android) или Streisand (iPhone)</p>
+    </div>
+    <div class="chip-grid">
+      <a class="chip" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener"><span class="chip-label">Windows</span><span class="chip-name">Hiddify</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener"><span class="chip-label">Windows</span><span class="chip-name">v2rayN</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank" rel="noopener"><span class="chip-label">Android</span><span class="chip-name">Hiddify</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener"><span class="chip-label">Android</span><span class="chip-name">v2rayNG</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener"><span class="chip-label">iPhone</span><span class="chip-name">Streisand</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://apps.apple.com/app/v2box/id6443654552" target="_blank" rel="noopener"><span class="chip-label">iPhone</span><span class="chip-name">V2Box</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener"><span class="chip-label">macOS</span><span class="chip-name">Hiddify</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener"><span class="chip-label">macOS / Linux</span><span class="chip-name">Clash Verge</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener"><span class="chip-label">Linux</span><span class="chip-name">Hiddify</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener"><span class="chip-label">Android TV</span><span class="chip-name">Hiddify</span><span class="chip-arrow">↗</span></a>
+    </div>
   </div>
 </section>
 
 <section class="section" id="tools">
   <div class="container">
-    <div class="section-head"><h2>Инструменты</h2><p>Проверка сети и работа с подписками</p></div>
-    <div class="tools-grid">
-      <a class="tool" href="https://www.speedtest.net/" target="_blank" rel="noopener"><h4>Speedtest</h4><span>Проверка скорости</span></a>
-      <a class="tool" href="https://2ip.ru/" target="_blank" rel="noopener"><h4>2ip</h4><span>Проверка IP и утечки данных</span></a>
-      <a class="tool" href="https://utils.docs.rw/cryptohapp" target="_blank" rel="noopener"><h4>Happ decoder</h4><span>Дешифратор подписок Happ</span></a>
-      <a class="tool" href="https://acl4ssr-sub.github.io/" target="_blank" rel="noopener"><h4>Clash converter</h4><span>Конвертер подписок</span></a>
+    <div class="section-head">
+      <h2>Инструменты</h2>
+      <p>Проверка сети и работа с подписками</p>
+    </div>
+    <div class="chip-grid">
+      <a class="chip" href="https://www.speedtest.net/" target="_blank" rel="noopener"><span class="chip-name">Speedtest</span><span class="chip-desc">Проверка скорости</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://2ip.ru/" target="_blank" rel="noopener"><span class="chip-name">2ip</span><span class="chip-desc">IP и утечки</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://utils.docs.rw/cryptohapp" target="_blank" rel="noopener"><span class="chip-name">Happ decoder</span><span class="chip-desc">Дешифратор</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://acl4ssr-sub.github.io/" target="_blank" rel="noopener"><span class="chip-name">Clash converter</span><span class="chip-desc">Конвертер</span><span class="chip-arrow">↗</span></a>
+      <a class="chip" href="https://warp.llxi.pro/" target="_blank" rel="noopener"><span class="chip-name">WARP Generator</span><span class="chip-desc">Свой конфиг</span><span class="chip-arrow">↗</span></a>
     </div>
   </div>
 </section>
 
 <section class="section" id="proxy">
   <div class="container">
-    <div class="section-head"><h2>Telegram-прокси</h2><p id="proxy-date">MTProto</p></div>
+    <div class="section-head">
+      <h2>Telegram-прокси</h2>
+      <p>MTProto · обновлено <span id="proxy-date">—</span></p>
+    </div>
     <div id="proxy-list" class="proxy-list"></div>
   </div>
 </section>
 
 <section class="section" id="guides">
   <div class="container">
-    <div class="section-head"><h2>Гайды</h2><p>Обход без VPN (ByeDPI, zapret, tgwsproxy)</p></div>
+    <div class="section-head">
+      <h2>Гайды</h2>
+      <p>Обход без VPN (ByeDPI, zapret, tgwsproxy)</p>
+    </div>
     <div class="faq-list guide-list">
       <div class="faq-item guide-card">
         <button class="faq-q" type="button"><span class="guide-title"><span class="guide-emoji">🪟</span> Zapret‑discord‑youtube (Windows)</span><span class="faq-icon">+</span></button>
@@ -171,15 +234,6 @@
   </div>
 </section>
 
-<section class="section" id="warp">
-  <div class="container">
-    <div class="section-head"><h2>WARP</h2><p>Конфиги индивидуальные — генерируй свои, не шарь чужие ключи</p></div>
-    <div class="tools-grid tools-grid-1">
-      <a class="tool" href="https://warp.llxi.pro/" target="_blank" rel="noopener"><h4>WARP Generator</h4><span>Сгенерировать конфиг</span></a>
-    </div>
-  </div>
-</section>
-
 <section class="section section-faq" id="faq">
   <div class="container faq-layout">
     <div class="faq-aside">
@@ -197,7 +251,21 @@
     </div>
   </div>
 </section>
+
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-text">
+        <h2>Интернет свобода<br>начинается здесь</h2>
+        <a href="#subs" class="btn btn-primary">Выбрать подписку →</a>
+        <p class="cta-note">Без регистрации · без оплаты · открытый код на GitHub</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
+
 <footer class="footer">
   <div class="container footer-inner">
     <p>StintikVPN — агрегатор бесплатных подписок. Не связан с разработчиками клиентов и серверов.</p>
@@ -207,6 +275,7 @@
     </p>
   </div>
 </footer>
+
 <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
 <div class="modal" id="qr-modal" hidden role="dialog" aria-modal="true" aria-label="QR-код со ссылкой">
   <div class="modal-backdrop" data-action="close-qr"></div>
