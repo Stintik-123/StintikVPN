@@ -605,7 +605,10 @@ function renderProxy(proxy, index = 0) {
 // ========================================
 
 function loadData() {
-    fetch('data.json')
+    // Try relative path first, then fallback to absolute path for GitHub Pages
+    const dataUrl = 'data.json';
+    
+    fetch(dataUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
@@ -619,8 +622,24 @@ function loadData() {
         })
         .catch(error => {
             console.error('Failed to load data:', error);
-            showErrorState();
-            hideLoadingScreen();
+            // Try fallback URL for GitHub Pages
+            fetch('https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/docs/data.json')
+                .then(fallbackResponse => {
+                    if (!fallbackResponse.ok) {
+                        throw new Error(`Fallback HTTP ${fallbackResponse.status}`);
+                    }
+                    return fallbackResponse.json();
+                })
+                .then(data => {
+                    state.data = data;
+                    initPage();
+                    hideLoadingScreen();
+                })
+                .catch(fallbackError => {
+                    console.error('Failed to load fallback data:', fallbackError);
+                    showErrorState();
+                    hideLoadingScreen();
+                });
         });
 }
 
