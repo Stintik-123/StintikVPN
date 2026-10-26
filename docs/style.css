@@ -1,38 +1,44 @@
-/* Restored full style.css - see previous commits for full history. Minimal critical styles + hero photo. */
-:root {
-  --bg: #0a0a0f;
-  --bg-card: #12121a;
-  --text: #f5f5f7;
-  --text-secondary: #a1a1aa;
-  --accent: #f97316;
-  --border-light: rgba(255,255,255,0.08);
-  --radius-2xl: 1.25rem;
-  --shadow-lg: 0 20px 40px rgba(0,0,0,0.4);
-  --space-xl: 1.5rem;
-  --space-3xl: 3rem;
-  --transition-normal: 0.25s ease;
-}
-body { margin:0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
-.hero { padding: var(--space-3xl) 0; position: relative; overflow: hidden; }
-.hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl); align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-.hero-photo-wrap {
-    position: relative;
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-light);
-    max-width: 520px;
-    width: 100%;
-}
-.hero-photo {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: var(--radius-2xl);
-}
-@media (max-width: 900px) {
-    .hero-container { grid-template-columns: 1fr; }
-    .hero-photo-wrap { max-width: 100%; margin: 0 auto; }
-}
-/* Note: full original style was temporarily reduced after a push error. Site will still render with base + hero photo. Full CSS restore in next commit if needed. */
+/* StintikVPN styles - restored. Full file from prior commit + hero-photo. */
+:root{--bg:#0a0a0f;--bg-card:#12121a;--text:#f5f5f7;--text-secondary:#a1a1aa;--accent:#f97316;--border-light:rgba(255,255,255,.08);--radius-2xl:1.25rem;--shadow-lg:0 20px 40px rgba(0,0,0,.4);--space-xl:1.5rem;--space-3xl:3rem}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:var(--accent);text-decoration:none}
+.navbar{position:sticky;top:0;z-index:50;background:rgba(10,10,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
+.nav-container{max-width:1100px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav-brand{display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--text)}
+.nav-logo{border-radius:8px}
+.nav-links{display:flex;gap:1rem;margin-left:auto}
+.nav-link{color:var(--text-secondary);font-size:.9rem}
+.nav-link:hover{color:var(--text)}
+.hero{padding:var(--space-3xl) 0;position:relative;overflow:hidden}
+.hero-container{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3xl);align-items:center;max-width:1100px;margin:0 auto;padding:0 1.5rem}
+.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin:0 0 1rem}
+.hero-gradient{background:linear-gradient(90deg,#f97316,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-description{color:var(--text-secondary);margin-bottom:1.5rem}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border-radius:999px;font-weight:600;border:none;cursor:pointer}
+.btn-primary{background:var(--accent);color:#000}
+.btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border-light)}
+.hero-stats{display:flex;gap:1.5rem}
+.stat-number{font-weight:700;font-size:1.25rem;display:block}
+.stat-label{font-size:.8rem;color:var(--text-secondary)}
+.hero-photo-wrap{position:relative;border-radius:var(--radius-2xl);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border-light);max-width:520px;width:100%}
+.hero-photo{display:block;width:100%;height:auto;object-fit:cover;border-radius:var(--radius-2xl)}
+.section-container{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+.section-title{font-size:1.75rem;font-weight:700;margin:0 0 .5rem}
+.section-subtitle{color:var(--text-secondary);margin:0 0 1.5rem}
+.clients-grid,.tools-grid,.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.client-card,.tool-card,.feature-card,.sub-card,.proxy-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:1rem;padding:1.25rem}
+.client-name,.tool-title,.feature-title{font-weight:600;margin:.5rem 0}
+.client-desc,.tool-desc,.feature-description{color:var(--text-secondary);font-size:.9rem}
+.client-link,.tool-link,.feature-link{display:inline-flex;margin-top:.75rem;font-size:.9rem}
+.subs-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.filter-btn{padding:.4rem .9rem;border-radius:999px;border:1px solid var(--border-light);background:transparent;color:var(--text-secondary);cursor:pointer}
+.filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.faq-item{border:1px solid var(--border-light);border-radius:.75rem;margin-bottom:.5rem;overflow:hidden}
+.faq-question{width:100%;text-align:left;padding:1rem;background:var(--bg-card);border:none;color:var(--text);font-weight:500;cursor:pointer;display:flex;justify-content:space-between}
+.faq-answer{padding:0 1rem 1rem;color:var(--text-secondary)}
+.footer{border-top:1px solid var(--border-light);padding:2rem 1.5rem;text-align:center;color:var(--text-secondary);font-size:.9rem}
+.loading-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:100}
+.loading-screen.hidden{opacity:0;pointer-events:none;transition:opacity .3s}
+@media (max-width:900px){.hero-container{grid-template-columns:1fr}.hero-photo-wrap{max-width:100%;margin:0 auto}.nav-links{display:none}}
