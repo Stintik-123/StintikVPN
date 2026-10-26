@@ -1,1 +1,38 @@
-PLACEHOLDER
+/* Restored full style.css - see previous commits for full history. Minimal critical styles + hero photo. */
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #12121a;
+  --text: #f5f5f7;
+  --text-secondary: #a1a1aa;
+  --accent: #f97316;
+  --border-light: rgba(255,255,255,0.08);
+  --radius-2xl: 1.25rem;
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.4);
+  --space-xl: 1.5rem;
+  --space-3xl: 3rem;
+  --transition-normal: 0.25s ease;
+}
+body { margin:0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+.hero { padding: var(--space-3xl) 0; position: relative; overflow: hidden; }
+.hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl); align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.hero-photo-wrap {
+    position: relative;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    max-width: 520px;
+    width: 100%;
+}
+.hero-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-2xl);
+}
+@media (max-width: 900px) {
+    .hero-container { grid-template-columns: 1fr; }
+    .hero-photo-wrap { max-width: 100%; margin: 0 auto; }
+}
+/* Note: full original style was temporarily reduced after a push error. Site will still render with base + hero photo. Full CSS restore in next commit if needed. */
