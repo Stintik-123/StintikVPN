@@ -1,3 +1,5 @@
+**StintikVPN - сборник бесплатных VPN подписок и прокси**
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN" width="100%">
 </p>
@@ -11,8 +13,8 @@
 
 <p align="center">
   <a href="https://stintik-123.github.io/StintikVPN/"><img src="https://img.shields.io/badge/Сайт-GitHub%20Pages-0A0A0A?style=flat-square&logo=github" alt="Сайт проекта"></a>
-  <a href="https://t.me/StintikVPN"><img src="https://img.shields.io/badge/Telegram-@StintikVPN-26A5E4?style=flat-square&logo=telegram" alt="Telegram-канал"></a>
-  <a href="https://github.com/Stintik-123/StintikVPN/actions/workflows/check-links.yml"><img src="https://github.com/Stintik-123/StintikVPN/actions/workflows/check-links.yml/badge.svg" alt="Проверка ссылок"></a>
+  <a src="https://img.shields.io/badge/Telegram-@StintikVPN-26A5E4?style=flat-square&logo=telegram" alt="Telegram-канал"></a>
+  <a href="https://github.com/Stintik-123/StintikVPN/actions/workflows/check-links.yml"><img
   <a href="https://github.com/Stintik-123/StintikVPN/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Stintik-123/StintikVPN?style=flat-square&color=blue" alt="Лицензия MIT"></a>
   <img src="https://img.shields.io/github/last-commit/Stintik-123/StintikVPN?style=flat-square" alt="Последний коммит">
   <img src="https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square" alt="Звёзды">
@@ -27,36 +29,35 @@
 > [!WARNING]
 > Конфиги собраны из открытых источников, их работоспособность **не гарантируется**.
 > Не передавайте через них пароли и данные карт, не заходите в банки и другие
-> критичные сервисы. Подробнее — в разделе [«Безопасно ли это»](#faq).
+> Критичные сервисы. Подробнее — в разделе [«Безопасно ли это»](#faq).
 
 ---
 
 ## 📑 Содержание
 
-- [🚀 Быстрый старт](#-быстрый-старт)
-- [📦 Подписки](#-подписки)
-- [🤖 Telegram-прокси](#-telegram-прокси)
-- [📱 Клиенты](#-клиенты)
-- [🏴 Чёрные и белые списки](#-чёрные-и-белые-списки)
-- [📡 SNI и CIDR](#-sni-и-cidr)
-- [🛠️ Протоколы](#-протоколы)
-- [🛡️ Обход без VPN](#-обход-без-vpn)
-- [🧅 Tor-мосты](#-tor-мосты)
-- [🧰 Инструменты](#-инструменты)
-- [🌀 WARP](#-warp)
-- [🔗 Зеркала](#-зеркала)
-- [❓ FAQ](#-faq)
-- [🏗 Как устроен проект](#-как-устроен-проект)
-- [🤝 Участие](#-участие)
-- [📄 Лицензия](#-лицензия)
-- [⭐ Поддержать](#-поддержать)
+- [Быстрый старт](#-быстрый-старт)
+- [Подписки](#-подписки)
+- [Telegram-прокси](#-telegram-прокси)
+- [Клиенты](#-клиенты)
+- [Чёрные и белые списки](#-чёрные-и-белые-списки)
+- [SNI и CIDR](#-sni-и-cidr)
+- [Протоколы](#-протоколы)
+- [Обход без VPN](#-обход-без-vpn)
+- [Tor-мосты](#-tor-мосты)
+- [Инструменты](#-инструменты)
+- [WARP](#-warp)
+- [Зеркала](#-зеркала)
+- [FAQ](#-faq)
+- [Участие](#-участие)
+- [Лицензия](#-лицензия)
+- [Поддержать](#-поддержать)
 
 ---
 
-## 🚀 Быстрый старт
+## Быстрый старт
 
 1. Установите клиент из раздела [«Клиенты»](#-клиенты) — новичку проще всего
-   начать с **Hiddify** (Windows/Android) или **Streisand** (iPhone).
+   начать с **Incy** (Windows/Android) или **Streisand** (iPhone).
 2. Откройте раздел [«Подписки»](#-подписки), скопируйте нужную ссылку кнопкой
    **«Скопировать»** (на сайте есть ещё и QR-код).
 3. В клиенте выберите «Добавить подписку» или «Импорт из буфера».
@@ -67,14 +68,14 @@
 
 ---
 
-## 📦 Подписки
+## Подписки
 
 <!-- SUBS:START -->
 
 | Подписка | Ссылка |
 |:-------|:-----------------|
-| Чёрные списки (основной) | `https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt` |
-| Black Mobile (для телефонов) | `https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt` |
+| Чёрные списки (основной) | `https://gist.githubusercontent.com/SlavaKat/2d75a18830db8315ee79d58f5ee62e30/raw/` |
+| Black Mobile (для телефонов) | `https://gitverse.ru/api/repos/Pizduk/PizdukVPN/raw/branch/master/sub.txt` |
 | Белые списки (основные) | `https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt` |
 | Белые списки (CIDR) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt` |
 | Белые списки (SNI) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt` |
@@ -91,15 +92,15 @@
 
 | Прокси | Ссылка |
 |:-------|:-----------------|
-| lumetra.mtproxy.zip | `https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275` |
-| 85.192.34.18:9443 | `https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665` |
+| shared3.ddproxy | `https://t.me/proxy?server=shared3.ddproxy.xyz&port=443&secret=eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275` |
+| edge.turboass | `https://t.me/proxy?server=edge.turboass.live&port=443&secret=ee51116f4018a2b3dfc9bda286c52afe9f656467652e747572626f6173732e6c697665` |
 | proxy.tonservice.site | `https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000` |
-| 172.65.100.45:25565 | `https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d` |
-| cluster.mtproxy.cc | `https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363` |
+| static.antenna | `https://t.me/proxy?server=static.antenna-mzt.live&port=443&secret=ee5a42e3752e724f2fdae9c117e7f076fe73746f72652e737465616d706f77657265642e636f6d` |
+
 
 <!-- PROXIES:END -->
 
-> Прокси бесплатные, поэтому их часто блокируют. Не работает одно — берите другое.
+> Прокси бесплатные, поэтому их часто блокируют. Не работает один — берите другое.
 
 ---
 
@@ -113,8 +114,6 @@
 | **macOS** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) · [Happ](https://github.com/Happ-proxy/happ-desktop/releases) |
 | **Linux** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) · [Happ](https://github.com/Happ-proxy/happ-desktop/releases) |
 | **Android TV** | [Hiddify](https://github.com/hiddify/hiddify-next/releases) | [v2rayNG](https://github.com/2dust/v2rayNG/releases) |
-
-> **NekoRay и NekoBox больше не поддерживаются** — в список не включаем. Замена — **Happ**.
 
 ---
 
@@ -148,7 +147,7 @@
 
 | Протокол | Заметка |
 |:---------|:--------|
-| **VLESS** | Часто быстрее и гибче, но на практике чаще упирается в блокировки |
+| **VLESS** | Лучший современный протокол, но может часто блокироваться|
 | **Trojan** | Универсальный вариант «на каждый день» |
 | **VMess** | Обычно стабильнее на старых и капризных сетях |
 | **Shadowsocks** | Простой и часто шустрый; для игр смотрите пинг конкретного узла |
@@ -196,7 +195,7 @@
 
 | Инструмент | Зачем |
 |:-----------|:------|
-| [Speedtest](https://www.speedtest.net/) | Проверка скорости |
+| [Speedtest](https://www.speedtest.net/) | Проверка скорости трафика|
 | [2ip](https://2ip.ru/) | Проверка IP и утечек данных |
 | [Happ decoder](https://utils.docs.rw/cryptohapp) | Дешифратор подписок Happ |
 | [Clash converter](https://acl4ssr-sub.github.io/) | Конвертер подписок |
@@ -205,20 +204,17 @@
 
 ## 🌀 WARP
 
-Конфиги Cloudflare WARP индивидуальные — генерируйте свои и не делитесь чужими
-ключами: [WARP Generator](https://warp.llxi.pro/).
+Все Warp конфиги лежат в тг @StintikWarp
 
 ---
 
 ## 🔗 Зеркала
 
-Репозиторий автоматически зеркалируется после каждого push в `main`:
-
 - [GitLab](https://gitlab.com/Stintik-123/StintikVPN)
 - [Codeberg](https://codeberg.org/Stintik-123/StintikVPN)
 - [GitVerse](https://gitverse.ru/Stintik-123/StintikVPN)
 
-Если GitHub недоступен — пользуйтесь зеркалами, там та же история и те же файлы.
+Если GitHub недоступен — пользуйтесь зеркалами, там та же история и те же файлы
 
 ---
 
@@ -270,61 +266,15 @@
 
 ---
 
-## 🏗 Как устроен проект
-
-```
-.
-├── docs/                     # сайт на GitHub Pages
-│   ├── index.html            # разметка: контейнеры, без захардкоженных ссылок
-│   ├── style.css             # стили
-│   ├── script.js             # логика: рендер, фильтры, QR, тема
-│   └── data.json             # ЕДИНЫЙ ИСТОЧНИК ДАННЫХ: подписки и прокси
-├── scripts/
-│   └── sync_readme.py        # генерация разделов README из data.json
-├── .github/
-│   ├── workflows/            # CI: проверка ссылок, зеркала, синхронизация README
-│   ├── ISSUE_TEMPLATE/       # формы для issue
-│   └── PULL_REQUEST_TEMPLATE.md
-├── README.md                 # русский
-├── README_EN.md              # english
-├── README_CN.md              # 中文
-├── README_IR.md              # فارسی
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-└── LICENSE                   # MIT
-```
-
-**Как это работает:**
-
-- `docs/data.json` — единственный источник правды. Сайт и README читают его,
-  захардкоженных ссылок в коде нет.
-- Разделы со ссылками в README генерируются скриптом `scripts/sync_readme.py`
-  и обновляются в CI — правьте `data.json`, README подтянется сам.
-- CI ежедневно проверяет доступность всех ссылок и заводит issue с меткой
-  `dead-link`, если ссылка умерла.
-- После каждого push в `main` репозиторий зеркалируется на GitLab, Codeberg и
-  GitVerse.
-
-Локальный запуск сайта:
-
-```bash
-cd docs
-python3 -m http.server 8000
-```
-
----
-
 ## 🤝 Участие
 
 Приветствуются любые идеи и правки:
 
-- 📘 [CONTRIBUTING.md](CONTRIBUTING.md) — как внести изменения
-- 🤝 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — правила поведения
-- 🛡️ [SECURITY.md](SECURITY.md) — как сообщить об уязвимости
-- 🐛 [Issue](https://github.com/Stintik-123/StintikVPN/issues/new/choose) — баги,
+- [CONTRIBUTING.md](CONTRIBUTING.md) — как внести изменения
+- [SECURITY.md](SECURITY.md) — как сообщить об уязвимости
+- [Issue](https://github.com/Stintik-123/StintikVPN/issues/new/choose) — баги,
   битые ссылки и предложения
-- 💬 [Telegram-канал](https://t.me/StintikVPN) — оперативные сообщения
+- [Telegram-канал](https://t.me/StintikVPN) — оперативные сообщения
 
 ---
 
