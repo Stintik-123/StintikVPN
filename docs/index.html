@@ -1,1 +1,654 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StintikVPN — бесплатные VPN-подписки, Telegram-прокси и инструменты для обхода блокировок. Скопил ссылок, выбери подписку и работай.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>StintikVPN — Интернет свобода без ограничений</title>
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/">
+    <meta property="og:title" content="StintikVPN — Интернет свобода">
+    <meta property="og:description" content="Бесплатные VPN-подписки, Telegram-прокси и инструменты для обхода блокировок">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Skip to content link -->
+    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Загрузка...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Основная навигация">
+        <div class="nav-container">
+            <a href="/StintikVPN/" class="nav-brand">
+                <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="StintikVPN Logo" class="nav-logo" width="32" height="32">
+                <span class="nav-name">Stintik<span class="highlight">VPN</span></span>
+            </a>
+            
+            <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+            
+            <div id="nav-menu" class="nav-links">
+                <a href="#subs" class="nav-link">Подписки</a>
+                <a href="#proxies" class="nav-link">Прокси</a>
+                <a href="#clients" class="nav-link">Клиенты</a>
+                <a href="#tools" class="nav-link">Инструменты</a>
+                <a href="#guides" class="nav-link">Гайды</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="https://t.me/Keb04w" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-telegram" aria-label="Telegram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 9.5a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        <path d="M12 15.5l-3-3"/>
+                        <path d="M12 9.5v6"/>
+                        <path d="M15 12.5l-3 3"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-github" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m6 3V10c0-4.4 3.6-8 8-8s8 3.6 8 8v8.5c0 4.4-3.6 8-8 8s-8-3.6-8-8Z"/>
+                        <path d="M12 10v4"/>
+                        <path d="M9 12h6"/>
+                    </svg>
+                </a>
+                <button class="nav-btn nav-btn-theme" type="button" aria-label="Переключить тему" title="Переключить тему">
+                    <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>Бесплатные VPN-подписки и прокси</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Интернет свобода<br>
+                        <span class="hero-gradient">без ограничений</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Скопил ссылок, выбери подписку и работай. 
+                        Без регистрации и без оплаты. 
+                        Открытый код — все проверяем, все работает.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="#subs" class="btn btn-primary btn-lg">
+                            <span>Выбрать подписку</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#clients" class="btn btn-secondary btn-lg">
+                            <span>Клиенты</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="subs-count">0+</span>
+                            <span class="stat-label">Подписок</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="proxies-count">0+</span>
+                            <span class="stat-label">Прокси</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Бесплатно</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-photo-wrap">
+                        <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN" class="hero-photo" width="520" height="auto" loading="eager">
+                    </div>
+                    <div class="hero-decoration">
+                        <div class="decoration-circle"></div>
+                        <div class="decoration-line"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Что здесь есть?</h2>
+                    <p class="section-subtitle">Всё необходимое для свободного интернета</p>
+                </div>
+                
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon feature-icon-subs">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5Z"/>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Подписки</h3>
+                        <p class="feature-description">Чёрные и белые списки для разных нужд</p>
+                        <a href="#subs" class="feature-link">Подробнее</a>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon feature-icon-proxy">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Прокси</h3>
+                        <p class="feature-description">MTProto прокси для Telegram</p>
+                        <a href="#proxies" class="feature-link">Подробнее</a>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon feature-icon-clients">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect width="16" height="20" x="4" y="2" rx="2"/>
+                                <path d="M9 17V7M15 17V7"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Клиенты</h3>
+                        <p class="feature-description">Для всех платформ: Windows, Android, iOS, macOS</p>
+                        <a href="#clients" class="feature-link">Подробнее</a>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon feature-icon-tools">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5"/>
+                                <path d="M12 2v5M16 11.5a2.5 2.5 0 0 0 0-5M12 15v-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Инструменты</h3>
+                        <p class="feature-description">Проверка скорости, конвертеры и другое</p>
+                        <a href="#tools" class="feature-link">Подробнее</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section class="quick-start">
+            <div class="section-container">
+                <div class="quick-start-container">
+                    <div class="quick-start-content">
+                        <h2 class="section-title">Быстрый старт</h2>
+                        <p class="section-subtitle">Три шага до свободного интернета</p>
+                    </div>
+                    
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">01</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Выбери подписку</h3>
+                                <p class="step-description">Чёрные или белые списки — выбирай что нужно</p>
+                            </div>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step">
+                            <div class="step-number">02</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Скопуруй ссылку</h3>
+                                <p class="step-description">Импортируй в Incy / Karing или другой клиент</p>
+                            </div>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step">
+                            <div class="step-number">03</div>
+                            <div class="step-content">
+                                <h3 class="step-title">Подключись</h3>
+                                <p class="step-description">Проверь соединение и наслаждайся</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscriptions Section -->
+        <section id="subs" class="subs">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Подписки</h2>
+                    <p class="section-subtitle">Скопил ссылок, выбери подписку и работай</p>
+                </div>
+                
+                <div class="subs-filters">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="black">Чёрные</button>
+                    <button class="filter-btn" data-filter="white">Белые</button>
+                    <button class="filter-btn" data-filter="search" id="search-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <span>Поиск</span>
+                    </button>
+                </div>
+                
+                <div class="search-container" id="search-container" hidden>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="search-input" 
+                        placeholder="Поиск по подпискам..."
+                        aria-label="Поиск по подпискам"
+                    >
+                </div>
+                
+                <div id="subs-list" class="subs-list">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Proxies Section -->
+        <section id="proxies" class="proxies">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Telegram Прокси</h2>
+                    <p class="section-subtitle">MTProto прокси для обхода блокировок</p>
+                </div>
+                
+                <div id="proxies-list" class="proxies-list">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section id="clients" class="clients">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Клиенты</h2>
+                    <p class="section-subtitle">Приложения для работы с подписками</p>
+                </div>
+                
+                <div class="clients-grid">
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">Windows / Android</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">Incy</h3>
+                            <p class="client-desc">Наполовину лучший клиент (где доступен)</p>
+                        </div>
+                        <a href="https://incy.cc/" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">Windows / Android</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">Karing</h3>
+                            <p class="client-desc">Где Incy недоступен — бери Karing</p>
+                        </div>
+                        <a href="https://github.com/KaringX/karing/releases" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">Windows</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">Hiddify</h3>
+                            <p class="client-desc">Универсальный клиент</p>
+                        </div>
+                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">Android</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">v2rayNG</h3>
+                            <p class="client-desc">Для Android</p>
+                        </div>
+                        <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">iPhone</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">Streisand</h3>
+                            <p class="client-desc">Для iOS</p>
+                        </div>
+                        <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">iPhone</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">V2Box</h3>
+                            <p class="client-desc">Альтернатива</p>
+                        </div>
+                        <a href="https://apps.apple.com/app/v2box/id6443654552" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">macOS</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">Clash Verge</h3>
+                            <p class="client-desc">Для macOS/Linux</p>
+                        </div>
+                        <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                    
+                    <article class="client-card">
+                        <div class="client-header">
+                            <span class="client-platform">Android TV</span>
+                        </div>
+                        <div class="client-body">
+                            <h3 class="client-name">Hiddify</h3>
+                            <p class="client-desc">Для TV</p>
+                        </div>
+                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener noreferrer" class="client-link">
+                            Скачать
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="tools">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Инструменты</h2>
+                    <p class="section-subtitle">Полезные сервисы для работы</p>
+                </div>
+                
+                <div class="tools-grid">
+                    <article class="tool-card">
+                        <div class="tool-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M2 12h20"/>
+                                <path d="m4.93 4.93 2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                            </svg>
+                        </div>
+                        <h3 class="tool-title">Speedtest</h3>
+                        <p class="tool-desc">Проверка скорости интернета</p>
+                        <a href="https://www.speedtest.net/" target="_blank" rel="noopener noreferrer" class="tool-link">Открыть</a>
+                    </article>
+                    <article class="tool-card">
+                        <div class="tool-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="tool-title">2ip</h3>
+                        <p class="tool-desc">Узнать свой IP и утечки</p>
+                        <a href="https://2ip.ru/" target="_blank" rel="noopener noreferrer" class="tool-link">Открыть</a>
+                    </article>
+                    <article class="tool-card">
+                        <div class="tool-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                                <path d="M7 7h10M7 12h10M7 17h6"/>
+                            </svg>
+                        </div>
+                        <h3 class="tool-title">Happ decoder</h3>
+                        <p class="tool-desc">Декодировать подписки Happ</p>
+                        <a href="https://utils.docs.rw/cryptohapp" target="_blank" rel="noopener noreferrer" class="tool-link">Открыть</a>
+                    </article>
+                    <article class="tool-card">
+                        <div class="tool-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="tool-title">Clash converter</h3>
+                        <p class="tool-desc">Конвертировать подписки</p>
+                        <a href="https://acl4ssr-sub.github.io/" target="_blank" rel="noopener noreferrer" class="tool-link">Открыть</a>
+                    </article>
+                    <article class="tool-card">
+                        <div class="tool-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="tool-title">WARP Generator</h3>
+                        <p class="tool-desc">Генератор конфигов WARP</p>
+                        <a href="https://warp.llxi.pro/" target="_blank" rel="noopener noreferrer" class="tool-link">Открыть</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guides Section -->
+        <section id="guides" class="guides">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Гайды</h2>
+                    <p class="section-subtitle">Обход блокировок без VPN</p>
+                </div>
+                <div class="guides-list">
+                    <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener noreferrer" class="guide-item">
+                        <span class="guide-emoji">🎭</span>
+                        <span>Zapret-discord-youtube (Windows)</span>
+                    </a>
+                    <a href="https://github.com/Valent-in/ByeByeDPI" target="_blank" rel="noopener noreferrer" class="guide-item">
+                        <span class="guide-emoji">📡</span>
+                        <span>ByeByeDPI (Windows / Android)</span>
+                    </a>
+                    <a href="https://github.com/Flowseal/tg-ws-proxy" target="_blank" rel="noopener noreferrer" class="guide-item">
+                        <span class="guide-emoji">🔗</span>
+                        <span>TG-WS-Proxy (локальный прокси для Telegram)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">FAQ</h2>
+                    <p class="section-subtitle">Частые вопросы</p>
+                </div>
+                <div class="faq-list">
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            <span>Подписка не работает / очень медленно?</span>
+                            <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p>Подписки бесплатные, поэтому могут не работать в моменты большого наплыва. Попробуйте другую подписку или обновите текущую.</p>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            <span>Как часто обновляются конфиги?</span>
+                            <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p>Конфиги обновляются ежедневно их авторами. Ссылки проверяются автоматически каждое утро.</p>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            <span>Почему StintikVPN бесплатный?</span>
+                            <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p>Это агрегатор бесплатных VPN-подписок и прокси: создатель ничего не тратит, а просто собирает в одном месте всё бесплатное из интернета.</p>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            <span>Прокси Telegram не подключается?</span>
+                            <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p>Прокси обновляются автоматически. Если один не работает, попробуйте другой из списка.</p>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            <span>Какой VPN-клиент лучше использовать?</span>
+                            <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p>Наполовину лучший клиент — <strong>Incy</strong> (где доступен). На другой половине — <strong>Karing</strong>. На iOS — <strong>Streisand</strong> или <strong>Happ</strong>.</p>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            <span>Безопасно ли использовать всё это?</span>
+                            <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p>Конфиги берутся из открытых источников. Мы не гарантируем безопасность, но все ссылки проверяются автоматически. Используйте на свой страх и риск.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <div class="section-container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Готов к свободному интернету?</h2>
+                    <p class="cta-text">Выбери подписку и начни пользоваться прямо сейчас</p>
+                    <a href="#subs" class="btn btn-primary btn-lg">Выбрать подписку</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="section-container">
+            <p>StintikVPN — сделано людьми для людей · <a href="https://github.com/Stintik-123/StintikVPN">GitHub</a> · <a href="https://t.me/StintikVPN">Telegram</a></p>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" hidden>
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- QR Modal -->
+    <dialog id="qr-modal" class="qr-modal">
+        <div class="qr-modal-content">
+            <button type="button" class="qr-close" aria-label="Закрыть">×</button>
+            <h3>QR-код подписки</h3>
+            <div id="qrcode"></div>
+            <p class="qr-hint">Отсканируй в клиенте Incy / Karing</p>
+        </div>
+    </dialog>
+</body>
+</html>
