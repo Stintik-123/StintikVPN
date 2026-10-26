@@ -1,4 +1,4 @@
-**StintikVPN - сборник бесплатных VPN подписок и прокси**
+**StintikVPN**
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN" width="100%">
