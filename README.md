@@ -1,3 +1,7 @@
+
+
+# StintikVPN — интернет-свобода ближе, чем кажется
+
 <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN" width="100%">
 </p>
 
@@ -17,8 +21,6 @@
   <img src="https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square" alt="Звёзды">
   <img src="https://img.shields.io/github/forks/Stintik-123/StintikVPN?style=flat-square" alt="Форки">
 </p>
-
-# StintikVPN — интернет-свобода ближе, чем кажется
 
 **Бесплатные VPN-подписки, Telegram-прокси и инструкции по обходу блокировок.**
 Скопировали ссылку → вставили в клиент → работает. Без регистрации и без оплаты.
