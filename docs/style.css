@@ -1,1 +1,19 @@
-PLACEHOLDER_WILL_REPLACE
+/* ========================================
+   StintikVPN - Modern Stylesheet
+   ======================================== */
+
+/* CSS Custom Properties (Variables) */
+:root {
+    /* Colors - Dark Theme */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #0f0f15;
+    --bg-tertiary: #15151c;
+    --bg-card: #1a1a24;
+    --bg-hover: #1f1f2e;
+    
+    /* Accent Colors */
+    --accent: #ff6b35;
+    --accent-light: #ff8c5a;
+    --accent-dark: #e55a2b;
+    --accent-glow: rgba(255, 107, 53, 0.15);
+    --accent-gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 50%, #ffa77a 100%);
