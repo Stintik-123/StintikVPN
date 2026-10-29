@@ -23,7 +23,6 @@
 ├── README_CN.md              # 中文
 ├── README_IR.md              # فارسی
 ├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
 ├── SECURITY.md
 └── LICENSE                   # MIT
 ```
