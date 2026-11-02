@@ -1,56 +1,181 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="StintikVPN — бесплатные VPN-подписки, Telegram-прокси и инструменты для обхода блокировок.">
-    <meta name="theme-color" content="#0a0a0f">
-    <title>StintikVPN — Интернет свобода без ограничений</title>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://stintik-123.github.io/StintikVPN/">
-    <meta property="og:title" content="StintikVPN — Интернет свобода">
-    <meta property="og:description" content="Бесплатные VPN-подписки, Telegram-прокси и инструменты для обхода блокировок">
-    <meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg">
-    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}</style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>StintikVPN — Интернет свобода ближе чем кажется</title>
+<meta name="description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI."/>
+<meta name="theme-color" content="#060608"/>
+<meta property="og:title" content="StintikVPN — Интернет свобода ближе чем кажется"/>
+<meta property="og:description" content="Бесплатные VPN-подписки, прокси, Tor и обход DPI."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://stintik-123.github.io/StintikVPN/"/>
+<meta property="og:image" content="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg"/>
+<link rel="icon" href="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg"/>
+<link rel="stylesheet" href="style.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body>
-    <a href="#main-content" class="skip-link">Перейти к содержимому</a>
-    <div id="loading-screen" class="loading-screen"><div class="loader"><div class="loader-circle"></div><div class="loader-text">Загрузка...</div></div></div>
-    <nav class="navbar" role="navigation" aria-label="Основная навигация">
-        <div class="nav-container">
-            <a href="/StintikVPN/" class="nav-brand"><img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="StintikVPN Logo" class="nav-logo" width="32" height="32"><span>StintikVPN</span></a>
-            <div class="nav-links">
-                <a href="#subs" class="nav-link">Подписки</a>
-                <a href="#proxies" class="nav-link">Прокси</a>
-                <a href="#clients" class="nav-link">Клиенты</a>
-                <a href="#tools" class="nav-link">Инструменты</a>
-                <a href="#guides" class="nav-link">Гайды</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-            </div>
-            <div class="nav-actions">
-                <a href="https://t.me/Keb04w" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-telegram" aria-label="Telegram">TG</a>
-                <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-github" aria-label="GitHub">GH</a>
-                <button class="nav-btn nav-btn-theme" type="button" aria-label="Переключить тему">Theme</button>
-            </div>
-        </div>
-    </nav>
-    <main id="main-content">
-        <section class="hero"><div class="container"><h1>Интернет свобода<br><span class="grad">без ограничений</span></h1><p>Скопил ссылок, выбери подписку и работай. Без регистрации и без оплаты.</p></div></section>
-        <section id="subs" class="section"><div class="container"><h2>Подписки</h2><div id="sub-list"></div></div></section>
-        <section id="proxies" class="section"><div class="container"><h2>Telegram Прокси</h2><div id="proxy-list"></div></div></section>
-        <section id="clients" class="section"><div class="container"><h2>Клиенты</h2><div id="client-list"></div></div></section>
-        <section id="tools" class="section"><div class="container"><h2>Инструменты</h2><div id="tool-list"></div></div></section>
-        <section id="guides" class="section"><div class="container"><h2>Гайды</h2><div id="guide-list"></div></div></section>
-        <section id="faq" class="section"><div class="container"><h2>FAQ</h2><div id="faq-list"></div></div></section>
-    </main>
-    <footer class="footer"><div class="container"><p>StintikVPN — открытый проект. <a href="https://github.com/Stintik-123/StintikVPN">GitHub</a></p></div></footer>
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<body class="theme-dark">
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <img class="logo-img" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt=""/>
+      StintikVPN
+    </a>
+    <button class="nav-burger" aria-label="Меню" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="#subs">Подписки</a>
+      <a href="#clients">Клиенты</a>
+      <a href="#tools">Инструменты</a>
+      <a href="#proxies">Прокси</a>
+      <a href="#guides">Гайды</a>
+      <a href="#warp">WARP</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-ctas">
+      <button class="nav-theme-btn" aria-label="Тема" onclick="toggleTheme()" title="Переключить тему">
+        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" class="nav-cta nav-cta-gh">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Интернет свобода<br><span class="grad">ближе чем кажется</span></h1>
+      <p class="hero-lead">Бесплатные VPN-подписки, Telegram-прокси и гайды. Скопировал → вставил в клиент → работает.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#subs">Подписки</a>
+        <a class="btn btn-ghost" href="#clients">Клиенты</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260609_220410_760.jpg" alt="StintikVPN"/>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="subs">
+  <div class="container">
+    <div class="section-head">
+      <h2>Подписки</h2>
+      <p>Чёрные — обычный интернет. Белые — когда оператор включил белые списки РКН.</p>
+    </div>
+    <div class="filters">
+      <button class="filter active" data-f="all">Все</button>
+      <button class="filter" data-f="black">Чёрные</button>
+      <button class="filter" data-f="white">Белые</button>
+    </div>
+    <div class="sub-list" id="sub-list"></div>
+  </div>
+</section>
+
+<section class="section" id="proxies">
+  <div class="container">
+    <div class="section-head">
+      <h2>Telegram-прокси</h2>
+      <p>Обновлено: <span id="proxy-date">—</span>. Не работает один — бери другой.</p>
+    </div>
+    <div class="proxy-list" id="proxy-list"></div>
+  </div>
+</section>
+
+<section class="section" id="clients">
+  <div class="container">
+    <div class="section-head"><h2>Клиенты</h2></div>
+    <div class="clients-grid">
+      <div class="client-card">
+        <h3>Windows</h3>
+        <p><strong>Incy</strong> / Karing · Hiddify · v2rayN</p>
+        <a class="btn btn-sm" href="https://incy.cc/" target="_blank" rel="noopener">Incy</a>
+        <a class="btn btn-sm btn-ghost" href="https://github.com/KaringX/karing/releases" target="_blank" rel="noopener">Karing</a>
+      </div>
+      <div class="client-card">
+        <h3>Android</h3>
+        <p><strong>Incy</strong> / Karing · Hiddify · v2rayNG</p>
+        <a class="btn btn-sm" href="https://incy.cc/" target="_blank" rel="noopener">Incy</a>
+        <a class="btn btn-sm btn-ghost" href="https://github.com/KaringX/karing/releases" target="_blank" rel="noopener">Karing</a>
+      </div>
+      <div class="client-card">
+        <h3>iPhone / iPad</h3>
+        <p><strong>Streisand</strong> · Happ · V2Box</p>
+        <a class="btn btn-sm" href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" rel="noopener">Streisand</a>
+      </div>
+      <div class="client-card">
+        <h3>macOS / Linux</h3>
+        <p>Incy · Hiddify · Karing · Clash Verge</p>
+        <a class="btn btn-sm" href="https://incy.cc/" target="_blank" rel="noopener">Incy</a>
+        <a class="btn btn-sm btn-ghost" href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener">Hiddify</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-head"><h2>Инструменты</h2></div>
+    <div class="tools-grid">
+      <a class="tool" href="https://www.speedtest.net/" target="_blank" rel="noopener"><h4>Speedtest</h4><span>Скорость</span></a>
+      <a class="tool" href="https://2ip.ru/" target="_blank" rel="noopener"><h4>2ip</h4><span>IP и утечки</span></a>
+      <a class="tool" href="https://acl4ssr-sub.github.io/" target="_blank" rel="noopener"><h4>Clash converter</h4><span>Конвертер</span></a>
+      <a class="tool" href="https://warp.llxi.pro/" target="_blank" rel="noopener"><h4>WARP Generator</h4><span>Конфиг WARP</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="guides">
+  <div class="container">
+    <div class="section-head"><h2>Гайды</h2><p>Обход без VPN и полезные ссылки.</p></div>
+    <div class="guides-list">
+      <a class="guide" href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener">Zapret Discord/YouTube (Windows)</a>
+      <a class="guide" href="https://github.com/Valent-in/ByeByeDPI" target="_blank" rel="noopener">ByeByeDPI (Windows / Android)</a>
+      <a class="guide" href="https://github.com/Flowseal/tg-ws-proxy" target="_blank" rel="noopener">TG-WS-Proxy</a>
+      <a class="guide" href="https://github.com/Stintik-123/StintikVPN#tor-%D0%BC%D0%BE%D1%81%D1%82%D1%8B" target="_blank" rel="noopener">Tor-мосты</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="warp">
+  <div class="container">
+    <div class="section-head"><h2>WARP</h2></div>
+    <p>Конфиги WARP лежат в Telegram: <a href="https://t.me/StintikWarp" target="_blank" rel="noopener">@StintikWarp</a></p>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head"><h2>FAQ</h2></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Подписка не работает / очень медленно<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Подписки бесплатные, поэтому могут не работать в моменты большого наплыва. Попробуйте другую подписку или обновите текущую.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Как часто обновляются конфиги?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги обновляются ежедневно их авторами. Ссылки в README всегда актуальны.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Почему StintikVPN бесплатный?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Это агрегатор бесплатных VPN-подписок и прокси. Я просто собираю всё в одном месте.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Прокси Telegram не подключается<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Прокси бесплатные, их часто блокируют. Не работает один — бери другой из списка.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Какой клиент лучше новичку?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner"><strong>Incy</strong> или <strong>Karing</strong> (где Incy нет). На iOS — <strong>Streisand</strong>.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Безопасно ли это?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Конфиги из открытых источников. Не передавайте через них пароли и не заходите в банки.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>StintikVPN — сделано людьми для людей</p>
+    <p><a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">GitHub</a> · <a href="https://t.me/StintikVPN" target="_blank" rel="noopener">Telegram</a></p>
+  </div>
+</footer>
+
+<div class="modal" id="qr-modal" hidden>
+  <div class="modal-backdrop" onclick="closeQR()"></div>
+  <div class="modal-box">
+    <div id="qrcode"></div>
+    <button class="btn btn-sm modal-close" onclick="closeQR()">Закрыть</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden>✓ Скопировано</div>
+<script src="script.js"></script>
 </body>
 </html>
