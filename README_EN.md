@@ -77,7 +77,7 @@ enabled "white lists", you need the **white lists**.
 | Black list (main) | `https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt` |
 | Black Mobile (phones) | `https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt` |
 | White lists (main) | `https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt` |
-| White lists (CIDR) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt` |
+| White lists (CIDR) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt` |
 | White lists (SNI) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt` |
 
 <!-- SUBS:END -->
@@ -88,7 +88,7 @@ enabled "white lists", you need the **white lists**.
 
 <!-- PROXIES:START -->
 
-Updated: 17.10.2026
+Updated: 09.11.2026
 
 | Proxy | Link |
 |:-------|:-----------------|

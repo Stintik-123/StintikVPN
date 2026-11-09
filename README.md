@@ -75,7 +75,7 @@
 | Чёрные списки (основной) | `https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt` |
 | Black Mobile (для телефонов) | `https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt` |
 | Белые списки (основные) | `https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt` |
-| Белые списки (CIDR) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt` |
+| Белые списки (CIDR) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt` |
 | Белые списки (SNI) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt` |
 
 <!-- SUBS:END -->
@@ -86,7 +86,7 @@
 
 <!-- PROXIES:START -->
 
-Обновлено: 17.10.2026
+Обновлено: 09.11.2026
 
 | Прокси | Ссылка |
 |:-------|:-----------------|

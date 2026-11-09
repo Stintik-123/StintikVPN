@@ -1,5 +1,5 @@
 {
-  "updated": "17.10.2026",
+  "updated": "09.11.2026",
   "subscriptions": [
     {
       "id": "black-main",
@@ -30,15 +30,15 @@
       "category": "white",
       "tag": "CIDR",
       "title": "Белые списки (CIDR)",
-      "note": "Фильтр по IP",
-      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt"
+      "note": "Фильтр по IP · 25 узлов",
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt"
     },
     {
       "id": "white-sni",
       "category": "white",
       "tag": "SNI",
       "title": "Белые списки (SNI)",
-      "note": "Фильтр по доменам",
+      "note": "Источник временно пуст (0 узлов у вышестоящего репозитория)",
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt"
     }
   ],

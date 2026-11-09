@@ -89,7 +89,7 @@
 | 黑名单（主） | `https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt` |
 | Black Mobile（手机） | `https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt` |
 | 白名单（主） | `https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt` |
-| 白名单（CIDR） | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt` |
+| 白名单（CIDR） | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt` |
 | 白名单（SNI） | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt` |
 
 <!-- SUBS:END -->
@@ -98,7 +98,7 @@
 
 <!-- PROXIES:START -->
 
-更新于: 17.10.2026
+更新于: 09.11.2026
 
 | 代理 | 链接 |
 |:-------|:-----------------|
