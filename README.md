@@ -72,7 +72,7 @@
 
 | Подписка | Ссылка |
 |:-------|:-----------------|
-| Чёрные списки (основной) | `https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt` |
+| Чёрные списки (основной) | `https://gitverse.ru/api/repos/Pizduk/PizdukVPN/raw/branch/master/sub.txt` |
 | Black Mobile (для телефонов) | `https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt` |
 | Белые списки (основные) | `https://gitverse.ru/api/repos/flaafix/AetrisVPN_white_list_lite/raw/branch/master/AetrisVPN.txt` |
 | Белые списки (CIDR) | `https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt` |
@@ -90,11 +90,10 @@
 
 | Прокси | Ссылка |
 |:-------|:-----------------|
-| lumetra.mtproxy.zip | `https://t.me/proxy?server=lumetra.mtproxy.zip&port=443&secret=ee9af09f8b8dcfe282445cf1bc91854acb786170692e6f7a6f6e2e7275` |
-| 85.192.34.18:9443 | `https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665` |
-| proxy.tonservice.site | `https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000` |
-| 172.65.100.45:25565 | `https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d` |
-| cluster.mtproxy.cc | `https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363` |
+| drovane.xyz | `https://t.me/webproxy?server=drovane.xyz&secret=dd7ec606b60fd41b56a57e7e47671c41bd` |
+| static telega | `https://t.me/proxy?server=static.b-telega.shop&port=443&secret=eec9f4da3fdfbfccdb13cd63d487b4804273746f72652e737465616d706f77657265642e636f6d` |
+| win&secret | `https://t.me/webproxy?server=mtproto.win&secret=dde5544cb710bae52b8bcbc05375921c16` |
+| lumenpost | `https://t.me/proxy?server=n857f86.lumenpost.top&port=443&secret=ee64d43c980c08b82856137ac74cb331fb6d2e6c756d656e706f73742e746f70` |
 
 <!-- PROXIES:END -->
 
