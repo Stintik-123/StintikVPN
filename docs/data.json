@@ -1,13 +1,13 @@
 {
-  "updated": "09.11.2026",
+  "updated": "10.11.2026",
   "subscriptions": [
     {
       "id": "black-main",
       "category": "black",
       "tag": "Чёрный",
       "title": "Чёрный список (основной)",
-      "note": "V2Ray Aggregator",
-      "url": "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt"
+      "note": "PizdukVPN",
+      "url": "https://gitverse.ru/api/repos/Pizduk/PizdukVPN/raw/branch/master/sub.txt"
     },
     {
       "id": "black-mobile",
@@ -30,7 +30,7 @@
       "category": "white",
       "tag": "CIDR",
       "title": "Белые списки (CIDR)",
-      "note": "Фильтр по IP · 25 узлов",
+      "note": "Фильтр по IP · igareck",
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt"
     },
     {
@@ -38,7 +38,7 @@
       "category": "white",
       "tag": "SNI",
       "title": "Белые списки (SNI)",
-      "note": "Источник временно пуст (0 узлов у вышестоящего репозитория)",
+      "note": "Фильтр по доменам · igareck",
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt"
     }
   ],
@@ -62,6 +62,22 @@
     {
       "addr": "cluster.mtproxy.cc",
       "url": "https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363"
+    },
+    {
+      "addr": "mtproto.win",
+      "url": "https://t.me/webproxy?server=mtproto.win&secret=dde5544cb710bae52b8bcbc05375921c16"
+    },
+    {
+      "addr": "n857f86.lumenpost.top",
+      "url": "https://t.me/proxy?server=n857f86.lumenpost.top&port=443&secret=ee64d43c980c08b82856137ac74cb331fb6d2e6c756d656e706f73742e746f70"
+    },
+    {
+      "addr": "drovane.xyz",
+      "url": "https://t.me/webproxy?server=drovane.xyz&secret=dd7ec606b60fd41b56a57e7e47671c41bd"
+    },
+    {
+      "addr": "n59d2d3.tidalcache.com",
+      "url": "https://t.me/proxy?server=n59d2d3.tidalcache.com&port=443&secret=ee5c89ab20266ce759f96a0745b63d7cdf656467652e746964616c63616368652e636f6d"
     }
   ]
 }
