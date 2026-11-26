@@ -1,5 +1,3 @@
-
-
 # StintikVPN — интернет-свобода ближе, чем кажется
 
 <img src="https://raw.githubusercontent.com/Stintik-123/StintikVPN/main/images/IMG_20260716_095916_952.jpg" alt="StintikVPN" width="100%">
@@ -94,11 +92,11 @@
 | 85.192.34.18:9443 | `https://t.me/proxy?server=85.192.34.18&port=9443&secret=eef390d9757cb92d87826bcef28a6e75ed74676e6e2e6c697665` |
 | proxy.tonservice.site | `https://t.me/proxy?server=proxy.tonservice.site&port=8443&secret=dd00000000000000000000000000000000` |
 | 172.65.100.45:25565 | `https://t.me/proxy?server=172.65.100.45&port=25565&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d` |
-| cluster.mtproxy.cc | `https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d7470726f78792e6363` |
+| cluster.mtproxy.cc | `https://t.me/proxy?server=cluster.mtproxy.cc&port=443&secret=ee499cbaa63a17e5071d5babf1ccba89f3636c75737465722e6d07807892e6363` |
 | mtproto.win | `https://t.me/webproxy?server=mtproto.win&secret=dde5544cb710bae52b8bcbc05375921c16` |
 | n857f86.lumenpost.top | `https://t.me/proxy?server=n857f86.lumenpost.top&port=443&secret=ee64d43c980c08b82856137ac74cb331fb6d2e6c756d656e706f73742e746f70` |
 | drovane.xyz | `https://t.me/webproxy?server=drovane.xyz&secret=dd7ec606b60fd41b56a57e7e47671c41bd` |
-| n59d2d3.tidalcache.com | `https://t.me/proxy?server=n59d2d3.tidalcache.com&port=443&secret=ee5c89ab20266ce759f96a0745b63d7cdf656467652e746964616c63616368652e636f6d` |
+| n59d2d3.tidalcache.com | `https://t.me/proxy?server=n59d2d3.tidalcache.com&port=443&secret=ee5c89ab20266ce759f96a0745b63d7cdf656467652e7469646163616368652e636f6d` |
 
 <!-- PROXIES:END -->
 
@@ -295,3 +293,11 @@
 ---
 
 <p align="center"><em>StintikVPN — сделано людьми для людей</em></p>
+
+## Star History
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Stintik-123/StintikVPN&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Stintik-123/StintikVPN&type=Date" />
+  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Stintik-123/StintikVPN&type=Date" />
+</picture>
